@@ -41,7 +41,6 @@
         </div>
       </div>
     </div>
-    <v-footer></v-footer>
   </div>
 </template>
 <script>

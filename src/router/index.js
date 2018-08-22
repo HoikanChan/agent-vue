@@ -20,11 +20,48 @@ export default new Router({
   mode: 'history',
   base: __dirname,
   routes: [
-    // {
-    //   path: "/home",
-    //   name: "home",
-    //   component: resolve => require(["../views/home/Home"], resolve)
-    // },
+    {
+      path: '/',
+      name: 'index',
+      component: resolve => require(['../views/layout'], resolve),
+      redirect: { name: 'home' },
+      children: [
+        {
+          path: 'mall',
+          component: resolve => require(['../views/mall/index'], resolve),
+          children: [
+            {
+              path: '/',
+              component: resolve => require(['../views/mall/All'], resolve)
+            },
+            {
+              path: 'all',
+              component: resolve => require(['../views/mall/All'], resolve)
+            },
+            {
+              path: 'skin',
+              component: resolve => require(['../views/mall/Skin'], resolve)
+            },
+            {
+              path: 'beauty',
+              component: resolve => require(['../views/mall/Beauty'], resolve)
+            },
+            {
+              path: 'perfume',
+              component: resolve => require(['../views/mall/Perfume'], resolve)
+            }
+          ]
+        },
+        {
+          path: 'home',
+          name: 'home',
+          component: resolve => require(['../views/home/Home'], resolve)
+        },
+        { path: 'user', name: 'user', component: User },
+        { path: 'shoppingcart', name: 'shoppingcart', component: Shoppingcart },
+        { path: 'register', name: 'shoppingcart', component: Register }
+      ]
+    },
     {
       path: '/login',
       name: 'login',
@@ -35,43 +72,14 @@ export default new Router({
       name: 'forgetPassword',
       component: resolve => require(['../views/forgetPsw/ForgetPsw'], resolve)
     },
-    { path: '/home', component: Home },
-    {
-      path: '/mall',
-      component: resolve => require(['../views/mall/index'], resolve),
-      children: [
-        {
-          path: '/',
-          component: resolve => require(['../views/mall/All'], resolve)
-        },
-        {
-          path: 'all',
-          component: resolve => require(['../views/mall/All'], resolve)
-        },
-        {
-          path: 'skin',
-          component: resolve => require(['../views/mall/Skin'], resolve)
-        },
-        {
-          path: 'beauty',
-          component: resolve => require(['../views/mall/Beauty'], resolve)
-        },
-        {
-          path: 'perfume',
-          component: resolve => require(['../views/mall/Perfume'], resolve)
-        }
-      ]
-    },
-    { path: '/register', component: Register },
     { path: '/shoppingcart', component: Shoppingcart },
     { path: '/userset', component: UserSet },
-    { path: '/user', component: User },
     { path: '/goodsdetail/:poiId', component: GoodsDetail },
     { path: '/order', component: Order },
     { path: '/address', component: Address },
     { path: '/login', component: Login },
     { path: '/forgotpassword', component: Forgot_Password },
     { path: '/mycode', component: My_Code },
-    { path: '*', redirect: '/home' } /*默认跳转的路由*/
+    { path: '*', redirect: '/user' } /*默认跳转的路由*/
   ]
 })

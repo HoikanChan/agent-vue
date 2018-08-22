@@ -20,11 +20,9 @@
 			<div><img src='../assets/images/grade.png' /><p>我的业绩</p></div>
 			<div>其他</div>
 		</div>
-		<v-footer></v-footer>
     </div>
 </template>
 <script>
-import Footer from './public/Footer.vue'
 import '../../node_modules/swiper/dist/css/swiper.css'
 import Swiper from 'swiper'
 export default {
@@ -44,9 +42,6 @@ export default {
         el: '.swiper-pagination'
       }
     })
-  },
-  components: {
-    'v-footer': Footer
   }
 }
 </script>

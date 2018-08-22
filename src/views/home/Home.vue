@@ -1,40 +1,40 @@
 <template>
-	<div class="home">
+  <div class="home">
 
-		<div class="swiper-container">
-			<div class="swiper-wrapper">
-				<div class="swiper-slide"><img src="@/assets/images/banner_.png" /></div>
-				<div class="swiper-slide"><img src="@/assets/images/banner2.png" /></div>
-				<div class="swiper-slide"><img src="@/assets/images/3.jpg" /></div>
-				<div class="swiper-slide"><img src="@/assets/images/4.jpg" /></div>
-				<div class="swiper-slide"><img src="@/assets/images/5.jpg" /></div>
-			</div>
-			<div class="swiper-pagination"></div>
-		</div>
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="../../assets/images/banner_.png" /></div>
+        <div class="swiper-slide"><img src="../../assets/images/banner2.png" /></div>
+        <div class="swiper-slide"><img src="../../assets/images/3.jpg" /></div>
+        <div class="swiper-slide"><img src="../../assets/images/4.jpg" /></div>
+        <div class="swiper-slide"><img src="../../assets/images/5.jpg" /></div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
 
-		<div class="nav">
-			<div><img src='@/assets/images/team.png' />
-				<p>我的团队</p>
-			</div>
-			<div><img src='@/assets/images/points.png' />
-				<p>我的积分</p>
-			</div>
-			<div><img src='@/assets/images/authorising.png' />
-				<p>我的授权书</p>
-			</div>
-			<div><img src='@/assets/images/cash.png' />
-				<p>我的押金</p>
-			</div>
-			<div><img src='@/assets/images/grade.png' />
-				<p>我的业绩</p>
-			</div>
-			<div>其他</div>
-		</div>
-		<v-footer></v-footer>
-	</div>
+    <div class="nav">
+      <div><img src='../../assets/images/team.png' />
+        <p>我的团队</p>
+      </div>
+      <div><img src='../../assets/images/points.png' />
+        <p>我的积分</p>
+      </div>
+      <div><img src='../../assets/images/authorising.png' />
+        <p>我的授权书</p>
+      </div>
+      <div><img src='../../assets/images/cash.png' />
+        <p>我的押金</p>
+      </div>
+      <div><img src='../../assets/images/grade.png' />
+        <p>我的业绩</p>
+      </div>
+      <div>其他</div>
+    </div>
+  </div>
 </template>
 <script>
-import Footer from '../../components/Footer.vue'
+import '../../../node_modules/swiper/dist/css/swiper.css'
+import Swiper from 'swiper'
 export default {
   data() {
     return {
@@ -52,9 +52,6 @@ export default {
         el: '.swiper-pagination'
       }
     })
-  },
-  components: {
-    'v-footer': Footer
   }
 }
 </script>
