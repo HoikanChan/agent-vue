@@ -1,0 +1,123 @@
+body{
+    background: #f6f6f6;
+}
+p{
+    margin:0;
+    padding: 0;
+}
+.shoppingcart_top{
+    width: 100%;
+    height: .44rem;
+    border-bottom: 1px solid #ccc;
+    text-align:center;
+    line-height: .44rem;
+    font-size: .18rem;
+    color: #000;
+}
+.editer{
+    height: .43rem;
+    line-height: .43rem;
+    padding: 0 4%;
+    background: #fff;
+    border-bottom: 1px solid #ccc;
+}
+.editer img{
+    display: inline-block;
+    width:.26rem;
+    height:.26rem;
+    margin-left: 1%;
+    border-radius: 50%;
+}
+.editer p{
+    display: inline-block;
+    font-size: .14rem;
+    font-weight: 600;
+    padding-left: 1%;
+}
+.editer span{
+    float: right;
+    font-size: .12rem;
+    font-weight: bold;
+}
+.order_list li{
+    background: #fff;
+}
+.order_list li{
+    padding: 0 4%;
+    height: 1.2rem;
+    position: relative;
+    border-bottom: 1px solid #ccc;
+}
+#check{
+    width: .1rem;
+    height: .1rem;
+    border-radius: 50%;
+    margin-left: 4%;
+    margin-top: .5rem;
+}
+.check{
+    width: .21rem;
+    height: .21rem;
+    position: absolute;
+    left: 6%;
+    top: .45rem;
+    z-index: -1;
+}
+.check:first-child{
+    z-index: 1;
+}
+
+.order_list li>div{
+    float: left;
+}
+.order_list li>div:nth-child(2){
+    width: .9rem;
+    height: .9rem;
+    margin-left: 4%;
+    margin-top: .15rem;
+}
+.order_list li>div:nth-child(2) img{
+    width: 100%;
+    height: auto;
+    
+}
+.order_list li>div:nth-child(3){
+    /* width: 61.2%; */
+    width: 63.6%;
+    height: 1rem;
+    margin-top: .15rem;
+}
+.order_list li>div:nth-child(3) p{
+    font-size: .13rem;
+    font-weight: bold;
+    padding-left: 5.2%;
+}
+.order_list li>div:nth-child(3) p:nth-child(1) span{
+    padding-left: 4.2%;
+}
+.order_list li>div:nth-child(3) p:nth-child(2){
+    margin-top: .04rem;
+    
+}
+.order_list li>div:nth-child(3) p:nth-child(2) span{
+    padding-left: 8.4%;
+}
+.order_list li>div:nth-child(3) p:nth-child(2),.order_list li>div:nth-child(2) p:nth-child(3){
+    height: .17rem;
+    color: #666;
+    font-size: .12rem;
+}
+.order_list li>div:nth-child(3) p:nth-child(4){
+    font-size: .18rem;
+    margin-top: .16rem;
+    display: inline-block;
+    color: #5b50d3;
+}
+.order_list li>div:nth-child(3) .number{
+    float: right;
+    font-size: .18rem;
+    color: #666;
+    font-weight: bold;
+    padding-top: .16rem;
+    padding-right: 7.8%;
+}

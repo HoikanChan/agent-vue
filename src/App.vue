@@ -12,6 +12,8 @@ export default {
 };
 </script>
 <style lang="less">
+@import url("../src/assets/css/public.css");
+
 body {
   margin: 0;
 }

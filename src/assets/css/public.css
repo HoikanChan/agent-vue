@@ -1,0 +1,98 @@
+@charset "UTF-8";
+/* CSS Document */
+body, ol, ul, h1, h2, h3, h4, h5, h6, p, th, td, dl, dd, form, fieldset, legend, input, textarea, select {
+  padding: 0;
+  margin: 0; }
+html{
+  font-size: 625%;
+}
+body {
+  font-size: .12rem;
+  font-family: "苹方";
+  background: #FFF; }
+
+li {
+  list-style: none; }
+
+a, u, s, del {
+  text-decoration: none;
+  color: #000; }
+
+table {
+  border-spacing: 0px;
+  border-collapse: collapse; }
+
+i, em, strong, b {
+  font-style: normal;
+  font-weight: normal; }
+
+input, textarea {
+  outline: none;
+  border: 0; }
+
+img {
+  border: 0;
+  vertical-align: middle; }
+
+p {
+  word-wrap: break-word; }
+
+.tc {
+  text-align: center; }
+
+.bd0 {
+  border: 0; }
+
+.ind {
+  text-indent: 2em; }
+
+.ind999 {
+  text-indent: -9999px; }
+
+.over {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; }
+
+.czjz:after {
+  content: ".";
+  width: 0;
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle; }
+
+.cu {
+  cursor: pointer; }
+
+.txt {
+  border: 0;
+  float: left; }
+
+.flt50 {
+  left: 50%;
+  top: 50%;
+  position: fixed; }
+
+.alt50 {
+  left: 50%;
+  top: 50%;
+  position: absolute; }
+
+.left {
+  float: left; }
+
+.right {
+  float: right; }
+
+.clear {
+  zoom: 1; }
+
+.clear:after {
+  content: ".";
+  display: block;
+  clear: both;
+  height: 0;
+  visibility: hidden;
+  overflow: hidden; }
+
+/*# sourceMappingURL=public.css.map */

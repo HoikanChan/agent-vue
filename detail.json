@@ -1,0 +1,483 @@
+[
+    {
+        "poiId": 3271694,
+        "frontImg":
+        [
+            "http://p0.meituan.net/600.600/deal/__38666717__4597520.jpg",
+            "http://p0.meituan.net/600.600/apiback/711dc29b736631fcb47751f40d03b76e27820.jpg",
+            "http://p1.meituan.net/600.600/apiback/e8a728e2ff4aa3e3221006a9530a353768765.jpg"
+        ],
+        "title": "拉图牛排馆",
+        "avgScore": 3.9,
+        "allCommentNum": 3561,
+        "address": "北站/建设路建设路35-1号后座（金城广场斜对面）",
+        "avgPrice": 45,
+        "dealList": [],
+        "a":1
+    },
+    {
+        "poiId": 51300047,
+        "frontImg":
+        [
+            "http://p0.meituan.net/600.600/deal/__38666717__4597520.jpg",
+            "http://p0.meituan.net/600.600/apiback/711dc29b736631fcb47751f40d03b76e27820.jpg",
+            "http://p1.meituan.net/600.600/apiback/e8a728e2ff4aa3e3221006a9530a353768765.jpg"
+        ],
+        "title": "味尊比萨（龙珠店）",
+        "avgScore": 3.9,
+        "allCommentNum": 976,
+        "address": "大润发镇龙珠路33-36号（工商银行）",
+        "avgPrice": 23,
+        "dealList": [],
+        "a":1
+    },
+    {
+        "poiId": 42191513,
+        "frontImg":  [
+            "http://p0.meituan.net/600.600/deal/__38666717__4597520.jpg",
+            "http://p0.meituan.net/600.600/apiback/711dc29b736631fcb47751f40d03b76e27820.jpg",
+            "http://p1.meituan.net/600.600/apiback/e8a728e2ff4aa3e3221006a9530a353768765.jpg"
+        ],
+        "title": "弘善素食（素苑店）",
+        "avgScore": 4.4,
+        "allCommentNum": 2911,
+        "address": "建设北路新华盈华街8号11-12（凤华居委旁）",
+        "avgPrice": 18,
+        "dealList": [],
+        "a":1
+    },
+    {
+        "poiId": 6567474,
+        "frontImg": [
+            "http://p0.meituan.net/600.600/deal/__38666717__4597520.jpg",
+            "http://p0.meituan.net/600.600/apiback/711dc29b736631fcb47751f40d03b76e27820.jpg",
+            "http://p1.meituan.net/600.600/apiback/e8a728e2ff4aa3e3221006a9530a353768765.jpg"
+        ],
+        "title": "梦寿司（大润发店）",
+        "avgScore": 4.4,
+        "allCommentNum": 1987,
+        "address": "大润发新华镇大润发停车场出口对面（即黄师傅蛋糕店对面）",
+        "avgPrice": 34,
+        "dealList": [],
+        "a":1
+    },
+    {
+        "poiId": 6597748,
+        "frontImg": [
+            "http://p0.meituan.net/600.600/deal/__38666717__4597520.jpg",
+            "http://p0.meituan.net/600.600/apiback/711dc29b736631fcb47751f40d03b76e27820.jpg",
+            "http://p1.meituan.net/600.600/apiback/e8a728e2ff4aa3e3221006a9530a353768765.jpg"
+        ],
+        "title": "黄师傅蛋糕店（总店）",
+        "avgScore": 3.7,
+        "allCommentNum": 4451,
+        "address": "秀全公园新华路79号成功大厦107铺（螺蛳粉隔壁）",
+        "avgPrice": 7,
+        "dealList": [],
+        "a":1
+    },
+    {
+        "poiId": 40287177,
+        "frontImg":[
+            "http://p0.meituan.net/600.600/deal/__38666717__4597520.jpg",
+            "http://p0.meituan.net/600.600/apiback/711dc29b736631fcb47751f40d03b76e27820.jpg",
+            "http://p1.meituan.net/600.600/apiback/e8a728e2ff4aa3e3221006a9530a353768765.jpg"
+        ],
+        "title": "仙庙烧鸡●花都十大美食（花东店）",
+        "avgScore": 3.9,
+        "allCommentNum": 2801,
+        "address": "花东大东村从化庄南82号",
+        "avgPrice": 38,
+        "dealList": [],
+        "a":1
+    },
+    {
+        "poiId": 2382795,
+        "frontImg": [
+            "http://p0.meituan.net/600.600/deal/__38666717__4597520.jpg",
+            "http://p0.meituan.net/600.600/apiback/711dc29b736631fcb47751f40d03b76e27820.jpg",
+            "http://p1.meituan.net/600.600/apiback/e8a728e2ff4aa3e3221006a9530a353768765.jpg"
+        ],
+        "title": "大长今韩国料理炭火烤肉（花都店）",
+        "avgScore": 3.5,
+        "allCommentNum": 1787,
+        "address": "大润发曙光路嘉尔登酒店首层A30",
+        "avgPrice": 52,
+        "dealList": [],
+        "a":1
+    },
+    {
+        "poiId": 4694242,
+        "frontImg":[
+            "http://p0.meituan.net/600.600/deal/__38666717__4597520.jpg",
+            "http://p0.meituan.net/600.600/apiback/711dc29b736631fcb47751f40d03b76e27820.jpg",
+            "http://p1.meituan.net/600.600/apiback/e8a728e2ff4aa3e3221006a9530a353768765.jpg"
+        ],
+        "title": "御可贡茶（来又来广场店）",
+        "avgScore": 3.2,
+        "allCommentNum": 8346,
+        "address": "大润发龙珠路39号来又来广场4楼（大润发对面）",
+        "avgPrice": 15,
+        "dealList": [],
+        "a":1
+    },
+    {
+        "poiId": 4928187,
+        "frontImg": [
+            "http://p0.meituan.net/600.600/deal/__38666717__4597520.jpg",
+            "http://p0.meituan.net/600.600/apiback/711dc29b736631fcb47751f40d03b76e27820.jpg",
+            "http://p1.meituan.net/600.600/apiback/e8a728e2ff4aa3e3221006a9530a353768765.jpg"
+        ],
+        "title": "三顾冒菜（花都旗舰店）",
+        "avgScore": 3.6,
+        "allCommentNum": 4128,
+        "address": "大润发龙珠路星缘商业街中间二楼（泰极泰国风味餐厅）",
+        "avgPrice": 29,
+        "dealList": [],
+        "a":1
+    },
+    {
+        "poiId": 636239,
+        "frontImg":[
+            "http://p0.meituan.net/600.600/deal/__38666717__4597520.jpg",
+            "http://p0.meituan.net/600.600/apiback/711dc29b736631fcb47751f40d03b76e27820.jpg",
+            "http://p1.meituan.net/600.600/apiback/e8a728e2ff4aa3e3221006a9530a353768765.jpg"
+        ],
+        "title": "蒙自源（花都新华店）",
+        "avgScore": 3.6,
+        "allCommentNum": 1947,
+        "address": "北站/建设路新华街建设路17号2楼",
+        "avgPrice": 24,
+        "dealList": [],
+        "a":1
+    },
+    {
+        "poiId": 6361273,
+        "frontImg": [
+            "http://p0.meituan.net/600.600/deal/__38666717__4597520.jpg",
+            "http://p0.meituan.net/600.600/apiback/711dc29b736631fcb47751f40d03b76e27820.jpg",
+            "http://p1.meituan.net/600.600/apiback/e8a728e2ff4aa3e3221006a9530a353768765.jpg"
+        ],
+        "title": "金莱士",
+        "avgScore": 4.1,
+        "allCommentNum": 786,
+        "address": "狮岭狮岭镇盘古北路107号美华百货一楼（永兴市场对面）",
+        "avgPrice": 14,
+        "dealList": [],
+        "a":1
+    },
+    {
+        "poiId": 40203467,
+        "frontImg": [
+            "http://p0.meituan.net/600.600/deal/__38666717__4597520.jpg",
+            "http://p0.meituan.net/600.600/apiback/711dc29b736631fcb47751f40d03b76e27820.jpg",
+            "http://p1.meituan.net/600.600/apiback/e8a728e2ff4aa3e3221006a9530a353768765.jpg"
+        ],
+        "title": "仁记甜品（广百店）",
+        "avgScore": 3.7,
+        "allCommentNum": 1447,
+        "address": "新世纪广场丽雅直街友和广场A35-A36号商铺",
+        "avgPrice": 29,
+        "dealList": [],
+        "a":1
+    },
+    {
+        "poiId": 631641,
+        "frontImg": [
+            "http://p0.meituan.net/600.600/deal/__38666717__4597520.jpg",
+            "http://p0.meituan.net/600.600/apiback/711dc29b736631fcb47751f40d03b76e27820.jpg",
+            "http://p1.meituan.net/600.600/apiback/e8a728e2ff4aa3e3221006a9530a353768765.jpg"
+        ],
+        "title": "玛雅咖啡地带（花都总店）",
+        "avgScore": 3.7,
+        "allCommentNum": 1490,
+        "address": "花都广场迎宾大道与曙光大道交汇处（地铁花都广场站步行5分钟）",
+        "avgPrice": 160,
+        "dealList": [],
+        "a":1
+    },
+    {
+        "poiId": 4442351,
+        "frontImg": [
+            "http://p0.meituan.net/600.600/deal/__38666717__4597520.jpg",
+            "http://p0.meituan.net/600.600/apiback/711dc29b736631fcb47751f40d03b76e27820.jpg",
+            "http://p1.meituan.net/600.600/apiback/e8a728e2ff4aa3e3221006a9530a353768765.jpg"
+        ],
+        "title": "红人馆家庭牛排（龙珠路店）",
+        "avgScore": 3.9,
+        "allCommentNum": 385,
+        "address": "建设北路龙珠路130-8号（花城北路与龙珠路交接处，中国银行旁）",
+        "avgPrice": 40,
+        "dealList": [],
+        "a":1
+    },
+    {
+        "poiId": 626349,
+        "frontImg": [
+            "http://p0.meituan.net/600.600/deal/__38666717__4597520.jpg",
+            "http://p0.meituan.net/600.600/apiback/711dc29b736631fcb47751f40d03b76e27820.jpg",
+            "http://p1.meituan.net/600.600/apiback/e8a728e2ff4aa3e3221006a9530a353768765.jpg"
+        ],
+        "title": "新世纪酒店（金爵西餐厅）",
+        "avgScore": 3.9,
+        "allCommentNum": 1443,
+        "address": "新世纪广场秀全大道43号新世纪酒店二楼",
+        "avgPrice": 91,
+        "dealList": [],
+        "a":1
+    },
+    {
+        "poiId": 40908581,
+        "frontImg": [
+            "http://p0.meituan.net/600.600/deal/__38666717__4597520.jpg",
+            "http://p0.meituan.net/600.600/apiback/711dc29b736631fcb47751f40d03b76e27820.jpg",
+            "http://p1.meituan.net/600.600/apiback/e8a728e2ff4aa3e3221006a9530a353768765.jpg"
+        ],
+        "title": "正新鸡排（康政西路店）",
+        "avgScore": 4.3,
+        "allCommentNum": 1718,
+        "address": "狮岭康政西路9号（狮岭中学旁）",
+        "avgPrice": 13,
+        "dealList": [],
+        "a":1
+    },
+    {
+        "poiId": 40323473,
+        "frontImg": [
+            "http://p0.meituan.net/600.600/deal/__38666717__4597520.jpg",
+            "http://p0.meituan.net/600.600/apiback/711dc29b736631fcb47751f40d03b76e27820.jpg",
+            "http://p1.meituan.net/600.600/apiback/e8a728e2ff4aa3e3221006a9530a353768765.jpg"
+        ],
+        "title": "三顾冒菜（狮岭店）",
+        "avgScore": 4,
+        "allCommentNum": 539,
+        "address": "狮岭狮中路12号（近狮岭中学）",
+        "avgPrice": 27,
+        "dealList": [],
+        "a":1
+    },
+    {
+        "poiId": 41824831,
+        "frontImg": [
+            "http://p0.meituan.net/600.600/deal/__38666717__4597520.jpg",
+            "http://p0.meituan.net/600.600/apiback/711dc29b736631fcb47751f40d03b76e27820.jpg",
+            "http://p1.meituan.net/600.600/apiback/e8a728e2ff4aa3e3221006a9530a353768765.jpg"
+        ],
+        "title": "三顾冒菜（新华中学店）",
+        "avgScore": 4,
+        "allCommentNum": 996,
+        "address": "花都体育场新华街商业大道74号之三首层自编29号商铺",
+        "avgPrice": 25,
+        "dealList": [],
+        "a":1
+    },
+    {
+        "poiId": 1719324,
+        "frontImg": [
+            "http://p0.meituan.net/600.600/deal/__38666717__4597520.jpg",
+            "http://p0.meituan.net/600.600/apiback/711dc29b736631fcb47751f40d03b76e27820.jpg",
+            "http://p1.meituan.net/600.600/apiback/e8a728e2ff4aa3e3221006a9530a353768765.jpg"
+        ],
+        "title": "名门咖啡厅",
+        "avgScore": 3.9,
+        "allCommentNum": 523,
+        "address": "花都广场新华街天贵路108号庸逸豪廷6栋51-60号铺",
+        "avgPrice": 90,
+        "dealList": [],
+        "a":1
+    },
+    {
+        "poiId": 1510457,
+        "frontImg": [
+            "http://p0.meituan.net/600.600/deal/__38666717__4597520.jpg",
+            "http://p0.meituan.net/600.600/apiback/711dc29b736631fcb47751f40d03b76e27820.jpg",
+            "http://p1.meituan.net/600.600/apiback/e8a728e2ff4aa3e3221006a9530a353768765.jpg"
+        ],
+        "title": "麦琪尔艺术蛋糕坊（茶园路店）",
+        "avgScore": 4,
+        "allCommentNum": 389,
+        "address": "花都体育场茶园路1-2号",
+        "avgPrice": 24,
+        "dealList": [],
+        "a":1
+    },
+    {
+        "poiId": 6526509,
+        "frontImg": [
+            "http://p0.meituan.net/600.600/deal/__38666717__4597520.jpg",
+            "http://p0.meituan.net/600.600/apiback/711dc29b736631fcb47751f40d03b76e27820.jpg",
+            "http://p1.meituan.net/600.600/apiback/e8a728e2ff4aa3e3221006a9530a353768765.jpg"
+        ],
+        "title": "淼福猪肚鸡（机场店）",
+        "avgScore": 4.2,
+        "allCommentNum": 695,
+        "address": "白云国际机场花东镇桑梓南路东骏商业街C座8-10号",
+        "avgPrice": 50,
+        "dealList": [],
+        "a":1
+    },
+    {
+        "poiId": 51082330,
+        "frontImg": [
+            "http://p0.meituan.net/600.600/deal/__38666717__4597520.jpg",
+            "http://p0.meituan.net/600.600/apiback/711dc29b736631fcb47751f40d03b76e27820.jpg",
+            "http://p1.meituan.net/600.600/apiback/e8a728e2ff4aa3e3221006a9530a353768765.jpg"
+        ],
+        "title": "楚汉一品热干面馆",
+        "avgScore": 4.5,
+        "allCommentNum": 458,
+        "address": "狮岭宝峰南路38-4号美宜佳隔壁",
+        "avgPrice": 13,
+        "dealList": [],
+        "a":1
+    },
+    {
+        "poiId": 41544220,
+        "frontImg":[
+            "http://p0.meituan.net/600.600/deal/__38666717__4597520.jpg",
+            "http://p0.meituan.net/600.600/apiback/711dc29b736631fcb47751f40d03b76e27820.jpg",
+            "http://p1.meituan.net/600.600/apiback/e8a728e2ff4aa3e3221006a9530a353768765.jpg"
+        ],
+        "title": "咕噜咕噜（商业大道店）",
+        "avgScore": 4.5,
+        "allCommentNum": 732,
+        "address": "北站/建设路商业大道17-1号（商业步行街，国华商场对面）",
+        "avgPrice": 14,
+        "dealList": [],
+        "a":1
+    },
+    {
+        "poiId": 92626386,
+        "frontImg": [
+            "http://p0.meituan.net/600.600/deal/__38666717__4597520.jpg",
+            "http://p0.meituan.net/600.600/apiback/711dc29b736631fcb47751f40d03b76e27820.jpg",
+            "http://p1.meituan.net/600.600/apiback/e8a728e2ff4aa3e3221006a9530a353768765.jpg"
+        ],
+        "title": "幸福西饼生日蛋糕（花都店）",
+        "avgScore": 3.8,
+        "allCommentNum": 187,
+        "address": "花都秀全街大布村爱民路恒沣工业园宿舍楼首层2号",
+        "avgPrice": 81,
+        "dealList": [],
+        "a":1
+    },
+    {
+        "poiId": 42111051,
+        "frontImg": [
+            "http://p0.meituan.net/600.600/deal/__38666717__4597520.jpg",
+            "http://p0.meituan.net/600.600/apiback/711dc29b736631fcb47751f40d03b76e27820.jpg",
+            "http://p1.meituan.net/600.600/apiback/e8a728e2ff4aa3e3221006a9530a353768765.jpg"
+        ],
+        "title": "车仔筒骨粥",
+        "avgScore": 3.8,
+        "allCommentNum": 116,
+        "address": "花都体育场曙光路壹号美食旁",
+        "avgPrice": 36,
+        "dealList": [],
+        "a":1
+    },
+    {
+        "poiId": 6163705,
+        "frontImg": [
+            "http://p0.meituan.net/600.600/deal/__38666717__4597520.jpg",
+            "http://p0.meituan.net/600.600/apiback/711dc29b736631fcb47751f40d03b76e27820.jpg",
+            "http://p1.meituan.net/600.600/apiback/e8a728e2ff4aa3e3221006a9530a353768765.jpg"
+        ],
+        "title": "许师傅",
+        "avgScore": 4.3,
+        "allCommentNum": 231,
+        "address": "花都广场龙珠路钻石花苑对面（公交站旁）",
+        "avgPrice": 0,
+        "dealList": [],
+        "a":1
+    },
+    {
+        "poiId": 6196426,
+        "frontImg":[
+            "http://p0.meituan.net/600.600/deal/__38666717__4597520.jpg",
+            "http://p0.meituan.net/600.600/apiback/711dc29b736631fcb47751f40d03b76e27820.jpg",
+            "http://p1.meituan.net/600.600/apiback/e8a728e2ff4aa3e3221006a9530a353768765.jpg"
+        ],
+        "title": "地下铁（太子步行街店）",
+        "avgScore": 3.9,
+        "allCommentNum": 2796,
+        "address": "北站/建设路太子步行街住建小店一号",
+        "avgPrice": 8,
+        "dealList": [],
+        "a":1
+    },
+    {
+        "poiId": 41123677,
+        "frontImg": [
+            "http://p0.meituan.net/600.600/deal/__38666717__4597520.jpg",
+            "http://p0.meituan.net/600.600/apiback/711dc29b736631fcb47751f40d03b76e27820.jpg",
+            "http://p1.meituan.net/600.600/apiback/e8a728e2ff4aa3e3221006a9530a353768765.jpg"
+        ],
+        "avgScore": 4.3,
+        "allCommentNum": 1755,
+        "address": "花都旗岭新民村新民路87-89号（华康医疗门诊部斜对面）",
+        "avgPrice": 10,
+        "dealList": [],
+        "a":1
+    },
+    {
+        "poiId": 1555797,
+        "frontImg":[
+            "http://p0.meituan.net/600.600/deal/__38666717__4597520.jpg",
+            "http://p0.meituan.net/600.600/apiback/711dc29b736631fcb47751f40d03b76e27820.jpg",
+            "http://p1.meituan.net/600.600/apiback/e8a728e2ff4aa3e3221006a9530a353768765.jpg"
+        ],
+        "title": "仁记甜品（建桥店）",
+        "avgScore": 3.9,
+        "allCommentNum": 500,
+        "address": "建设北路松园大道26号建桥大厦105号",
+        "avgPrice": 27,
+        "dealList": [],
+        "a":1
+    },
+    {
+        "poiId": 5670373,
+        "frontImg": [
+            "http://p0.meituan.net/600.600/deal/__38666717__4597520.jpg",
+            "http://p0.meituan.net/600.600/apiback/711dc29b736631fcb47751f40d03b76e27820.jpg",
+            "http://p1.meituan.net/600.600/apiback/e8a728e2ff4aa3e3221006a9530a353768765.jpg"
+        ],
+        "title": "超群蛋糕（盘古中路店）",
+        "avgScore": 4,
+        "allCommentNum": 641,
+        "address": "狮岭狮岭镇盘古中路1号之九",
+        "avgPrice": 25,
+        "dealList": [],
+        "a":1
+    },
+    {
+        "poiId": 4823621,
+        "frontImg": [
+            "http://p0.meituan.net/600.600/deal/__38666717__4597520.jpg",
+            "http://p0.meituan.net/600.600/apiback/711dc29b736631fcb47751f40d03b76e27820.jpg",
+            "http://p1.meituan.net/600.600/apiback/e8a728e2ff4aa3e3221006a9530a353768765.jpg"
+        ],
+        "title": "合兴大酒店·天璇阁旋转餐厅",
+        "avgScore": 3,
+        "allCommentNum": 2122,
+        "address": "建设北路建设北路213号合兴大酒店22楼",
+        "avgPrice": 94,
+        "dealList": [],
+        "a":1
+    },
+    {
+        "poiId": 5238425,
+        "frontImg": [
+            "http://p0.meituan.net/600.600/deal/__38666717__4597520.jpg",
+            "http://p0.meituan.net/600.600/apiback/711dc29b736631fcb47751f40d03b76e27820.jpg",
+            "http://p1.meituan.net/600.600/apiback/e8a728e2ff4aa3e3221006a9530a353768765.jpg"
+        ],
+        "title": "华莱士（建设店）",
+        "avgScore": 3.6,
+        "allCommentNum": 4630,
+        "address": "建设北路建设北路99号之9铺",
+        "avgPrice": 15,
+        "dealList": [],
+        "a":1
+    }
+]

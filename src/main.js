@@ -5,12 +5,6 @@ import router from "./router";
 import store from "./store";
 import axios from "./components/axios";
 import * as filters from "./filters";
-// 仅引入用到的图标以减小打包体积
-import "vue-awesome/icons/mobile-alt";
-import Icon from "vue-awesome/components/Icon";
-
-// 全局注册（在 `main .js` 文件中）
-Vue.component("icon", Icon);
 
 // 全局引入vux组件库
 /*import Group from './components/Group'
@@ -23,6 +17,28 @@ import { LoadingPlugin, AlertPlugin, ToastPlugin } from "vux";
 Vue.use(LoadingPlugin);
 Vue.use(AlertPlugin);
 Vue.use(ToastPlugin);
+//
+// ─── Need TO REMOVE ───────────────────────────────────────────────────────────────────
+//
+
+import Mint from "mint-ui";
+Vue.use(Mint);
+import "mint-ui/lib/style.css";
+
+import VueResource from "vue-resource";
+Vue.use(VueResource);
+
+import VueRouter from "vue-router";
+Vue.use(VueRouter);
+
+import ElementUI from "element-ui";
+Vue.use(ElementUI);
+
+import YDUI from "vue-ydui";
+Vue.use(YDUI);
+
+import $ from "jquery";
+window.$ = $;
 
 // 表单验证插件，不需要请注释掉
 import verify from "vue-verify-plugin";

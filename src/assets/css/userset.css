@@ -1,0 +1,87 @@
+body{
+    background: #f6f6f6;
+}
+.userset_top{
+    width: 100%;
+    height: .45rem;
+    line-height: .45rem;
+    text-align: center;
+    font-size: .16rem;
+    padding: 0 4.8%;
+    font-weight: bold;
+}
+.userset_top img{
+    width: .09rem;
+    height: .15rem;
+    float: left;
+    margin-top: .15rem;
+}
+.userset_top p{
+    display: inline-block;
+    padding-left: 7.4%;
+}
+.userset_top span{
+    float: right;
+    font-size: .15rem;
+    color: #000;
+    font-weight: bold;
+}
+.head_list li{
+    height: .49rem;
+    line-height: .49rem;
+    border-bottom: 1px solid #ccc;
+    padding: 0 4.8%;
+    font-size: .14rem;
+    color: #000;
+    font-weight: bold;
+    background: #fff;
+}
+.head_list li:first-child{
+    height: .76rem;
+    line-height: .76rem;
+}
+.head_list li p{
+    display: inline-block;
+}
+.head_list li input{
+    float: right;
+    text-align: right;
+    height: .49rem;
+    color: #999;
+    padding-right: 6%;
+    font-family: '苹方'
+}
+.head_list li i img{
+    width: .09rem;
+    height: .16rem;
+}
+.head_list li span{
+    padding-right: 3.6%;
+}
+.head_list li i,.head_list li span{
+    float: right;
+    color: #999;
+}
+.second{
+    margin-top: .1rem;
+}
+.head_list:nth-child(2) li{
+    border-top: 1px solid #ccc;
+    border-bottom: none;
+}
+.second li:nth-child(1){
+    height: .49rem;
+    line-height: .49rem;
+}
+.last{
+    height: .49rem;
+    line-height: .49rem;
+    padding: 0 4.8%;
+    background: #fff;
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    margin-top: .2rem;
+    font-size: .14rem;
+    color: #000;
+    font-weight: bold;
+}
