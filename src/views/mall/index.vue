@@ -6,17 +6,9 @@
     </div>
     <div class="wrap" v-if="goods">
       <ul class="category_nav" id="category_nav">
-        <li class="active">
-          <router-link to="/mall/all">全部</router-link>
-        </li>
-        <li>
-          <router-link to="/mall/skin">护肤</router-link>
-        </li>
-        <li>
-          <router-link to="/mall/beauty">美妆</router-link>
-        </li>
-        <li>
-          <router-link to="/mall/perfume">香水</router-link>
+        <li v-for="item in categories" :key="item.category" 
+          v-bind:class="[$route.meta.category === item.category ? activeClass : '']">
+          <router-link :to="item.to">{{item.title}}</router-link>
         </li>
       </ul>
     </div>
@@ -50,6 +42,29 @@ export default {
   data() {
     return {
       title: '分类',
+      activeClass: 'active',
+      categories: [
+        {
+          to: '/mall/all',
+          title: '全部',
+          category: 'all'
+        },
+        {
+          to: '/mall/skin',
+          title: '护肤',
+          category: 'skin'
+        },
+        {
+          to: '/mall/beauty',
+          title: '美妆',
+          category: 'beauty'
+        },
+        {
+          to: '/mall/perfume',
+          title: '香水',
+          category: 'perfume'
+        }
+      ],
       goods: true
     }
   },
@@ -68,6 +83,9 @@ export default {
     shop: function() {
       this.goods = true
     }
+  },
+  mounted() {
+    console.log(this.$route.meta.category)
   },
   components: {
     'v-footer': Footer

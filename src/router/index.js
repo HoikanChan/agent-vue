@@ -32,23 +32,28 @@ export default new Router({
           children: [
             {
               path: '/',
-              component: resolve => require(['../views/mall/All'], resolve)
+              component: resolve => require(['../views/mall/All'], resolve),
+              meta: { category: 'all' }
             },
             {
               path: 'all',
-              component: resolve => require(['../views/mall/All'], resolve)
+              component: resolve => require(['../views/mall/All'], resolve),
+              meta: { category: 'all' }
             },
             {
               path: 'skin',
-              component: resolve => require(['../views/mall/Skin'], resolve)
+              component: resolve => require(['../views/mall/Skin'], resolve),
+              meta: { category: 'skin' }
             },
             {
               path: 'beauty',
-              component: resolve => require(['../views/mall/Beauty'], resolve)
+              component: resolve => require(['../views/mall/Beauty'], resolve),
+              meta: { category: 'beauty' }
             },
             {
               path: 'perfume',
-              component: resolve => require(['../views/mall/Perfume'], resolve)
+              component: resolve => require(['../views/mall/Perfume'], resolve),
+              meta: { category: 'perfume' }
             }
           ]
         },
@@ -59,7 +64,7 @@ export default new Router({
         },
         { path: 'user', name: 'user', component: User },
         { path: 'shoppingcart', name: 'shoppingcart', component: Shoppingcart },
-        { path: 'register', name: 'shoppingcart', component: Register }
+        { path: 'register', name: 'register', component: Register }
       ]
     },
     {

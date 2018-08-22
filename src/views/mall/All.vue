@@ -22,7 +22,19 @@ export default {
   data() {
     return {
       title: '全部',
-      list: []
+      list: [
+        {
+          poiId: 3271694,
+          frontImg:
+            'http://p0.meituan.net/600.600/deal/__38666717__4597520.jpg',
+          title: '拉图牛排馆',
+          avgScore: 3.9,
+          allCommentNum: 3561,
+          address: '北站/建设路建设路35-1号后座（金城广场斜对面）',
+          avgPrice: 45,
+          dealList: []
+        }
+      ]
     }
   },
   methods: {
