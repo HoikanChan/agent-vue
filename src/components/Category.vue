@@ -37,65 +37,63 @@
     </div>
 </template>
 <script>
-import axios from 'axios';
-import Footer from './public/Footer.vue';
+import axios from 'axios'
+import Footer from './public/Footer.vue'
 export default {
-    data(){
-        return{
-            title:'分类',
-            goods:true
-        }
+  data() {
+    return {
+      title: '分类',
+      goods: true
+    }
+  },
+  mounted() {
+    $('.category_nav li').click(function() {
+      $(this)
+        .addClass('active')
+        .siblings()
+        .removeClass('active')
+    })
+  },
+  methods: {
+    search: function() {
+      this.goods = false
     },
-    mounted(){
-        $('.category_nav li').click(function(){
-            $(this).addClass('active').siblings().removeClass('active')
-        })
-        
-        
-    },
-    methods:{
-        search:function(){
-            this.goods=false
-        },
-        shop:function(){
-            this.goods=true
-        }
-    },
-  components:{
-    'v-footer':Footer
+    shop: function() {
+      this.goods = true
+    }
+  },
+  components: {
+    'v-footer': Footer
   }
 }
 </script>
 <style>
 @import url('../assets/css/category.css');
 
-.category .wrap #category_nav li.active a{
-    border-bottom: .04rem solid #de3338;
-    padding: 0 .1rem .08rem .1rem;
-    color: #de3338;
+.category .wrap #category_nav li.active a {
+  border-bottom: 0.04rem solid #de3338;
+  padding: 0 0.1rem 0.08rem 0.1rem;
+  color: #de3338;
 }
-a{
-    color: #999;
+a {
+  color: #999;
 }
-.search{
-    position: fixed;
-    top: 0;
-
+.search {
+  position: fixed;
+  top: 0;
 }
-.wrap{
-    position: fixed;
-    top: .44rem;
-    width: 100%;
+.wrap {
+  position: fixed;
+  top: 0.44rem;
+  width: 100%;
 }
-.category_container{
-    margin-top: .9rem;
+.category_container {
+  margin-top: 0.9rem;
 }
-.search_goods{
-    margin-top: .44rem;
+.search_goods {
+  margin-top: 0.44rem;
 }
-.history_search{
-    margin-top: 0;
+.history_search {
+  margin-top: 0;
 }
 </style>
-
-

@@ -8,11 +8,11 @@
 
 <script>
 export default {
-  name: "App"
-};
+  name: 'App'
+}
 </script>
 <style lang="less">
-@import url("../src/assets/css/public.css");
+@import url('../src/assets/css/public.css');
 
 body {
   margin: 0;
@@ -21,4 +21,3 @@ button.round-btn {
   border-radius: 50px;
 }
 </style>
-

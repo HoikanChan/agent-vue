@@ -15,75 +15,71 @@
 </template>
 <script>
 export default {
-    data(){
-        return{
-
-        }
-    }
+  data() {
+    return {}
+  }
 }
 </script>
 <style scoped>
-
-.footer{
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    height: .47rem;
-    display: flex;
-    border-top: 1px solid #ccc;
-    justify-content: space-around;
-    padding-top: 4px;
-    background: #fff;
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 0.47rem;
+  display: flex;
+  border-top: 1px solid #ccc;
+  justify-content: space-around;
+  padding-top: 4px;
+  background: #fff;
 }
 /* img{
     width: .24rem;
     height: .22rem;
 } */
-.footer a:first-child img{
-    width: .24rem;
-    height: .22rem;
+.footer a:first-child img {
+  width: 0.24rem;
+  height: 0.22rem;
 }
-.footer a:nth-child(2) img{
-    width: .21rem;
-    height: .22rem;
+.footer a:nth-child(2) img {
+  width: 0.21rem;
+  height: 0.22rem;
 }
-.footer a:nth-child(3) img{
-    width: .18rem;
-    height: .21rem;
+.footer a:nth-child(3) img {
+  width: 0.18rem;
+  height: 0.21rem;
 }
-.footer a:nth-child(4) img{
-    width: .23rem;
-    height: .22rem;
+.footer a:nth-child(4) img {
+  width: 0.23rem;
+  height: 0.22rem;
 }
-.footer a:nth-child(5) img{
-    width: .21rem;
-    height: .23rem;
+.footer a:nth-child(5) img {
+  width: 0.21rem;
+  height: 0.23rem;
 }
-.footer a{
-    display: flex;
-    flex: 1;
-    align-items: center;
-    flex-direction: column;
-    justify-content: space-evenly;
+.footer a {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
-.footer a img:first-child{
-    display: none;
+.footer a img:first-child {
+  display: none;
 }
-.footer a img:nth-child(2){
-    display: block;
+.footer a img:nth-child(2) {
+  display: block;
 }
-.footer .router-link-active img:first-child{
-    display: block;
+.footer .router-link-active img:first-child {
+  display: block;
 }
-.footer .router-link-active img:nth-child(2){
-    display: none;
+.footer .router-link-active img:nth-child(2) {
+  display: none;
 }
-.router-link-active{
-    color: #5b50d3;
+.router-link-active {
+  color: #5b50d3;
 }
-p{
-    font-size: .14rem;
+p {
+  font-size: 0.14rem;
 }
 </style>
-

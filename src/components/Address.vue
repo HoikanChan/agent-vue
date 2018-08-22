@@ -11,45 +11,42 @@
 </template>
 <script>
 export default {
-    data(){
-        return{
-
-        }
-    }
+  data() {
+    return {}
+  }
 }
 </script>
 <style scoped>
-body{
-    background: #f8f8f8;
+body {
+  background: #f8f8f8;
 }
-.address_msg{
-    background: #fff;
+.address_msg {
+  background: #fff;
 }
-.address_msg li{
-    width: 90.4%;
-    height: .5rem;
-    line-height: .5rem;
-    font-size: .13rem;
-    padding:0 4.8%;
-    font-weight: bold;
-    border-bottom: 1px solid #ccc;
+.address_msg li {
+  width: 90.4%;
+  height: 0.5rem;
+  line-height: 0.5rem;
+  font-size: 0.13rem;
+  padding: 0 4.8%;
+  font-weight: bold;
+  border-bottom: 1px solid #ccc;
 }
-.address_msg li input{
-    width: 75%;
-    height: .5rem;
-    border: none;
-    float: right;
+.address_msg li input {
+  width: 75%;
+  height: 0.5rem;
+  border: none;
+  float: right;
 }
-.keep{
-    width: 90.4%;
-    height: .44rem;
-    font-size: .16rem;
-    color: #fff;
-    line-height: .44rem;
-    text-align: center;
-    background: #d60000;
-    margin: 1.65rem auto;
-    border-radius: .03rem;
+.keep {
+  width: 90.4%;
+  height: 0.44rem;
+  font-size: 0.16rem;
+  color: #fff;
+  line-height: 0.44rem;
+  text-align: center;
+  background: #d60000;
+  margin: 1.65rem auto;
+  border-radius: 0.03rem;
 }
 </style>
-

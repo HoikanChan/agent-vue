@@ -22,9 +22,9 @@
   </div>
 </template>
 <script>
-import { XButton, XInput, Group, XHeader } from "vux";
+import { XButton, XInput, Group, XHeader } from 'vux'
 export default {
-  name: "Login",
+  name: 'Login',
   components: {
     XButton,
     XInput,
@@ -34,13 +34,13 @@ export default {
   data: function() {
     return {
       form: {
-        mobile: "",
-        code: "",
-        password: "",
-        checkPassword: ""
+        mobile: '',
+        code: '',
+        password: '',
+        checkPassword: ''
       },
-      countDown: ""
-    };
+      countDown: ''
+    }
   },
   methods: {
     modifyPsw() {
@@ -49,21 +49,21 @@ export default {
         this.$refs.psw.valid &&
         this.$refs.code.valid
       ) {
-        console.log("login");
+        console.log('login')
       }
     },
     sendCode() {
-      this.countDown = 10;
+      this.countDown = 10
       let interval = setInterval(() => {
-        this.countDown--;
+        this.countDown--
         if (this.countDown === 0) {
-          this.countDown = "";
-          clearInterval(interval);
+          this.countDown = ''
+          clearInterval(interval)
         }
-      }, 1000);
+      }, 1000)
     }
   }
-};
+}
 </script>
 
 <style lang="less">
@@ -104,5 +104,3 @@ export default {
   }
 }
 </style>
-
-

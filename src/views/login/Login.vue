@@ -21,9 +21,9 @@
   </div>
 </template>
 <script>
-import { XButton, XInput, Group } from "vux";
+import { XButton, XInput, Group } from 'vux'
 export default {
-  name: "Login",
+  name: 'Login',
   components: {
     XButton,
     XInput,
@@ -32,19 +32,19 @@ export default {
   data: function() {
     return {
       loginForm: {
-        mobile: "",
-        psw: ""
+        mobile: '',
+        psw: ''
       }
-    };
+    }
   },
   methods: {
     login() {
       if (this.$refs.mobile.valid && this.$refs.psw.valid) {
-        console.log("login");
+        console.log('login')
       }
     }
   }
-};
+}
 </script>
 
 <style lang="less">
@@ -93,5 +93,3 @@ export default {
   }
 }
 </style>
-
-

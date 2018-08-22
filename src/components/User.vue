@@ -45,35 +45,33 @@
     </div>
 </template>
 <script>
-import Footer from './public/Footer.vue';
+import Footer from './public/Footer.vue'
 export default {
-    data(){
-        return{
-            msg:'用户'
-        }
-    },
-  components:{
-
-    'v-footer':Footer
+  data() {
+    return {
+      msg: '用户'
+    }
+  },
+  components: {
+    'v-footer': Footer
   }
 }
 </script>
 <style>
 @import url('../assets/css/user.css');
-.things a img:first-child{
-    display: none;
+.things a img:first-child {
+  display: none;
 }
-.things a img:nth-child(2){
-    display: block;
+.things a img:nth-child(2) {
+  display: block;
 }
-.things .router-link-active img:first-child{
-    display: block;
+.things .router-link-active img:first-child {
+  display: block;
 }
-.things .router-link-active img:nth-child(2){
-    display: none;
+.things .router-link-active img:nth-child(2) {
+  display: none;
 }
-.router-link-active{
-    color: #d60000;
+.router-link-active {
+  color: #d60000;
 }
 </style>
-

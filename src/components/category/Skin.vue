@@ -39,18 +39,14 @@
 </template>
 <script>
 export default {
-    data(){
-        return{
-            title:'全部'
-        }
-    },
-    mounted() {
+  data() {
+    return {
+      title: '全部'
     }
+  },
+  mounted() {}
 }
 </script>
 <style>
 @import url('../../assets/css/all.css');
-
 </style>
-
-

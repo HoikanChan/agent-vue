@@ -20,9 +20,9 @@
 <script>
 export default {
   data() {
-    return {};
+    return {}
   }
-};
+}
 </script>
 <style scoped>
 .footer {
@@ -87,4 +87,3 @@ p {
   font-size: 0.14rem;
 }
 </style>
-

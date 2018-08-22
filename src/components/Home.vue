@@ -24,149 +24,147 @@
     </div>
 </template>
 <script>
-import Footer from './public/Footer.vue';
-import '../../node_modules/swiper/dist/css/swiper.css';
-import Swiper from 'swiper';
+import Footer from './public/Footer.vue'
+import '../../node_modules/swiper/dist/css/swiper.css'
+import Swiper from 'swiper'
 export default {
-    data(){
-        return{
-            title:'首页内容'
-        }
-    },
-    mounted(){
-		var mySwiper = new Swiper('.swiper-container', {
-				//autoplay: true,//可选选项，自动滑动
-				autoplay: {
-				delay: 1000//1秒切换一次
-				},
-				loop : true,
-				pagination: {
-				el: '.swiper-pagination'
-				}
-		})
-
-        },
-  components:{
-
-    'v-footer':Footer
+  data() {
+    return {
+      title: '首页内容'
+    }
+  },
+  mounted() {
+    var mySwiper = new Swiper('.swiper-container', {
+      //autoplay: true,//可选选项，自动滑动
+      autoplay: {
+        delay: 1000 //1秒切换一次
+      },
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination'
+      }
+    })
+  },
+  components: {
+    'v-footer': Footer
   }
-
 }
 </script>
 <style>
-.swiper-container{
-    height: 2.08rem;
-    width: 100%;
+.swiper-container {
+  height: 2.08rem;
+  width: 100%;
 }
-.swiper-slide{
-	height: 100%;
-    width: 100%;
+.swiper-slide {
+  height: 100%;
+  width: 100%;
 }
-.swiper-slide img{
-	width: 100%;
-	height: auto;
+.swiper-slide img {
+  width: 100%;
+  height: auto;
 }
-.nav{
-	width: 100%;
-	height: 3.95rem;
+.nav {
+  width: 100%;
+  height: 3.95rem;
 }
-.nav div{
-	display: block;
-	width: 44.6%;
-	height: 1.14rem;
-	margin-top: .1rem;
-	font-size: .18rem;
-	color: #fff;
-	text-align: center;
+.nav div {
+  display: block;
+  width: 44.6%;
+  height: 1.14rem;
+  margin-top: 0.1rem;
+  font-size: 0.18rem;
+  color: #fff;
+  text-align: center;
 }
-.nav div p{
-	display: block;
-	height: .16rem;
-	margin-top: .07rem;
+.nav div p {
+  display: block;
+  height: 0.16rem;
+  margin-top: 0.07rem;
 }
-.nav div:nth-child(2n-1){
-	float: left;
-	margin-left: 3.6%;
+.nav div:nth-child(2n-1) {
+  float: left;
+  margin-left: 3.6%;
 }
-.nav div:nth-child(2n){
-	float: right;
-	margin-right: 3.6%;
+.nav div:nth-child(2n) {
+  float: right;
+  margin-right: 3.6%;
 }
-.nav div:nth-child(1){
-	background: #8c82ff;
+.nav div:nth-child(1) {
+  background: #8c82ff;
 }
-.nav div:nth-child(1) img{
-	display: block;
-	width: .43rem;
-	height: .35rem;
-	margin-left: 36.3%;
-	margin-top: .27rem;
+.nav div:nth-child(1) img {
+  display: block;
+  width: 0.43rem;
+  height: 0.35rem;
+  margin-left: 36.3%;
+  margin-top: 0.27rem;
 }
-.nav div:nth-child(2) img{
-	display: block;
-	width: .4rem;
-	height: .39rem;
-	margin-left: 37.5%;
-	margin-top: .24rem;
+.nav div:nth-child(2) img {
+  display: block;
+  width: 0.4rem;
+  height: 0.39rem;
+  margin-left: 37.5%;
+  margin-top: 0.24rem;
 }
-.nav div:nth-child(3) img{
-	display: block;
-	width: .43rem;
-	height: .35rem;
-	margin-left: 39.4%;
-	margin-top: .27rem;
+.nav div:nth-child(3) img {
+  display: block;
+  width: 0.43rem;
+  height: 0.35rem;
+  margin-left: 39.4%;
+  margin-top: 0.27rem;
 }
-.nav div:nth-child(4) img{
-	display: block;
-	width: .32rem;
-	height: .37rem;
-	margin-left: 40%;
-	margin-top: .26rem;
+.nav div:nth-child(4) img {
+  display: block;
+  width: 0.32rem;
+  height: 0.37rem;
+  margin-left: 40%;
+  margin-top: 0.26rem;
 }
-.nav div:nth-child(5) img{
-	display: block;
-	width: .4rem;
-	height: .35rem;
-	margin-left: 37.8%;
-	margin-top: .27rem;
+.nav div:nth-child(5) img {
+  display: block;
+  width: 0.4rem;
+  height: 0.35rem;
+  margin-left: 37.8%;
+  margin-top: 0.27rem;
 }
-.nav div:nth-child(6){
-	line-height: 1.14rem;
+.nav div:nth-child(6) {
+  line-height: 1.14rem;
 }
-.nav div:nth-child(2){
-	background: #ff6267;
+.nav div:nth-child(2) {
+  background: #ff6267;
 }
-.nav div:nth-child(3){
-	background: #48d0f2;
+.nav div:nth-child(3) {
+  background: #48d0f2;
 }
-.nav div:nth-child(4){
-	background: #ff9655;
+.nav div:nth-child(4) {
+  background: #ff9655;
 }
-.nav div:nth-child(5){
-	background: #c38eff;
+.nav div:nth-child(5) {
+  background: #c38eff;
 }
-.nav div:nth-child(6){
-	background: #ff7fb0;
+.nav div:nth-child(6) {
+  background: #ff7fb0;
 }
-.swiper-pagination-bullet{
-	width: 12px;
-	height: 3px;
-	display: inline-block;
-	border-radius: 0;
-	background: #fff;
-	box-shadow: 2px 2px 2px grey;
+.swiper-pagination-bullet {
+  width: 12px;
+  height: 3px;
+  display: inline-block;
+  border-radius: 0;
+  background: #fff;
+  box-shadow: 2px 2px 2px grey;
 }
-.swiper-pagination-bullet-active{
-	width: 9px;
-	height: 9px;
-	border-radius:50%;
-	border:2px #fff solid;
-	background-color:#ccc;
-	opacity: 1;
-	box-shadow: 2px 2px 2px grey;
+.swiper-pagination-bullet-active {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 2px #fff solid;
+  background-color: #ccc;
+  opacity: 1;
+  box-shadow: 2px 2px 2px grey;
 }
-.swiper-pagination-fraction, .swiper-pagination-custom, .swiper-container-horizontal > .swiper-pagination-bullets{
-	bottom: 8px;
+.swiper-pagination-fraction,
+.swiper-pagination-custom,
+.swiper-container-horizontal > .swiper-pagination-bullets {
+  bottom: 8px;
 }
 </style>
-

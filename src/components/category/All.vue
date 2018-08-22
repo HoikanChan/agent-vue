@@ -18,35 +18,33 @@
     </div>
 </template>
 <script>
-import axios from 'axios';
+import axios from 'axios'
 export default {
-    data(){
-        return{
-            title:'全部',
-            list:[]
-        }
-    },
-    methods:{
-        godetail(){
-
-        }
-    },
-    mounted() {
-        axios.get('data.json').then((response)=>{
-            this.list=response.data
-        }).catch((error)=>{
-            console.log(error);
-        });
+  data() {
+    return {
+      title: '全部',
+      list: []
     }
-
+  },
+  methods: {
+    godetail() {}
+  },
+  mounted() {
+    axios
+      .get('data.json')
+      .then(response => {
+        this.list = response.data
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
 }
 </script>
 <style>
 @import url('../../assets/css/all.css');
-.good_price i{
-    font-weight: bold;
-    font-size: .14rem;
+.good_price i {
+  font-weight: bold;
+  font-size: 0.14rem;
 }
 </style>
-
-

@@ -22,56 +22,56 @@
     </div>
 </template>
 <script>
-import '../../node_modules/vue-ydui/dist/ydui.rem.css';
+import '../../node_modules/vue-ydui/dist/ydui.rem.css'
 export default {
-    data(){
-        return{
-            msg:'个人设置',
-            datetime0: ''
-        }
-    },methods:{
-        open() {
-                this.$refs.datetime.open();
-            }
+  data() {
+    return {
+      msg: '个人设置',
+      datetime0: ''
     }
+  },
+  methods: {
+    open() {
+      this.$refs.datetime.open()
+    }
+  }
 }
 </script>
 <style>
 @import url('../assets/css/userset.css');
-.yd-datetime-input{
-    width: 45%;
-    display: inline-block;
-    float: right;
-    text-align: right;
+.yd-datetime-input {
+  width: 45%;
+  display: inline-block;
+  float: right;
+  text-align: right;
 }
-.yd-datetime-head{
-    height: 43px;
-    background: #eee;
+.yd-datetime-head {
+  height: 43px;
+  background: #eee;
 }
-.yd-datetime-head a{
-    display: block;
-    width: 46px;
-    height: 43px;
-    height: .28rem;
-    line-height: .28rem;
-    text-align: center;
-    padding: 0;
-    text-align: center;
-    border-radius: .03rem;
-    margin-top: .07rem;
-    font-size: .12rem;
+.yd-datetime-head a {
+  display: block;
+  width: 46px;
+  height: 43px;
+  height: 0.28rem;
+  line-height: 0.28rem;
+  text-align: center;
+  padding: 0;
+  text-align: center;
+  border-radius: 0.03rem;
+  margin-top: 0.07rem;
+  font-size: 0.12rem;
 }
-.yd-datetime-head a:first-child{
-    background: #FFF;
-    border: 1px solid #bbb;
-    margin-left: 3.4%;
-    color: #000;
+.yd-datetime-head a:first-child {
+  background: #fff;
+  border: 1px solid #bbb;
+  margin-left: 3.4%;
+  color: #000;
 }
-.yd-datetime-head a:nth-child(2){
-    background: #5b50d3;
-    float: right;
-    margin-right: 3.4%;
-    color: #fff;
+.yd-datetime-head a:nth-child(2) {
+  background: #5b50d3;
+  float: right;
+  margin-right: 3.4%;
+  color: #fff;
 }
 </style>
-

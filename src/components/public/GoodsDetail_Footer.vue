@@ -8,53 +8,51 @@
 </template>
 <script>
 export default {
-    data(){
-        return{
-
-        }
-    }
+  data() {
+    return {}
+  }
 }
 </script>
 <style scoped>
-.goodsdetail_footer{
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    height: .5rem;
-    border-top: 1px solid #ccc;
-    background: #fff;
+.goodsdetail_footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 0.5rem;
+  border-top: 1px solid #ccc;
+  background: #fff;
 }
-.goodsdetail_footer>div img{
-    width: .23rem;
-    height: .22rem;
-    margin-left: 30%;
-    margin-top: .06rem;
+.goodsdetail_footer > div img {
+  width: 0.23rem;
+  height: 0.22rem;
+  margin-left: 30%;
+  margin-top: 0.06rem;
 }
-.goodsdetail_footer>div p{
-    text-align: center;
+.goodsdetail_footer > div p {
+  text-align: center;
 }
-.goodsdetail_footer>div:nth-child(1),.goodsdetail_footer>div:nth-child(2){
-    width: 20%;
-    height: .5rem;
-    float: left;
-    border-right: 1px solid #ccc;
+.goodsdetail_footer > div:nth-child(1),
+.goodsdetail_footer > div:nth-child(2) {
+  width: 20%;
+  height: 0.5rem;
+  float: left;
+  border-right: 1px solid #ccc;
 }
-.goodsdetail_footer>div:nth-child(2){
-    border-right: none;
+.goodsdetail_footer > div:nth-child(2) {
+  border-right: none;
 }
-.goodsdetail_footer>div:nth-child(3),.goodsdetail_footer>div:nth-child(4){
-    width: 29.8%;
-    height: .5rem;
-    line-height: .5rem;
-    text-align: center;
-    float: left;
-    color: #fff;
-    background: #5b50d3;
-    font-size: .16rem;
+.goodsdetail_footer > div:nth-child(3),
+.goodsdetail_footer > div:nth-child(4) {
+  width: 29.8%;
+  height: 0.5rem;
+  line-height: 0.5rem;
+  text-align: center;
+  float: left;
+  color: #fff;
+  background: #5b50d3;
+  font-size: 0.16rem;
 }
-.goodsdetail_footer>div:nth-child(4){
-     background: #433aa2;
+.goodsdetail_footer > div:nth-child(4) {
+  background: #433aa2;
 }
-
 </style>
-

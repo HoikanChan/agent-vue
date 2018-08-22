@@ -34,29 +34,29 @@
 	</div>
 </template>
 <script>
-import Footer from "../../components/Footer.vue";
+import Footer from '../../components/Footer.vue'
 export default {
   data() {
     return {
-      title: "首页内容"
-    };
+      title: '首页内容'
+    }
   },
   mounted() {
-    var mySwiper = new Swiper(".swiper-container", {
+    var mySwiper = new Swiper('.swiper-container', {
       //autoplay: true,//可选选项，自动滑动
       autoplay: {
         delay: 1000 //1秒切换一次
       },
       loop: true,
       pagination: {
-        el: ".swiper-pagination"
+        el: '.swiper-pagination'
       }
-    });
+    })
   },
   components: {
-    "v-footer": Footer
+    'v-footer': Footer
   }
-};
+}
 </script>
 <style>
 .swiper-container {
@@ -176,4 +176,3 @@ export default {
   bottom: 8px;
 }
 </style>
-

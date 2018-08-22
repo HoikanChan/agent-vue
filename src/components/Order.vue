@@ -29,14 +29,11 @@
 </template>
 <script>
 export default {
-    data(){
-        return{
-
-        }
-    }
+  data() {
+    return {}
+  }
 }
 </script>
 <style scoped>
 @import url('../assets/css/order.css');
 </style>
-

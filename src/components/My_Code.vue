@@ -20,88 +20,84 @@
 </template>
 <script>
 export default {
-    data(){
-        return{
-            
-        }
-    }
+  data() {
+    return {}
+  }
 }
 </script>
 <style>
-.code_user .code_top{
-    width: 100%;
-    height: .45rem;
-    background: #fff;
-    line-height: .45rem;
-    text-align: center;
-    font-size: .18rem;
-    position: relative;
+.code_user .code_top {
+  width: 100%;
+  height: 0.45rem;
+  background: #fff;
+  line-height: 0.45rem;
+  text-align: center;
+  font-size: 0.18rem;
+  position: relative;
 }
-.code_user .code_top img{
-    position: absolute;
-    top: .14rem;
-    left: 4.8%;
-    width: .09rem;
-    height: .16rem;
+.code_user .code_top img {
+  position: absolute;
+  top: 0.14rem;
+  left: 4.8%;
+  width: 0.09rem;
+  height: 0.16rem;
 }
 /* body{
     background: url('../assets/images/code_bg.png') no-repeat center/cover;
 } */
-.code_user div:nth-child(2){
-    width: 87.2%;
-    height: 4.37rem;
-    background: #FFF;
-    margin: .75rem auto;
-    border-radius: .04rem;
+.code_user div:nth-child(2) {
+  width: 87.2%;
+  height: 4.37rem;
+  background: #fff;
+  margin: 0.75rem auto;
+  border-radius: 0.04rem;
 }
-.code_user div:nth-child(2) .head_msg{
-    width: 100%;
-    height: .67rem;
+.code_user div:nth-child(2) .head_msg {
+  width: 100%;
+  height: 0.67rem;
 }
-.code_user div:nth-child(2) .head_msg div{
-    float: left;
+.code_user div:nth-child(2) .head_msg div {
+  float: left;
 }
-.code_user div:nth-child(2) .head_msg div:first-child{
-    width: .67rem;
-    height: .67rem;
-    margin-left: 9%;
-    margin-top: .3rem;
+.code_user div:nth-child(2) .head_msg div:first-child {
+  width: 0.67rem;
+  height: 0.67rem;
+  margin-left: 9%;
+  margin-top: 0.3rem;
 }
-.code_user div:nth-child(2) .head_msg div:first-child img{
-    width: .67rem;
-    height: auto;
-    border-radius: .04rem;
+.code_user div:nth-child(2) .head_msg div:first-child img {
+  width: 0.67rem;
+  height: auto;
+  border-radius: 0.04rem;
 }
-.code_user div:nth-child(2) .head_msg div:nth-child(2){
-    width: 54%;
-    height: .67rem;
-    margin: 0;
-    margin-top: .3rem;
-    margin-left: 3%;
+.code_user div:nth-child(2) .head_msg div:nth-child(2) {
+  width: 54%;
+  height: 0.67rem;
+  margin: 0;
+  margin-top: 0.3rem;
+  margin-left: 3%;
 }
-.code_user div:nth-child(2) .head_msg div:nth-child(2) p:nth-child(1){
-    margin-top: .06rem;
-    font-size: .17rem;
-    font-weight: bold;
-    text-align: left;
+.code_user div:nth-child(2) .head_msg div:nth-child(2) p:nth-child(1) {
+  margin-top: 0.06rem;
+  font-size: 0.17rem;
+  font-weight: bold;
+  text-align: left;
 }
-.code_user div:nth-child(2) .head_msg div:nth-child(2) p:nth-child(2){
-    margin-top: .08rem;
-    font-size: .15rem;
-    color: #999;
-    text-align: left;
+.code_user div:nth-child(2) .head_msg div:nth-child(2) p:nth-child(2) {
+  margin-top: 0.08rem;
+  font-size: 0.15rem;
+  color: #999;
+  text-align: left;
 }
-.msg_code{
-    width: 2.4rem;
-    height: 2.4rem;
-    margin-left: 13.4%;
-    margin-top: .2rem;
+.msg_code {
+  width: 2.4rem;
+  height: 2.4rem;
+  margin-left: 13.4%;
+  margin-top: 0.2rem;
 }
-.code_user div:nth-child(2) p{
-    text-align: center;
-    margin-top: .32rem;
-    color: #666;
+.code_user div:nth-child(2) p {
+  text-align: center;
+  margin-top: 0.32rem;
+  color: #666;
 }
 </style>
-
-
