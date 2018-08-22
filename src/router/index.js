@@ -2,12 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '../components/Home.vue'
 
-import Category from '../components/Category.vue'
-import All from '../components/category/All.vue'
-import Skin from '../components/category/Skin.vue'
-import Beauty from '../components/category/Beauty.vue'
-import Perfume from '../components/category/Perfume.vue'
-
 import Register from '../components/Register.vue'
 import Shoppingcart from '../components/Shoppingcart.vue'
 
@@ -43,28 +37,28 @@ export default new Router({
     },
     { path: '/home', component: Home },
     {
-      path: '/category',
-      component: Category,
+      path: '/mall',
+      component: resolve => require(['../views/mall/index'], resolve),
       children: [
         {
           path: '/',
-          component: All
+          component: resolve => require(['../views/mall/All'], resolve)
         },
         {
           path: 'all',
-          component: All
+          component: resolve => require(['../views/mall/All'], resolve)
         },
         {
           path: 'skin',
-          component: Skin
+          component: resolve => require(['../views/mall/Skin'], resolve)
         },
         {
           path: 'beauty',
-          component: Beauty
+          component: resolve => require(['../views/mall/Beauty'], resolve)
         },
         {
           path: 'perfume',
-          component: Perfume
+          component: resolve => require(['../views/mall/Perfume'], resolve)
         }
       ]
     },

@@ -3,7 +3,7 @@
     <router-link to="/home"><img src='@/assets/images/home.png' /><img src='@/assets/images/home_.png' />
       <span>首页</span>
     </router-link>
-    <router-link to="/category"><img src='@/assets/images/category.png' /><img src='@/assets/images/category_.png' />
+    <router-link to="/mall"><img src='@/assets/images/category.png' /><img src='@/assets/images/category_.png' />
       <span>分类</span>
     </router-link>
     <router-link to="/register"><img src='@/assets/images/register.png' /><img src='@/assets/images/register_.png' />

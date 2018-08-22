@@ -21,13 +21,6 @@ Vue.use(ToastPlugin)
 // ─── Need TO REMOVE ───────────────────────────────────────────────────────────────────
 //
 
-import Mint from 'mint-ui'
-Vue.use(Mint)
-import 'mint-ui/lib/style.css'
-
-import VueResource from 'vue-resource'
-Vue.use(VueResource)
-
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
