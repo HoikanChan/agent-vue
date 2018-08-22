@@ -12,7 +12,10 @@ export default {
 };
 </script>
 <style lang="less">
-button.round-btn{
+body {
+  margin: 0;
+}
+button.round-btn {
   border-radius: 50px;
 }
 </style>

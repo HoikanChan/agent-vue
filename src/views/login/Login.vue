@@ -14,7 +14,7 @@
         <x-icon slot="label" type="ios-locked-outline" style="padding-right:10px;display:block;"></x-icon>
       </x-input>
       <div class="forgot-psw">
-        <a>忘记密码？</a>
+        <a @click="$router.push({name:'forgetPassword' })">忘记密码？</a>
       </div>
       <x-button type="primary" action-type="submit" class="round-btn" @click.native="login()">登录</x-button>
     </group>

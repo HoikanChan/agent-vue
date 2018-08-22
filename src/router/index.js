@@ -8,9 +8,19 @@ export default new Router({
   base: __dirname,
   routes: [
     {
+      path: "/home",
+      name: "home",
+      component: resolve => require(["../views/home/Home"], resolve)
+    },
+    {
       path: "/login",
       name: "login",
       component: resolve => require(["../views/login/Login"], resolve)
+    },
+    {
+      path: "/forgetPassword",
+      name: "forgetPassword",
+      component: resolve => require(["../views/forgetPsw/ForgetPsw"], resolve)
     },
     {
       path: "*",
