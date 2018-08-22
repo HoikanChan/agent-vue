@@ -8,7 +8,6 @@ import Shoppingcart from '../components/Shoppingcart.vue'
 import User from '../components/User.vue'
 import UserSet from '../components/UserSet.vue'
 
-import GoodsDetail from '../components/GoodsDetail.vue'
 import Order from '../components/Order.vue'
 import Address from '../components/Address.vue'
 import Login from '../components/Login.vue'
@@ -79,7 +78,11 @@ export default new Router({
     },
     { path: '/shoppingcart', component: Shoppingcart },
     { path: '/userset', component: UserSet },
-    { path: '/goodsdetail/:poiId', component: GoodsDetail },
+    {
+      path: '/goodsdetail/:poiId',
+      name: 'goodsdetail',
+      component: resolve => require(['../views/mall/GoodsDetail'], resolve)
+    },
     { path: '/order', component: Order },
     { path: '/address', component: Address },
     { path: '/login', component: Login },

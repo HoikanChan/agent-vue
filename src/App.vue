@@ -16,6 +16,8 @@ export default {
 
 body {
   margin: 0;
+  font-size: 0.12rem;
+  font-family: '苹方' !important;
 }
 button.round-btn {
   border-radius: 50px;
