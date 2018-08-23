@@ -14,6 +14,7 @@ import Address from '../components/Address.vue'
 import Login from '../components/Login.vue'
 import Forgot_Password from '../components/Forgot_Password.vue'
 import My_Code from '../components/My_Code.vue'
+import MyTeam from '../views/myteam/MyTeam.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -73,6 +74,11 @@ export default new Router({
       component: resolve => require(['../views/login/Login'], resolve)
     },
     {
+      path: '/myteam',
+      name: 'myteam',
+      component: resolve => require(['../views/myteam/MyTeam'], resolve)
+    },
+    {
       path: '/forgetPassword',
       name: 'forgetPassword',
       component: resolve => require(['../views/forgetPsw/ForgetPsw'], resolve)
@@ -80,6 +86,7 @@ export default new Router({
     { path: '/shoppingcart', component: Shoppingcart },
     { path: '/userset', component: UserSet },
     { path: '/goodsdetail/:poiId', component: GoodsDetail },
+    { path: '/myteam', component: MyTeam },
     { path: '/order', component: Order },
     { path: '/address', component: Address },
     { path: '/login', component: Login },

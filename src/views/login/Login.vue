@@ -48,6 +48,15 @@ export default {
 </script>
 
 <style lang="less">
+body{
+  background: #fff;
+  font-family: "苹方"
+}
+#vux-x-input-as5yy,#vux-x-input-fg65i{
+  font-family: "苹方";
+  font-size: 14px;
+  color: #ccc;
+}
 .login-container {
   padding-top: 24px;
   .vux-x-icon {
@@ -80,7 +89,7 @@ export default {
       padding: 0 8px;
       color: @primary-color;
       text-align: center;
-      border-bottom: 3px solid @primary-color;
+      font-size: 19px;
     }
   }
   .forgot-psw {
@@ -92,4 +101,5 @@ export default {
     }
   }
 }
+
 </style>

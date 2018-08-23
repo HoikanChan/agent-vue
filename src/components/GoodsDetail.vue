@@ -14,19 +14,25 @@
             <p class="name">{{list.title}}<span>(10支/盒)</span></p>
             <p class="num">已售</p><span>0</span><p class="num" style="padding-left:6.4%">库存</p><span>555</span>
             <p class="price">￥990.00</p>
+            <group>
+            <x-number title="" v-model="value"></x-number>
+            </group>
         </div>
         <div class="specification">
             <p>规格<span>10支/一盒</span></p>
             <p>套盒<span>乳液体</span></p>
+            
         </div>
         <div class="goods_picture">
             <div class="topic_pic">产品详情</div>
             <div class="line"></div>
         </div>
+        
         <v-goodsfooter></v-goodsfooter>
     </div>
 </template>
 <script>
+import { XNumber } from 'vux'
 import GoodsDetail_Footer from './public/GoodsDetail_Footer.vue'
 import Swiper from 'swiper'
 import '../../node_modules/swiper/dist/css/swiper.css'
@@ -62,6 +68,7 @@ export default {
       })
   },
   components: {
+    XNumber,
     'v-goodsfooter': GoodsDetail_Footer
   }
 }
@@ -79,5 +86,10 @@ export default {
 .swiper-slide img {
   width: 100%;
   height: auto;
+}
+.weui-cell__ft{
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 </style>
