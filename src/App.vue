@@ -22,4 +22,10 @@ body {
 button.round-btn {
   border-radius: 50px;
 }
+input {
+  font-family: '苹方' !important;
+}
+button {
+  font-family: '苹方' !important;
+}
 </style>

@@ -9,7 +9,6 @@ import User from '../components/User.vue'
 import UserSet from '../components/UserSet.vue'
 
 import Order from '../components/Order.vue'
-import Address from '../components/Address.vue'
 import Login from '../components/Login.vue'
 import Forgot_Password from '../components/Forgot_Password.vue'
 import My_Code from '../components/My_Code.vue'
@@ -83,8 +82,22 @@ export default new Router({
       name: 'goodsdetail',
       component: resolve => require(['../views/mall/GoodsDetail'], resolve)
     },
+    {
+      path: '/buy',
+      name: 'buy',
+      component: resolve => require(['../views/buy/Buy'], resolve)
+    },
     { path: '/order', component: Order },
-    { path: '/address', component: Address },
+    {
+      path: '/addAddress',
+      name: 'addAddress',
+      component: resolve => require(['../views/address/addAddress'], resolve)
+    },
+    {
+      path: '/address',
+      name: 'address',
+      component: resolve => require(['../views/address/address'], resolve)
+    },
     { path: '/login', component: Login },
     { path: '/forgotpassword', component: Forgot_Password },
     { path: '/mycode', component: My_Code },

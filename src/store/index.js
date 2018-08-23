@@ -9,10 +9,14 @@ const store = new Vuex.Store({
 
   state: {
     loading: false,
-    shoppingCart: []
+    shoppingCart: [],
+    address: null
   },
 
   mutations: {
+    setAddress: (state, address) => {
+      state.address = address
+    },
     //添加购物车
     addGoods: (state, item) => {
       state.shoppingCart.push(item)
@@ -40,10 +44,16 @@ const store = new Vuex.Store({
     //清除购物车
     clearAll(state) {
       commit('clearAll', token)
+    },
+    setAddress: (state, address) => {
+      commit('setAddress', address)
     }
   },
 
   getters: {
+    getAddress(state) {
+      return state.address
+    },
     shoppingBills(state, getters) {
       let result = {}
       state.shoppingCart.forEach(product => {
