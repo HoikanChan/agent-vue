@@ -1,9 +1,24 @@
 <template>
-  <label class="material-checkbox">
+  <label class="material-checkbox" @click="updateValue">
     <input type="checkbox">
     <span></span>
   </label>
 </template>
+<script>
+export default {
+  methods: {
+    updateValue() {
+      this.$emit('update:value', !this.value)
+    }
+  },
+  props: {
+    value: {
+      type: Boolean,
+      default: false
+    }
+  }
+}
+</script>
 <style lang="less" scoped>
 @color_1: rgba(0, 0, 0, 0.87);
 @font_family_1: 'Roboto', 'Segoe UI', BlinkMacSystemFont, system-ui,
@@ -76,7 +91,7 @@
       display: inline-block;
       margin-right: 15px;
       border: solid 2px rgba(0, 0, 0, 0.42);
-      border-radius: 2px;
+      border-radius: 50%;
       width: 20px;
       height: 20px;
       transition: border-color 0.5s, background-color 0.5s;
@@ -85,7 +100,7 @@
       content: '';
       display: inline-block;
       position: absolute;
-      top: 0;
+      top: 1px;
       left: 2px;
       width: 6px;
       height: 13px;
