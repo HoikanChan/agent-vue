@@ -13,7 +13,7 @@
           <img src="../assets/images/orderlist.png" />
           <p>我的订单</p>
         </li>
-        <li>
+        <li @click="$router.push({name:'myteam'})">
           <img src="../assets/images/team_user.png" />
           <p>我的团队</p>
         </li>

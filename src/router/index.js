@@ -86,6 +86,11 @@ export default new Router({
       component: resolve => require(['../views/mall/GoodsDetail'], resolve)
     },
     {
+      path: '/myteam',
+      name: 'myteam',
+      component: resolve => require(['../views/myteam/MyTeam'], resolve)
+    },
+    {
       path: '/buy',
       name: 'buy',
       component: resolve => require(['../views/buy/Buy'], resolve)
