@@ -41,10 +41,10 @@ body{
     
 }
 .order_list li>div:nth-child(2){
-    /* width: 61.2%; */
-    width: 65%;
+    width: 63%;
     height: 1.1rem;
     margin-top: .15rem;
+    margin-left: 0;
 }
 .order_list li>div:nth-child(2) p{
     font-size: .14rem;
