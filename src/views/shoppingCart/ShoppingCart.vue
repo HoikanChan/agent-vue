@@ -6,14 +6,11 @@
       <p>不问明天</p>
       <span v-if="flag" @click="editer">{{span}}</span>
     </div>
-    <checker v-model="picked" default-item-class="demo2-item" selected-item-class="address-selected" radio-required>
+    <checker v-model="picked" default-item-class="demo2-item" selected-item-class="selected" radio-required>
       <checker-item v-for="(item,index) in products" :key="index" :value="item.id">
         <div class="address-detail">
           <div class="checkbox-wrapper">
-            <label class="material-checkbox">
-              <input type="checkbox">
-              <span></span>
-            </label>
+            <material-checkbox></material-checkbox>
           </div>
           <div>
             <p>好吃的可爱多
@@ -28,7 +25,6 @@
             <el-input-number size="mini" v-model="num" :min="1" v-if="!nums"></el-input-number>
           </div>
         </div>
-
       </checker-item>
     </checker>
     <!-- <ul class="order_list">
@@ -75,11 +71,14 @@
 <script>
 import ShopCart_Footer from 'components/public/ShopCart_Footer.vue'
 import { XHeader, Checker, CheckerItem } from 'vux'
+import Checkbox from 'components/Checkbox'
+
 export default {
   components: {
     XHeader,
     Checker,
     CheckerItem,
+    'material-checkbox': Checkbox,
     'v-shopcart': ShopCart_Footer
   },
   data() {
@@ -87,6 +86,7 @@ export default {
       picked: '',
       products: [
         {
+          id: 1,
           img: 'http://p0.meituan.net/600.600/deal/__38666717__4597520.jpg',
           title: '丰胸精油盒装（10支/一盒）',
           price: '900',
@@ -95,6 +95,7 @@ export default {
           amount: '1'
         },
         {
+          id: 2,
           img: 'http://p0.meituan.net/600.600/deal/__38666717__4597520.jpg',
           title: '丰胸精油盒装（10支/一盒）',
           price: '900',

@@ -4,14 +4,11 @@
       <span>收货地址</span>
       <x-icon slot="right" type="more" size="35" style="fill:#333;position:relative;top:-8px;left:-3px;"></x-icon>
     </x-header>
-    <checker v-model="pickedAddressId" default-item-class="demo2-item" selected-item-class="address-selected" radio-required>
+    <checker v-model="pickedAddressId" default-item-class="demo2-item" selected-item-class="selected" radio-required>
       <checker-item v-for="(item,index) in addresses" :key="index" :value="item.id">
         <div class="address-detail">
           <div class="checkbox-wrapper">
-            <label class="material-checkbox">
-              <input type="checkbox">
-              <span></span>
-            </label>
+            <material-checkbox></material-checkbox>
           </div>
           <p>
             <span>收货人：{{item.name}}</span>
@@ -28,11 +25,13 @@
 </template>
 <script>
 import { XHeader, Checker, CheckerItem } from 'vux'
+import Checkbox from 'components/Checkbox'
 export default {
   components: {
     XHeader,
     Checker,
-    CheckerItem
+    CheckerItem,
+    'material-checkbox': Checkbox
   },
   data() {
     return {
@@ -71,64 +70,6 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-.checkbox input,
-.checkbox .label,
-.checkbox .check {
-  display: inline-block;
-  vertical-align: middle;
-}
-.checkbox .label {
-  max-width: 200px;
-}
-.checkbox .check {
-  position: relative;
-}
-.checkbox input[type='checkbox'] {
-  opacity: 0;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  cursor: pointer;
-  border-color: #232323;
-}
-.checkbox input[type='checkbox']:focus {
-  outline: 0;
-}
-.checkbox input[type='checkbox']:checked + .check-container .check-off {
-  border-color: #ff7b0e;
-}
-
-.checkbox input[type='checkbox']:checked + .check-container .check-on:after {
-  content: '✓';
-  color: #ff7b0e;
-  position: absolute;
-  font-size: 1em;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.checkbox input[type='checkbox'] + .check-container {
-  width: auto;
-  position: relative;
-  display: inline-block;
-  width: 29px;
-  height: 29px;
-  top: 2px;
-  pointer-events: none;
-}
-
-.checkbox input[type='checkbox'] + .check-container .check-off {
-  position: absolute;
-  width: 25px;
-  height: 25px;
-  left: 0;
-  top: 0;
-  border-radius: 2px;
-  border: 2px solid #232323;
-  transition: border-color ease 0.28s;
-}
-
 .address-detail {
   font-size: 14px;
   width: 100%;
@@ -158,120 +99,9 @@ export default {
     bottom: 0.05rem;
   }
 }
-//------------------------ checkbox-----------------
-@color_1: rgba(0, 0, 0, 0.87);
-@font_family_1: 'Roboto', 'Segoe UI', BlinkMacSystemFont, system-ui,
-  -apple-system;
-@background_color_1: rgba(0, 0, 0, 0.42);
-@background_color_2: #2196f3;
-@background_color_3: rgba(0, 0, 0, 0.26);
-@border_color_1: #2196f3;
-@border_color_2: rgba(0, 0, 0, 0.26);
-@border_color_3: transparent;
-@border_color_4: #fff;
-
-//------------------------ {
 .checkbox-wrapper {
   position: absolute;
   right: 0.05rem;
-}
-.material-checkbox {
-  position: relative;
-  display: inline-block;
-  color: @color_1;
-  cursor: pointer;
-  font-family: @font_family_1;
-  font-size: 14px;
-  line-height: 18px;
-  > input {
-    appearance: none;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    position: absolute;
-    z-index: -1;
-    left: -15px;
-    top: -15px;
-    display: block;
-    margin: 0;
-    border-radius: 50%;
-    width: 48px;
-    height: 48px;
-    background-color: @background_color_1;
-    outline: none;
-    opacity: 0;
-    transform: scale(1);
-    -ms-transform: scale(0);
-    transition: opacity 0.5s, transform 0.5s;
-    &:checked {
-      background-color: @background_color_2;
-      &:disabled {
-        & + span {
-          &::before {
-            border-color: @border_color_3;
-            background-color: @background_color_3;
-          }
-        }
-      }
-    }
-    &:disabled {
-      opacity: 0;
-      & + span {
-        cursor: initial;
-        &::before {
-          border-color: @border_color_2;
-        }
-      }
-    }
-  }
-  &:active {
-    > input {
-      opacity: 1;
-      transform: scale(0);
-      transition: opacity 0s, transform 0s;
-    }
-  }
-  > span {
-    &::before {
-      content: '';
-      display: inline-block;
-      margin-right: 15px;
-      border: solid 2px rgba(0, 0, 0, 0.42);
-      border-radius: 2px;
-      width: 20px;
-      height: 20px;
-      transition: border-color 0.5s, background-color 0.5s;
-    }
-    &::after {
-      content: '';
-      display: inline-block;
-      position: absolute;
-      top: 0;
-      left: 2px;
-      width: 6px;
-      height: 13px;
-      border: solid 2px transparent;
-      border-left: none;
-      border-top: none;
-      transform: translate(5.5px, 1px) rotate(45deg);
-      -ms-transform: translate(5.5px, 2px) rotate(45deg);
-    }
-  }
-}
-.address-selected {
-  .material-checkbox {
-    > input {
-      & + span {
-        &::before {
-          border-color: @border_color_1;
-          background-color: @background_color_2;
-          border-color: @border_color_1;
-        }
-        &::after {
-          border-color: @border_color_4;
-        }
-      }
-    }
-  }
 }
 </style>
 <style lang="less">
