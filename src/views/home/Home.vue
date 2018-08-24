@@ -1,17 +1,8 @@
 <template>
   <div class="home">
-
-    <div class="swiper-container">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide"><img src="../../assets/images/banner_.png" /></div>
-        <div class="swiper-slide"><img src="../../assets/images/banner2.png" /></div>
-        <div class="swiper-slide"><img src="../../assets/images/3.jpg" /></div>
-        <div class="swiper-slide"><img src="../../assets/images/4.jpg" /></div>
-        <div class="swiper-slide"><img src="../../assets/images/5.jpg" /></div>
-      </div>
-      <div class="swiper-pagination"></div>
-    </div>
-
+    <swiper auto height="2.08rem" dots-class="custom-bottom" dots-position="center">
+      <swiper-item class="swiper-demo-img" v-for="(item, index) in images" :key="index"><img :src="item"></swiper-item>
+    </swiper>
     <div class="nav">
       <div><img src='../../assets/images/team.png' />
         <p>我的团队</p>
@@ -33,25 +24,33 @@
   </div>
 </template>
 <script>
-import '../../../node_modules/swiper/dist/css/swiper.css'
-import Swiper from 'swiper'
+import { Swiper, SwiperItem } from 'vux'
 export default {
+  components: {
+    Swiper,
+    SwiperItem
+  },
   data() {
     return {
+      images: [
+        'http://placeholder.qiniudn.com/800x300/FF3B3B/ffffff',
+        'http://placeholder.qiniudn.com/800x300/FFEF7D/ffffff',
+        'http://placeholder.qiniudn.com/800x300/8AEEB1/ffffff'
+      ],
       title: '首页内容'
     }
   },
   mounted() {
-    var mySwiper = new Swiper('.swiper-container', {
-      //autoplay: true,//可选选项，自动滑动
-      autoplay: {
-        delay: 1000 //1秒切换一次
-      },
-      loop: true,
-      pagination: {
-        el: '.swiper-pagination'
-      }
-    })
+    // var mySwiper = new Swiper('.swiper-container', {
+    //   //autoplay: true,//可选选项，自动滑动
+    //   autoplay: {
+    //     delay: 1000 //1秒切换一次
+    //   },
+    //   loop: true,
+    //   pagination: {
+    //     el: '.swiper-pagination'
+    //   }
+    // })
   }
 }
 </script>

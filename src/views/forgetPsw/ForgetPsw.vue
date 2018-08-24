@@ -67,6 +67,16 @@ export default {
 </script>
 
 <style lang="less">
+body{
+  background: #fff;
+}
+input{
+  font-size: 14px;
+  font-family: '苹方'
+}
+.weui-btn_primary{
+  font-family: '苹方'
+}
 .forget-psw-container {
   .content {
     padding: 48px 0;
@@ -92,6 +102,7 @@ export default {
     .title {
       text-align: center;
       padding: 46px 0;
+      font-family: '苹方';
       h2 {
         display: inline;
         margin: 24px auto;
