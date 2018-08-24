@@ -1,8 +1,8 @@
 {
-  "name": "vue-vux-demo",
+  "name": "agent-vue",
   "version": "1.0.0",
   "description": "dyw",
-  "author": "eason <1137772623@qq.com>",
+  "author": "CHQ&CQ",
   "private": false,
   "scripts": {
     "build": "node build/build.js",
