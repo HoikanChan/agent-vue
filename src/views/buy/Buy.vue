@@ -38,7 +38,7 @@
       </div>
     </div>
     <group class="bills-detail">
-      <x-input title="送货时间" type="text" placeholder="送货时间不限" v-model="bills.msg">
+      <x-input title="送货时间" readonly type="text" placeholder="送货时间不限" v-model="bills.msg">
         <x-icon slot="right" type="ios-arrow-forward" size="20"></x-icon>
       </x-input>
       <x-input title="买家留言" v-model="bills.deliveryTime" type="text" placeholder="选填：对本次交易的说明"></x-input>
@@ -67,14 +67,45 @@
         </p>
         <p>合计金额：</p>
       </div>
-      <div>提交订单</div>
+      <div @click.stop="submitBills">提交订单</div>
+    </div>
+    <toast v-model="toastShow" type="text" width="11.6em">请填写收货人信息</toast>
+    <div v-transfer-dom>
+      <x-dialog v-model="dialogShow" class="dialog" hide-on-blur @on-hide="hideDialog">
+        <div style="padding:15px;">
+          <h3>确认密码</h3>
+          <group>
+            <x-input type="password" v-model="password" :required="true" ref="payPsw">
+            </x-input>
+          </group>
+        </div>
+        <button class="pay-btn" @click="pay()">确认支付</button>
+        <br>
+        <div @click="dialogShow=false">
+          <span class="vux-close"></span>
+        </div>
+      </x-dialog>
     </div>
   </div>
 </template>
 <script>
-import { XButton, XInput, Group, XHeader, Card, Popover, XImg } from 'vux'
+import {
+  XButton,
+  XInput,
+  Group,
+  XHeader,
+  Card,
+  Popover,
+  XImg,
+  Toast,
+  TransferDomDirective as TransferDom,
+  XDialog
+} from 'vux'
 export default {
   name: 'Buy',
+  directives: {
+    TransferDom
+  },
   components: {
     XButton,
     XInput,
@@ -82,10 +113,15 @@ export default {
     XHeader,
     Popover,
     Card,
-    XImg
+    XImg,
+    Toast,
+    XDialog
   },
   data: function() {
     return {
+      toastShow: false,
+      dialogShow: false,
+      password: '',
       bills: {
         msg: '',
         deliveryTime: ''
@@ -117,7 +153,32 @@ export default {
         : null
     }
   },
-  methods: {}
+  watch: {
+    password: function(val) {
+      console.log(val)
+    }
+  },
+  methods: {
+    submitBills() {
+      if (!this.$store.getters.getAddress) {
+        this.toastShow = true
+      } else {
+        debugger
+        this.password = ''
+        this.$refs.payPsw.clear()
+        this.dialogShow = true
+      }
+    },
+    hideDialog() {},
+    pay() {
+      if (this.$refs.payPsw.valid && this.password) {
+        console.log(this.$router.push)
+        this.dialogShow = false
+        this.$router.push({ name: 'bought' })
+        console.log('success')
+      }
+    }
+  }
 }
 </script>
 
@@ -170,7 +231,7 @@ export default {
   img {
     position: absolute;
     left: -0.3rem;
-    top: -0.05rem;
+    top: 0.06rem;
   }
   .forward-icon {
     fill: #7e74ea;
@@ -286,11 +347,35 @@ export default {
     }
   }
 }
+.dialog {
+  border-radius: 15px;
+  h3 {
+    font-size: 16px;
+  }
+  .pay-btn {
+    width: 100%;
+    box-shadow: none;
+    border: none;
+    font-size: 16px;
+    padding: 0.13rem;
+    background-color: #d7d7d7;
+    color: @primary-color;
+  }
+}
 </style>
+
 <style lang="less">
 .bills-detail .weui-cells {
   font-size: 14px !important;
   margin-top: 0;
+}
+.dialog .weui-dialog {
+  border-radius: 15px;
+}
+.dialog .weui-cells {
+  &:before {
+    border: none;
+  }
 }
 </style>
 

@@ -4,17 +4,14 @@
       <span>收货地址</span>
       <x-icon slot="right" type="more" size="35" style="fill:#333;position:relative;top:-8px;left:-3px;"></x-icon>
     </x-header>
-    <checker v-model="pickedAddress" default-item-class="demo2-item" selected-item-class="demo2-item-selected">
-      <checker-item v-for="(item,index) in addresses" :key="index" value="1">
+    <checker v-model="pickedAddressId" default-item-class="demo2-item" selected-item-class="address-selected" radio-required>
+      <checker-item v-for="(item,index) in addresses" :key="index" :value="item.id">
         <div class="address-detail">
-          <div class="check">
-            <input type="checkbox" name="task_01">
-            <div class="check-container">
-              <div class="check-off"></div>
-              <div class="check-on">
-                <i></i>
-              </div>
-            </div>
+          <div class="checkbox-wrapper">
+            <label class="material-checkbox">
+              <input type="checkbox">
+              <span></span>
+            </label>
           </div>
           <p>
             <span>收货人：{{item.name}}</span>
@@ -39,47 +36,38 @@ export default {
   },
   data() {
     return {
-      pickedAddress: '',
+      pickedAddressId: '',
       form: {
         area: []
       },
-      toastShow: false,
       popShow: false,
       addresses: [
         {
           id: 1,
           area: ['china', 'china001', 'gz'],
-          name: '灰灰灰',
+          name: '大灰灰',
           mobile: '15655556666',
           address: '北京市朝阳区王府井路马化腾花园5座404'
         },
         {
           id: 2,
           area: ['china', 'china001', 'gz'],
-          name: '灰灰灰',
+          name: '灰灰',
           mobile: '15655556666',
           address: '北京市朝阳区王府井路马化腾花园5座404'
         }
       ]
     }
   },
-  methods: {
-    showPop() {
-      this.popShow = true
-    },
-    addAddress() {
-      if (
-        this.$refs.name.valid &&
-        this.$refs.mobile.valid &&
-        this.$refs.address.valid
-      ) {
-        this.$store.commit('setAddress', this.form)
-        this.$router.go(-1)
-      } else {
-        this.toastShow = true
-      }
+  watch: {
+    pickedAddressId: function(val, oldval) {
+      this.$store.commit(
+        'setAddress',
+        this.addresses.find(item => item.id === val)
+      )
     }
-  }
+  },
+  methods: {}
 }
 </script>
 <style lang="less" scoped>
@@ -150,7 +138,7 @@ export default {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  padding: 0 0.3rem 0 0.5rem;
+  padding: 0 0.5rem 0 0.3rem;
   position: relative;
   p {
     margin: 0.05rem 0;
@@ -168,6 +156,121 @@ export default {
     position: absolute;
     right: 0.2rem;
     bottom: 0.05rem;
+  }
+}
+//------------------------ checkbox-----------------
+@color_1: rgba(0, 0, 0, 0.87);
+@font_family_1: 'Roboto', 'Segoe UI', BlinkMacSystemFont, system-ui,
+  -apple-system;
+@background_color_1: rgba(0, 0, 0, 0.42);
+@background_color_2: #2196f3;
+@background_color_3: rgba(0, 0, 0, 0.26);
+@border_color_1: #2196f3;
+@border_color_2: rgba(0, 0, 0, 0.26);
+@border_color_3: transparent;
+@border_color_4: #fff;
+
+//------------------------ {
+.checkbox-wrapper {
+  position: absolute;
+  right: 0.05rem;
+}
+.material-checkbox {
+  position: relative;
+  display: inline-block;
+  color: @color_1;
+  cursor: pointer;
+  font-family: @font_family_1;
+  font-size: 14px;
+  line-height: 18px;
+  > input {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    position: absolute;
+    z-index: -1;
+    left: -15px;
+    top: -15px;
+    display: block;
+    margin: 0;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    background-color: @background_color_1;
+    outline: none;
+    opacity: 0;
+    transform: scale(1);
+    -ms-transform: scale(0);
+    transition: opacity 0.5s, transform 0.5s;
+    &:checked {
+      background-color: @background_color_2;
+      &:disabled {
+        & + span {
+          &::before {
+            border-color: @border_color_3;
+            background-color: @background_color_3;
+          }
+        }
+      }
+    }
+    &:disabled {
+      opacity: 0;
+      & + span {
+        cursor: initial;
+        &::before {
+          border-color: @border_color_2;
+        }
+      }
+    }
+  }
+  &:active {
+    > input {
+      opacity: 1;
+      transform: scale(0);
+      transition: opacity 0s, transform 0s;
+    }
+  }
+  > span {
+    &::before {
+      content: '';
+      display: inline-block;
+      margin-right: 15px;
+      border: solid 2px rgba(0, 0, 0, 0.42);
+      border-radius: 2px;
+      width: 20px;
+      height: 20px;
+      transition: border-color 0.5s, background-color 0.5s;
+    }
+    &::after {
+      content: '';
+      display: inline-block;
+      position: absolute;
+      top: 0;
+      left: 2px;
+      width: 6px;
+      height: 13px;
+      border: solid 2px transparent;
+      border-left: none;
+      border-top: none;
+      transform: translate(5.5px, 1px) rotate(45deg);
+      -ms-transform: translate(5.5px, 2px) rotate(45deg);
+    }
+  }
+}
+.address-selected {
+  .material-checkbox {
+    > input {
+      & + span {
+        &::before {
+          border-color: @border_color_1;
+          background-color: @background_color_2;
+          border-color: @border_color_1;
+        }
+        &::after {
+          border-color: @border_color_4;
+        }
+      }
+    }
   }
 }
 </style>
