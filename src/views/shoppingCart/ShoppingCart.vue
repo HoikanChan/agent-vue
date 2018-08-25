@@ -32,7 +32,7 @@
     </checker>
    <div class="shopcart_footer">
         <material-checkbox class="checkbox" :value.sync="chooseAll">全选</material-checkbox>
-        <div class="close_price">结算</div>
+        <div class="close_price" @click="$router.push('buy')">结算</div>
         <div class="price_all">
             <p>消耗积分：￥<span>0.00</span></p>
             <p>不含运费</p>

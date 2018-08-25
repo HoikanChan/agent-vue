@@ -31,7 +31,7 @@
       <div><img src="../../assets/images/shoppingcart_.png" />
         <p>客服</p>
       </div>
-      <div><img src="../../assets/images/shoppingcart_.png" />
+      <div @click="$router.push({name:'shoppingCart'})"><img src="../../assets/images/shoppingcart_.png" />
         <p>购物车</p>
       </div>
       <div @click="addGoods()">加入购物车</div>
