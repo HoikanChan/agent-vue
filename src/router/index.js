@@ -127,6 +127,16 @@ export default new Router({
       component: resolve => require(['../views/mypoints/MyPoints'], resolve)
     },
     {
+      path: '/myorder',
+      name: 'myorder',
+      component: resolve => require(['../views/myorder/MyOrder'], resolve)
+    },
+    {
+      path: '/order_detail',
+      name: 'order_detail',
+      component: resolve => require(['../views/myorder/Order_Detail'], resolve)
+    },
+    {
       path: '/address',
       name: 'address',
       component: resolve => require(['../views/address/address'], resolve)
