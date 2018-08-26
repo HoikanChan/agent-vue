@@ -13,10 +13,11 @@ import Cell from './components/Cell'
 Vue.component('Cell', Cell)*/
 
 // 全局引入vux提供的插件
-import { LoadingPlugin, AlertPlugin, ToastPlugin } from 'vux'
+import { LoadingPlugin, AlertPlugin, ToastPlugin ,DatetimePlugin } from 'vux'
 Vue.use(LoadingPlugin)
 Vue.use(AlertPlugin)
 Vue.use(ToastPlugin)
+Vue.use(DatetimePlugin)
 //
 // ─── Need TO REMOVE ───────────────────────────────────────────────────────────────────
 //

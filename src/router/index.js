@@ -99,9 +99,19 @@ export default new Router({
       component: resolve => require(['../views/myteam/MyTeam'], resolve)
     },
     {
+      path: '/member_detail',
+      name: 'member_detail',
+      component: resolve => require(['../views/myteam/Member_Detail'], resolve)
+    },
+    {
       path: '/teamcash',
       name: 'teamcash',
       component: resolve => require(['../views/teamcash/TeamCash'], resolve)
+    },
+    {
+      path: '/mypoints',
+      name: 'mypoints',
+      component: resolve => require(['../views/mypoints/MyPoints'], resolve)
     },
     {
       path: '/address',
