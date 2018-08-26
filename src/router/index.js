@@ -3,7 +3,6 @@ import Router from 'vue-router'
 import Home from '../components/Home.vue'
 
 import Register from '../components/Register.vue'
-import Shoppingcart from '../components/Shoppingcart.vue'
 
 import User from '../components/User.vue'
 import UserSet from '../components/UserSet.vue'
@@ -61,7 +60,12 @@ export default new Router({
           component: resolve => require(['../views/home/Home'], resolve)
         },
         { path: 'user', name: 'user', component: User },
-        { path: 'shoppingcart', name: 'shoppingcart', component: Shoppingcart },
+        {
+          path: 'shoppingCart',
+          name: 'shoppingCart',
+          component: resolve =>
+            require(['../views/shoppingCart/ShoppingCart'], resolve)
+        },
         { path: 'register', name: 'register', component: Register }
       ]
     },
@@ -75,7 +79,6 @@ export default new Router({
       name: 'forgetPassword',
       component: resolve => require(['../views/forgetPsw/ForgetPsw'], resolve)
     },
-    { path: '/shoppingcart', component: Shoppingcart },
     { path: '/userset', component: UserSet },
     {
       path: '/goodsdetail/:poiId',
@@ -83,9 +86,19 @@ export default new Router({
       component: resolve => require(['../views/mall/GoodsDetail'], resolve)
     },
     {
+      path: '/myteam',
+      name: 'myteam',
+      component: resolve => require(['../views/myteam/MyTeam'], resolve)
+    },
+    {
       path: '/buy',
       name: 'buy',
       component: resolve => require(['../views/buy/Buy'], resolve)
+    },
+    {
+      path: '/bought',
+      name: 'bought',
+      component: resolve => require(['../views/buy/Bought'], resolve)
     },
     { path: '/order', component: Order },
     {

@@ -2,7 +2,7 @@
   <div class="shoppingcart">
     <div class="shoppingcart_top">购物车</div>
     <div class="editer">
-      <img style="" src="../assets/images/19.jpg" />
+      <img style="" src="../../assets/images/19.jpg" />
       <p>不问明天</p>
       <span v-if="flag" @click="editer">{{span}}</span>
     </div>
@@ -11,7 +11,7 @@
         <div>
           <el-checkbox label=""></el-checkbox>
         </div>
-        <div><img src="../assets/images/8.jpg" /></div>
+        <div><img src="../../assets/images/8.jpg" /></div>
         <div>
           <p>好吃的可爱多
             <span>(10支/一盒)</span>
@@ -29,7 +29,7 @@
         <div>
           <el-checkbox label=""></el-checkbox>
         </div>
-        <div><img src="../assets/images/8.jpg" /></div>
+        <div><img src="../../assets/images/8.jpg" /></div>
         <div>
           <p>好吃的可爱多
             <span>(10支/一盒)</span>
@@ -48,7 +48,7 @@
   </div>
 </template>
 <script>
-import ShopCart_Footer from './public/ShopCart_Footer.vue'
+import ShopCart_Footer from 'components/public/ShopCart_Footer.vue'
 import { Checklist } from 'mint-ui'
 export default {
   data() {
@@ -84,11 +84,7 @@ export default {
 }
 </script>
 <style>
-@import url('../../node_modules/element-ui/lib/theme-chalk/checkbox.css');
-@import url('../../node_modules/element-ui/lib/theme-chalk/input-number.css');
-@import url('../../node_modules/element-ui/lib/theme-chalk/step.css');
-@import url('../../node_modules/element-ui/lib/theme-chalk/input.css');
-@import url('../assets/css/shoppingcart.css');
+@import url('../../assets/css/shoppingcart.css');
 .el-input-number--mini {
   width: 60px;
   line-height: 26px;
