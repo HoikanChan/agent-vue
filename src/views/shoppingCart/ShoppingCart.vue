@@ -25,24 +25,6 @@
           <el-input-number size="mini" v-model="num" :min="1" v-if="!nums"></el-input-number>
         </div>
       </li>
-      <li>
-        <div>
-          <el-checkbox label=""></el-checkbox>
-        </div>
-        <div><img src="../../assets/images/8.jpg" /></div>
-        <div>
-          <p>好吃的可爱多
-            <span>(10支/一盒)</span>
-          </p>
-          <p>产品信息
-            <span>10支/一盒</span>
-          </p>
-          <p>乳液体</p>
-          <p>￥990.00</p>
-          <span class="number" v-if="nums">×12</span>
-          <el-input-number size="mini" v-model="num" :min="1" v-if="!nums"></el-input-number>
-        </div>
-      </li>
     </ul>
     <v-shopcart></v-shopcart>
   </div>
