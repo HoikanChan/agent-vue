@@ -66,9 +66,10 @@ export default new Router({
           component: resolve =>
             require(['../views/shoppingCart/ShoppingCart'], resolve)
         },
-        { path: 'register', name: 'register', component: Register }
       ]
     },
+    { path: '/register', name: 'register', component: resolve => require(['../views/register/Register'], resolve) },
+    { path: '/registered', name: 'registered', component: resolve => require(['../views/register/Registered'], resolve) },
     {
       path: '/login',
       name: 'login',
