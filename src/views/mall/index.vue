@@ -67,14 +67,6 @@ export default {
       goods: true
     }
   },
-  mounted() {
-    $('.category_nav li').click(function() {
-      $(this)
-        .addClass('active')
-        .siblings()
-        .removeClass('active')
-    })
-  },
   methods: {
     search: function() {
       this.goods = false
