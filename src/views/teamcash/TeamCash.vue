@@ -26,7 +26,6 @@ export default {
 <style lang="less">
 .teamcash{
     .teamcash_head{
-        width: 100%;
         height:.44rem;
         line-height: .44rem;
         text-align: center;
@@ -62,7 +61,6 @@ export default {
             margin-top: 0;
         }
         li{
-            width: 100%;
             height: .47rem;
             padding: 0 4.8%;
             background: #fff;

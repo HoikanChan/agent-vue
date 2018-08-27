@@ -119,7 +119,6 @@ export default {
 <style lang="less">
 .myorder{
     .myorder_head{
-        width: 100%;
         height: .44rem;
         line-height: .44rem;
         padding: 0 4.8%;
@@ -135,7 +134,6 @@ export default {
         }
     }
     .things{
-        width: 100%;
         height: .41rem;
         padding: 0 4.8%;
         background: #fff;
@@ -160,7 +158,6 @@ export default {
         margin-top: .1rem;
         .first{
             .shophead{
-                width: 100%;
                 height: .4rem;
                 line-height: .4rem;
                 background: #fff;
@@ -182,7 +179,6 @@ export default {
             }
             ul{
                 li{
-                    width: 100%;
                     height: 1.41rem;
                     padding: 0 4.8%;
                     .left{
@@ -229,7 +225,6 @@ export default {
                 }
             }
             .add{
-                width: 100%;
                 height: .43rem;
                 line-height: .43rem;
                 border-bottom: 1px solid #ccc;

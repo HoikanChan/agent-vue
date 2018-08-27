@@ -30,7 +30,6 @@ export default {
     }
 }
 </script>
-
 <style lang="less">
 .member{
      .team_head{

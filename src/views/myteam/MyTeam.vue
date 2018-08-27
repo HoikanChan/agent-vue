@@ -60,7 +60,6 @@ export default {
 <style lang="less">
     .myteam{
         .team_head{
-            width: 100%;
             height: .44rem;
             text-align: center;
             padding: 0 4.8%;
@@ -88,7 +87,7 @@ export default {
             position: relative;
             input{
                 display: inline-block;
-                width: 77.2%;
+                width: 59.2%;
                 height: .28rem;
                 line-height: .28rem;
                 background: #fff;
@@ -170,7 +169,7 @@ export default {
             background: #fff;
             a{
                 display: block;
-                width: 25%;
+                width: 24.8%;
                 height: .4rem;
                 float: left;
                 text-align: center;

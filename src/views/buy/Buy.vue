@@ -213,7 +213,6 @@ export default {
 .address-detail {
   font-size: 14px;
   font-weight: bold;
-  width: 100%;
   height: 1.04rem;
   border-bottom: 1px solid #ccc;
   background: #fff;
