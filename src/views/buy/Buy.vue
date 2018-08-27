@@ -163,7 +163,6 @@ export default {
       if (!this.$store.getters.getAddress) {
         this.toastShow = true
       } else {
-        debugger
         this.password = ''
         this.$refs.payPsw.clear()
         this.dialogShow = true
@@ -172,10 +171,8 @@ export default {
     hideDialog() {},
     pay() {
       if (this.$refs.payPsw.valid && this.password) {
-        console.log(this.$router.push)
         this.dialogShow = false
         this.$router.push({ name: 'bought' })
-        console.log('success')
       }
     }
   }
