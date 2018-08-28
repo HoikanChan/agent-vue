@@ -2,12 +2,12 @@
   <div>
     <x-header :left-options="{backText: ''}" style="border-bottom: 1px solid #ccc ;">等待审核</x-header>
     <div class="top-part">
-      <img src='../../assets/images/bought_bg.png' alt="">
+      <img src='../../assets/images/wait.png' alt="">
       <p>恭喜你</p>
       <p>你已成功注册，请等待审核！</p>
     </div>
     <div class="bottom-part">
-      <x-button type="primary" style="width:90%;font-size: 0.16rem;">我知道了</x-button>
+      <x-button type="primary" style="width:76.8%;font-size: 0.18rem;height:.5rem;">我知道了</x-button>
     </div>
   </div>
 </template>
@@ -31,6 +31,17 @@ div.top-part {
     left: 50%;
     font-size: 0.2rem;
     transform: translateX(-50%);
+    &:nth-child(2){
+      color: #de0116;
+      font-size: .28rem;
+      font-weight: bold;
+      top: 2.4rem;
+    }
+    &:nth-child(3){
+      color: #333;
+      font-size: .15rem;
+      top: 2.93rem;
+    }
   }
   @media only screen and (device-width: 375px) and (device-height: 812px) {
     p {
@@ -42,7 +53,7 @@ div.top-part {
   }
 }
 div.bottom-part {
-  margin-top: 18vh;
+  margin-top: 1.92rem;
 }
 </style>
 

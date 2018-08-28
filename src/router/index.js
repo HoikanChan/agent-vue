@@ -65,11 +65,19 @@ export default new Router({
           name: 'shoppingCart',
           component: resolve =>
             require(['../views/shoppingCart/ShoppingCart'], resolve)
-        },
+        }
       ]
     },
-    { path: '/register', name: 'register', component: resolve => require(['../views/register/Register'], resolve) },
-    { path: '/registered', name: 'registered', component: resolve => require(['../views/register/Registered'], resolve) },
+    {
+      path: '/register',
+      name: 'register',
+      component: resolve => require(['../views/register/Register'], resolve)
+    },
+    {
+      path: '/registered',
+      name: 'registered',
+      component: resolve => require(['../views/register/Registered'], resolve)
+    },
     {
       path: '/login',
       name: 'login',
@@ -85,11 +93,6 @@ export default new Router({
       path: '/goodsdetail/:poiId',
       name: 'goodsdetail',
       component: resolve => require(['../views/mall/GoodsDetail'], resolve)
-    },
-    {
-      path: '/myteam',
-      name: 'myteam',
-      component: resolve => require(['../views/myteam/MyTeam'], resolve)
     },
     {
       path: '/buy',

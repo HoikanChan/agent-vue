@@ -28,13 +28,15 @@
                         <i>{{item.money}}</i>
                     </div>
                     <div class="referer" v-for="man in item.member" >
-                        <p>
-                            <img src="../../assets/images/22.jpg" />
-                            <span>审核人：<i>{{man.pass}}</i></span>
-                        </p>
-                        <h6>
-                            <span>电话号码:<i>{{man.personal}}</i></span><span>客服号码:<i>{{man.service}}</i></span>
-                        </h6>
+                       <div>
+                           <p>审核人:<span>{{man.pass}}</span></p>
+                           <p>手机号码:<span>15797964844</span></p>
+                           <p>注册等级:<span>总代</span></p>
+                           <p>推荐人:<span>陈洋</span></p>
+                       </div>
+                       <div>
+                           <img src="../../assets/images/22.jpg" />
+                       </div>
                     </div>
                 </div>
             </checker-item>
@@ -83,7 +85,7 @@ export default {
                     {
                         pass:'猪精',
                         personal:'25369874512',
-                        service:'12545635895'
+                        refer:'陈洋'
                     }
                 ]
                 },
@@ -93,7 +95,7 @@ export default {
                 money: '2400',
                 member:[
                     {
-                        pass:'茉莉',
+                        pass:'陈琴',
                         personal:'15797964844',
                         service:'12545635895'
                     }
@@ -109,9 +111,6 @@ export default {
         'material-checkbox': Checkbox
     },
     mounted() {
-        $('option_referer .option').click(function(){
-            $('option_referer .referer').eq(this.index()).show()
-        })
     }
 }
 </script>
@@ -216,36 +215,43 @@ export default {
             }
         }
         .referer{
-            width: 100%;
-            height:.8rem;
-            padding: 0 7.2%;
+            width: 88%;
+            height:5.12rem;
+            margin: .1rem auto;
+            border-radius: .04rem;
+            box-shadow: -2px 2px 2px #e5e5e5;
             border-bottom: 1px solid #ccc;
-            display:none;
-            p{
-                height: .42rem;
-                line-height: .42rem;
-                img{
-                    width: .22rem;
-                    height: .22rem;
-                    border-radius: 50%;
+            >div{
+                 &:nth-child(1){
+                    width: 70%;
+                    height: 1.1rem;
+                    float: left;
+                    p{
+                        height: .27rem;
+                        line-height: .27rem;
+                        font-size: .13rem;
+                        padding-left: 6%;
+                        font-weight: bold;
+                    }
+                    &:nth-child(1){
+                        margin-top: .15rem;
+                    }
                 }
-                span{
-                    font-size: .13rem;
-                    color: #666;
-                }
-            }
-            h6{
-                font-weight: normal;
-                height: .23rem;
-                line-height: .23rem;
-                font-size: .13rem;
-                span{
-                    &:nth-child(2){
-                        padding-left: 5.6%;
+                &:nth-child(2){
+                    width: 30%;
+                    height: 1.1rem;
+                    float: left;
+                    img{
+                        width: .3rem;
+                        height: .3rem;
+                        border-radius: .02rem;
+                        margin-top: .23rem;
+                        margin-left: 47%;
                     }
                 }
             }
-        }
+           
+            }
         }
         
     }
