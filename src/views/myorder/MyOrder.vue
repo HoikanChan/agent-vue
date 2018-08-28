@@ -253,14 +253,12 @@ export default {
         }
       }
       .add {
-        width: 100%;
         height: 0.43rem;
         line-height: 0.43rem;
         border-bottom: 1px solid #ccc;
         background: #fff;
         font-size: 0.13rem;
         text-align: right;
-        padding-right: 4.8%;
         i {
           font-size: 0.15rem;
         }
@@ -288,10 +286,6 @@ export default {
           border: 1px solid #5b50d3;
         }
       }
-<<<<<<< HEAD
-
-=======
->>>>>>> 6d47b948c29bd09b0aae435c895d4e0beab88989
 
 .active {
   border-bottom: 0.04rem solid #5b50d3;

@@ -157,12 +157,17 @@ export default new Router({
       name: 'examine',
       component: resolve => require(['../views/examine/Examine'], resolve)
     },
-    { path: '/login', component: Login },
-    { path: '/forgotpassword', component: Forgot_Password },
+    // { path: '/login', component: Login },
+    // { path: '/forgotpassword', component: Forgot_Password },
     {
       path: '/messages',
       name: 'messages',
       component: resolve => require(['../views/systemMessages/SystemMessages'], resolve)
+    },
+    {
+      path: '/mydeposit',
+      name: 'mydeposit',
+      component: resolve => require(['../views/mydeposit/MyDeposit'], resolve)
     },
     {
       path: '/mycode',
