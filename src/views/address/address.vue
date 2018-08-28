@@ -72,7 +72,6 @@ export default {
 <style lang="less" scoped>
 .address-detail {
   font-size: 14px;
-  width: 100%;
   height: 1.04rem;
   border-bottom: 1px solid #ccc;
   background: #fff;
