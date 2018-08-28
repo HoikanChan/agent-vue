@@ -4,10 +4,10 @@
       <swiper-item class="swiper-demo-img" v-for="(item, index) in images" :key="index"><img :src="item"></swiper-item>
     </swiper>
     <div class="nav">
-      <div><img src='../../assets/images/team.png' />
+      <div @click="$router.push({name:'myteam'})"><img src='../../assets/images/team.png' />
         <p>我的团队</p>
       </div>
-      <div><img src='../../assets/images/points.png' />
+      <div @click="$router.push({name:'mypoints'})"><img src='../../assets/images/points.png' />
         <p>我的积分</p>
       </div>
       <div><img src='../../assets/images/authorising.png' />
@@ -16,7 +16,7 @@
       <div><img src='../../assets/images/cash.png' />
         <p>我的押金</p>
       </div>
-      <div><img src='../../assets/images/grade.png' />
+      <div @click="$router.push({name:'teamcash'})"><img src='../../assets/images/grade.png' />
         <p>我的业绩</p>
       </div>
       <div>其他</div>
@@ -54,19 +54,7 @@ export default {
   }
 }
 </script>
-<style>
-.swiper-container {
-  height: 2.08rem;
-  width: 100%;
-}
-.swiper-slide {
-  height: 100%;
-  width: 100%;
-}
-.swiper-slide img {
-  width: 100%;
-  height: auto;
-}
+<style scoped>
 .nav {
   width: 100%;
   height: 3.95rem;

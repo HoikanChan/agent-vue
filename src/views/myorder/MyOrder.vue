@@ -288,7 +288,10 @@ export default {
           border: 1px solid #5b50d3;
         }
       }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6d47b948c29bd09b0aae435c895d4e0beab88989
 
 .active {
   border-bottom: 0.04rem solid #5b50d3;

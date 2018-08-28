@@ -18,7 +18,6 @@
             <span>收货地址：{{item.address}}</span>
           </p>
         </div>
-
       </checker-item>
     </checker>
   </div>
