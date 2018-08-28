@@ -4,8 +4,8 @@
       <div><img src="../assets/images/13.jpg" /></div>
       <p>不问明天</p>
       <p>总代</p>
-      <router-link to="/usersetting"><img class="set" src="../assets/images/set.png" /></router-link>
-      <router-link to="/messages"> <img class="code" src="../assets/images/message.png" /></router-link>
+      <router-link to="/userset"><img class="set" src="../assets/images/set.png" /></router-link>
+      <router-link to="/code"><img style="width:.2rem;height:.21rem;" class="code_" src="../assets/images/message.png" /></router-link>
     </div>
     <div class="all">
       <ul class="user_all">

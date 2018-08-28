@@ -35,12 +35,12 @@ body{
     width: .18rem;
     height: .19rem;
 }
-.code{
+.code_{
     position: absolute;
     top: .13rem;
     left: 87%;
     width: .2rem;
-    height: .2rem;
+    height: .21rem;
 }
 .user .all{
     width: 100%;
