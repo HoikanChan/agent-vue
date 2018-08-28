@@ -3,9 +3,6 @@ import Router from 'vue-router'
 
 import User from '../components/User.vue'
 
-import Order from '../components/Order.vue'
-import Login from '../components/Login.vue'
-import Forgot_Password from '../components/Forgot_Password.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -90,6 +87,12 @@ export default new Router({
       name: 'userSetting'
     },
     {
+      path: '/realname',
+      component: resolve =>
+        require(['../views/userSetting/RealNameRegistration'], resolve),
+      name: 'realName'
+    },
+    {
       path: '/goodsdetail/:poiId',
       name: 'goodsdetail',
       component: resolve => require(['../views/mall/GoodsDetail'], resolve)
@@ -104,7 +107,6 @@ export default new Router({
       name: 'bought',
       component: resolve => require(['../views/buy/Bought'], resolve)
     },
-    { path: '/order', component: Order },
     {
       path: '/addAddress',
       name: 'addAddress',
@@ -150,8 +152,11 @@ export default new Router({
       name: 'upgrade',
       component: resolve => require(['../views/check/Check'], resolve)
     },
-    { path: '/login', component: Login },
-    { path: '/forgotpassword', component: Forgot_Password },
+    {
+      path: '/messages',
+      name: 'messages',
+      component: resolve => require(['../views/systemMessages/SystemMessages'], resolve)
+    },
     {
       path: '/mycode',
       name: 'mycode',

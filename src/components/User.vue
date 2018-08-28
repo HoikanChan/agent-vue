@@ -5,7 +5,7 @@
       <p>不问明天</p>
       <p>总代</p>
       <router-link to="/usersetting"><img class="set" src="../assets/images/set.png" /></router-link>
-      <img class="code" src="../assets/images/message.png" />
+      <router-link to="/messages"> <img class="code" src="../assets/images/message.png" /></router-link>
     </div>
     <div class="all">
       <ul class="user_all">

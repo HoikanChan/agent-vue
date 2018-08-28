@@ -5,11 +5,10 @@
       <a slot="right" class="save-btn">保存</a>
     </x-header>
     <group>
-      <p>
+      <p class="avatar-cell">
         <span>头像</span>
+        <img src="../../assets/images/avatar.png" alt="">
       </p>
-      <x-input placeholder-align="right" title="头像"  :required="true" ref="mobile" v-model="form.avatar" >
-      </x-input>
       <x-input placeholder-align="right" title="昵称" type="text" placeholder="请输入昵称" :required="true" ref="code" v-model="form.nickname">
       </x-input>
       <x-input placeholder-align="right" title="性别" type="text" readonly :show-clear="false" placeholder="请输入性别" :required="true" ref="psw" v-model="form.sex">
@@ -29,51 +28,52 @@
         <x-button mini plain slot="left-text">取消</x-button>
       </x-address>
     </group>
+
     <group style="margin-top: .2rem;">
-      <x-input placeholder-align="right" title="实名认证" type="text" readonly :show-clear="false" v-model="form.isVerified">
-        <x-icon slot="right" type="ios-arrow-forward" style="margin-top: 6px;fill:#aaa" size="15"></x-icon>
+      <x-input placeholder-align="right" title="实名认证" type="text" readonly :show-clear="false" v-model="form.isVerified" >
+        <x-icon slot="right" type="ios-arrow-forward" style="margin-top: 6px;fill:#aaa" size="15" @click="$router.push({name:'realName'})"></x-icon>
       </x-input>
     </group>
     <div v-transfer-dom>
       <popup v-model="sexShow">
         <div class="popup">
           <div class="popup-header">
-            <x-button mini plain @click.native="sexShow=flase">取消</x-button>
-            <h4>选择积分变更类型</h4>
-            <x-button mini type="primary" @click.native="typeChoosed">完成</x-button>
+            <x-button mini plain @click.native="popupHide">取消</x-button>
+            <h4></h4>
+            <x-button mini type="primary" @click.native="sexesChoosed">完成</x-button>
           </div>
           <div class="popup-content">
+            <checker v-model="pickedSex" default-item-class="demo2-item" selected-item-class="selected" radio-required>
+              <checker-item v-for="(item,index) in sexes" :key="index" :value="item.value">
+                <div class="detail">
+                  <div class="checkbox-wrapper">
+                    <material-checkbox></material-checkbox>
+                  </div>
+                  <p>
+                    {{item.title}}
+                  </p>
+                </div>
+              </checker-item>
+            </checker>
           </div>
-        </div>
-      </popup>
-    </div>
-    <div v-transfer-dom>
-      <popup v-model="timeShow">
-        <div class="popup time-popup">
-          <div class="popup-header">
-            <x-button mini plain @click.native="timeShow=flase" style="background-color:#fff;border:1px solid #f4f4f4">取消</x-button>
-            <h4></h4>
-            <x-button mini type="primary" @click.native="timeChoosed">完成</x-button>
-          </div>
-          <datetime-view v-model="popupPickedTime" format="YYYY-MM-DD" :min-year="1900">
-
-          </datetime-view>
         </div>
       </popup>
     </div>
   </div>
 </template>
 <script>
+import Checkbox from 'components/Checkbox'
 import {
   XButton,
   XInput,
   Group,
   XHeader,
-  DatetimeView,
   Datetime,
   Popup,
   TransferDom,
   XAddress,
+  Checker,
+  CheckerItem,
   ChinaAddressV4Data
 } from 'vux'
 export default {
@@ -87,9 +87,11 @@ export default {
     Group,
     XHeader,
     Datetime,
-    Datetime,
     Popup,
-    XAddress
+    'material-checkbox': Checkbox,
+    XAddress,
+    Checker,
+    CheckerItem
   },
   data() {
     return {
@@ -98,21 +100,30 @@ export default {
       sexShow: false,
       timeShow: false,
       addressData: ChinaAddressV4Data,
+      sexes: [{ title: '男', value: 1 }, { title: '女', value: 2 }],
+      pickedSex: 1,
       form: {
         avatar: '',
         nickname: 'faifai',
         sex: 1,
         birthday: '2018-03-14',
-        mobile: '12344445555',
+        mobile: '15655552222',
         createdAt: '2018-02-13',
         location: [],
-        isVerified: false
+        isVerified: '未认证'
       }
     }
   },
   methods: {
     open() {
       this.$refs.datetime.open()
+    },
+    popupHide() {
+      this.sexShow = false
+    },
+    sexesChoosed() {
+      this.form.sex = this.pickedSex
+      this.sexShow = false
     }
   }
 }
@@ -120,6 +131,16 @@ export default {
 <style scoped lang="less">
 .save-btn {
   color: @primary-color !important;
+}
+.avatar-cell {
+  padding: 12px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  img {
+    width: 0.5rem;
+    cursor: pointer;
+  }
 }
 .popup {
   .popup-header {
@@ -138,7 +159,6 @@ export default {
     display: flex;
     flex-wrap: wrap;
     padding: 2%;
-    padding-bottom: 1.2rem;
     .type {
       display: inline-flex;
       justify-content: center;
@@ -165,10 +185,15 @@ export default {
     }
   }
 }
-.time-popup {
-  .popup-header {
-    background: #ddd;
-  }
+.popup-content {
+  flex-direction: column;
+  display: flex;
+}
+.detail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.2rem;
 }
 </style>
 <style lang="less">
@@ -180,8 +205,16 @@ export default {
   .weui-cell {
     padding: 12px 15px;
   }
+  .vux-popup-header-right {
+    color: @primary-color !important;
+  }
 }
-.vux-popup-header-right {
-  color: @primary-color !important;
+.popup {
+  .vux-checker-box {
+    flex-direction: column;
+    display: flex;
+    justify-content: space-around;
+    padding: 0.5rem;
+  }
 }
 </style>
