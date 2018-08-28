@@ -2,18 +2,18 @@
     <div class="code_user">
         <div class="code_top">
             我的二维码
-            <img src="../assets/images/back.png" />
+            <img src="../../assets/images/back.png" />
         </div>
         <div>
-            <!-- <img src="../assets/images/msg_code.png" /> -->
+            <!-- <img src="../../assets/images/msg_code.png" /> -->
             <div class="head_msg">
-                <div><img src="../assets/images/20.jpg" /></div>
+                <div><img src="../../assets/images/20.jpg" /></div>
                 <div>
                     <p>大傻子</p>
                     <p>广州市</p>
                 </div>
             </div>
-            <img class="msg_code" src="../assets/images/msg_code.png" />
+            <img class="msg_code" src="../../assets/images/msg_code.png" />
             <p>扫一扫上面的二维码，可加盟代理</p>
         </div>
     </div>
@@ -43,7 +43,7 @@ export default {
   height: 0.16rem;
 }
 /* body{
-    background: url('../assets/images/code_bg.png') no-repeat center/cover;
+    background: url('../../assets/images/code_bg.png') no-repeat center/cover;
 } */
 .code_user div:nth-child(2) {
   width: 87.2%;

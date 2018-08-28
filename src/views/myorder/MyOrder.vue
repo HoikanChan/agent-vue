@@ -251,7 +251,6 @@ export default {
         }
       }
       .add {
-        width: 100%;
         height: 0.43rem;
         line-height: 0.43rem;
         border-bottom: 1px solid #ccc;
@@ -263,30 +262,22 @@ export default {
           font-size: 0.15rem;
         }
       }
-      .logistics {
-        width: 100%;
-        height: 0.53rem;
-        background: #fff;
-        a {
-          display: block;
-          width: 16.5%;
-          height: 0.22rem;
-          line-height: 0.22rem;
-          text-align: center;
-          border: 1px solid #999;
-          float: right;
-          border-radius: 0.03rem;
-          margin-right: 4.8%;
-          margin-top: 0.15rem;
-          font-size: 0.13rem;
-          color: #000;
-        }
-        .blue {
-          color: #5b50d3;
-          border: 1px solid #5b50d3;
-        }
+      .msg_ {
+        font-size: 0.13rem;
+        color: #666;
       }
-
+      .price {
+        font-size: 0.2rem;
+        color: #5b50d3;
+        font-weight: bold;
+        margin-top: 0.28rem;
+        display: inline-block;
+      }
+      .number {
+        float: right;
+        margin-top: 0.28rem;
+        font-size: 0.2rem;
+      }
 
 .active {
   border-bottom: 0.04rem solid #5b50d3;
