@@ -5,7 +5,7 @@
       <p>恭喜你，支付成功</p>
     </div>
     <div class="bottom-part">
-      <x-button type="primary" style="width:90%;font-size: 0.16rem;">查看订单</x-button>
+      <x-button type="primary" style="width:90%;font-size: 0.16rem;" link="/myorder">查看订单</x-button>
       <x-button type="primary" style="width:90%;font-size: 0.16rem;" plain link="/home">返回首页</x-button>
     </div>
   </div>

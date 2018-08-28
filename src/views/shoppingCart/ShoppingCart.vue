@@ -4,13 +4,13 @@
     <div class="editer">
       <img style="" src="../../assets/images/19.jpg" />
       <p>不问明天</p>
-      <span v-if="flag" @click="editer">{{span}}</span>
+      <span @click="this.isEditing = !this.isEditing">{{isEditing?"完成":"编辑"}}</span>
     </div>
     <checker v-model="picked" default-item-class="demo2-item" selected-item-class="selected" radio-required type="checkbox">
-      <checker-item v-for="(item,index) in products" :key="index" :value="item.id">
+      <checker-item v-for="(item,index) in products" :key="index" :value="item.id" @click.native.stop="adjustChooseAll()">
         <div class="detail">
           <div class="checkbox-wrapper">
-            <material-checkbox ></material-checkbox>
+            <material-checkbox></material-checkbox>
           </div>
           <div><img :src="item.img" /></div>
           <div>
@@ -23,32 +23,36 @@
             <p>乳液体</p>
             <div class="price-info">
               <p class="price">￥990.0</p>
-              <span class="number" v-if="nums">×12</span>
+              <span class="number" v-if="!isEditing">×{{item.amount}}</span>
+              <input-number size="mini" :value.sync="item.amount" :min="1" v-else></input-number>
             </div>
-            <el-input-number size="mini" v-model="num" :min="1" v-if="!nums"></el-input-number>
           </div>
         </div>
       </checker-item>
     </checker>
-   <div class="shopcart_footer">
-        <material-checkbox class="checkbox" :value.sync="chooseAll">全选</material-checkbox>
-        <div class="close_price" @click="$router.push('buy')">结算</div>
-        <div class="price_all">
-            <p>消耗积分：￥<span>0.00</span></p>
-            <p>不含运费</p>
-        </div>
+    <div class="shopcart_footer ">
+      <material-checkbox class="checkbox " :value.sync="chooseAll" @click.native="doChooseAll()">全选</material-checkbox>
+      <div class="close_price " @click="$router.push( 'buy') ">结算</div>
+      <div class="price_all ">
+        <p>消耗积分：￥
+          <span>0.00</span>
+        </p>
+        <p>不含运费</p>
+      </div>
     </div>
   </div>
 </template>
 <script>
 import { XHeader, Checker, CheckerItem } from 'vux'
 import Checkbox from 'components/Checkbox'
+import InputNumber from 'components/InputNumber'
 
 export default {
   components: {
     XHeader,
     Checker,
     CheckerItem,
+    InputNumber,
     'material-checkbox': Checkbox
   },
   data() {
@@ -63,7 +67,7 @@ export default {
           price: '900',
           info: '（10支/一盒）',
           category: '乳液体',
-          amount: '1'
+          amount: 1
         },
         {
           id: 2,
@@ -72,40 +76,35 @@ export default {
           price: '900',
           info: '（10支/一盒）',
           category: '乳液体',
-          amount: '1'
+          amount: 1
         }
       ],
       msg: '购物车',
       checked: true,
-      span: '编辑',
-      flag: true,
+      isEditing: false,
       nums: true,
       num: 1
     }
   },
-  watch:{
-    chooseAll:function(val){
-      if(val === true){
-        this.picked = this.products.map(item => item.id)
-      } else if(val === false) {
-        this.picked = []
-      }
-    }
-  },
   methods: {
-    checkon: function() {
-      console.log(this.value)
+    //点击子项，更新全选状态
+    adjustChooseAll() {
+      const productIds = this.products.map(item => item.id)
+      if (
+        JSON.stringify(this.picked.slice().sort()) ===
+        JSON.stringify(productIds.sort())
+      ) {
+        this.chooseAll = true
+      } else {
+        this.chooseAll = false
+      }
     },
-    handleChange(value) {
-      console.log(value)
-    },
-    editer() {
-      this.flag = !this.flag
-      this.nums = !this.nums
-      if (this.flag == true) {
-        this.span = '编辑'
-      } else if (this.flag == false) {
-        this.span = '完成'
+    //点击全选选择所有项目
+    doChooseAll() {
+      if (this.chooseAll === true) {
+        this.picked = this.products.map(item => item.id)
+      } else {
+        this.picked = []
       }
     }
   }
@@ -156,6 +155,7 @@ export default {
         .price {
           font-size: 0.18rem;
           display: inline-block;
+          white-space: nowrap;
           color: @color_2;
         }
         .number {
@@ -187,8 +187,6 @@ export default {
     }
   }
 }
-@color_1: #000;
-@color_2: #fff;
 
 .shopcart_footer {
   width: 100%;
@@ -209,7 +207,7 @@ export default {
     text-align: center;
     background: #5b50d3;
     float: right;
-    color: @color_2;
+    color: #fff;
     font-size: 0.16rem;
   }
   .price_all {
