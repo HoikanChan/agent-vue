@@ -9,7 +9,7 @@
       <span>分类</span>
     </router-link>
 
-    <router-link to="/check"><img src='../../assets/images/register.png' /><img src='../../assets/images/register_.png' />
+    <router-link to="/examine"><img src='../../assets/images/register.png' /><img src='../../assets/images/register_.png' />
       <span>审批</span>
     </router-link>
 

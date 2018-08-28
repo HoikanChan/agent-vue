@@ -129,26 +129,28 @@ export default {
            
         }
     }
-    .things{
-        height: .41rem;
-        padding: 0 4.8%;
-        background: #fff;
-        padding: 0 4.8%;
-        img {
-          width: 0.23rem;
-          height: 0.23rem;
-          border-radius: 50%;
-        }
-        span {
-          padding-left: 1.2%;
-          font-size: 0.15rem;
-        }
-        i {
-          float: right;
-          font-size: 0.13rem;
-          color: #5b50d3;
-        }
-    }
+       .things {
+            height: 0.41rem;
+            padding: 0 4.8%;
+            background: #fff;
+            border-bottom: 1px solid #ccc;
+            a {
+            display: block;
+            width: 17.2%;
+            height: 0.41rem;
+            line-height: 0.41rem;
+            text-align: center;
+            float: left;
+            font-size: 0.14rem;
+            }
+            .two {
+            margin-left: 22%;
+            }
+            .three {
+            margin-left: 22%;
+            }
+            }
+    
     .shoppings{
         margin-top: .1rem;
         .first{

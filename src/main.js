@@ -11,7 +11,6 @@ import * as filters from './filters'
 Vue.component('Group', Group)
 import Cell from './components/Cell'
 Vue.component('Cell', Cell)*/
-
 // 全局引入vux提供的插件
 import { LoadingPlugin, AlertPlugin, ToastPlugin, DatetimePlugin } from 'vux'
 Vue.use(LoadingPlugin)

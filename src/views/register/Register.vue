@@ -23,7 +23,7 @@
       <x-input label-width="1rem" title="审核凭证" type="text" placeholder="请上传支付凭证图片" :required="true" ref="psw" v-model="form.psw">
       </x-input>
     </group>
-      <x-button type="primary" action-type="submit"@click.native="register()" style="margin-top:.5rem;width: 90.4%;">提交审核</x-button>
+      <x-button type="primary" action-type="submit" @click.native="register()" style="margin-top:.5rem;width: 90.4%;">提交审核</x-button>
   </div>
 </template>
 <script>

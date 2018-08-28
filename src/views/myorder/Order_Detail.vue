@@ -60,7 +60,6 @@ export default {
 <style lang="less">
 .order_detail{
     .detail_head{
-        width: 100%;
         height: .44rem;
         line-height: .44rem;
         padding: 0 4.8%;
@@ -76,7 +75,6 @@ export default {
         }
     }
     .ordernumber{
-        width: 100%;
         height: .84rem;
         background: url('../../assets/images/order_bg.png') no-repeat center/cover;
         p{
@@ -90,7 +88,6 @@ export default {
         }
     }
     .address{
-        width: 100%;
         height: 1.04rem;
         padding: 0 4.8%;
         background: #fff;
@@ -137,7 +134,6 @@ export default {
     }
     ul{
         li{
-            width: 100%;
             height: 1.41rem;
             padding: 0 4.8%;
             border-bottom: 1px solid #ccc;
@@ -185,7 +181,6 @@ export default {
         }
     }
     .order_price{
-        width: 100%;
         height: .42rem;
         border-bottom: 1px solid #ccc;
         padding: 0 4.8%;
@@ -205,7 +200,6 @@ export default {
         }
     }
     .order_time{
-        width: 100%;
         height: .42rem;
         border-bottom: 1px solid #ccc;
         padding: 0 4.8%;
@@ -228,7 +222,6 @@ export default {
         }
     }
     .buyer{
-        width: 100%;
         height: .68rem;
         background: #fff;
         padding: 0 4.8%;

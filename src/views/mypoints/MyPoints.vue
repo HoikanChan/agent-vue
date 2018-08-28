@@ -110,9 +110,7 @@ import {
   Group,
   DatetimeView,
   Alert,
-  Datetime,
   Popup,
-  PopupHeader,
   TransferDom
 } from 'vux'
 export default {
@@ -125,10 +123,8 @@ export default {
     DatetimeView,
     XButton,
     Alert,
-    Datetime,
     XButton,
-    Popup,
-    PopupHeader
+    Popup
   },
   data() {
     return {
@@ -224,18 +220,6 @@ export default {
     },
     hide: function() {
       this.flag = false
-    },
-    date: () => {
-      this.$vux.datetime.show({
-        value: '', // 其他参数同 props
-        onHide() {
-          const _this = this
-        },
-        onShow() {
-          const _this = this
-        }
-      })
-      this.$vux.datetime.hide()
     }
   }
 }
@@ -243,7 +227,6 @@ export default {
 <style lang="less" scoped>
 .mypoints {
   .mypoints_head {
-    width: 100%;
     height: 0.44rem;
     line-height: 0.44rem;
     padding: 0 4.8%;

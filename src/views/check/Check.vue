@@ -12,7 +12,7 @@
             </div>
             <div class="up">
                 <img class="up_img" src="../../assets/images/up.png" />
-                <span>升级</span>
+                <span @click="upgrade">升级</span>
             </div>
         </div>
         <checker v-model="picked" default-item-class="demo2-item" selected-item-class="selected" radio-required>
@@ -41,6 +41,12 @@
                 </div>
             </checker-item>
         </checker>
+        <div class="shade" v-show="flag"></div>
+        <div class="modal" v-show="flag">
+            <p>等待审核</p>
+            <p>审核结果将以系统消息通知</p>
+            <div @click="close">我知道了</div>
+        </div>
     </div>
 </template>
 
@@ -50,6 +56,7 @@ import Checkbox from 'components/Checkbox'
 export default {
     data(){
         return{
+            flag:false,
             checked: true,
             picked: '',
             scale: [
@@ -111,6 +118,14 @@ export default {
         'material-checkbox': Checkbox
     },
     mounted() {
+    },
+    methods:{
+        upgrade(){
+            this.flag=true
+        },
+        close(){
+            this.flag=false
+        }
     }
 }
 </script>
@@ -251,6 +266,55 @@ export default {
                 }
             }
            
+            }
+        }
+        .shade{
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            opacity: 0.4;
+            /*兼容IE8及以下版本浏览器*/
+            filter: alpha(opacity=30);
+            display: block;
+        }
+        .modal{
+            position: absolute;
+            z-index: 101;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 77.6%;
+            height: 1.64rem;
+            margin: auto;
+            display: block;
+            border-radius: 0.08rem;
+            background: #fff;
+            p{
+                text-align: center;
+                font-size: .13rem;
+                color: #333;
+                margin-top: .1rem;
+                &:first-child{
+                    font-size: .19rem;
+                    font-weight: bold;
+                    color: #000;
+                    margin-top: .27rem;
+                }
+            }
+            >div{
+                width: 39%;
+                height: .3rem;
+                line-height: .3rem;
+                background: #5b50d3;
+                text-align: center;
+                color: #fff;
+                border-radius: .03rem;
+                margin:.3rem auto;
             }
         }
         

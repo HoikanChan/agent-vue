@@ -28,11 +28,17 @@ input {
 button {
   font-family: '苹方' !important;
 }
-*, :after, :before{
-  box-sizing: content-box !important;
-}
 //覆盖VUX group组件无title时的margin-top
 .vux-no-group-title {
   margin-top: 0 !important;
+}
+.weui-cells {
+  font-size: 0.13rem !important;
+  &:before {
+    border: none;
+  }
+  &:after {
+    border: none;
+  }
 }
 </style>

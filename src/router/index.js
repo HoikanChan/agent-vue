@@ -1,16 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '../components/Home.vue'
-
-import Register from '../components/Register.vue'
 
 import User from '../components/User.vue'
-import UserSet from '../components/UserSet.vue'
 
 import Order from '../components/Order.vue'
 import Login from '../components/Login.vue'
 import Forgot_Password from '../components/Forgot_Password.vue'
-import My_Code from '../components/My_Code.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -88,7 +83,12 @@ export default new Router({
       name: 'forgetPassword',
       component: resolve => require(['../views/forgetPsw/ForgetPsw'], resolve)
     },
-    { path: '/userset', component: UserSet },
+    {
+      path: '/userSetting',
+      component: resolve =>
+        require(['../views/userSetting/UserSetting'], resolve),
+      name: 'userSetting'
+    },
     {
       path: '/goodsdetail/:poiId',
       name: 'goodsdetail',
@@ -146,13 +146,22 @@ export default new Router({
       component: resolve => require(['../views/address/address'], resolve)
     },
     {
-      path: '/check',
-      name: 'check',
+      path: '/upgrade',
+      name: 'upgrade',
       component: resolve => require(['../views/check/Check'], resolve)
+    },
+    {
+      path: '/examine',
+      name: 'examine',
+      component: resolve => require(['../views/examine/Examine'], resolve)
     },
     { path: '/login', component: Login },
     { path: '/forgotpassword', component: Forgot_Password },
-    { path: '/mycode', component: My_Code },
+    {
+      path: '/mycode',
+      name: 'mycode',
+      component: resolve => require(['../views/myCode/MyCode'], resolve)
+    },
     { path: '*', redirect: '/user' } /*默认跳转的路由*/
   ]
 })
