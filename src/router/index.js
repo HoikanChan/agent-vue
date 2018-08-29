@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import User from '../components/User.vue'
-
 Vue.use(Router)
 
 export default new Router({
@@ -51,7 +49,11 @@ export default new Router({
           name: 'home',
           component: resolve => require(['../views/home/Home'], resolve)
         },
-        { path: 'user', name: 'user', component: User },
+        {
+          path: 'user',
+          name: 'user',
+          component: resolve => require(['../views/user/User'], resolve)
+        },
         {
           path: 'shoppingCart',
           name: 'shoppingCart',
@@ -162,7 +164,8 @@ export default new Router({
     {
       path: '/messages',
       name: 'messages',
-      component: resolve => require(['../views/systemMessages/SystemMessages'], resolve)
+      component: resolve =>
+        require(['../views/systemMessages/SystemMessages'], resolve)
     },
     {
       path: '/mydeposit',
@@ -174,6 +177,6 @@ export default new Router({
       name: 'mycode',
       component: resolve => require(['../views/myCode/MyCode'], resolve)
     },
-    { path: '*', redirect: '/user' } /*默认跳转的路由*/
+    { path: '*', redirect: '/home' } /*默认跳转的路由*/
   ]
 })
