@@ -10,7 +10,8 @@ const store = new Vuex.Store({
   state: {
     loading: false,
     shoppingCart: [],
-    address: null
+    address: null,
+    user: null
   },
 
   mutations: {
@@ -28,6 +29,9 @@ const store = new Vuex.Store({
     //清除购物车
     clearAll(state) {
       state.shoppingCart = []
+    },
+    setUser(state, user) {
+      state.user = user
     }
   },
 
@@ -47,6 +51,9 @@ const store = new Vuex.Store({
     },
     setAddress: (state, address) => {
       commit('setAddress', address)
+    },
+    setUser({ commit }, user) {
+      commit('setUser', user)
     }
   },
 

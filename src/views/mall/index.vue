@@ -43,7 +43,6 @@
   </div>
 </template>
 <script>
-import axios from 'axios'
 import Footer from '../../components/public/Footer.vue'
 import MallService from 'services/MallService'
 import GoodsItem from 'components/GoodsItem'

@@ -10,10 +10,10 @@
       <x-input title="message" placeholder="请输入手机号码" :required="true" ref="mobile" v-model="loginForm.mobile" is-type="china-mobile">
         <x-icon slot="label" type="android-phone-portrait" style="padding-right:10px;display:block;"></x-icon>
       </x-input>
-      <x-input title="message" type="password" placeholder="请输入密码" :required="true" ref="psw" v-model="loginForm.psw">
+      <x-input title="message" type="password" placeholder="请输入密码" :required="true" ref="password" v-model="loginForm.password">
         <x-icon slot="label" type="ios-locked-outline" style="padding-right:10px;display:block;"></x-icon>
       </x-input>
-      <div class="forgot-psw">
+      <div class="forgot-password">
         <a @click="$router.push({name:'forgetPassword' })">忘记密码？</a>
       </div>
       <x-button type="primary" action-type="submit" class="round-btn" @click.native="login()">登录</x-button>
@@ -21,6 +21,7 @@
   </div>
 </template>
 <script>
+import AuthService from 'services/AuthenticationService'
 import { XButton, XInput, Group } from 'vux'
 export default {
   name: 'Login',
@@ -33,14 +34,24 @@ export default {
     return {
       loginForm: {
         mobile: '',
-        psw: ''
+        password: ''
       }
     }
   },
   methods: {
-    login() {
-      if (this.$refs.mobile.valid && this.$refs.psw.valid) {
-        console.log('login')
+    async login() {
+      if (this.$refs.mobile.valid && this.$refs.password.valid) {
+        const result = await AuthService.login(this.loginForm)
+        if (result.errno) {
+          this.$vux.toast.show({
+            width: '10em',
+            type: 'warn',
+            text: result.errmsg
+          })
+        } else {
+          this.$store.dispatch('setUser', result.data)
+          this.$router.push({ name: 'home' })
+        }
       }
     }
   }
@@ -48,12 +59,13 @@ export default {
 </script>
 
 <style lang="less">
-body{
+body {
   background: #fff;
-  font-family: "苹方"
+  font-family: '苹方';
 }
-#vux-x-input-as5yy,#vux-x-input-fg65i{
-  font-family: "苹方";
+#vux-x-input-as5yy,
+#vux-x-input-fg65i {
+  font-family: '苹方';
   font-size: 14px;
   color: #ccc;
 }
@@ -92,14 +104,13 @@ body{
       font-size: 19px;
     }
   }
-  .forgot-psw {
+  .forgot-password {
     text-align: right;
-    color: @primary-color;
     padding-top: 16px;
     a {
+      color: @primary-color;
       font-size: 14px;
     }
   }
 }
-
 </style>
