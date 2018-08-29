@@ -6,18 +6,21 @@
       <swiper-item class="swiper-demo-img" v-for="(item, index) in images" :key="index"><img :src="item"></swiper-item>
     </swiper>
     <div class="goods_message">
-      <p class="name">{{list.title}}
+      <p class="name">{{goodsDetail.goodsBrief}}
         <span>(10支/盒)</span>
       </p>
       <p class="num">已售</p>
-      <span>0</span>
+      <span>{{goodsDetail.sellVolume?goodsDetail.sellVolume:0}}</span>
       <p class="num" style="padding-left:6.4%">库存</p>
-      <span>555</span>
-      <p class="price">￥990.00</p>
+      <span>{{goodsDetail.goodsNumber}}</span>
+      <div style="display:flex;justify-content:space-between;">
+        <p class="price">￥{{goodsDetail.memberPrice}}</p>
+        <input-number size="mini" :value.sync="amount" :min="1"></input-number>
+      </div>
     </div>
     <div class="specification">
       <p>规格
-        <span>10支/一盒</span>
+        <span>{{goodsDetail.goodsUnit?goodsDetail.goodsUnit:'暂无'}}</span>
       </p>
       <p>套盒
         <span>乳液体</span>
@@ -26,6 +29,7 @@
     <div class="goods_picture">
       <div class="topic_pic">产品详情</div>
       <div class="line"></div>
+      <div class="goods-desc" v-html='goodsDetail.goodsDesc'></div>
     </div>
     <div class="goodsdetail_footer">
       <div><img src="../../assets/images/shoppingcart_.png" />
@@ -41,20 +45,24 @@
   </div>
 </template>
 <script>
-import axios from 'axios'
 import { XHeader, Swiper, SwiperItem, Toast } from 'vux'
+import MallService from 'services/MallService'
+import InputNumber from 'components/InputNumber'
 
 export default {
   components: {
     XHeader,
     Swiper,
     SwiperItem,
+    InputNumber,
     Toast
   },
   data() {
     return {
       msg: '商品详情',
       list: [],
+      goodsDetail: '',
+      amount: 1,
       product: {
         poiId: 3271694,
         title: '拉图牛排馆',
@@ -74,36 +82,19 @@ export default {
       this.showToast = true
     }
   },
-  mounted() {
-    var poiId = this.$route.params.poiId
-    axios
-      .get('detail.json?a=1&poiId=' + poiId)
-      .then(response => {
-        console.log(response)
-        this.list = response.data[0]
-      })
-      .catch(error => {
-        console.log(error)
-      })
+  async mounted() {
+    const id = this.$route.params.id
+    this.goodsDetail = (await MallService.getGoodsDetail(id)).data.info
   }
 }
 </script>
 <style lang='less' scoped>
-@import url('../../assets/css/goodsdetail.css');
-.swiper-container {
-  height: 2.08rem;
-  width: 100%;
-}
-.swiper-slide {
-  height: 100%;
-  width: 100%;
-}
-.swiper-slide img {
-  width: 100%;
-  height: auto;
+//todo:背景色没了
+#app {
+  background: #f8f8f8 !important;
 }
 .back-icon {
-  position: fixed;
+  position: absolute;
   z-index: 99;
   top: 12px;
   left: 12px;
@@ -111,7 +102,7 @@ export default {
 .more-icon {
   top: 12px;
   right: 12px;
-  position: fixed;
+  position: absolute;
   z-index: 99;
 }
 @color_1: #fff;
@@ -167,6 +158,83 @@ export default {
       font-size: 0.16rem;
       background: #433aa2;
     }
+  }
+}
+@color_2: #5b50d3;
+
+.goods_message {
+  width: 100%;
+  height: 1.15rem;
+  background: #fff;
+  .name {
+    height: 0.47rem;
+    line-height: 0.47rem;
+    font-size: 0.18rem;
+    font-weight: 600;
+    padding-left: 4.8%;
+  }
+  .num {
+    margin-top: 0.14rem;
+    font-weight: 600;
+    font-size: 0.14rem;
+    display: inline-block;
+    padding-left: 4.8%;
+  }
+  span {
+    font-weight: 600;
+    font-size: 0.14rem;
+  }
+  .price {
+    height: 0.35rem;
+    line-height: 0.35rem;
+    font-size: 0.2rem;
+    font-weight: bold;
+    padding-left: 4.8%;
+    color: @color_2;
+  }
+}
+.specification {
+  height: 1.34rem;
+  width: 100%;
+  background: #fff;
+  margin-top: 0.1rem;
+  p {
+    height: 0.32rem;
+    line-height: 0.32rem;
+    font-size: 0.13rem;
+    font-weight: 600;
+    padding-left: 4.8%;
+    span {
+      padding-left: 6.2%;
+    }
+  }
+}
+.goods_picture {
+  width: 100%;
+  height: 0.4rem;
+  position: relative;
+  .topic_pic {
+    width: 22.6%;
+    height: 0.4rem;
+    text-align: center;
+    background: #f8f8f8;
+    line-height: 0.4rem;
+    margin: 0 auto;
+    font-size: 0.15rem;
+    font-weight: 600;
+  }
+  .line {
+    width: 50%;
+    height: 0.01rem;
+    background: #999;
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    z-index: -1;
+  }
+  .goods-desc {
+    padding: 0.2rem;
+    margin-bottom: 0.5rem;
   }
 }
 </style>
