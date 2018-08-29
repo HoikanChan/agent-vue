@@ -59,6 +59,14 @@
         </div>
       </popup>
     </div>
+    <div class="loginout" @click="logout">退出登录</div>
+    <div class="shade" v-if="flag"></div>
+    <div class="modal" v-if="flag">
+      <p>温馨提醒</p>
+      <p>是否退出当前帐号</p>
+      <div @click="tologin"><span>确定</span></div>
+      <img @click="close" src="../../assets/images/close.png" />
+    </div>
   </div>
 </template>
 <script>
@@ -95,6 +103,7 @@ export default {
   },
   data() {
     return {
+      flag:false,
       msg: '个人设置',
       datetime0: '',
       sexShow: false,
@@ -124,6 +133,15 @@ export default {
     sexesChoosed() {
       this.form.sex = this.pickedSex
       this.sexShow = false
+    },
+    logout(){
+      this.flag=true
+    },
+    close(){
+      this.flag=false
+    },
+    tologin(){
+      this.$router.push({path:'/login'})
     }
   }
 }
@@ -217,4 +235,80 @@ export default {
     padding: 0.5rem;
   }
 }
+.loginout{
+  width:77.4%;
+  height: .4rem;
+  background:#5b50d3;
+  line-height:.4rem;
+  text-align:center;
+  margin:.27rem auto;
+  border-radius:.1rem;
+  font-size:.14rem;
+  color:white;
+}
+.shade{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: 0.4;
+  /*兼容IE8及以下版本浏览器*/
+  filter: alpha(opacity=30);
+  display: block;
+}
+ .modal{
+    position: absolute;
+    z-index: 101;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 73%;
+    height: 1.34rem;
+    margin: auto;
+    display: block;
+    border-radius: 0.15rem;
+    background: #fff;
+    p{
+      text-align:center;
+      &:nth-child(1){
+        font-size:.15rem;
+        height: .24rem;
+        line-height:.24rem;
+        margin-top:.14rem;
+        color:#000;
+        font-weight:bold;
+      }
+      &:nth-child(2){
+        font-size:.12rem;
+        color:#999;
+        height: .31rem;
+        line-height:.31rem;
+        margin-top:.09rem;
+      }
+    }
+    >div{
+      width:100%;
+      height: .4rem;
+      opacity: 0.3;
+      background:#999;
+      margin-top:.16rem;
+      text-align:center;
+      line-height:.4rem;
+     
+      span{
+         color:#5b50d3;
+      } 
+    }
+    img{
+      width:.13rem;
+      height:.13rem;
+      position:absolute;
+      left:87%;
+      top:.14rem
+    }
+  }
 </style>

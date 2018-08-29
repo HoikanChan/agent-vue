@@ -152,6 +152,11 @@ export default new Router({
       component: resolve => require(['../views/mydeposit/MyDeposit'], resolve)
     },
     {
+      path: '/authorization',
+      name: 'authorization',
+      component: resolve => require(['../views/authorization/Authorization'], resolve)
+    },
+    {
       path: '/mycode',
       name: 'mycode',
       component: resolve => require(['../views/myCode/MyCode'], resolve)
