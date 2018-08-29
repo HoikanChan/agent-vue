@@ -20,45 +20,54 @@ export default new Router({
             {
               path: '/',
               component: resolve => require(['../views/mall/All'], resolve),
-              meta: { category: 'all' }
+              meta: { category: 'all', tabName: 'mall' }
             },
             {
               path: 'all',
               component: resolve => require(['../views/mall/All'], resolve),
-              meta: { category: 'all' }
+              meta: { category: 'all', tabName: 'mall' }
             },
             {
               path: 'skin',
               component: resolve => require(['../views/mall/Skin'], resolve),
-              meta: { category: 'skin' }
+              meta: { category: 'skin', tabName: 'mall' }
             },
             {
               path: 'beauty',
               component: resolve => require(['../views/mall/Beauty'], resolve),
-              meta: { category: 'beauty' }
+              meta: { category: 'beauty', tabName: 'mall' }
             },
             {
               path: 'perfume',
               component: resolve => require(['../views/mall/Perfume'], resolve),
-              meta: { category: 'perfume' }
+              meta: { category: 'perfume', tabName: 'mall' }
             }
           ]
         },
         {
           path: 'home',
           name: 'home',
-          component: resolve => require(['../views/home/Home'], resolve)
+          component: resolve => require(['../views/home/Home'], resolve),
+          meta: { tabName: 'home' }
         },
         {
           path: 'user',
           name: 'user',
-          component: resolve => require(['../views/user/User'], resolve)
+          component: resolve => require(['../views/user/User'], resolve),
+          meta: { tabName: 'user' }
         },
         {
           path: 'shoppingCart',
           name: 'shoppingCart',
           component: resolve =>
-            require(['../views/shoppingCart/ShoppingCart'], resolve)
+            require(['../views/shoppingCart/ShoppingCart'], resolve),
+          meta: { tabName: 'shoppingCart' }
+        },
+        {
+          path: '/examine',
+          name: 'examine',
+          component: resolve => require(['../views/examine/Examine'], resolve),
+          meta: { tabName: 'examine' }
         }
       ]
     },
@@ -83,7 +92,7 @@ export default new Router({
       component: resolve => require(['../views/forgetPsw/ForgetPsw'], resolve)
     },
     {
-      path: '/userSetting',
+      path: '/shoppingCartSetting',
       component: resolve =>
         require(['../views/userSetting/UserSetting'], resolve),
       name: 'userSetting'
@@ -153,11 +162,6 @@ export default new Router({
       path: '/upgrade',
       name: 'upgrade',
       component: resolve => require(['../views/check/Check'], resolve)
-    },
-    {
-      path: '/examine',
-      name: 'examine',
-      component: resolve => require(['../views/examine/Examine'], resolve)
     },
     // { path: '/login', component: Login },
     // { path: '/forgotpassword', component: Forgot_Password },

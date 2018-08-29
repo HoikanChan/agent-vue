@@ -1,18 +1,28 @@
 <template>
   <div class="footer">
-    <router-link to="/home"><img src='../assets/images/home.png' /><img src='../assets/images/home_.png' />
+    <router-link to="/home">
+      <img src='../assets/images/home.png' v-if="tabName === 'home'" />
+      <img src='../assets/images/home_.png' v-if="tabName !== 'home'" />
       <span>首页</span>
     </router-link>
-    <router-link to="/mall"><img src='../assets/images/category.png' /><img src='../assets/images/category_.png' />
+    <router-link to="/mall">
+      <img src='../assets/images/category.png' v-if="tabName === 'mall'" />
+      <img src='../assets/images/category_.png' v-else/>
       <span>分类</span>
     </router-link>
-    <router-link to="/register"><img src='../assets/images/register.png' /><img src='../assets/images/register_.png' />
+    <router-link to="/examine">
+      <img src='../assets/images/register.png' v-if="tabName === 'examine'" />
+      <img src='../assets/images/register_.png' v-else/>
       <span>审批</span>
     </router-link>
-    <router-link to="/shoppingcart"><img src='../assets/images/shoppingcart.png' /><img src='../assets/images/shoppingcart_.png' />
+    <router-link to="/shoppingcart">
+      <img src='../assets/images/shoppingcart.png' v-if="tabName === 'shoppingCart'" />
+      <img src='../assets/images/shoppingcart_.png' v-else/>
       <span>购物车</span>
     </router-link>
-    <router-link to="/user"><img src='../assets/images/user.png' /><img src='../assets/images/user_.png' />
+    <router-link to="/user">
+      <img src='../assets/images/user.png' v-if="tabName === 'user'" />
+      <img src='../assets/images/user_.png' v-else/>
       <span>我的</span>
     </router-link>
   </div>
@@ -21,6 +31,11 @@
 export default {
   data() {
     return {}
+  },
+  computed: {
+    tabName: function() {
+      return this.$route.meta.tabName
+    }
   }
 }
 </script>
@@ -68,17 +83,11 @@ export default {
   justify-content: space-evenly;
 }
 
-.footer a img:first-child {
-  display: none;
-}
 .footer a img:nth-child(2) {
   display: block;
 }
 .footer .router-link-active img:first-child {
   display: block;
-}
-.footer .router-link-active img:nth-child(2) {
-  display: none;
 }
 .router-link-active {
   color: #5b50d3;
