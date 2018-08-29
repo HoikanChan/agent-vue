@@ -3,7 +3,7 @@ import App from './App'
 
 import router from './router'
 import store from './store'
-import axios from './components/axios'
+// import axios from './components/axios'
 import * as filters from './filters'
 
 // 全局引入vux组件库
@@ -45,7 +45,7 @@ Object.keys(filters).forEach(key => {
 })
 
 // 在组件中可以直接使用this.$axios访问
-Vue.prototype.$axios = axios
+// Vue.prototype.$axios = axios
 
 // simple history management
 const history = window.sessionStorage

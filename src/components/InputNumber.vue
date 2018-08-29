@@ -35,7 +35,7 @@ export default {
   cursor: not-allowed;
 }
 .input-number {
-  width: 36px;
+  width: 24px;
   margin-left: -4px;
   padding: 0 8px;
   vertical-align: top;
