@@ -2,7 +2,7 @@
   <div class="usersetting">
     <x-header :left-options="{backText: ''}">
       个人设置
-      <a slot="right" class="save-btn">保存</a>
+      <a slot="right" class="save-btn" @click="updatePersonalInfo">保存</a>
     </x-header>
     <group>
       <p class="avatar-cell">
@@ -11,7 +11,7 @@
       </p>
       <x-input placeholder-align="right" title="昵称" type="text" placeholder="请输入昵称" :required="true" ref="code" v-model="form.nickname">
       </x-input>
-      <x-input placeholder-align="right" title="性别" type="text" readonly :show-clear="false" placeholder="请输入性别" :required="true" ref="psw" v-model="form.sex">
+      <x-input placeholder-align="right" title="性别" type="text" readonly :show-clear="false" placeholder="请输入性别" :required="true" v-model="form.gender">
         <x-icon slot="right" type="ios-arrow-forward" style="margin-top: 6px;fill:#aaa" size="15" @click="sexShow = true"></x-icon>
       </x-input>
       <datetime title="生日" v-model="form.birthday" format="YYYY-MM-DD"></datetime>
@@ -20,17 +20,17 @@
       </x-input> -->
     </group>
     <group style="margin-top: .1rem;">
-      <x-input placeholder-align="right" title="手机号码" type="text" placeholder="请输入手机号码" :required="true" v-model="form.mobile" is-type="china-mobile">
+      <x-input placeholder-align="right" readonly title="手机号码" type="text" placeholder="请输入手机号码" :required="true" v-model="form.mobile" is-type="china-mobile">
       </x-input>
       <x-input placeholder-align="right" title="注册时间" type="text" readonly :show-clear="false" :required="true" v-model="form.createdAt">
       </x-input>
-      <x-address title="所在地" v-model="form.location" :list="addressData" placeholder="请选择地址">
+      <x-address ref="address" title="所在地" v-model="form.location" :list="addressData" placeholder="请选择地址">
         <x-button mini plain slot="left-text">取消</x-button>
       </x-address>
     </group>
 
     <group style="margin-top: .2rem;">
-      <x-input placeholder-align="right" title="实名认证" type="text" readonly :show-clear="false" v-model="form.isVerified" >
+      <x-input placeholder-align="right" title="实名认证" type="text" readonly :show-clear="false" v-model="form.isVerified">
         <x-icon slot="right" type="ios-arrow-forward" style="margin-top: 6px;fill:#aaa" size="15" @click="$router.push({name:'realName'})"></x-icon>
       </x-input>
     </group>
@@ -64,12 +64,15 @@
     <div class="modal" v-if="flag">
       <p>温馨提醒</p>
       <p>是否退出当前帐号</p>
-      <div @click="tologin"><span>确定</span></div>
+      <div @click="tologin">
+        <span>确定</span>
+      </div>
       <img @click="close" src="../../assets/images/close.png" />
     </div>
   </div>
 </template>
 <script>
+import AuthService from 'services/AuthenticationService'
 import Checkbox from 'components/Checkbox'
 import {
   XButton,
@@ -103,18 +106,18 @@ export default {
   },
   data() {
     return {
-      flag:false,
+      flag: false,
       msg: '个人设置',
       datetime0: '',
       sexShow: false,
       timeShow: false,
       addressData: ChinaAddressV4Data,
-      sexes: [{ title: '男', value: 1 }, { title: '女', value: 2 }],
+      sexes: [{ title: '男', value: '1' }, { title: '女', value: 2 }],
       pickedSex: 1,
       form: {
         avatar: '',
         nickname: 'faifai',
-        sex: 1,
+        gender: '1',
         birthday: '2018-03-14',
         mobile: '15655552222',
         createdAt: '2018-02-13',
@@ -131,17 +134,30 @@ export default {
       this.sexShow = false
     },
     sexesChoosed() {
-      this.form.sex = this.pickedSex
+      this.form.gender = this.pickedSex
       this.sexShow = false
     },
-    logout(){
-      this.flag=true
+    logout() {
+      this.flag = true
     },
-    close(){
-      this.flag=false
+    close() {
+      this.flag = false
     },
-    tologin(){
-      this.$router.push({path:'/login'})
+    tologin() {
+      this.$router.push({ path: '/login' })
+    },
+    async updatePersonalInfo() {
+      console.log(this.$refs.address.nameValue)
+      const result = await AuthService.updatePersonalInfo({
+        gender: this.form.gender,
+        nickname: this.form.nickname,
+        location: this.$refs.address.nameValue
+      })
+      this.$vux.toast.show({
+        width: '15em',
+        type: result.errno ? 'warn' : 'success',
+        text: result.errmsg
+      })
     }
   }
 }
@@ -235,18 +251,18 @@ export default {
     padding: 0.5rem;
   }
 }
-.loginout{
-  width:77.4%;
-  height: .4rem;
-  background:#5b50d3;
-  line-height:.4rem;
-  text-align:center;
-  margin:.27rem auto;
-  border-radius:.1rem;
-  font-size:.14rem;
-  color:white;
+.loginout {
+  width: 77.4%;
+  height: 0.4rem;
+  background: #5b50d3;
+  line-height: 0.4rem;
+  text-align: center;
+  margin: 0.27rem auto;
+  border-radius: 0.1rem;
+  font-size: 0.14rem;
+  color: white;
 }
-.shade{
+.shade {
   position: fixed;
   top: 0;
   left: 0;
@@ -259,56 +275,56 @@ export default {
   filter: alpha(opacity=30);
   display: block;
 }
- .modal{
-    position: absolute;
-    z-index: 101;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 73%;
-    height: 1.34rem;
-    margin: auto;
-    display: block;
-    border-radius: 0.15rem;
-    background: #fff;
-    p{
-      text-align:center;
-      &:nth-child(1){
-        font-size:.15rem;
-        height: .24rem;
-        line-height:.24rem;
-        margin-top:.14rem;
-        color:#000;
-        font-weight:bold;
-      }
-      &:nth-child(2){
-        font-size:.12rem;
-        color:#999;
-        height: .31rem;
-        line-height:.31rem;
-        margin-top:.09rem;
-      }
+.modal {
+  position: absolute;
+  z-index: 101;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 73%;
+  height: 1.34rem;
+  margin: auto;
+  display: block;
+  border-radius: 0.15rem;
+  background: #fff;
+  p {
+    text-align: center;
+    &:nth-child(1) {
+      font-size: 0.15rem;
+      height: 0.24rem;
+      line-height: 0.24rem;
+      margin-top: 0.14rem;
+      color: #000;
+      font-weight: bold;
     }
-    >div{
-      width:100%;
-      height: .4rem;
-      opacity: 0.3;
-      background:#999;
-      margin-top:.16rem;
-      text-align:center;
-      line-height:.4rem;
-     
-      span{
-         color:#5b50d3;
-      } 
-    }
-    img{
-      width:.13rem;
-      height:.13rem;
-      position:absolute;
-      left:87%;
-      top:.14rem
+    &:nth-child(2) {
+      font-size: 0.12rem;
+      color: #999;
+      height: 0.31rem;
+      line-height: 0.31rem;
+      margin-top: 0.09rem;
     }
   }
+  > div {
+    width: 100%;
+    height: 0.4rem;
+    opacity: 0.3;
+    background: #999;
+    margin-top: 0.16rem;
+    text-align: center;
+    line-height: 0.4rem;
+
+    span {
+      color: #5b50d3;
+    }
+  }
+  img {
+    width: 0.13rem;
+    height: 0.13rem;
+    position: absolute;
+    left: 87%;
+    top: 0.14rem;
+  }
+}
 </style>
