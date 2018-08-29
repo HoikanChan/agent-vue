@@ -16,10 +16,29 @@
       </div>
     </div>
     <div class="tab-content" v-show="tabNow==='register'">
-      aaa
+      <div>
+        <p>审核人:<span>茉莉</span></p>
+        <p>手机号码:<span>15797964844</span></p>
+        <p>注册等级:<span>总代</span></p>
+        <p>推荐人:<span>陈洋</span></p>
+      </div>
+      <div>
+        <img src="../../assets/images/22.jpg" />
+        <button>审核</button>
+      </div>
     </div>
     <div class="tab-content" v-show="tabNow==='upgrade'">
-      bbb
+      <div>
+        <p>审核人:<span>茉莉</span></p>
+        <p>手机号码:<span>15797964844</span></p>
+        <p>升级等级:<span>总代</span></p>
+        <p>推荐人:<span>陈洋</span></p>
+      </div>
+      <div>
+        <img src="../../assets/images/22.jpg" />
+        <button>审核</button>
+      </div>
+    </div>
     </div>
   </div>
 </template>
@@ -69,6 +88,52 @@ export default {
           width: 0.39rem;
           height: 0.37rem;
         }
+      }
+    }
+  }
+  .tab-content{
+        width: 88%;
+        height:5.12rem;
+        margin: .1rem auto;
+        border-radius: .04rem;
+        box-shadow: -2px 2px 2px #e5e5e5;
+        border-bottom: 1px solid #ccc;
+    >div{
+      &:first-child{
+            width: 70%;
+            height: 1.1rem;
+            float: left;
+             p{
+                height: .27rem;
+                line-height: .27rem;
+                font-size: .13rem;
+                padding-left: 6%;
+                font-weight: bold;
+            }
+      }
+      &:nth-child(2){
+          width: 30%;
+          height: 1.1rem;
+          float: left;
+          img{
+            width: .3rem;
+            height: .3rem;
+            border-radius: .02rem;
+            margin-top: .23rem;
+            margin-left: 47%;
+          }
+          button{
+            width: .44rem;
+            height: .2rem;
+            border: 1px solid #5b50d3;
+            text-align: center;
+            line-height: .2rem;
+            background: #fff;
+            border-radius: .03rem;
+            color: #5b50d3;
+            margin-left: 39%;
+            margin-top: .35rem;
+          }
       }
     }
   }
