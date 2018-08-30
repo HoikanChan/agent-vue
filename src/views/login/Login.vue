@@ -1,8 +1,6 @@
 <template>
   <div class="login-container">
-    <span style="position:absolute;top:18px;left:18px">
-      <x-icon type="ios-close-empty" size="30"></x-icon>
-    </span>
+   
     <div class="title">
       <h2>登录</h2>
     </div>

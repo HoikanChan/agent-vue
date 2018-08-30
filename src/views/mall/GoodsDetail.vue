@@ -20,8 +20,16 @@
     </div>
     <div class="specification">
       <p>规格
-        <span>{{goodsDetail.goodsUnit?goodsDetail.goodsUnit:'暂无'}}</span>
       </p>
+      <div class="spec-select">
+        <p v-for="(spec,index) in specificationList" :key="index">
+          <span>选择{{spec.name}}</span>
+          <checker v-model="pickedSpec[index]" default-item-class="demo1-item" selected-item-class="demo1-item-selected">
+            <checker-item :value="val.id" v-for="val in spec.valueList" :disabled="val.disabled" :key="val.id" style="margin-right:1em;">{{val.value}}</checker-item>
+          </checker>
+          <!-- <span>{{goodsDetail.goodsUnit?goodsDetail.goodsUnit:'暂无'}}</span> -->
+        </p>
+      </div>
       <p>套盒
         <span>乳液体</span>
       </p>
@@ -45,7 +53,7 @@
   </div>
 </template>
 <script>
-import { XHeader, Swiper, SwiperItem, Toast } from 'vux'
+import { XHeader, Swiper, SwiperItem, Toast, Checker, CheckerItem } from 'vux'
 import MallService from 'services/MallService'
 import InputNumber from 'components/InputNumber'
 
@@ -55,14 +63,20 @@ export default {
     Swiper,
     SwiperItem,
     InputNumber,
-    Toast
+    Toast,
+    Checker,
+    CheckerItem
   },
   data() {
     return {
       msg: '商品详情',
       list: [],
       goodsDetail: '',
+      specificationList: [],
+      pickedSpec: [],
+      productList: [],
       amount: 1,
+      demo1: '',
       product: {
         poiId: 3271694,
         title: '拉图牛排馆',
@@ -85,10 +99,57 @@ export default {
   async mounted() {
     const id = this.$route.params.id
     this.goodsDetail = (await MallService.getGoodsDetail(id)).data.info
+    //可选规格组合
+    this.productList = (await MallService.getGoodsDetail(
+      id
+    )).data.productList.map(i => {
+      return {
+        productId: i.id,
+        specIds: i.goodsSpecificationIds
+          .split('_')
+          .map(i => Number(i))
+          .reverse()
+      }
+    })
+    //初始化，选择规格
+    this.pickedSpec = this.productList[0].specIds
+    //所有规格
+    this.specificationList = (await MallService.getGoodsDetail(
+      id
+    )).data.specificationList
+    for (let spec of this.specificationList) {
+      for (let val of spec.valueList) {
+        const hasThisSpec = this.productList.some(item => {
+          return item.specIds.includes(val.id)
+        })
+        if (!hasThisSpec) {
+          val.disabled = true
+        }
+      }
+    }
+    // this.specificationList = this.specificationList.map(spec => {
+    //   return {
+    //     name: spec.name,
+    //     specificationId: spec.specificationId,
+    //     valueList: spec.valueList.map(val => {
+    //       if(val.)
+    //     })
+    //   }
+    // })
   }
 }
 </script>
 <style lang='less' scoped>
+.demo1-item {
+  border: 1px solid #ececec;
+  color: #aaa;
+  padding: 5px 15px;
+  cursor: not-allowed;
+}
+.demo1-item-selected {
+  border: 2px solid green !important;
+  margin: -1px;
+}
 //todo:背景色没了
 #app {
   background: #f8f8f8 !important;
@@ -194,13 +255,22 @@ export default {
   }
 }
 .specification {
-  height: 1.34rem;
+  // height: 1.34rem;
   width: 100%;
   background: #fff;
   margin-top: 0.1rem;
-  p {
-    height: 0.32rem;
-    line-height: 0.32rem;
+  .spec-select {
+    p {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1em;
+    }
+    margin: 1em 2em 3em;
+  }
+  > p {
+    // height: 0.32rem;
+    // // line-height: 0.32rem;
     font-size: 0.13rem;
     font-weight: 600;
     padding-left: 4.8%;
@@ -235,6 +305,14 @@ export default {
   .goods-desc {
     padding: 0.2rem;
     margin-bottom: 0.5rem;
+  }
+}
+</style>
+<style lang="less">
+.shoppingcart {
+  .vux-tap-active {
+    border: 1px solid #aaa;
+    color: #333 !important;
   }
 }
 </style>

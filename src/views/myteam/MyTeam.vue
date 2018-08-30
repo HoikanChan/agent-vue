@@ -4,57 +4,103 @@
             <img class="back" src="../../assets/images/back.png" />
             我的团队
             <img class="cash" src="../../assets/images/team_cash.png" />
+            
         </div>
         <div class="agency">
-            <input type="text" placeholder="搜索代理名称"/>
+            <input @click="$router.push({name:'teamsearch'})" type="text" placeholder="搜索代理名称"/>
             <img class="img" src="../../assets/images/team_search.png" />
+            <!-- <span style="font-size:.16rem;color:#fff;float:right;">确定</span> -->
             <div class="realtion">
                 <p class="man">我的推荐人</p>
                 <img class="head" src="../../assets/images/20.jpg" />
-                <p class="mantwo">不谈亏欠</p>
+                <p class="mantwo">{{referrer}}</p>
             </div>
             <img class="relate" src="../../assets/images/relation.png" />
              <div class="realtion_">
                 <p class="man_">直属上级</p>
                 <img class="head_" src="../../assets/images/20.jpg" />
-                <p class="mantwo_">感谢相遇</p>
+                <p class="mantwo_">{{direct}}</p>
             </div>
         </div>
         <div class="level">
-            <router-link to="#">
-                <p class="first">10</p>
-                <p class="second">官方合伙人</p>
+            <router-link to="#" @click="tabNow='partner'" v-for="(item,key) in member" :key="key">
+                <p class="first" >{{item.count}}</p>
+               
+                <p class="second">{{key}}</p>
             </router-link>
-            <router-link to="#">
-                <p class="first">10</p>
+            <!-- <router-link to="#">
+                <p class="first" @click="tabNow='all'">10</p>
                 <p class="second">总代</p>
             </router-link>
             <router-link to="#">
-                <p class="first">10</p>
+                <p class="first" @click="tabNow='big'">10</p>
                 <p class="second">大区</p>
             </router-link>
-            <router-link to="#" class="none">
+            <router-link to="#" class="none" @click="tabNow='vip'">
                 <p class="first">10</p>
                 <p class="second">VIP</p>
-            </router-link>
+            </router-link> -->
         </div>
-        <ul class="members">
-            <li>
-                <img class="jpg" src="../../assets/images/15.jpg" />
-                <span>戏剧</span>
-                <img class="right" src="../../assets/images/right.png" />
-            </li>
-        </ul>
+        <div>
+            <ul class="members" v-show="tabNow==='partner'">
+                <li v-for="(item,key) in member[2]" :key="key">
+                    <img class="jpg" src="../../assets/images/15.jpg" />
+                    <span>{{key}}</span>
+                    <img class="right" src="../../assets/images/right.png" />
+                </li>
+            </ul>
+            <ul class="members" v-show="tabNow==='all'">
+                <li v-for="(item,key) in member[3]" :key="key">
+                    <img class="jpg" src="../../assets/images/15.jpg" />
+                    <span>{{key}}</span>
+                    <img class="right" src="../../assets/images/right.png" />
+                </li>
+            </ul>
+            <ul class="members" v-show="tabNow==='big'">
+                <li v-for="(item,key) in member[1]" :key="key">
+                    <img class="jpg" src="../../assets/images/15.jpg" />
+                    <span>{{key}}</span>
+                    <img class="right" src="../../assets/images/right.png" />
+                </li>
+            </ul>
+            <ul class="members" v-show="tabNow==='vip'">
+                <li v-for="(item,key) in member[0]" :key="key">
+                    <img class="jpg" src="../../assets/images/15.jpg" />
+                    <span>{{key}}</span>
+                    <img class="right" src="../../assets/images/right.png" />
+                </li>
+            </ul>
+        </div>
     </div>
 </template>
 <script>
+import axios from 'axios';
 export default {
     data(){
         return{
             msg:'我的团队',
-            list:[]
+            list:[],
+            tabNow:'partner',
+            referrer:'',
+            direct:'',
+            member:[]
         }
-    }
+    },
+    mounted() {
+        axios.get('http://124.200.40.10:17080/agent/api/v1/team/referrer').then((response)=>{
+            this.referrer=response.data.data.username
+            axios.get('http://124.200.40.10:17080/agent/api/v1/team/parent').then((res)=>{
+                this.direct=res.data.data.username
+            })
+            axios.get('http://124.200.40.10:17080/agent/api/v1/team/children').then((result)=>{
+                // console.log(result.data.data)
+                this.member=result.data.data
+                console.log(this.member)
+                // console.log(JSON.stringify(this.member))
+            })
+        })
+
+    },
 }
 </script>
 <style lang="less">
@@ -195,7 +241,6 @@ export default {
             background: #fff;
             margin-top: .1rem;
             li{
-                width: 100%;
                 height: .53rem;
                 line-height: .53rem;
                 border-bottom: 1px solid #ccc;
