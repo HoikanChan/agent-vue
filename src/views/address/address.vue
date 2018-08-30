@@ -27,7 +27,7 @@ import Api from 'services/Api'
 import AddressService from 'services/AddressService'
 import { XHeader, Checker, CheckerItem } from 'vux'
 import Checkbox from 'components/Checkbox'
-import axios from 'axios';
+import axios from 'axios'
 export default {
   components: {
     XHeader,
@@ -72,14 +72,14 @@ export default {
     this.address()
   },
   methods: {
-    address(){
+    address() {
       // axios.get('http://124.200.40.10:17080/agent/api/v1/address/list').then((response)=>{
       //   console.log(response)
       // })
       // AddressService.addresses(this.getaddress).then(res=>{
       //   console.log(res)
       // })
-    } 
+    }
   }
 }
 </script>
