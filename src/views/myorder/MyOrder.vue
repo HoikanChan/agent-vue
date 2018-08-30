@@ -112,7 +112,7 @@ export default {
   mounted() {}
 }
 </script>
-<style lang="less">
+<style lang="less" scoped>
 .myorder{
     .myorder_head{
         height: .44rem;

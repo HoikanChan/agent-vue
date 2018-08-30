@@ -23,6 +23,8 @@
   </div>
 </template>
 <script>
+import Api from 'services/Api'
+import AddressService from 'services/AddressService'
 import { XHeader, Checker, CheckerItem } from 'vux'
 import Checkbox from 'components/Checkbox'
 import axios from 'axios'

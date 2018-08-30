@@ -7,7 +7,7 @@
       <p>你已成功注册，请等待审核！</p>
     </div>
     <div class="bottom-part">
-      <x-button type="primary" style="width:76.8%;font-size: 0.18rem;height:.5rem;">我知道了</x-button>
+      <x-button @click.native="$router.push({name:'home'})" type="primary" style="width:76.8%;font-size: 0.18rem;height:.5rem;">我知道了</x-button>
     </div>
   </div>
 </template>
@@ -31,15 +31,15 @@ div.top-part {
     left: 50%;
     font-size: 0.2rem;
     transform: translateX(-50%);
-    &:nth-child(2){
+    &:nth-child(2) {
       color: #de0116;
-      font-size: .28rem;
+      font-size: 0.28rem;
       font-weight: bold;
       top: 2.4rem;
     }
-    &:nth-child(3){
+    &:nth-child(3) {
       color: #333;
-      font-size: .15rem;
+      font-size: 0.15rem;
       top: 2.93rem;
     }
   }

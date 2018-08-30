@@ -67,7 +67,12 @@ export default new Router({
       component: resolve => require(['../views/forgetPsw/ForgetPsw'], resolve)
     },
     {
-      path: '/shoppingCartSetting',
+      path: '/recoveredPassword',
+      name: 'recoveredPassword',
+      component: resolve => require(['../views/forgetPsw/RecoveredPsw'], resolve)
+    },
+    {
+      path: '/userSetting',
       component: resolve =>
         require(['../views/userSetting/UserSetting'], resolve),
       name: 'userSetting'

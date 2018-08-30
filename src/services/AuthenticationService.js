@@ -22,5 +22,23 @@ export default {
         password: sha256(password)
       }
     })
+  },
+  //忘记密码，获取短信验证码
+  sendRecoverSMSCode(mobile) {
+    return Api().get('user/recoverSMSCode', {
+      params: {
+        mobile: mobile
+      }
+    })
+  },
+  //忘记密码，修改密码
+  recoverPsw(params) {
+    return Api().get('user/recover', {
+      params: params
+    })
+  },
+  // 更新用户信息
+  updatePersonalInfo(form) {
+    return Api().post('user/updatePersonal', form)
   }
 }
