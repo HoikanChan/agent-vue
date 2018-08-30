@@ -4,7 +4,7 @@
     <div class="editer">
       <img style="" src="../../assets/images/19.jpg" />
       <p>不问明天</p>
-      <span @click="this.isEditing = !this.isEditing">{{isEditing?"完成":"编辑"}}</span>
+      <span @click="toggleEdit">{{isEditing?"完成":"编辑"}}</span>
     </div>
     <checker v-model="picked" default-item-class="demo2-item" selected-item-class="selected" radio-required type="checkbox">
       <checker-item v-for="(item,index) in products" :key="index" :value="item.id" @click.native.stop="adjustChooseAll()">
@@ -87,6 +87,9 @@ export default {
     }
   },
   methods: {
+    toggleEdit() {
+      this.isEditing = !this.isEditing
+    },
     //点击子项，更新全选状态
     adjustChooseAll() {
       const productIds = this.products.map(item => item.id)

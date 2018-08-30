@@ -15,34 +15,9 @@ export default new Router({
       children: [
         {
           path: 'mall',
+          name: 'mall',
           component: resolve => require(['../views/mall/index'], resolve),
-          children: [
-            {
-              path: '/',
-              component: resolve => require(['../views/mall/All'], resolve),
-              meta: { category: 'all', tabName: 'mall' }
-            },
-            {
-              path: 'all',
-              component: resolve => require(['../views/mall/All'], resolve),
-              meta: { category: 'all', tabName: 'mall' }
-            },
-            {
-              path: 'skin',
-              component: resolve => require(['../views/mall/Skin'], resolve),
-              meta: { category: 'skin', tabName: 'mall' }
-            },
-            {
-              path: 'beauty',
-              component: resolve => require(['../views/mall/Beauty'], resolve),
-              meta: { category: 'beauty', tabName: 'mall' }
-            },
-            {
-              path: 'perfume',
-              component: resolve => require(['../views/mall/Perfume'], resolve),
-              meta: { category: 'perfume', tabName: 'mall' }
-            }
-          ]
+          meta: { tabName: 'mall' }
         },
         {
           path: 'home',
@@ -104,7 +79,7 @@ export default new Router({
       name: 'realName'
     },
     {
-      path: '/goodsdetail/:poiId',
+      path: '/goodsdetail/:id',
       name: 'goodsdetail',
       component: resolve => require(['../views/mall/GoodsDetail'], resolve)
     },
@@ -163,8 +138,6 @@ export default new Router({
       name: 'upgrade',
       component: resolve => require(['../views/check/Check'], resolve)
     },
-    // { path: '/login', component: Login },
-    // { path: '/forgotpassword', component: Forgot_Password },
     {
       path: '/messages',
       name: 'messages',

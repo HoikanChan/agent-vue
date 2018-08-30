@@ -6,14 +6,22 @@
     </div>
     <div class="wrap" v-if="goods">
       <ul class="category_nav" id="category_nav">
-        <li v-for="item in categories" :key="item.category" v-bind:class="[$route.meta.category === item.category ? activeClass : '']">
-          <router-link :to="item.to">{{item.title}}</router-link>
+        <li v-for="item in categories" :key="item.id" v-bind:class="[selectedTabId===item.id ? activeClass : '']" @click="selectedTabId=item.id">
+          <a href="#">
+            {{item.name}}
+          </a>
         </li>
       </ul>
     </div>
     <div class="category_container" v-if="goods">
       <div class="shoppings">
-        <router-view></router-view>
+        <div class="all">
+          <div class="goods">
+            <div v-for="(item,index) in goodsList" :key="index">
+              <GoodsItem :item="item" />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="search_goods" v-else>
@@ -35,35 +43,35 @@
   </div>
 </template>
 <script>
-import axios from 'axios'
 import Footer from '../../components/public/Footer.vue'
+import MallService from 'services/MallService'
+import GoodsItem from 'components/GoodsItem'
+
 export default {
+  name: 'mall-index',
+  components: {
+    'v-footer': Footer,
+    GoodsItem
+  },
   data() {
     return {
       title: '分类',
       activeClass: 'active',
-      categories: [
+      selectedTabId: '',
+      goodsList: [
         {
-          to: '/mall/all',
-          title: '全部',
-          category: 'all'
-        },
-        {
-          to: '/mall/skin',
-          title: '护肤',
-          category: 'skin'
-        },
-        {
-          to: '/mall/beauty',
-          title: '美妆',
-          category: 'beauty'
-        },
-        {
-          to: '/mall/perfume',
-          title: '香水',
-          category: 'perfume'
+          poiId: 3271694,
+          frontImg:
+            'http://p0.meituan.net/600.600/deal/__38666717__4597520.jpg',
+          title: '拉图牛排馆',
+          avgScore: 3.9,
+          allCommentNum: 3561,
+          address: '北站/建设路建设路35-1号后座（金城广场斜对面）',
+          avgPrice: 45,
+          dealList: []
         }
       ],
+      categories: [],
       goods: true
     }
   },
@@ -75,15 +83,30 @@ export default {
       this.goods = true
     }
   },
-  mounted() {
-    console.log(this.$route.meta.category)
+  watch: {
+    selectedTabId: async function(val) {
+      const goodsList = (await MallService.getGoodsList(val)).data
+      this.goodsList = goodsList
+    }
   },
-  components: {
-    'v-footer': Footer
+  async mounted() {
+    const categoryList = (await MallService.getCategory()).data.categoryList
+    if (Array.isArray(categoryList)) {
+      this.categories = [
+        {
+          id: '',
+          name: '全部'
+        }
+      ].concat(categoryList)
+    }
+    const goodsList = (await MallService.getGoodsList()).data
+    this.goodsList = goodsList
   }
 }
 </script>
 <style lang="less">
+@import url('../../assets/css/all.css');
+
 @color_1: #b3b3b3;
 @color_2: #000;
 
@@ -270,7 +293,9 @@ a {
   width: 100%;
 }
 .category_container {
+  min-height: 80vh;
   margin-top: 0.9rem;
+  background: #f6f6f6;
 }
 .search_goods {
   margin-top: 0.44rem;
