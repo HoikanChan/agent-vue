@@ -32,6 +32,7 @@
   </div>
 </template>
 <script>
+import axios from 'axios';
 import {
   XHeader,
   Picker,
@@ -115,26 +116,6 @@ export default {
           name: '广西002',
           value: 'sz',
           parent: 'china002'
-        },
-        {
-          name: '美国001_001',
-          value: '0003',
-          parent: 'usa001'
-        },
-        {
-          name: '美国001_002',
-          value: '0004',
-          parent: 'usa001'
-        },
-        {
-          name: '美国002_001',
-          value: '0005',
-          parent: 'usa002'
-        },
-        {
-          name: '美国002_002',
-          value: '0006',
-          parent: 'usa002'
         }
       ]
     }
@@ -155,7 +136,15 @@ export default {
         this.toastShow = true
       }
     }
-  }
+  },
+  mounted() {
+    axios.get('http://124.200.40.10:17080/agent/api/v1/region/provinceList').then((response)=>{
+      console.log(response)
+    }).catch((error)=>{
+      console.log(error)
+    })
+  },
+
 }
 </script>
 <style lang="less" scoped>

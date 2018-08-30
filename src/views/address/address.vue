@@ -25,6 +25,7 @@
 <script>
 import { XHeader, Checker, CheckerItem } from 'vux'
 import Checkbox from 'components/Checkbox'
+import axios from 'axios'
 export default {
   components: {
     XHeader,
@@ -65,7 +66,18 @@ export default {
       )
     }
   },
-  methods: {}
+  mounted() {
+      axios.get('http://124.200.40.10:17080/agent/api/v1/address/list').then((response)=>{
+        console.log(response,'111');
+        this.addresses=response.data
+      }).catch((error)=> {
+        console.log(error);
+      });
+  },
+  methods: {
+    
+    
+  }
 }
 </script>
 <style lang="less" scoped>
