@@ -6,7 +6,7 @@
         <img src="../../assets/images/register_check.png" v-if="tabNow==='register'" />
         <img src="../../assets/images/register_check_.png" v-else/>
         <p>我的申请</p>
-        <badge text="8" class="badge"></badge>
+        <badge :text="applyList.length" class="badge"></badge>
       </div>
       <div @click="tabNow='upgrade'">
         <img src="../../assets/images/upgrade_check.png" v-if="tabNow==='upgrade'" />
@@ -15,27 +15,26 @@
         <badge :text="auditList.length" class="badge"></badge>
       </div>
     </div>
-    <div class="tab-content" v-show="tabNow==='register'">
-      <div>
-        <p>审核人:
-          <span>茉莉</span>
-        </p>
-        <p>手机号码:
-          <span>15797964844</span>
-        </p>
-        <p>注册等级:
-          <span>总代</span>
-        </p>
-        <p>推荐人:
-          <span>陈洋</span>
-        </p>
+    <div class="tab-wrapper" v-show="tabNow==='register'">
+      <div v-for="item in applyList" :key="item.id" class="tab-content">
+        <div>
+          <p>审核人:
+            <span>{{item.applyUserName}}</span>
+          </p>
+          <p>手机号码:
+            <span>{{item.applyUserTel}}</span>
+          </p>
+          <p>升级等级:
+            <span>{{item.levelName}}</span>
+          </p>
+        </div>
+        <div>
+          <img :src="item.auditUserAvatar" />
+        </div>
       </div>
-      <div class="right-part">
-        <img src="../../assets/images/22.jpg" />
-        <button>审核</button>
-      </div>
+      <h3 v-if="applyList.length === 0" style="text-align:center;padding:0.5rem;"> 暂无记录</h3>
     </div>
-    <div v-show="tabNow==='upgrade'">
+    <div class="tab-wrapper" v-show="tabNow==='upgrade'">
       <div v-for="item in auditList" :key="item.id" class="tab-content">
         <div>
           <p>审核人:
@@ -53,6 +52,7 @@
           <x-button mini plain type="primary" @click.native="aduitModalShow(item.id)">审核</x-button>
         </div>
       </div>
+      <h3 v-if="auditList.length === 0" style="text-align:center;padding:0.5rem;"> 暂无记录</h3>
     </div>
     <div class="shade" v-if="modalShow"></div>
     <div class="modal" v-if="modalShow">
@@ -217,12 +217,17 @@ export default {
       font-size: 0.14rem;
     }
   }
+  .tab-wrapper{
+    padding-bottom: 1rem;
+    background: #f6f6f6;
+  }
   .tab {
     width: 100%;
     height: 1.1rem;
     border-top: 1px solid #ccc;
     background: #fff;
     display: flex;
+        box-shadow: -2px 2px 2px #e5e5e5;
     > div {
       width: 50%;
       position: relative;
@@ -252,9 +257,9 @@ export default {
   }
   .tab-content {
     width: 88%;
-    height: 1.3rem;
     margin: 0.1rem auto;
     border-radius: 0.04rem;
+    overflow: hidden;
     background: #fff;
     box-shadow: -2px 2px 2px #e5e5e5;
     border-bottom: 1px solid #ccc;

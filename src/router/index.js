@@ -4,7 +4,7 @@ import store from '../store'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   base: __dirname,
   routes: [
@@ -172,3 +172,18 @@ export default new Router({
     { path: '*', redirect: '/home' } /*默认跳转的路由*/
   ]
 })
+router.beforeEach((to, from, next) => {
+  //拦截路由，没登录返回登录页
+  if (
+    !store.state.user &&
+    to.name !== 'login' &&
+    to.name !== 'forgetPassword'
+  ) {
+    next({
+      name: 'login'
+    })
+  } else {
+    next()
+  }
+})
+export default router

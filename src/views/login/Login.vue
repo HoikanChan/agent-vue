@@ -15,6 +15,7 @@
       </x-input>
       <div class="forgot-password">
         <a @click="$router.push({name:'forgetPassword' })">忘记密码？</a>
+        <a @click="$router.push({name:'register' })">去注册？</a>
       </div>
       <x-button type="primary" action-type="submit" class="round-btn" @click.native="login()">登录</x-button>
     </group>
