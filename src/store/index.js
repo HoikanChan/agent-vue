@@ -11,7 +11,8 @@ const store = new Vuex.Store({
     loading: false,
     shoppingCart: [],
     address: null,
-    user: null
+    user: null,
+    bill: null
   },
 
   mutations: {
@@ -32,6 +33,9 @@ const store = new Vuex.Store({
     },
     setUser(state, user) {
       state.user = user
+    },
+    setBill(state, bill) {
+      state.bill = bill
     }
   },
 
@@ -54,12 +58,18 @@ const store = new Vuex.Store({
     },
     setUser({ commit }, user) {
       commit('setUser', user)
+    },
+    setBill({ commit }, bill) {
+      commit('setBill', bill)
     }
   },
 
   getters: {
     getAddress(state) {
       return state.address
+    },
+    getBill(state) {
+      return state.bill
     },
     shoppingBills(state, getters) {
       let result = {}

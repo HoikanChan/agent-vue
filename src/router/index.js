@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from '../store'
 
 Vue.use(Router)
 
@@ -69,7 +70,8 @@ export default new Router({
     {
       path: '/recoveredPassword',
       name: 'recoveredPassword',
-      component: resolve => require(['../views/forgetPsw/RecoveredPsw'], resolve)
+      component: resolve =>
+        require(['../views/forgetPsw/RecoveredPsw'], resolve)
     },
     {
       path: '/userSetting',
@@ -159,7 +161,8 @@ export default new Router({
     {
       path: '/authorization',
       name: 'authorization',
-      component: resolve => require(['../views/authorization/Authorization'], resolve)
+      component: resolve =>
+        require(['../views/authorization/Authorization'], resolve)
     },
     {
       path: '/mycode',

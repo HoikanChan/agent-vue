@@ -1,7 +1,7 @@
 <template>
   <div class="login-container">
     <span style="position:absolute;top:18px;left:18px">
-      <x-icon type="ios-close-empty" size="30"></x-icon>
+      <x-icon type="ios-close-empty" size="30" @click="close"></x-icon>
     </span>
     <div class="title">
       <h2>登录</h2>
@@ -39,9 +39,30 @@ export default {
     }
   },
   methods: {
+    close() {
+      if (this.$store.getters.getUser) {
+        this.$router.push({ name: 'home' })
+      } else {
+        this.$vux.toast.show({
+          width: '10em',
+          type: 'warn',
+          text: '请登录'
+        })
+      }
+    },
     async login() {
       if (this.$refs.mobile.valid && this.$refs.password.valid) {
         const result = await AuthService.login(this.loginForm)
+
+        if (result.code === 500) {
+          this.$vux.toast.show({
+            width: '15em',
+            type: 'warn',
+            text: result.msg
+          })
+          return
+        }
+
         if (result.errno) {
           this.$vux.toast.show({
             width: '10em',
@@ -59,10 +80,6 @@ export default {
 </script>
 
 <style lang="less">
-body {
-  background: #fff;
-  font-family: '苹方';
-}
 #vux-x-input-as5yy,
 #vux-x-input-fg65i {
   font-family: '苹方';
@@ -71,6 +88,8 @@ body {
 }
 .login-container {
   padding-top: 24px;
+  background: #fff;
+  height: 100vh;
   .vux-x-icon {
     fill: #333;
   }

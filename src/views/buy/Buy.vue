@@ -6,12 +6,12 @@
     </x-header>
     <div class="address-detail" v-if="address">
       <p>
-        <span>收货人：{{address.name}}</span>
-        <span>电话号码：{{address.mobile}}</span>
+        <span>收货人：{{address.userName}}</span>
+        <span>电话号码：{{address.telNumber}}</span>
       </p>
       <p>
         <img src="../../assets/images/location.png" alt="" style="width:0.18rem;">
-        <span>收货地址：{{address.address}}</span>
+        <span>收货地址：{{address.provinceName+address.cityName+address.countyName+address.detailInfo}}</span>
       </p>
       <x-icon type="ios-arrow-forward" style="fill:#7e74ea" size="24" class="forward-icon" @click="$router.push({name:'address'})"></x-icon>
     </div>
@@ -23,16 +23,16 @@
     </div>
     <div class="product-list">
       <div class="product-item" v-for="(item,index) in products" :key="index">
-        <x-img :src="item.img" style="width:1.2rem;height:1.2rem;"></x-img>
+        <x-img :src="item.listPicUrl" style="width:1.2rem;height:1.2rem;"></x-img>
         <div class="product-detail">
-          <div class="title">{{item.title}}</div>
+          <div class="title">{{item.goodsName}}</div>
           <div class="info">
-            <div class="unit">{{item.info}}</div>
+            <div class="unit">{{item.goodsSpecifitionNameValue}}</div>
             <div class="category">{{item.category}}</div>
           </div>
           <div class="foot">
-            <span class="price">￥{{item.price}}</span>
-            <span class="amount">x{{item.amount}}</span>
+            <span class="price">￥{{item.retailPrice}}</span>
+            <span class="amount">x{{item.number}}</span>
           </div>
         </div>
       </div>
@@ -41,31 +41,31 @@
       <x-input title="送货时间" readonly type="text" placeholder="送货时间不限" v-model="bills.msg">
         <x-icon slot="right" type="ios-arrow-forward" size="20"></x-icon>
       </x-input>
-      <x-input title="买家留言" v-model="bills.deliveryTime" type="text" placeholder="选填：对本次交易的说明"></x-input>
+      <x-input title="买家留言" v-model="postscript" type="text" placeholder="选填：对本次交易的说明"></x-input>
       <p>
         <span>商品总价</span>
         <strong>￥0</strong>
       </p>
       <p>
         <span>运费</span>
-        <strong>￥0</strong>
+        <strong>￥{{bill.freightPrice}}</strong>
       </p>
       <p>
         <span>当前金额</span>
-        <strong>￥0</strong>
+        <strong>￥{{bill.goodsTotalPrice}}</strong>
       </p>
       <div class="total">
         <span>共2件商品 消费积分：
-          <strong>0</strong>
+          <strong>{{bill.orderTotalPrice}}</strong>
         </span>
       </div>
     </group>
     <div class="order_footer">
       <div>
         <p>消耗积分：
-          <span>1800</span>
+          <span>{{bill.orderTotalPrice}}</span>
         </p>
-        <p>合计金额：</p>
+        <p>合计金额：{{bill.orderTotalPrice}}</p>
       </div>
       <div @click.stop="submitBills">提交订单</div>
     </div>
@@ -101,6 +101,8 @@ import {
   TransferDomDirective as TransferDom,
   XDialog
 } from 'vux'
+import ShoppingCartService from 'services/ShoppingCartService'
+
 export default {
   name: 'Buy',
   directives: {
@@ -122,45 +124,19 @@ export default {
       toastShow: false,
       dialogShow: false,
       password: '',
+      bill: {},
       bills: {
         msg: '',
         deliveryTime: ''
       },
-      products: [
-        {
-          img: 'http://p0.meituan.net/600.600/deal/__38666717__4597520.jpg',
-          title: '丰胸精油盒装（10支/一盒）',
-          price: '900',
-          info: '（10支/一盒）',
-          category: '乳液体',
-          amount: '1'
-        },
-        {
-          img: 'http://p0.meituan.net/600.600/deal/__38666717__4597520.jpg',
-          title: '丰胸精油盒装（10支/一盒）',
-          price: '900',
-          info: '（10支/一盒）',
-          category: '乳液体',
-          amount: '1'
-        }
-      ]
-    }
-  },
-  computed: {
-    address: function() {
-      return this.$store.getters.getAddress
-        ? this.$store.getters.getAddress
-        : null
-    }
-  },
-  watch: {
-    password: function(val) {
-      console.log(val)
+      products: [],
+      address: {},
+      postscript: ''
     }
   },
   methods: {
     submitBills() {
-      if (!this.$store.getters.getAddress) {
+      if (!this.address) {
         this.toastShow = true
       } else {
         this.password = ''
@@ -169,12 +145,35 @@ export default {
       }
     },
     hideDialog() {},
-    pay() {
+    async pay() {
       if (this.$refs.payPsw.valid && this.password) {
         this.dialogShow = false
-        this.$router.push({ name: 'bought' })
+        this.$vux.loading.show({
+          text: '支付中'
+        })
+        const result = await ShoppingCartService.pay({
+          addressId: this.address.id,
+          psw: this.password,
+          postscript: this.postscript
+        })
+        this.$vux.loading.hide()
+        if (result.errno) {
+          this.$vux.toast.show({
+            width: '10em',
+            type: 'warn',
+            text: result.errmsg
+          })
+        } else {
+          this.$router.push({ name: 'bought' })
+        }
       }
     }
+  },
+  mounted() {
+    const bill = this.$store.getters.getBill
+    this.bill = bill
+    this.address = bill.checkedAddress
+    this.products = bill.checkedGoodsList
   }
 }
 </script>
@@ -284,6 +283,7 @@ export default {
   .product-detail {
     margin-left: 0.2rem;
     display: flex;
+    flex: 1 1 auto;
     flex-direction: column;
     .title {
       font-size: 14px;
