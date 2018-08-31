@@ -3,7 +3,7 @@
     <x-header :left-options="{backText: ''}">
       <span>收货地址</span>
       <!-- <x-icon slot="right" type="more" size="35" style="fill:#333;position:relative;top:-8px;left:-3px;"></x-icon> -->
-      <i style="float:right;position: absolute;left: 85%;font-size:.15rem;color:#7e74ea;">管理</i>
+      <i style="float:right;position: absolute;left: 85%;font-size:.15rem;color:#7e74ea;" @click="toggleEdit()">{{isEditing?"完成":"编辑"}}</i>
     </x-header>
     <checker v-model="pickedAddressId" default-item-class="demo2-item" selected-item-class="selected" radio-required>
       <checker-item v-for="(item,index) in addresses" :key="index" :value="item.id" ref="dataInfo">
@@ -15,10 +15,13 @@
             <span>收货人：{{item.userName}}</span>
             <span>电话号码：{{item.telNumber}}</span>
           </p>
-          <p>
+          <p style="padding-bottom:.15rem;">
             <span>收货地址：{{item.provinceName}}{{item.cityName}}{{item.countyName}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
           </p>
-          <span style="text-align:right;color:red;" @click.stop="del(item.id)">删除</span>
+          <div class='editer' v-if="isEditing">
+            <span style="padding-right:10%;" @click.stop="editer(item.id)">修改</span>
+            <span style="padding-right:10%;" @click.stop="del(item.id)">删除</span>
+            </div>
         </div>
       </checker-item>
     </checker>
@@ -43,7 +46,8 @@ export default {
         area: []
       },
       popShow: false,
-      addresses: []
+      addresses: [],
+      isEditing:false
     }
   },
   watch: {
@@ -76,39 +80,72 @@ export default {
           console.log(error);
           console.log('删除失败！')
         })
-      }
+      },
+      editer(id){
+        axios.get('http://124.200.40.10:17080/agent/api/v1/address/detail?id='+id).then(res=>{
+          console.log(res.data.data);
+          localStorage.setItem('address',JSON.stringify(res.data.data))
+          this.$router.push({ path: '/addAddress' })
+        })
+      },
+      toggleEdit() {
+      this.isEditing = !this.isEditing
+    },
   }
 }
 </script>
 <style lang="less" scoped>
-.address-detail {
-  font-size: 14px;
-  height: 1.04rem;
-  border-bottom: 1px solid #ccc;
-  background: #fff;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  padding: 0 0.5rem 0 0.3rem;
-  position: relative;
-  p {
-    margin: 0.05rem 0;
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-  }
-  img {
-    position: absolute;
-    left: -0.3rem;
-    top: -0.05rem;
-  }
-  .forward-icon {
-    fill: #7e74ea;
-    position: absolute;
-    right: 0.2rem;
-    bottom: 0.05rem;
+.address-detail{
+    width: 90%;
+    padding: 0 5%;
+    background: #fff;
+    // height: 1.04rem;
+    font-weight: bold;
+    p{
+      &:nth-child(2){
+          display: inline-block;
+          height: .4;
+          line-height: .4rem;
+          margin-top:.05rem;
+      }
+    }
+  .editer{
+    text-align:right;
+    color:#999;;
+    text-align: right;
+    height: .3rem;
+    line-height: .3rem;
+    // border-top:1px solid #ccc;
   }
 }
+// .address-detail {
+//   font-size: 14px;
+//   height: 1.04rem;
+//   border-bottom: 1px solid #ccc;
+//   background: #fff;
+//   display: flex;
+//   justify-content: center;
+//   flex-direction: column;
+//   padding: 0 0.5rem 0 0.3rem;
+//   position: relative;
+//   p {
+//     margin: 0.05rem 0;
+//     position: relative;
+//     display: flex;
+//     justify-content: space-between;
+//   }
+//   img {
+//     position: absolute;
+//     left: -0.3rem;
+//     top: -0.05rem;
+//   }
+//   .forward-icon {
+//     fill: #7e74ea;
+//     position: absolute;
+//     right: 0.2rem;
+//     bottom: 0.05rem;
+//   }
+// }
 .checkbox-wrapper {
   position: absolute;
   right: 0.05rem;
@@ -134,5 +171,17 @@ export default {
   background:#5b50d3;
   position:fixed;
   bottom:0;
+}
+.vux-checker-item{
+  width:100%;
+}
+.material-checkbox{
+  line-height:90px !important;
+}
+.material-checkbox > span[data-v-3fe23622]::after{
+  top:30px !important;
+}
+.vux-checker-item{
+  border-bottom:1px solid #ccc;
 }
 </style>

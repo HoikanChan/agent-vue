@@ -1,5 +1,5 @@
 <template>
-  <div class="shoppingcart">
+  <div class="goods-detail">
     <x-icon type="ios-arrow-back" size="30" class="back-icon" @click="$router.go(-1)"></x-icon>
     <x-icon type="more" size="30" class="more-icon"></x-icon>
     <swiper auto height="2.08rem" dots-class="custom-bottom" dots-position="center">
@@ -49,12 +49,13 @@
       <div @click="addGoods()">加入购物车</div>
       <div @click="$router.push({name:'buy'})">立即购买</div>
     </div>
-    <toast v-model="showToast" type="text" :time="800" is-show-mask text="添加成功" position="top" />
+    <toast v-model="showToast" type="text" :time="800" is-show-mask text="请先选择规格" position="top" width='10em'/>
   </div>
 </template>
 <script>
 import { XHeader, Swiper, SwiperItem, Toast, Checker, CheckerItem } from 'vux'
 import MallService from 'services/MallService'
+import ShoppingCartService from 'services/ShoppingCartService'
 import InputNumber from 'components/InputNumber'
 
 export default {
@@ -91,9 +92,31 @@ export default {
     }
   },
   methods: {
-    addGoods() {
-      this.$store.commit('addGoods', this.product)
-      this.showToast = true
+    async addGoods() {
+      if (this.pickedProductId) {
+        const result = await ShoppingCartService.add({
+          goodsId: this.goodsDetail.id,
+          productId: this.pickedProductId,
+          number: this.amount
+        })
+        this.$vux.toast.show({
+          width: '10em',
+          type: result.errno ? 'warn' : 'success',
+          text: result.errmsg
+        })
+      } else {
+        this.showToast = true
+      }
+    }
+  },
+  computed: {
+    pickedProductId: function() {
+      if (this.pickedSpec.some(i => i === '')) {
+        return null
+      }
+      return this.productList.find(
+        i => JSON.stringify(i.specIds) === JSON.stringify(this.pickedSpec)
+      ).productId
     }
   },
   async mounted() {
@@ -112,7 +135,7 @@ export default {
       }
     })
     //初始化，选择规格
-    this.pickedSpec = this.productList[0].specIds
+    this.pickedSpec = this.productList[0].specIds.slice()
     //所有规格
     this.specificationList = (await MallService.getGoodsDetail(
       id
@@ -127,15 +150,6 @@ export default {
         }
       }
     }
-    // this.specificationList = this.specificationList.map(spec => {
-    //   return {
-    //     name: spec.name,
-    //     specificationId: spec.specificationId,
-    //     valueList: spec.valueList.map(val => {
-    //       if(val.)
-    //     })
-    //   }
-    // })
   }
 }
 </script>
@@ -309,7 +323,7 @@ export default {
 }
 </style>
 <style lang="less">
-.shoppingcart {
+.goods-detail {
   .vux-tap-active {
     border: 1px solid #aaa;
     color: #333 !important;

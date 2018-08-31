@@ -1,6 +1,7 @@
 <template>
     <div class='teamsearch'>
          <div class="search">
+             <img @click="$router.push({name:'myteam'})" style="width:.12rem;height:.21rem;margin-left:4.8%;" src="../../assets/images/back.png" />
             <input type="text" placeholder="搜索成员" v-model='text' />
             <span v-if='abandon' @click='search_member()'>确定</span>
         </div>
@@ -64,11 +65,11 @@ export default {
     height: 0.44rem;
     background: #f6f6f6;
     input {
-        width: 64.6%;
+        width: 59%;
         height: 0.28rem;
         background: #e7e7e7;
         margin: 0.08rem auto;
-        margin-left: 4.8%;
+        margin-left: 4%;
         border-radius: 0.025rem;
         color: @color_1;
         padding-left: 18%;

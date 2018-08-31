@@ -2,37 +2,24 @@
   <div class="address">
     <x-header :left-options="{backText: ''}">
       <span>添加收货地址</span>
-      <x-icon slot="right" type="more" size="35" style="fill:#333;position:relative;top:-8px;left:-3px;"></x-icon>
+      <!-- <x-icon slot="right" type="more" size="35" style="fill:#333;position:relative;top:-8px;left:-3px;"></x-icon> -->
     </x-header>
     <group class="address-form">
       <x-input title="收货人" placeholder="请输入收货人" :required="true" ref="name" v-model="form.name">
       </x-input>
       <x-input title="联系电话" placeholder="请输入联系电话" :required="true" ref="mobile" v-model="form.mobile" is-type="china-mobile">
       </x-input>
-      <div>
-        <span>
-          <label style="margin-right:1em">所在地</label>
-          <span>{{form.area?form.area.join(" "):''}}</span>
-        </span>
-        <x-icon type="ios-arrow-forward" size="30" @click="showPop()"></x-icon>
-      </div>
+       <x-address ref="area" title="所在地" v-model="form.area" :list="addressData" placeholder="请选择地址">
+      </x-address>
       <x-input title="详细地址" placeholder="请输入详细地址" :required="true" ref="address" v-model="form.address">
       </x-input>
     </group>
     <x-button type="primary" action-type="submit" @click.native="addAddress()" style="width: 90.4%;margin: 1.65rem auto;">保存</x-button>
-    <div v-transfer-dom>
-      <popup v-model="popShow">
-        <!-- group already has a top border, so we need to hide header's bottom border-->
-        <popup-header left-text="取消" right-text="确认" title="请选择所在地" :show-bottom-border="false" @on-click-left="popShow = false" @on-click-right="popShow = false">
-        </popup-header>
-        <picker :data='addresses' :columns=3 v-model='form.area' ref="picker1"></picker>
-      </popup>
-    </div>
     <toast v-model="toastShow" type="text" position="top" width="10.6em">请完善地址信息</toast>
   </div>
 </template>
 <script>
-import axios from 'axios';
+import axios from 'axios'
 import {
   XHeader,
   Picker,
@@ -42,7 +29,9 @@ import {
   XInput,
   Group,
   XButton,
-  Toast
+  Toast,
+  XAddress,
+  ChinaAddressV4Data
 } from 'vux'
 export default {
   directives: {
@@ -56,7 +45,8 @@ export default {
     PopupHeader,
     Popup,
     XButton,
-    Toast
+    Toast,
+    XAddress
   },
   data() {
     return {
@@ -65,6 +55,7 @@ export default {
       },
       toastShow: false,
       popShow: false,
+      addressData: ChinaAddressV4Data,
       address: [],
       addresses: [
         {
@@ -132,40 +123,57 @@ export default {
       ) {
         this.$store.commit('setAddress', this.form)
         // this.$router.go(-1)
-        console.log(this.form)
-        var userName= this.form.name;
-        var telNumber=this.form.mobile;
-        var address = this.form.address;
-        var countyName= this.form.area[0];
-        var provinceName= this.form.area[1];
-        var cityName= this.form.area[2];
-        var detailInfo = this.form.address;
-        axios.post('http://124.200.40.10:17080/agent/api/v1/address/save',{
-          userName,telNumber,address,countyName,provinceName,cityName,detailInfo
-        }).then((response)=>{
-          // localStorage.setItem('address',JSON.stringify( response.data.data))
-          this.$router.push({ path: '/address' })
-        }).catch((error=>{
-          console.log(error)
-        }))
-
+        var userName = this.form.name
+        var telNumber = this.form.mobile
+        var address = this.form.address
+        //省，市，区
+        let [provinceName, cityName, countyName] = this.$refs.area.nameValue.split(' ')
+        var detailInfo = this.form.address
+        axios
+          .post('http://124.200.40.10:17080/agent/api/v1/address/save', {
+            userName,
+            telNumber,
+            address,
+            countyName,
+            provinceName,
+            cityName,
+            detailInfo
+          })
+          .then(response => {
+            // localStorage.setItem('address',JSON.stringify( response.data.data))
+            this.$router.push({ path: '/address' })
+            
+          })
+          .catch(error => {
+            console.log(error)
+          })
       } else {
         this.toastShow = true
       }
     }
   },
   mounted() {
-      axios.get('http://124.200.40.10:17080/agent/api/v1/region/provinceList').then(res=>{
-        console.log(res)
-        this.addresses.name=res.data.data.name
-         this.addresses.value=res.data.data.value
-      })
-  },
+    // axios
+    //   .get('http://124.200.40.10:17080/agent/api/v1/region/provinceList')
+    //   .then(res => {
+    //     console.log(res)
+    //     this.addresses.name = res.data.data.name
+    //     this.addresses.value = res.data.data.value
+    //   })
+    // let a = JSON.parse('address')
+    // console.log(a)
+    var json = localStorage.getItem(JSON.parse('address'))
+    console.log(json)
+    this.form.name=json.userName;
 
 
+  }
 }
 </script>
 <style lang="less" scoped>
+.vux-popup-header-right{
+  color:#5b50d3
+}
 body {
   background: #f8f8f8;
 }
@@ -229,5 +237,11 @@ body {
       font-weight: bold;
     }
   }
+}
+.weui-cell_access .weui-cell__ft:after{
+  right:-142px !important;
+}
+.weui-cell{
+  // padding:0px !important;
 }
 </style>

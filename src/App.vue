@@ -19,10 +19,15 @@ body {
   font-size: 0.12rem;
   font-family: '苹方' !important;
 }
+#app {
+  height: 100vh;
+  background: #f6f6f6;
+}
 button.round-btn {
   border-radius: 50px;
 }
-input {
+input,
+textarea {
   font-family: '苹方' !important;
 }
 button {

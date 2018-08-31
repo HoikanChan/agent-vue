@@ -18,55 +18,6 @@
                 <p>累计业绩:<span>8888888.00</span></p>
             </div>
         </div>
-        <div class="level">
-            <router-link to="#" @click="tabNow='partner'">
-                <p class="first" >0</p>
-               
-                <p class="second">官方合伙人</p>
-            </router-link>
-            <router-link to="#">
-                <p class="first" @click="tabNow='all'">10</p>
-                <p class="second">总代</p>
-            </router-link>
-            <router-link to="#">
-                <p class="first" @click="tabNow='big'">10</p>
-                <p class="second">大区</p>
-            </router-link>
-            <router-link to="#" class="none" @click="tabNow='vip'">
-                <p class="first">10</p>
-                <p class="second">VIP</p>
-            </router-link>
-        </div>
-        <div>
-            <ul>
-                <li v-for=>
-                    <img class="jpg" src="../../assets/images/15.jpg" />
-                    <span>官方合伙人</span>
-                    <img class="right" src="../../assets/images/right.png" />
-                </li>
-            </ul>
-            <ul class="members" v-show="tabNow==='all'">
-                <li>
-                    <img class="jpg" src="../../assets/images/15.jpg" />
-                    <span>总代</span>
-                    <img class="right" src="../../assets/images/right.png" />
-                </li>
-            </ul>
-            <ul>
-                <li v-for="(item,key) in member[1]" :key="key">
-                    <img class="jpg" src="../../assets/images/15.jpg" />
-                    <span>大区</span>
-                    <img class="right" src="../../assets/images/right.png" />
-                </li>
-            </ul>
-            <ul>
-                <li v-for="(item,key) in member[0]" :key="key">
-                    <img class="jpg" src="../../assets/images/15.jpg" />
-                    <span>VIP</span>
-                    <img class="right" src="../../assets/images/right.png" />
-                </li>
-            </ul>
-        </div>
     </div>   
 </template>
 
@@ -76,13 +27,15 @@ export default {
         return{
             
         }
-    }
+    },
+    mounted() {
+        axios.get('http://localhost:8080/agent/api/v1/team/teamOfChild?childId=100970')
+    },
 }
 </script>
 <style lang="less">
 .member{
      .team_head{
-            width: 100%;
             height: .44rem;
             text-align: center;
             padding: 0 4.8%;

@@ -1,9 +1,9 @@
 <template>
     <div class="teamcash">
-        <div class="teamcash_head">
-            <img class="back" src="../../assets/images/back.png" />
-            团队业绩
-        </div>
+        <x-header :left-options="{backText: ''}">
+          <span>团队业绩</span>
+          <!-- <x-icon slot="right" type="more" size="35" style="fill:#333;position:relative;top:-8px;left:-3px;"></x-icon> -->
+        </x-header>
         <div class="cash_point">
             <p class="all">总业绩</p>
             <p class="money">1213800.00<span>元</span></p>
@@ -15,11 +15,15 @@
     </div>
 </template>
 <script>
+import {XHeader} from 'vux';
 export default {
     data(){
         return{
 
         }
+    },
+    components:{
+        XHeader
     }
 }
 </script>
