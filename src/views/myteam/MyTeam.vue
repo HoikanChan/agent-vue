@@ -215,7 +215,7 @@ export default {
             background: #fff;
             a{
                 display: block;
-                width: 24.8%;
+                width: 24.7%;
                 height: .4rem;
                 float: left;
                 text-align: center;
@@ -230,6 +230,9 @@ export default {
                     height: .22rem;
                     line-height: .22rem;
                     margin-top: 0;
+                }
+                &:last-child{
+                    border-right: none;
                 }
             }
             .none{
