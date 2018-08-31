@@ -1,5 +1,6 @@
 <template>
   <div class="login-container">
+ 
     <span style="position:absolute;top:18px;left:18px">
       <x-icon type="ios-close-empty" size="30" @click="close"></x-icon>
     </span>

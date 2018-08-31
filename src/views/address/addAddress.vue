@@ -1,7 +1,7 @@
 <template>
   <div class="address">
     <x-header :left-options="{backText: ''}">
-      <span>收货地址</span>
+      <span>添加收货地址</span>
       <x-icon slot="right" type="more" size="35" style="fill:#333;position:relative;top:-8px;left:-3px;"></x-icon>
     </x-header>
     <group class="address-form">
@@ -32,6 +32,7 @@
   </div>
 </template>
 <script>
+import axios from 'axios';
 import {
   XHeader,
   Picker,
@@ -115,26 +116,6 @@ export default {
           name: '广西002',
           value: 'sz',
           parent: 'china002'
-        },
-        {
-          name: '美国001_001',
-          value: '0003',
-          parent: 'usa001'
-        },
-        {
-          name: '美国001_002',
-          value: '0004',
-          parent: 'usa001'
-        },
-        {
-          name: '美国002_001',
-          value: '0005',
-          parent: 'usa002'
-        },
-        {
-          name: '美国002_002',
-          value: '0006',
-          parent: 'usa002'
         }
       ]
     }
@@ -150,12 +131,38 @@ export default {
         this.$refs.address.valid
       ) {
         this.$store.commit('setAddress', this.form)
-        this.$router.go(-1)
+        // this.$router.go(-1)
+        console.log(this.form)
+        var userName= this.form.name;
+        var telNumber=this.form.mobile;
+        var address = this.form.address;
+        var countyName= this.form.area[0];
+        var provinceName= this.form.area[1];
+        var cityName= this.form.area[2];
+        var detailInfo = this.form.address;
+        axios.post('http://124.200.40.10:17080/agent/api/v1/address/save',{
+          userName,telNumber,address,countyName,provinceName,cityName,detailInfo
+        }).then((response)=>{
+          // localStorage.setItem('address',JSON.stringify( response.data.data))
+          this.$router.push({ path: '/address' })
+        }).catch((error=>{
+          console.log(error)
+        }))
+
       } else {
         this.toastShow = true
       }
     }
-  }
+  },
+  mounted() {
+      axios.get('http://124.200.40.10:17080/agent/api/v1/region/provinceList').then(res=>{
+        console.log(res)
+        this.addresses.name=res.data.data.name
+         this.addresses.value=res.data.data.value
+      })
+  },
+
+
 }
 </script>
 <style lang="less" scoped>

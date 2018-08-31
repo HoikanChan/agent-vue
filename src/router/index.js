@@ -111,6 +111,11 @@ const router = new Router({
       component: resolve => require(['../views/myteam/MyTeam'], resolve)
     },
     {
+      path: '/teamsearch',
+      name: 'teamsearch',
+      component: resolve => require(['../views/myteam/TeamSearch'], resolve)
+    },
+    {
       path: '/member_detail',
       name: 'member_detail',
       component: resolve => require(['../views/myteam/Member_Detail'], resolve)
@@ -145,8 +150,6 @@ const router = new Router({
       name: 'upgrade',
       component: resolve => require(['../views/check/Check'], resolve)
     },
-    // { path: '/login', component: Login },
-    // { path: '/forgotpassword', component: Forgot_Password },
     {
       path: '/messages',
       name: 'messages',
