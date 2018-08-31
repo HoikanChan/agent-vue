@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from '../store'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   base: __dirname,
   routes: [
@@ -69,7 +70,8 @@ export default new Router({
     {
       path: '/recoveredPassword',
       name: 'recoveredPassword',
-      component: resolve => require(['../views/forgetPsw/RecoveredPsw'], resolve)
+      component: resolve =>
+        require(['../views/forgetPsw/RecoveredPsw'], resolve)
     },
     {
       path: '/userSetting',
@@ -162,7 +164,8 @@ export default new Router({
     {
       path: '/authorization',
       name: 'authorization',
-      component: resolve => require(['../views/authorization/Authorization'], resolve)
+      component: resolve =>
+        require(['../views/authorization/Authorization'], resolve)
     },
     {
       path: '/mycode',
@@ -172,3 +175,19 @@ export default new Router({
     { path: '*', redirect: '/home' } /*默认跳转的路由*/
   ]
 })
+router.beforeEach((to, from, next) => {
+  //拦截路由，没登录返回登录页
+  if (
+    !store.state.user &&
+    to.name !== 'login' &&
+    to.name !== 'forgetPassword' &&
+    to.name !== 'register'
+  ) {
+    next({
+      name: 'login'
+    })
+  } else {
+    next()
+  }
+})
+export default router

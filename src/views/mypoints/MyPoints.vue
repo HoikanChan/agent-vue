@@ -9,7 +9,7 @@
       </p>
       <div class="detail">
         <div class="record">积分明细</div>
-        <div class="deeded" @click="point">积分转让</div>
+        <div class="deeded" @click="point">积分充值</div>
       </div>
     </div>
     <div class="date">
@@ -55,19 +55,16 @@
     </div>
     <div class="shade" v-if="flag"></div>
     <div class="modal" v-if="flag">
-      <h2>积分转让 <img src="../../assets/images/flase.png" @click="hide()" /></h2>
+      <h2>积分充值 <img src="../../assets/images/flase.png" @click="hide()" /></h2>
       <div class="proptype">
+        <p>上级姓名：{{chargeInfo.auditName}}</p>
+        <p>上级联系方式：{{chargeInfo.mobile}}</p>
+        <br>
         <group>
-          <x-input title="" v-model="phone" :required="true" placeholder="请输入对方手机号码" is-type="china-mobile"></x-input>
+          <x-input title="" type="number" v-model="chargeForm.credit" :required="true" placeholder="请输入申请积分数"></x-input>
         </group>
         <group>
-          <x-input title="" v-model="username" :required="true" placeholder="请输入对方昵称" type="text"></x-input>
-        </group>
-        <group>
-          <x-input title="" v-model="text" :required="true" placeholder="请输入备注" type="text"></x-input>
-        </group>
-        <group>
-          <x-input title="" v-model="points" :required="true" placeholder="请输入大于1的积分" type="number"></x-input>
+          <x-textarea title="" :max="100" v-model="chargeForm.postscript" placeholder="请输入留言" type="text"></x-textarea>
         </group>
       </div>
       <x-button type="primary" action-type="submit" class="round-btn submit" @click.native="submit()">确定</x-button>
@@ -103,9 +100,11 @@
   </div>
 </template>
 <script>
-import axios from 'axios'
+import ApplyService from 'services/ApplyService'
+
 import {
   XInput,
+  XTextarea,
   XButton,
   Group,
   DatetimeView,
@@ -119,6 +118,7 @@ export default {
   },
   components: {
     XInput,
+    XTextarea,
     Group,
     DatetimeView,
     XButton,
@@ -130,10 +130,11 @@ export default {
     return {
       show: false,
       timeShow: false,
-      phone: '',
-      username: '',
-      text: '',
-      points: '',
+      chargeForm: {
+        credit: null,
+        postscript: ''
+      },
+      chargeInfo: {},
       flag: false,
       pickedType: 'all',
       popupPickedType: 'all',
@@ -181,46 +182,32 @@ export default {
       this.timeShow = false
       this.pickedTime = this.popupPickedTime
     },
-    submit() {
-      if (
-        this.phone == '' ||
-        this.username == '' ||
-        this.text == '' ||
-        this.points == ''
-      ) {
+    async submit() {
+      if (!this.chargeForm.credit) {
         this.$vux.alert.show({
           title: '输入不能为空',
-          content: '请重新输入',
-          onShow() {
-            console.log("Plugin: I'm showing")
-          },
-          onHide() {
-            console.log("Plugin: I'm hiding")
-          }
+          content: '请重新输入'
         })
       } else {
-        var message = {
-          phone: this.phone,
-          username: this.username,
-          text: this.text,
-          points: this.points
-        }
-        axios
-          .post('/user', message)
-          .then(function(response) {
-            console.log(response)
-          })
-          .catch(function(error) {
-            console.log(error)
-          })
+        const result = await ApplyService.chargePoint(this.chargeForm)
+        this.$vux.toast.show({
+          width: '15em',
+          type: result.errno ? 'warn' : 'success',
+          text: result.errmsg
+        })
+        this.flag = false
       }
     },
-    point: function() {
+    async point() {
       this.flag = true
     },
     hide: function() {
       this.flag = false
     }
+  },
+  async mounted() {
+    const result = (await ApplyService.chargeInfo()).data
+    this.chargeInfo = result
   }
 }
 </script>
@@ -407,7 +394,7 @@ export default {
     left: 0;
     right: 0;
     width: 72%;
-    height: 3.33rem;
+    height: 3.4rem;
     margin: auto;
     display: block;
     border-radius: 0.05rem;
@@ -428,6 +415,11 @@ export default {
     .proptype {
       width: 75%;
       margin: 0.15rem auto;
+      p {
+        text-align: left;
+        padding: 0 15px;
+        line-height: 1em;
+      }
     }
     .submit {
       width: 86%;
@@ -442,8 +434,6 @@ export default {
     }
     p {
       text-align: center;
-      height: 0.27rem;
-      line-height: 0.27rem;
       margin-top: 0.1rem;
       color: #999;
     }
@@ -509,27 +499,42 @@ export default {
 }
 </style>
 <style lang="less">
-.weui-cells:before {
-  border: none !important;
-}
-.weui-cells:before {
-  border: none !important;
-}
-.weui-cells {
-  font-size: 0.14rem !important;
-}
-.vux-no-group-title {
-  height: 0.42rem !important;
-  line-height: 0.42rem !important;
-  margin-top: 0 !important;
-}
-.weui-cell {
-  padding: 0 15px !important;
-}
-.vux-popup-header-right {
-  padding: 4px 8px;
-  background-color: @primary-color;
-  color: #fff !important;
+.mypoints {
+  .modal {
+    input {
+      text-align: right;
+    }
+  }
+  .weui-cells:before {
+    border: none !important;
+  }
+  .weui-cells:before {
+    border: none !important;
+  }
+  .weui-cells {
+    font-size: 0.14rem !important;
+  }
+  .vux-no-group-title {
+    line-height: 0.42rem !important;
+    margin-top: 0 !important;
+  }
+  .weui-cell {
+    padding: 0 15px !important;
+  }
+  .vux-popup-header-right {
+    padding: 4px 8px;
+    background-color: @primary-color;
+    color: #fff !important;
+  }
+  .weui-textarea-counter {
+    line-height: 1em;
+    margin-bottom: 1em;
+  }
+  .weui-textarea {
+    padding: 1em 0 !important;
+    height: 3em;
+    line-height: 1em;
+  }
 }
 </style>
 

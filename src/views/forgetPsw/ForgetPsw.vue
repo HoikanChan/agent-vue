@@ -1,6 +1,6 @@
 <template>
   <div class="forget-psw-container">
-    <x-header :left-options="{backText: ''}">忘记密码</x-header>
+    <x-header :left-options="{backText: ''}" style="border-bottom: 1px solid #ccc ;">忘记密码</x-header>
     <div class="content">
       <group>
         <x-input title="message" placeholder="请输入手机号码" :required="true" ref="mobile" v-model="form.mobile" is-type="china-mobile">
@@ -91,13 +91,12 @@ export default {
 </script>
 
 <style lang="less">
-body {
-  background: #fff;
-}
 input {
   font-size: 14px;
 }
 .forget-psw-container {
+  height: 100vh;
+  background: #fff;
   .content {
     padding: 48px 0;
     .vux-x-icon {
