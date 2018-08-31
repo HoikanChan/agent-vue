@@ -1,7 +1,7 @@
 <template>
     <div class="check">
         <x-header :left-options="{backText: ''}">
-            <span>确认下单</span>
+            <span>升级</span>
         </x-header>
         <div class="upgrade">
             <div class="rank">
@@ -48,6 +48,7 @@
                 </div>
             </checker-item>
         </checker>
+        <h3 v-if="upgradeList.length === 0" style="text-align:center;margin-top:2em;">暂无升级内容</h3>
         <div class="shade" v-show="flag"></div>
         <div class="modal" v-show="flag">
             <p>等待审核</p>
@@ -99,6 +100,7 @@ export default {
         })
       } else {
         this.update()
+        this.pickedId = ''
         this.flag = true
       }
     },

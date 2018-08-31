@@ -5,59 +5,218 @@
       <div @click="tabNow='register'">
         <img src="../../assets/images/register_check.png" v-if="tabNow==='register'" />
         <img src="../../assets/images/register_check_.png" v-else/>
-        <p>注册审核</p>
+        <p>我的申请</p>
         <badge text="8" class="badge"></badge>
       </div>
       <div @click="tabNow='upgrade'">
         <img src="../../assets/images/upgrade_check.png" v-if="tabNow==='upgrade'" />
         <img src="../../assets/images/upgrade_check_.png" v-else/>
-        <p>升级审核</p>
-        <badge text="8" class="badge"></badge>
+        <p>我的审核</p>
+        <badge :text="auditList.length" class="badge"></badge>
       </div>
     </div>
     <div class="tab-content" v-show="tabNow==='register'">
       <div>
-        <p>审核人:<span>茉莉</span></p>
-        <p>手机号码:<span>15797964844</span></p>
-        <p>注册等级:<span>总代</span></p>
-        <p>推荐人:<span>陈洋</span></p>
+        <p>审核人:
+          <span>茉莉</span>
+        </p>
+        <p>手机号码:
+          <span>15797964844</span>
+        </p>
+        <p>注册等级:
+          <span>总代</span>
+        </p>
+        <p>推荐人:
+          <span>陈洋</span>
+        </p>
       </div>
-      <div>
+      <div class="right-part">
         <img src="../../assets/images/22.jpg" />
         <button>审核</button>
       </div>
     </div>
-    <div class="tab-content" v-show="tabNow==='upgrade'">
-      <div>
-        <p>审核人:<span>茉莉</span></p>
-        <p>手机号码:<span>15797964844</span></p>
-        <p>升级等级:<span>总代</span></p>
-        <p>推荐人:<span>陈洋</span></p>
-      </div>
-      <div>
-        <img src="../../assets/images/22.jpg" />
-        <button>审核</button>
+    <div v-show="tabNow==='upgrade'">
+      <div v-for="item in auditList" :key="item.id" class="tab-content">
+        <div>
+          <p>审核人:
+            <span>{{item.applyUserName}}</span>
+          </p>
+          <p>手机号码:
+            <span>{{item.applyUserTel}}</span>
+          </p>
+          <p>升级等级:
+            <span>{{item.levelName}}</span>
+          </p>
+        </div>
+        <div>
+          <img :src="item.auditUserAvatar" />
+          <x-button mini plain type="primary" @click.native="aduitModalShow(item.id)">审核</x-button>
+        </div>
       </div>
     </div>
+    <div class="shade" v-if="modalShow"></div>
+    <div class="modal" v-if="modalShow">
+      <h2>审核 <img src="../../assets/images/flase.png" @click="modalShow=false" /></h2>
+      <div class="proptype">
+        <br>
+        <checker v-model="auditForm.orderStatus" default-item-class="demo2-item" selected-item-class="selected" radio-required>
+          <checker-item v-for="(item,index) in status" :key="index" :value="item.value">
+            <div class="detail">
+              <div class="checkbox-wrapper">
+                <material-checkbox></material-checkbox>
+              </div>
+              <p>
+                {{item.title}}
+              </p>
+            </div>
+          </checker-item>
+        </checker>
+        <group>
+          <x-textarea title="" :max="100" v-model="auditForm.postscript" placeholder="请输入留言" type="text"></x-textarea>
+        </group>
+      </div>
+      <x-button type="primary" action-type="submit" class="round-btn submit" @click.native="audit()">确定</x-button>
     </div>
   </div>
 </template>
 <script>
-import { XHeader, Badge } from 'vux'
+import ApplyService from 'services/ApplyService'
+import Checkbox from 'components/Checkbox'
+import {
+  XHeader,
+  XInput,
+  XTextarea,
+  Group,
+  XButton,
+  Badge,
+  Checker,
+  CheckerItem
+} from 'vux'
 export default {
-  data() {
-    return {
-      tabNow: 'register'
-    }
-  },
   components: {
     XHeader,
-    Badge
+    XInput,
+    XTextarea,
+    Group,
+    XButton,
+    Badge,
+    Checker,
+    CheckerItem,
+    'material-checkbox': Checkbox
+  },
+  data() {
+    return {
+      tabNow: 'register',
+      auditList: [],
+      applyList: [],
+      modalShow: false,
+      auditId: null,
+      auditStatus: 1,
+      status: [
+        { title: '审核通过', value: 1 },
+        { title: '审核不通过', value: 0 }
+      ],
+      auditForm: {
+        orderStatus: '',
+        postscript: ''
+      }
+    }
+  },
+
+  methods: {
+    aduitModalShow(id) {
+      this.auditId = id
+      this.modalShow = true
+    },
+    async update() {
+      const auditList = (await ApplyService.auditList()).data
+      this.auditList = auditList
+      const applyList = (await ApplyService.applyList()).data
+      this.applyList = applyList
+    },
+    async audit() {
+      const result = await ApplyService.audit({
+        applyOrderId: this.auditId,
+        ...this.auditForm
+      })
+      this.$vux.toast.show({
+        width: '15em',
+        type: result.errno ? 'warn' : 'success',
+        text: result.errmsg
+      })
+      this.modalShow = false
+      this.update()
+    }
+  },
+  async mounted() {
+    this.update()
   }
 }
 </script>
 <style lang="less" scoped>
 .examine {
+  .shade {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0.3;
+    /*兼容IE8及以下版本浏览器*/
+    filter: alpha(opacity=30);
+    display: block;
+  }
+  .modal {
+    position: absolute;
+    z-index: 101;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 72%;
+    height: 3.4rem;
+    margin: auto;
+    display: block;
+    border-radius: 0.05rem;
+    background: #fff;
+    h2 {
+      text-align: center;
+      font-size: 0.18rem;
+      margin-top: 0.27rem;
+      position: relative;
+      img {
+        width: 0.35rem;
+        height: 0.35rem;
+        position: absolute;
+        left: 82%;
+        top: -0.2rem;
+      }
+    }
+    .detail {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      margin-right: 3em;
+      margin-bottom: 1em;
+    }
+    .proptype {
+      width: 75%;
+      margin: 0.15rem auto;
+    }
+    .submit {
+      width: 86%;
+      height: 0.35rem;
+      background: #5b50d3;
+      color: #fff;
+      line-height: 0.35rem;
+      text-align: center;
+      border-radius: 0.2rem;
+      margin-top: 0.15rem;
+      font-size: 0.14rem;
+    }
+  }
   .tab {
     width: 100%;
     height: 1.1rem;
@@ -91,49 +250,42 @@ export default {
       }
     }
   }
-  .tab-content{
-        width: 88%;
-        height:5.12rem;
-        margin: .1rem auto;
-        border-radius: .04rem;
-        box-shadow: -2px 2px 2px #e5e5e5;
-        border-bottom: 1px solid #ccc;
-    >div{
-      &:first-child{
-            width: 70%;
-            height: 1.1rem;
-            float: left;
-             p{
-                height: .27rem;
-                line-height: .27rem;
-                font-size: .13rem;
-                padding-left: 6%;
-                font-weight: bold;
-            }
+  .tab-content {
+    width: 88%;
+    height: 1.3rem;
+    margin: 0.1rem auto;
+    border-radius: 0.04rem;
+    background: #fff;
+    box-shadow: -2px 2px 2px #e5e5e5;
+    border-bottom: 1px solid #ccc;
+    > div {
+      &:first-child {
+        width: 70%;
+        height: 1.1rem;
+        float: left;
+        p {
+          height: 0.27rem;
+          line-height: 0.27rem;
+          font-size: 0.13rem;
+          padding-left: 6%;
+          font-weight: bold;
+        }
       }
-      &:nth-child(2){
-          width: 30%;
-          height: 1.1rem;
-          float: left;
-          img{
-            width: .3rem;
-            height: .3rem;
-            border-radius: .02rem;
-            margin-top: .23rem;
-            margin-left: 47%;
-          }
-          button{
-            width: .44rem;
-            height: .2rem;
-            border: 1px solid #5b50d3;
-            text-align: center;
-            line-height: .2rem;
-            background: #fff;
-            border-radius: .03rem;
-            color: #5b50d3;
-            margin-left: 39%;
-            margin-top: .35rem;
-          }
+      &:nth-child(2) {
+        width: 30%;
+        height: 1.1rem;
+        float: left;
+        img {
+          width: 0.3rem;
+          height: 0.3rem;
+          border-radius: 0.02rem;
+          margin-top: 0.23rem;
+          margin-left: 47%;
+        }
+        button {
+          margin-left: 20%;
+          margin-top: 0.35rem;
+        }
       }
     }
   }

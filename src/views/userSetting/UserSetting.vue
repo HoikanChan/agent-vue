@@ -144,6 +144,8 @@ export default {
       this.flag = false
     },
     tologin() {
+      AuthService.logout()
+      this.$store.dispatch('setUser', '')
       this.$router.push({ path: '/login' })
     },
     async updatePersonalInfo() {

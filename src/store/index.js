@@ -71,6 +71,9 @@ const store = new Vuex.Store({
     getBill(state) {
       return state.bill
     },
+    getUser(state) {
+      return state.user
+    },
     shoppingBills(state, getters) {
       let result = {}
       state.shoppingCart.forEach(product => {
