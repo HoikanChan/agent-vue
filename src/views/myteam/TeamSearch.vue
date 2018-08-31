@@ -42,13 +42,13 @@ export default {
           axios.get('http://124.200.40.10:17080/agent/api/v1/team/search?keyword='+text).then(res=>{
               
               console.log(res);
-              if(res.data.data[0]===''){
+              if(res.data.data===''){
                   this.hide=true
               }
               else{
                   this.message=res.data.data[0]
                   this.show=true
-                   this.hide=false
+                  this.hide=false
               }
           })
       }

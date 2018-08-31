@@ -23,11 +23,10 @@
             </div>
         </div>
         <div class="level">
-            <router-link to="#" @click="tabNow='partner'" v-for="(item,key) in member" :key="key">
+            <a @click="tabNow='partner'" v-for="(item,key) in member" :key="key">
                 <p class="first" >{{item.count}}</p>
-               
                 <p class="second">{{key}}</p>
-            </router-link>
+            </a>
             <!-- <router-link to="#">
                 <p class="first" @click="tabNow='all'">10</p>
                 <p class="second">总代</p>
@@ -80,7 +79,7 @@ export default {
         return{
             msg:'我的团队',
             list:[],
-            tabNow:'partner',
+            tabNow:['partner','all','big','vip'],
             referrer:'',
             direct:'',
             member:[]

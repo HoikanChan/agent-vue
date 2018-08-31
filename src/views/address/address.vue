@@ -7,7 +7,7 @@
     </x-header>
     <checker v-model="pickedAddressId" default-item-class="demo2-item" selected-item-class="selected" radio-required>
       <checker-item v-for="(item,index) in addresses" :key="index" :value="item.id" ref="dataInfo">
-        <div class="address-detail" style="width:91%;">
+        <div class="address-detail">
           <div class="checkbox-wrapper">
             <material-checkbox></material-checkbox>
           </div>
@@ -55,18 +55,23 @@ export default {
     }
   },
   mounted(){
-      axios.get('http://124.200.40.10:17080/agent/api/v1/address/list').then((response)=>{
+    this.getaddress()
+      
+  },
+  methods: {
+      getaddress(){
+        axios.get('http://124.200.40.10:17080/agent/api/v1/address/list').then((response)=>{
         console.log(response.data.data);
         this.addresses=response.data.data
       }).catch((error)=> {
         console.log(error);
       });
-  },
-  methods: {
+      },
       del(id){
         console.log(id)
         axios.get('http://124.200.40.10:17080/agent/api/v1/address/delete?id='+id).then((response)=>{
           console.log('删除成功！')
+          this.getaddress()
         }).catch((error)=>{
           console.log(error);
           console.log('删除失败！')
