@@ -289,7 +289,7 @@ export default {
         }
         button {
           margin-left: 20%;
-          margin-top: 0.35rem;
+          margin-top: 0.15rem;
         }
       }
     }
