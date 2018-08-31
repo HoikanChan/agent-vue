@@ -1,39 +1,56 @@
 <template>
     <div class='teamsearch'>
          <div class="search">
-            <input type="text" placeholder="搜索成员" @click="search" v-model='text' />
-            <span v-if='abandon' @click="$router.push({name:'myteam'})">取消</span>
-            <span v-else='abandon'>确定</span>
+            <input type="text" placeholder="搜索成员" v-model='text' />
+            <span v-if='abandon' @click='search_member()'>确定</span>
         </div>
-        <div class="detail">
+        <div class="detail" v-if='show'>
             <div class="one">
                 <img src="../../assets/images/4.jpg" />
                 <p>余生不送</p>
             </div>
             <div class="two">
-                <p class="phone">手机号码:<span>15797964844</span></p>
+                <p class="phone">手机号码:<span>{{message.mobile}}</span></p>
                 <p>代理等级:<span>总代</span></p>
                 <p>注册时间:<span>2017-10-12</span></p>
                 <p>本月业绩:<span>222222.00</span></p>
                 <p>累计业绩:<span>8888888.00</span></p>
             </div>
         </div>
+        <p v-if='hide' style='text-align:center;'>未搜索到相关成员</p>
     </div>
 </template>
 <script>
+import axios from 'axios'
 export default {
   data() {
     return {
       msg: '用户',
       text:'',
-      abandon:true
+      abandon:true,
+      show:false,
+      message:[],
+      hide:true
     }
   },
   mounted() {
   },
   methods:{
-      search(){
-          
+      search_member(){
+          var text = this.text;
+          var show = this.show;
+          axios.get('http://124.200.40.10:17080/agent/api/v1/team/search?keyword='+text).then(res=>{
+              
+              console.log(res);
+              if(res.data.data[0]===''){
+                  this.hide=true
+              }
+              else{
+                  this.message=res.data.data[0]
+                  this.show=true
+                   this.hide=false
+              }
+          })
       }
   }
 }
