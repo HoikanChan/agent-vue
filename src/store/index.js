@@ -11,12 +11,16 @@ const store = new Vuex.Store({
     loading: false,
     shoppingCart: [],
     address: null,
+    newAddress: null,
     user: null,
     bill: null
   },
 
   mutations: {
     setAddress: (state, address) => {
+      state.address = address
+    },
+    setNewAddress: (state, address) => {
       state.address = address
     },
     //添加购物车
@@ -56,6 +60,9 @@ const store = new Vuex.Store({
     setAddress: (state, address) => {
       commit('setAddress', address)
     },
+    setNewAddress: ({ commit }, address) => {
+      commit('setNewAddress', address)
+    },
     setUser({ commit }, user) {
       commit('setUser', user)
     },
@@ -66,6 +73,9 @@ const store = new Vuex.Store({
 
   getters: {
     getAddress(state) {
+      return state.address
+    },
+    getNewAddress(state) {
       return state.address
     },
     getBill(state) {

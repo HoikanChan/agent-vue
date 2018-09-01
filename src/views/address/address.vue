@@ -1,30 +1,33 @@
 <template>
   <div class="address">
-    <x-header :left-options="{backText: ''}">
+    <x-header :left-options="{backText: ''}" @on-click-back="$router.push({name:'buy'})">
       <span>收货地址</span>
+      <!-- <x-icon slot="overwrite-left" type="ios-arrow-back" size="35" style="position:relative;top:-8px;left:-3px;" @click="$router.push({name:'buy'})"></x-icon> -->
       <!-- <x-icon slot="right" type="more" size="35" style="fill:#333;position:relative;top:-8px;left:-3px;"></x-icon> -->
       <i style="float:right;position: absolute;left: 85%;font-size:.15rem;color:#7e74ea;" @click="toggleEdit()">{{isEditing?"完成":"编辑"}}</i>
     </x-header>
-    <checker v-model="pickedAddressId" default-item-class="demo2-item" selected-item-class="selected" radio-required>
-      <checker-item v-for="(item,index) in addresses" :key="index" :value="item.id" ref="dataInfo">
-        <div class="address-detail">
-          <div class="checkbox-wrapper">
-            <material-checkbox></material-checkbox>
-          </div>
-          <p>
-            <span>收货人：{{item.userName}}</span>
-            <span>电话号码：{{item.telNumber}}</span>
-          </p>
-          <p style="padding-bottom:.15rem;">
-            <span>收货地址：{{item.provinceName}}{{item.cityName}}{{item.countyName}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-          </p>
-          <div class='editer' v-if="isEditing">
-            <span style="padding-right:10%;" @click.stop="editer(item.id)">修改</span>
-            <span style="padding-right:10%;" @click.stop="del(item.id)">删除</span>
+    <div class="content">
+      <checker v-model="pickedAddressId" default-item-class="demo2-item" selected-item-class="selected" radio-required>
+        <checker-item v-for="(item,index) in addresses" :key="index" :value="item.id" ref="dataInfo">
+          <div class="address-detail">
+            <div class="checkbox-wrapper">
+              <material-checkbox></material-checkbox>
             </div>
-        </div>
-      </checker-item>
-    </checker>
+            <p>
+              <span>收货人：{{item.userName}}</span>
+              <span>电话号码：{{item.telNumber}}</span>
+            </p>
+            <p style="padding-bottom:.15rem;">
+              <span>收货地址：{{item.provinceName}}{{item.cityName}}{{item.countyName}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            </p>
+            <div class='editer' v-if="isEditing">
+              <span style="padding-right:10%;" @click.stop="editer(item)">修改</span>
+              <span style="padding-right:10%;" @click.stop="del(item.id)">删除</span>
+            </div>
+          </div>
+        </checker-item>
+      </checker>
+    </div>
     <div class="foot_add" @click="$router.push({name:'addAddress'})">添加收货地址</div>
   </div>
 </template>
@@ -47,7 +50,7 @@ export default {
       },
       popShow: false,
       addresses: [],
-      isEditing:false
+      isEditing: false
     }
   },
   watch: {
@@ -58,63 +61,80 @@ export default {
       )
     }
   },
-  mounted(){
+  mounted() {
     this.getaddress()
-      
+    if (this.$store.getters.getAddress) {
+      this.pickedAddressId = this.$store.getters.getAddress.id
+    }
+  },
+  update() {
+    this.getaddress()
+    if (this.$store.getters.getAddress) {
+      this.pickedAddressId = this.$store.getters.getAddress.id
+    }
   },
   methods: {
-      getaddress(){
-        axios.get('http://124.200.40.10:17080/agent/api/v1/address/list').then((response)=>{
-        console.log(response.data.data);
-        this.addresses=response.data.data
-      }).catch((error)=> {
-        console.log(error);
-      });
-      },
-      del(id){
-        console.log(id)
-        axios.get('http://124.200.40.10:17080/agent/api/v1/address/delete?id='+id).then((response)=>{
+    getaddress() {
+      axios
+        .get('http://124.200.40.10:17080/agent/api/v1/address/list')
+        .then(response => {
+          console.log(response.data.data)
+          this.addresses = response.data.data
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
+    del(id) {
+      console.log(id)
+      axios
+        .get('http://124.200.40.10:17080/agent/api/v1/address/delete?id=' + id)
+        .then(response => {
           console.log('删除成功！')
           this.getaddress()
-        }).catch((error)=>{
-          console.log(error);
+        })
+        .catch(error => {
+          console.log(error)
           console.log('删除失败！')
         })
-      },
-      editer(id){
-        axios.get('http://124.200.40.10:17080/agent/api/v1/address/detail?id='+id).then(res=>{
-          console.log(res.data.data);
-          localStorage.setItem('address',JSON.stringify(res.data.data))
-          this.$router.push({ path: '/addAddress' })
-        })
-      },
-      toggleEdit() {
-      this.isEditing = !this.isEditing
     },
+    editer(item) {
+      this.$router.push({
+        name: 'addAddress'
+      })
+      this.$store.dispatch('setNewAddress', item)
+    },
+    toggleEdit() {
+      this.isEditing = !this.isEditing
+    }
   }
 }
 </script>
 <style lang="less" scoped>
-.address-detail{
-    width: 90%;
-    padding: 0 5%;
-    background: #fff;
-    // height: 1.04rem;
-    font-weight: bold;
-    p{
-      &:nth-child(2){
-          display: inline-block;
-          height: .4;
-          line-height: .4rem;
-          margin-top:.05rem;
-      }
+.content {
+  margin-bottom: 0.5rem;
+}
+.address-detail {
+  width: 90%;
+  padding: 0 5%;
+  background: #fff;
+
+  // height: 1.04rem;
+  font-weight: bold;
+  p {
+    &:nth-child(2) {
+      display: inline-block;
+      height: 0.4;
+      line-height: 0.4rem;
+      margin-top: 0.05rem;
     }
-  .editer{
-    text-align:right;
-    color:#999;;
+  }
+  .editer {
     text-align: right;
-    height: .3rem;
-    line-height: .3rem;
+    color: #999;
+    text-align: right;
+    height: 0.3rem;
+    line-height: 0.3rem;
     // border-top:1px solid #ccc;
   }
 }
@@ -161,27 +181,27 @@ export default {
     }
   }
 }
-.foot_add{
-  width:100%;
-  height: .44rem;
-  line-height:.44rem;
-  text-align:center;
-  color:#fff;
-  font-size:.14rem;
-  background:#5b50d3;
-  position:fixed;
-  bottom:0;
+.foot_add {
+  width: 100%;
+  height: 0.44rem;
+  line-height: 0.44rem;
+  text-align: center;
+  color: #fff;
+  font-size: 0.14rem;
+  background: #5b50d3;
+  position: fixed;
+  bottom: 0;
 }
-.vux-checker-item{
-  width:100%;
+.vux-checker-item {
+  width: 100%;
 }
-.material-checkbox{
-  line-height:90px !important;
+.material-checkbox {
+  line-height: 90px !important;
 }
-.material-checkbox > span[data-v-3fe23622]::after{
-  top:30px !important;
+.material-checkbox > span[data-v-3fe23622]::after {
+  top: 30px !important;
 }
-.vux-checker-item{
-  border-bottom:1px solid #ccc;
+.vux-checker-item {
+  border-bottom: 1px solid #ccc;
 }
 </style>
