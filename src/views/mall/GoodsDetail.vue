@@ -84,11 +84,7 @@ export default {
         price: 45
       },
       showToast: false,
-      images: [
-        'http://placeholder.qiniudn.com/800x300/FF3B3B/ffffff',
-        'http://placeholder.qiniudn.com/800x300/FFEF7D/ffffff',
-        'http://placeholder.qiniudn.com/800x300/8AEEB1/ffffff'
-      ]
+      images: []
     }
   },
   methods: {
@@ -122,6 +118,9 @@ export default {
   async activated() {
     const id = this.$route.params.id
     this.goodsDetail = (await MallService.getGoodsDetail(id)).data.info
+    this.images = this.goodsDetail
+      ? this.goodsDetail.goodsImgList.map(i => i.imgUrl)
+      : []
     //可选规格组合
     this.productList = (await MallService.getGoodsDetail(
       id
@@ -154,6 +153,10 @@ export default {
 }
 </script>
 <style lang='less' scoped>
+img{
+  width: 100%;
+  height: auto;
+}
 .demo1-item {
   border: 1px solid #ececec;
   color: #aaa;
