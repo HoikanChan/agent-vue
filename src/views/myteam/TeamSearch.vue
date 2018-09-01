@@ -72,7 +72,7 @@ export default {
         margin-left: 4%;
         border-radius: 0.025rem;
         color: @color_1;
-        padding-left: 18%;
+        padding-left: 14%;
     }
     span {
         color: @color_2;
