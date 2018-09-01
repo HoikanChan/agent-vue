@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="level">
-            <a to="#" @click="switchTab(key,item)" v-for="(item,key) in member" :key="key">
+            <a to="#" @click="switchTab(key,item)" v-for="(item,key,index) in member" :key="key"  v-on:click="addClass(index)" v-bind:class="{ active:index==current}">
                 <p class="first" >{{item.count}}</p>
                
                 <p class="second">{{key}}</p>
@@ -50,7 +50,8 @@ export default {
       pickedTeam: {},
       referrer: '',
       direct: '',
-      member: []
+      member: [],
+      current:0
     }
   },
   components:{
@@ -60,6 +61,9 @@ export default {
     switchTab(tabName, item) {
       this.pickedTeam = item.users
       this.tabNow = tabName
+    },
+    addClass:function(index){
+        this.current=index;
     }
   },
   mounted() {
@@ -85,6 +89,9 @@ export default {
 }
 </script>
 <style lang="less">
+.active{
+  color: #5b50d3;
+}
 .myteam {
   .team_head {
     height: 0.44rem;
