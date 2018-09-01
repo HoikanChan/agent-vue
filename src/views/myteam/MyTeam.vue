@@ -1,64 +1,62 @@
 <template>
-    <div class="myteam">
-        <x-header :left-options="{backText: ''}">
-          <span>我的团队</span>
-          <!-- <x-icon slot="right" type="more" size="35" style="fill:#333;position:relative;top:-8px;left:-3px;"></x-icon> -->
-        </x-header>
-        <div class="agency">
-            <input @click="$router.push({name:'teamsearch'})" type="text" placeholder="搜索代理名称"/>
-            <img class="img" src="../../assets/images/team_search.png" />
-            <div class="realtion">
-                <p class="man">我的推荐人</p>
-                <img class="head" src="../../assets/images/20.jpg" />
-                <p class="mantwo">{{referrer}}</p>
-            </div>
-            <img class="relate" src="../../assets/images/relation.png" />
-             <div class="realtion_">
-                <p class="man_">直属上级</p>
-                <img class="head_" src="../../assets/images/20.jpg" />
-                <p class="mantwo_">{{direct}}</p>
-            </div>
-        </div>
-        <div class="level">
-            <a to="#" @click="switchTab(key,item)" v-for="(item,key,index) in member" :key="key"  v-on:click="addClass(index)" v-bind:class="{ active:index==current}">
-                <p class="first" >{{item.count}}</p>
-               
-                <p class="second">{{key}}</p>
-            </a>
-        </div>
-        <div>
-            <ul class="members">
-              
-                <li v-for="(item,key) in pickedTeam" :key="key" :value='item.id'>
-                  <router-link :to="`/member_detail/${item.id}`">
-                  <img class="jpg" src="../../assets/images/15.jpg" />
-                  <span>{{item.username}}</span>
-                  <img class="right" src="../../assets/images/right.png" />
-                  </router-link>
-                </li>
-                
-            </ul>
-            <div v-if="pickedTeam.length === 0" style="text-align:center"> 暂时没有数据</div>
-        </div>
+  <div class="myteam">
+    <x-header :left-options="{backText: ''}">
+      <span>我的团队</span>
+      <!-- <x-icon slot="right" type="more" size="35" style="fill:#333;position:relative;top:-8px;left:-3px;"></x-icon> -->
+    </x-header>
+    <div class="agency">
+      <input @click="$router.push({name:'teamsearch'})" type="text" placeholder="搜索代理名称" />
+      <img class="img" src="../../assets/images/team_search.png" />
+      <div class="realtion">
+        <p class="man">我的推荐人</p>
+        <img class="head" src="../../assets/images/20.jpg" />
+        <p class="mantwo">{{referrer}}</p>
+      </div>
+      <img class="relate" src="../../assets/images/relation.png" />
+      <div class="realtion_">
+        <p class="man_">直属上级</p>
+        <img class="head_" src="../../assets/images/20.jpg" />
+        <p class="mantwo_">{{direct}}</p>
+      </div>
     </div>
+    <div class="level">
+      <a to="#" @click="switchTab(key,item)" v-for="(item,key,index) in member" :key="key" v-on:click="addClass(index)" v-bind:class="{ active:index==current}">
+        <p class="first">{{item.count}}</p>
+
+        <p class="second">{{key}}</p>
+      </a>
+    </div>
+    <div>
+      <ul class="members">
+        <li v-for="(item,key) in pickedTeam" :key="key" :value='item.id'>
+          <router-link :to="`/member_detail/${item.id}`">
+            <img class="jpg" src="../../assets/images/15.jpg" />
+            <span>{{item.username}}</span>
+            <img class="right" src="../../assets/images/right.png" />
+          </router-link>
+        </li>
+      </ul>
+      <div v-if="pickedTeam.length === 0" style="text-align:center"> 暂时没有数据</div>
+    </div>
+  </div>
 </template>
 <script>
-import {XHeader} from 'vux';
+import { XHeader } from 'vux'
 import axios from 'axios'
 export default {
   data() {
     return {
       msg: '我的团队',
       list: [],
-      tabNow: 'partner',
+      tabNow: '官方合伙人',
       pickedTeam: {},
       referrer: '',
       direct: '',
       member: [],
-      current:0
+      current: 0
     }
   },
-  components:{
+  components: {
     XHeader
   },
   methods: {
@@ -66,8 +64,8 @@ export default {
       this.pickedTeam = item.users
       this.tabNow = tabName
     },
-    addClass:function(index){
-        this.current=index;
+    addClass: function(index) {
+      this.current = index
     }
   },
   mounted() {
@@ -86,6 +84,7 @@ export default {
             // console.log(result.data.data)
             this.member = result.data.data
             console.log(this.member)
+            this.pickedTeam = this.member[this.tabNow].users
             // console.log(JSON.stringify(this.member))
           })
       })
@@ -93,7 +92,7 @@ export default {
 }
 </script>
 <style lang="less">
-.active{
+.active {
   color: #5b50d3;
 }
 .myteam {

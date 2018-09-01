@@ -23,6 +23,7 @@
           </div>
         </div>
       </div>
+    <div v-if="goodsList.length === 0" style="text-align:center;padding:2em;"> 暂时没有数据</div>
     </div>
     <div class="search_goods" v-else>
       <div class="hot_search">
