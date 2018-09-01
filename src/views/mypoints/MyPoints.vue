@@ -1,11 +1,11 @@
 <template>
   <div class="mypoints">
     <x-header :left-options="{backText: ''}">
-          <span>我的积分</span>
-          <!-- <x-icon slot="right" type="more" size="35" style="fill:#333;position:relative;top:-8px;left:-3px;"></x-icon> -->
-        </x-header>
+      <span>我的积分</span>
+      <!-- <x-icon slot="right" type="more" size="35" style="fill:#333;position:relative;top:-8px;left:-3px;"></x-icon> -->
+    </x-header>
     <div class="point_body">
-      <p>22222222
+      <p>{{mypoints.credit}}
         <span>元</span>
       </p>
       <div class="detail">
@@ -15,12 +15,12 @@
     </div>
     <div class="date">
       <div class="time">
-        <h3>本月</h3>
+        <h3>{{pickedTime}}</h3>
         <p>支出
-          <span>220.00</span>
+          <span>{{mypointsinfo.outTotalCredit}}</span>
         </p>
         <p>收入
-          <span>220.00</span>
+          <span>{{mypointsinfo.inTotalCredit}}</span>
         </p>
       </div>
       <div class="rili">
@@ -28,30 +28,24 @@
       </div>
     </div>
     <div class="all_recode">
-      <p @click="show=true">{{pickedTypeTitle}}<img src="../../assets/images/style.png" /></p>
-      <div class="months">
-        <h4>{{pickedTime}}</h4>
-        <p>支出
-          <span>220.00</span>
-        </p>
-        <p>收入
-          <span>220.00</span>
-        </p>
-      </div>
+      <p @click="show=true" :key="key" style="border-bottom:solid 1px #ccc">{{pickedTypeTitle}}
+        <img src="../../assets/images/style.png" /></p>
       <ul>
-        <li v-for="(item,key) in records" :key="key">
-          <p class="type">{{item.type}}
-            <span>{{item.cost}}</span>
+        <li v-for="(item,key) in mypointsList" :key="key">
+          <p class="type">{{item.logTypeText}}
+            <span>{{item.credit}} </span>
           </p>
           <div class="time_balance">
-            <p class="clock">{{item.time}}
+            <p class="clock">{{item.createTime}}
             </p>
             <span>剩余:
-              <i>{{item.balance}}</i>
+              <i>{{item.inUserCredit || '无'}}</i>
             </span>
           </div>
-          <p class="pay">{{item.comment}}</p>
+          <p class="pay">{{item.statusText}}</p>
         </li>
+        <div v-if="mypointsList.length === 0" style="text-align:center;padding:2em;"> 暂时没有数据</div>
+
       </ul>
     </div>
     <div class="shade" v-if="flag"></div>
@@ -102,7 +96,8 @@
 </template>
 <script>
 import ApplyService from 'services/ApplyService'
-
+import PointService from 'services/PointService'
+import { dateFormat } from 'vux'
 import {
   XInput,
   XTextarea,
@@ -133,6 +128,9 @@ export default {
     return {
       show: false,
       timeShow: false,
+      mypoints: null,
+      mypointsList: [],
+      mypointsinfo: null,
       chargeForm: {
         credit: null,
         postscript: ''
@@ -141,8 +139,8 @@ export default {
       flag: false,
       pickedType: 'all',
       popupPickedType: 'all',
-      pickedTime: '2018-01',
-      popupPickedTime: '2018-01',
+      pickedTime: '2018-08',
+      popupPickedTime: '2018-08',
       records: [
         {
           type: '其他类型',
@@ -161,10 +159,9 @@ export default {
       ],
       types: [
         { key: 'all', title: '全部类型' },
-        { key: 'point', title: '积分充值' },
-        { key: 'pay', title: '订单支付' },
-        { key: 'bonus', title: '分成奖励' },
-        { key: 'else', title: '其他' }
+        { key: '20', title: '积分充值' },
+        { key: '21', title: '分成奖励' },
+        { key: '22', title: '其他' }
       ]
     }
   },
@@ -180,10 +177,12 @@ export default {
     typeChoosed() {
       this.show = false
       this.pickedType = this.popupPickedType
+      this.updateList()
     },
     timeChoosed() {
       this.timeShow = false
       this.pickedTime = this.popupPickedTime
+      this.updateList()
     },
     async submit() {
       if (!this.chargeForm.credit) {
@@ -204,13 +203,26 @@ export default {
     async point() {
       this.flag = true
     },
-    hide: function() {
+    async updateList() {
+      this.mypointsList =
+        (await PointService.getList(this.popupPickedType, this.pickedTime))
+          .data || {}
+      this.mypointsinfo =
+        (await PointService.getInfo(this.popupPickedType, this.pickedTime))
+          .data || {}
+    },
+    hide() {
       this.flag = false
     }
   },
   async mounted() {
+    const now = dateFormat(new Date(), 'YYYY-MM')
+    this.pickedTime = now
+    this.popupPickedTime = now
     const result = (await ApplyService.chargeInfo()).data
     this.chargeInfo = result
+    this.mypoints = (await PointService.get()).data || {}
+    this.updateList()
   }
 }
 </script>
@@ -397,7 +409,7 @@ export default {
     left: 0;
     right: 0;
     width: 72%;
-    height: 3.4rem;
+    height: 3.5rem;
     margin: auto;
     display: block;
     border-radius: 0.05rem;

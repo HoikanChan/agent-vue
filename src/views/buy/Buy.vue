@@ -1,6 +1,6 @@
 <template>
   <div class="forget-psw-container">
-    <x-header :left-options="{backText: ''}">
+    <x-header :left-options="{backText: ''}" @on-click-back="$router.push({name:'mall'})">
       <span>确认下单</span>
       <x-icon slot="right" type="more" size="35" style="fill:#333;position:relative;top:-8px;left:-3px;"></x-icon>
     </x-header>
@@ -124,13 +124,10 @@ export default {
       toastShow: false,
       dialogShow: false,
       password: '',
-      bill: {},
       bills: {
         msg: '',
         deliveryTime: ''
       },
-      products: [],
-      address: {},
       postscript: ''
     }
   },
@@ -169,11 +166,20 @@ export default {
       }
     }
   },
-  mounted() {
-    const bill = this.$store.getters.getBill
-    this.bill = bill
-    this.address = bill.checkedAddress
-    this.products = bill.checkedGoodsList
+  computed: {
+    address: function() {
+      return (
+        this.$store.getters.getAddress ||
+        this.$store.getters.getBill.checkedAddress
+      )
+    },
+    products: function() {
+      const bill = this.$store.getters.getBill
+      return bill ? bill.checkedGoodsList : []
+    },
+    bill: function() {
+      return this.$store.getters.getBill || {}
+    }
   }
 }
 </script>

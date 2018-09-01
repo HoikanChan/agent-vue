@@ -26,6 +26,9 @@ export default {
   logout() {
     return Api().get('user/logout')
   },
+  userinfo() {
+    return Api().get('user/info')
+  },
   //忘记密码，获取短信验证码
   sendRecoverSMSCode(mobile) {
     return Api().get('user/recoverSMSCode', {

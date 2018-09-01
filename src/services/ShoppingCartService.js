@@ -12,13 +12,14 @@ export default {
   },
   //修改购物车商品数量
   update(product) {
+    console.log(product)
     return Api().post('cart/update', product)
   },
   //删除购物车记录
   //params cartIds -> Array
   // cartIds   修改记录id，多个id以逗号分隔
   delete(cartIds) {
-    return Api().post('cart/delete', { cartIds: '3945,3944' })
+    return Api().post('cart/delete', { cartIds: cartIds.join(',') })
   },
   //选中购物车记录
   check(cartIds, isChecked) {
