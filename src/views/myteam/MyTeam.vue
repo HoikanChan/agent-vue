@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="level">
-            <a to="#" @click="switchTab(key,item)" v-for="(item,key) in member" :key="key">
+            <a to="#" @click="switchTab(key,item)" v-for="(item,key,index) in member" :key="key"  v-on:click="addClass(index)" v-bind:class="{ active:index==current}">
                 <p class="first" >{{item.count}}</p>
                
                 <p class="second">{{key}}</p>
@@ -28,11 +28,15 @@
         </div>
         <div>
             <ul class="members">
-                <li v-for="(item,key) in pickedTeam" :key="key">
+              
+                <li v-for="(item,key) in pickedTeam" :key="key" :value='item.id'>
+                  <router-link :to="`/member_detail/${item.id}`">
                   <img class="jpg" src="../../assets/images/15.jpg" />
                   <span>{{item.username}}</span>
                   <img class="right" src="../../assets/images/right.png" />
+                  </router-link>
                 </li>
+                
             </ul>
             <div v-if="pickedTeam.length === 0" style="text-align:center"> 暂时没有数据</div>
         </div>
@@ -50,7 +54,8 @@ export default {
       pickedTeam: {},
       referrer: '',
       direct: '',
-      member: []
+      member: [],
+      current:0
     }
   },
   components:{
@@ -60,6 +65,9 @@ export default {
     switchTab(tabName, item) {
       this.pickedTeam = item.users
       this.tabNow = tabName
+    },
+    addClass:function(index){
+        this.current=index;
     }
   },
   mounted() {
@@ -85,6 +93,9 @@ export default {
 }
 </script>
 <style lang="less">
+.active{
+  color: #5b50d3;
+}
 .myteam {
   .team_head {
     height: 0.44rem;

@@ -1,8 +1,9 @@
 <template>
   <div class="mypoints">
-    <div class="mypoints_head">
-      <img class="back" src="../../assets/images/back.png" /> 我的积分
-    </div>
+    <x-header :left-options="{backText: ''}">
+          <span>我的积分</span>
+          <!-- <x-icon slot="right" type="more" size="35" style="fill:#333;position:relative;top:-8px;left:-3px;"></x-icon> -->
+        </x-header>
     <div class="point_body">
       <p>22222222
         <span>元</span>
@@ -110,7 +111,8 @@ import {
   DatetimeView,
   Alert,
   Popup,
-  TransferDom
+  TransferDom,
+  XHeader
 } from 'vux'
 export default {
   directives: {
@@ -124,7 +126,8 @@ export default {
     XButton,
     Alert,
     XButton,
-    Popup
+    Popup,
+    XHeader
   },
   data() {
     return {
