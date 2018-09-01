@@ -7,13 +7,17 @@
     <group>
       <p class="avatar-cell">
         <span>头像</span>
-        <img src="../../assets/images/avatar.png" alt="">
+        <img :src="form.avatar || defaultAvatar" alt="">
       </p>
       <x-input placeholder-align="right" title="昵称" type="text" placeholder="请输入昵称" :required="true" ref="code" v-model="form.nickname">
       </x-input>
-      <x-input placeholder-align="right" title="性别" type="text" readonly :show-clear="false" placeholder="请输入性别" :required="true" v-model="form.gender">
-        <x-icon slot="right" type="ios-arrow-forward" style="margin-top: 6px;fill:#aaa" size="15" @click="sexShow = true"></x-icon>
-      </x-input>
+      <p class="avatar-cell">
+        <span>性别</span>
+        <span style="display:flex;align-items:center;" @click="showSexPopUp()">
+          <span style="color: #999;">{{sex}}</span>
+          <x-icon slot="right" type="ios-arrow-forward" style="fill:#aaa" size="15"></x-icon>
+        </span>
+      </p>
       <datetime title="生日" v-model="form.birthday" format="YYYY-MM-DD"></datetime>
       <!-- <x-input title="生日" type="text" placeholder="请输入生日" readonly :show-clear="false" :required="true" v-model="form.birthday">
         <x-icon slot="right" type="ios-arrow-forward" style="margin-top: 6px;fill:#aaa" size="15" @click="timeShow = true"></x-icon>
@@ -22,7 +26,7 @@
     <group style="margin-top: .1rem;">
       <x-input placeholder-align="right" readonly title="手机号码" type="text" placeholder="请输入手机号码" :required="true" v-model="form.mobile" is-type="china-mobile">
       </x-input>
-      <x-input placeholder-align="right" title="注册时间" type="text" readonly :show-clear="false" :required="true" v-model="form.createdAt">
+      <x-input placeholder-align="right" title="注册时间" type="text" readonly :show-clear="false" :required="true" v-model="form.registerTime">
       </x-input>
       <x-address ref="address" title="所在地" v-model="form.location" :list="addressData" placeholder="请选择地址">
         <x-button mini plain slot="left-text">取消</x-button>
@@ -73,6 +77,7 @@
 </template>
 <script>
 import AuthService from 'services/AuthenticationService'
+import defaultAvatar from 'assets/images/avatar.png'
 import Checkbox from 'components/Checkbox'
 import {
   XButton,
@@ -104,6 +109,12 @@ export default {
     Checker,
     CheckerItem
   },
+  computed: {
+    sex: function() {
+      const gender = this.sexes.find(i => i.value === this.form.gender)
+      return gender ? gender.title : '无信息'
+    }
+  },
   data() {
     return {
       flag: false,
@@ -112,21 +123,25 @@ export default {
       sexShow: false,
       timeShow: false,
       addressData: ChinaAddressV4Data,
-      sexes: [{ title: '男', value: '1' }, { title: '女', value: 2 }],
+      sexes: [{ title: '男', value: 1 }, { title: '女', value: 2 }],
       pickedSex: 1,
+      defaultAvatar: defaultAvatar,
       form: {
         avatar: '',
         nickname: 'faifai',
         gender: '1',
         birthday: '2018-03-14',
         mobile: '15655552222',
-        createdAt: '2018-02-13',
+        registerTime: '2018-02-13',
         location: [],
         isVerified: '未认证'
       }
     }
   },
   methods: {
+    showSexPopUp() {
+      this.sexShow = true
+    },
     open() {
       this.$refs.datetime.open()
     },
@@ -153,6 +168,7 @@ export default {
       const result = await AuthService.updatePersonalInfo({
         gender: this.form.gender,
         nickname: this.form.nickname,
+        birthday: this.form.birthday,
         location: this.$refs.address.nameValue
       })
       this.$vux.toast.show({
@@ -160,7 +176,18 @@ export default {
         type: result.errno ? 'warn' : 'success',
         text: result.errmsg
       })
+      this.upateInfo()
+    },
+    async upateInfo() {
+      this.form = (await AuthService.userinfo()).data
+      this.form.birthday = this.form.birthday.slice(0, -9)
+      this.form.location = this.form.location
+        ? this.form.location.split(' ')
+        : []
     }
+  },
+  async mounted() {
+    this.upateInfo()
   }
 }
 </script>
@@ -173,9 +200,25 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
   img {
     width: 0.5rem;
     cursor: pointer;
+  }
+  &:before {
+    content: ' ';
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 1px;
+    border-top: 1px solid #d9d9d9;
+    color: #d9d9d9;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+    left: 15px;
   }
 }
 .popup {

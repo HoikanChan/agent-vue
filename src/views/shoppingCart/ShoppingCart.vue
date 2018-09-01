@@ -6,7 +6,7 @@
       <p>不问明天</p>
       <span @click="toggleEdit">{{isEditing?"完成":"编辑"}}</span>
     </div>
-    <checker v-model="pickedIds" default-item-class="demo2-item" selected-item-class="selected" radio-required type="checkbox">
+    <checker v-model="pickedIds" default-item-class="demo2-item" selected-item-class="selected" radio-required type="checkbox" v-if="!isEditing">
       <checker-item v-for="(item,index) in products" :key="index" :value="item.id" @click.native.stop="checkProduct(item)">
         <div class="detail">
           <div class="checkbox-wrapper">
@@ -24,15 +24,45 @@
             <div class="price-info">
               <p class="price">￥{{item.retailPrice}}</p>
               <span class="number" v-if="!isEditing">×{{item.number}}</span>
-              <input-number size="mini" :value.sync="item.number" :min="1" v-else></input-number>
+              <div v-else>
+                <!-- <x-button mini type='warn' plain>删除</x-button> -->
+                <input-number size="mini" :value.sync="item.number" :min="1"></input-number>
+              </div>
+            </div>
+          </div>
+        </div>
+      </checker-item>
+    </checker>
+    <checker v-model="deleteIds" default-item-class="demo2-item" selected-item-class="selected" radio-required type="checkbox" v-else>
+      <checker-item v-for="(item,index) in products" :key="index" :value="item.id">
+        <div class="detail">
+          <div class="checkbox-wrapper">
+            <material-checkbox></material-checkbox>
+          </div>
+          <div><img :src="item.listPicUrl" /></div>
+          <div>
+            <p>{{item.goodsName}}
+              <span>(10支/一盒)</span>
+            </p>
+            <p>产品规格
+              <span>{{item.goodsSpecifitionNameValue}}</span>
+            </p>
+            <p></p>
+            <div class="price-info">
+              <p class="price">￥{{item.retailPrice}}</p>
+              <span class="number" v-if="!isEditing">×{{item.number}}</span>
+              <div v-else>
+                <!-- <x-button mini type='warn' plain>删除</x-button> -->
+                <input-number size="mini" :value.sync="item.number" :min="1"></input-number>
+              </div>
             </div>
           </div>
         </div>
       </checker-item>
     </checker>
     <div class="shopcart_footer ">
-      <material-checkbox class="checkbox " :value.sync="chooseAll" @click.native.stop="doChooseAll()">全选</material-checkbox>
-      <div class="close_price " @click="checkout ">结算</div>
+      <material-checkbox class="checkbox " :value.sync="chooseAll" @click.native.stop="doChooseAll()" v-if="!isEditing">全选</material-checkbox>
+      <div class="close_price " @click="checkout ">{{isEditing?'删除':'结算'}}</div>
       <div class="price_all ">
         <p>消耗积分：￥
           <span>{{total.checkedGoodsAmount}}</span>
@@ -43,7 +73,7 @@
   </div>
 </template>
 <script>
-import { XHeader, Checker, CheckerItem } from 'vux'
+import { XHeader, XButton, Checker, CheckerItem } from 'vux'
 import Checkbox from 'components/Checkbox'
 import InputNumber from 'components/InputNumber'
 import ShoppingCartService from 'services/ShoppingCartService'
@@ -51,6 +81,7 @@ import ShoppingCartService from 'services/ShoppingCartService'
 export default {
   components: {
     XHeader,
+    XButton,
     Checker,
     CheckerItem,
     InputNumber,
@@ -60,6 +91,8 @@ export default {
     return {
       pickedIds: [],
       chooseAll: false,
+      deletAll: false,
+      deleteIds: [],
       products: [],
       checked: true,
       isEditing: false,
@@ -90,9 +123,20 @@ export default {
         this.adjustChooseAll()
       }
     },
-    toggleEdit() {
-      if (this.isEditing) {
-        this.products.map(product => Sh)
+    async toggleEdit() {
+      if (this.isEditing === true) {
+        await Promise.all(
+          this.products.map(async item => {
+            console.log(item)
+            return await ShoppingCartService.update({
+              cartId: item.id,
+              goodsId: item.goodsId,
+              productId: item.productId,
+              number: item.number
+            })
+          })
+        )
+        this.updateCart()
       }
       this.isEditing = !this.isEditing
     },
@@ -117,7 +161,7 @@ export default {
     async doChooseAll() {
       if (this.flag) return
       this.flag = true
-      if (this.chooseAll === true) {
+      if (this.deletAll === true) {
         await ShoppingCartService.check(this.productIds, true)
       } else {
         this.pickedIds = []
@@ -126,22 +170,39 @@ export default {
       this.updateCart()
       this.flag = false
     },
-    async checkout() {
-      if (!this.pickedIds.length) {
-        this.$vux.toast.show({
-          width: '10em',
-          type: 'warn',
-          text: '请先选择商品'
-        })
-        return
+    //点击全选选择所有项目
+    async doDeleteAll() {
+      if (this.flag) return
+      this.flag = true
+      if (this.chooseAll === true) {
+        this.deleteIds = productIds
+      } else {
+        this.deleteIds = []
       }
-      this.$vux.loading.show({
-        text: 'Loading'
-      })
-      const result = await ShoppingCartService.checkout()
-      this.$store.dispatch('setBill', result.data)
-      this.$vux.loading.hide()
-      this.$router.push({ name: 'buy' })
+      this.updateCart()
+      this.flag = false
+    },
+    async checkout() {
+      if (this.isEditing) {
+        await ShoppingCartService.delete(this.deleteIds)
+        this.updateCart()
+      } else {
+        if (!this.pickedIds.length) {
+          this.$vux.toast.show({
+            width: '10em',
+            type: 'warn',
+            text: '请先选择商品'
+          })
+          return
+        }
+        this.$vux.loading.show({
+          text: 'Loading'
+        })
+        const result = await ShoppingCartService.checkout()
+        this.$store.dispatch('setBill', result.data)
+        this.$vux.loading.hide()
+        this.$router.push({ name: 'buy' })
+      }
     }
   }
 }
