@@ -19,6 +19,21 @@ export function timeAgo(time) {
   }
 }
 
+export function level(level) {
+  switch (Number(level)) {
+    case 4:
+      return '大区'
+    case 3:
+      return '大区'
+    case 2:
+      return '总代'
+    case 1:
+      return '官方合伙人'
+    default:
+      return '暂无'
+  }
+}
+
 /* 日期格式化*/
 export function formatDate(date, fmt) {
   date = new Date(date)

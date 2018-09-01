@@ -22,7 +22,7 @@
             </p>
             <p></p>
             <div class="price-info">
-              <p class="price">￥{{item.retailPrice}}</p>
+              <p class="price">￥{{item.marketPrice}}</p>
               <span class="number" v-if="!isEditing">×{{item.number}}</span>
               <div v-else>
                 <!-- <x-button mini type='warn' plain>删除</x-button> -->
@@ -49,7 +49,7 @@
             </p>
             <p></p>
             <div class="price-info">
-              <p class="price">￥{{item.retailPrice}}</p>
+              <p class="price">￥{{item.marketPrice}}</p>
               <span class="number" v-if="!isEditing">×{{item.number}}</span>
               <div v-else>
                 <!-- <x-button mini type='warn' plain>删除</x-button> -->
