@@ -1,7 +1,8 @@
 <template>
   <div class="myteam">
-    <x-header :left-options="{backText: ''}">
+    <x-header :left-options="{backText: ''}" @on-click-back="$router.push({name:'home'})">
       <span>我的团队</span>
+      <x-icon slot="overwrite-left" type="ios-arrow-back" size="30" style="position:relative;top:-8px;left:-3px;" @click="$router.push({name:'home'})"></x-icon>
       <!-- <x-icon slot="right" type="more" size="35" style="fill:#333;position:relative;top:-8px;left:-3px;"></x-icon> -->
     </x-header>
     <div class="agency">

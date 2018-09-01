@@ -31,7 +31,7 @@
             <div class="category">{{item.category}}</div>
           </div>
           <div class="foot">
-            <span class="price">￥{{item.retailPrice}}</span>
+            <span class="price">￥{{item.marketPrice}}</span>
             <span class="amount">x{{item.number}}</span>
           </div>
         </div>
@@ -55,7 +55,8 @@
         <strong>￥{{bill.goodsTotalPrice}}</strong>
       </p>
       <div class="total">
-        <span>共2件商品 消费积分：
+
+        <span>共{{bill.goodsTotalNumber}}件商品 消费积分：
           <strong>{{bill.orderTotalPrice}}</strong>
         </span>
       </div>

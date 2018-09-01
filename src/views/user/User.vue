@@ -2,8 +2,8 @@
   <div class="user">
     <div class="head">
       <div><img src="../../assets/images/13.jpg" /></div>
-      <p>不问明天</p>
-      <p>总代</p>
+      <p>{{$store.getters.getUser.username}}</p>
+      <p>{{$store.getters.getUser.userLevelId | level}}</p>
       <router-link to="/userSetting"><img class="set" src="../../assets/images/set.png" /></router-link>
       <router-link to="/messages"><img style="width:.2rem;height:.21rem;" class="code_" src="../../assets/images/message.png" /></router-link>
     </div>

@@ -24,9 +24,16 @@
           <p>手机号码:
             <span>{{item.applyUserTel}}</span>
           </p>
-          <p>升级等级:
-            <span>{{item.levelName}}</span>
+          <p v-if=" item.levelName">升级等级:
+            <span>{{item.levelName|| '无'}}</span>
           </p>
+          <p>订单类型:
+            <span>{{item.orderTypeText || '无'}}</span>
+          </p>
+          <p>审核状态:
+            <span>{{item.statusText|| '无'}}</span>
+          </p>
+          <p>时间：<span>{{item.createTime || '无'}}</span></p>
         </div>
         <div>
           <img :src="item.auditUserAvatar" />
@@ -43,9 +50,16 @@
           <p>手机号码:
             <span>{{item.applyUserTel}}</span>
           </p>
-          <p>升级等级:
-            <span>{{item.levelName}}</span>
+          <p v-if=" item.levelName">升级等级:
+            <span>{{item.levelName|| '无'}}</span>
           </p>
+          <p>订单类型:
+            <span>{{item.orderTypeText || '无'}}</span>
+          </p>
+          <p>审核状态:
+            <span>{{item.statusText|| '无'}}</span>
+          </p>
+          <p>时间：<span>{{item.createTime || '无'}}</span></p>
         </div>
         <div>
           <img :src="item.auditUserAvatar" />
@@ -217,7 +231,7 @@ export default {
       font-size: 0.14rem;
     }
   }
-  .tab-wrapper{
+  .tab-wrapper {
     padding-bottom: 1rem;
     background: #f6f6f6;
   }
@@ -227,7 +241,7 @@ export default {
     border-top: 1px solid #ccc;
     background: #fff;
     display: flex;
-        box-shadow: -2px 2px 2px #e5e5e5;
+    box-shadow: -2px 2px 2px #e5e5e5;
     > div {
       width: 50%;
       position: relative;
@@ -266,7 +280,6 @@ export default {
     > div {
       &:first-child {
         width: 70%;
-        height: 1.1rem;
         float: left;
         p {
           height: 0.27rem;
