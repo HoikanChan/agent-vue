@@ -1,15 +1,12 @@
 <template>
     <div class="myteam">
-        <div class="team_head">
-            <img class="back" src="../../assets/images/back.png" />
-            我的团队
-            <img class="cash" src="../../assets/images/team_cash.png" />
-            
-        </div>
+        <x-header :left-options="{backText: ''}">
+          <span>我的团队</span>
+          <!-- <x-icon slot="right" type="more" size="35" style="fill:#333;position:relative;top:-8px;left:-3px;"></x-icon> -->
+        </x-header>
         <div class="agency">
             <input @click="$router.push({name:'teamsearch'})" type="text" placeholder="搜索代理名称"/>
             <img class="img" src="../../assets/images/team_search.png" />
-            <!-- <span style="font-size:.16rem;color:#fff;float:right;">确定</span> -->
             <div class="realtion">
                 <p class="man">我的推荐人</p>
                 <img class="head" src="../../assets/images/20.jpg" />
@@ -30,18 +27,19 @@
             </a>
         </div>
         <div>
-            <ul class="members"  >
-                <li v-for="(item,key) in pickedTeam":key="key">
+            <ul class="members">
+                <li v-for="(item,key) in pickedTeam" :key="key">
                   <img class="jpg" src="../../assets/images/15.jpg" />
-                  <span>{{key}}</span>
+                  <span>{{item.username}}</span>
                   <img class="right" src="../../assets/images/right.png" />
                 </li>
             </ul>
-            <div v-if="pickedTeam.length === 0"> no record</div>
+            <div v-if="pickedTeam.length === 0" style="text-align:center"> 暂时没有数据</div>
         </div>
     </div>
 </template>
 <script>
+import {XHeader} from 'vux';
 import axios from 'axios'
 export default {
   data() {
@@ -54,6 +52,9 @@ export default {
       direct: '',
       member: []
     }
+  },
+  components:{
+    XHeader
   },
   methods: {
     switchTab(tabName, item) {
