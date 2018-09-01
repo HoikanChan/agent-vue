@@ -49,7 +49,7 @@
       <div @click="addGoods()">加入购物车</div>
       <div @click="$router.push({name:'buy'})">立即购买</div>
     </div>
-    <toast v-model="showToast" type="text" :time="800" is-show-mask text="请先选择规格" position="top" width='10em'/>
+    <toast v-model="showToast" type="text" :time="800" is-show-mask text="请先选择规格" position="top" width='10em' />
   </div>
 </template>
 <script>
@@ -119,7 +119,7 @@ export default {
       ).productId
     }
   },
-  async mounted() {
+  async activated() {
     const id = this.$route.params.id
     this.goodsDetail = (await MallService.getGoodsDetail(id)).data.info
     //可选规格组合
