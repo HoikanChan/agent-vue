@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <swiper auto height="2.08rem" dots-class="custom-bottom" dots-position="center">
-      <swiper-item class="swiper-demo-img" v-for="(item, index) in images" :key="index"><img :src="item"></swiper-item>
+      <swiper-item class="swiper-demo-img" v-for="(item, index) in images" :key="index"><img :src="item.imageUrl"></swiper-item>
     </swiper>
     <div class="nav">
       <div @click="$router.push({name:'myteam'})"><img src='../../assets/images/team.png' />
@@ -24,6 +24,7 @@
   </div>
 </template>
 <script>
+import axios from 'axios';
 import { Swiper, SwiperItem } from 'vux'
 export default {
   components: {
@@ -33,28 +34,24 @@ export default {
   data() {
     return {
       images: [
-        'http://placeholder.qiniudn.com/800x300/FF3B3B/ffffff',
-        'http://placeholder.qiniudn.com/800x300/FFEF7D/ffffff',
-        'http://placeholder.qiniudn.com/800x300/8AEEB1/ffffff'
+        
       ],
       title: '首页内容'
     }
   },
   mounted() {
-    // var mySwiper = new Swiper('.swiper-container', {
-    //   //autoplay: true,//可选选项，自动滑动
-    //   autoplay: {
-    //     delay: 1000 //1秒切换一次
-    //   },
-    //   loop: true,
-    //   pagination: {
-    //     el: '.swiper-pagination'
-    //   }
-    // })
+    axios.get('http://124.200.40.10:17080/agent/api/v1/adv/index').then(response=>{
+      // console.log(response)
+      this.images=response.data.data
+    })
   }
 }
 </script>
 <style scoped>
+img{
+  width: 100%;
+  height: auto;
+}
 .nav {
   width: 100%;
   height: 3.95rem;

@@ -6,25 +6,36 @@
         </x-header>
         <div class="cash_point">
             <p class="all">总业绩</p>
-            <p class="money">1213800.00<span>元</span></p>
+            <p class="money">{{performance.performance}}<span>元</span></p>
         </div>
         <ul class="team_grades">
-            <li class="first_month">07月01日到07月31日团队业绩<span>8888</span></li>
-            <li>08月01日到08月31日团队业绩<span>9999</span></li>
+            <li class="first_month" v-for="(item,index) in teamcash">{{item.months}}团队业绩<span>{{item.credit}}</span></li>
         </ul>
     </div>
 </template>
 <script>
+import axios from 'axios';
 import {XHeader} from 'vux';
 export default {
     data(){
         return{
-
+            performance:[],
+            teamcash:[]
         }
     },
     components:{
         XHeader
-    }
+    },
+    mounted() {
+        axios.get('http://124.200.40.10:17080/agent/api/v1/performance/info').then(res=>{
+            // console.log(res)
+            this.performance=res.data.data
+        })
+         axios.get('http://124.200.40.10:17080/agent/api/v1//performance/recordList').then(response=>{
+            // console.log(response)
+            this.teamcash=response.data.data
+        })
+    },
 }
 </script>
 <style lang="less">
