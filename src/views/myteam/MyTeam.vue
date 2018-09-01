@@ -28,11 +28,15 @@
         </div>
         <div>
             <ul class="members">
-                <li v-for="(item,key) in pickedTeam" :key="key">
+              
+                <li v-for="(item,key) in pickedTeam" :key="key" :value='item.id'>
+                  <router-link :to="`/member_detail/${item.id}`">
                   <img class="jpg" src="../../assets/images/15.jpg" />
                   <span>{{item.username}}</span>
                   <img class="right" src="../../assets/images/right.png" />
+                  </router-link>
                 </li>
+                
             </ul>
             <div v-if="pickedTeam.length === 0" style="text-align:center"> 暂时没有数据</div>
         </div>

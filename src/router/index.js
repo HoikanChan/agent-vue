@@ -116,7 +116,7 @@ const router = new Router({
       component: resolve => require(['../views/myteam/TeamSearch'], resolve)
     },
     {
-      path: '/member_detail',
+      path: '/member_detail/:id',
       name: 'member_detail',
       component: resolve => require(['../views/myteam/Member_Detail'], resolve)
     },
