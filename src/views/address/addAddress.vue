@@ -106,7 +106,8 @@ export default {
           countyName,
           provinceName,
           cityName,
-          detailInfo
+          detailInfo,
+          id: this.$store.getters.getNewAddress.id || null
         })
         this.$store.commit('setAddress', result.data)
         if (result.errno) {
@@ -131,7 +132,7 @@ export default {
   },
   computed: {
     newAddress: function() {
-      return this.$store.getters.getNewAddress
+      return this.$store.getters.getNewAddress || {}
     }
   },
   watch: {
@@ -153,7 +154,7 @@ body {
   background: #f8f8f8;
 }
 .address-form {
-  div {
+  > div {
     padding: 10px 15px;
     position: relative;
     display: flex;
@@ -204,19 +205,21 @@ body {
 }
 </style>
 <style lang="less">
-.address-form {
-  .weui-cells {
-    font-size: 0.13rem;
-    margin-top: 0;
-    label {
-      font-weight: bold;
+.address {
+  input {
+    text-align: right;
+  }
+  .weui-cell_access .weui-cell__ft:after {
+    right: -142px !important;
+  }
+  .address-form {
+    .weui-cells {
+      font-size: 0.13rem;
+      margin-top: 0;
+      label {
+        font-weight: bold;
+      }
     }
   }
-}
-.weui-cell_access .weui-cell__ft:after {
-  right: -142px !important;
-}
-.weui-cell {
-  // padding:0px !important;
 }
 </style>

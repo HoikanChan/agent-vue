@@ -28,7 +28,7 @@
         </checker-item>
       </checker>
     </div>
-    <div class="foot_add" @click="$router.push({name:'addAddress'})">添加收货地址</div>
+    <div class="foot_add" @click="addAddress">添加收货地址</div>
   </div>
 </template>
 <script>
@@ -61,13 +61,7 @@ export default {
       )
     }
   },
-  mounted() {
-    this.getaddress()
-    if (this.$store.getters.getAddress) {
-      this.pickedAddressId = this.$store.getters.getAddress.id
-    }
-  },
-  update() {
+  activated() {
     this.getaddress()
     if (this.$store.getters.getAddress) {
       this.pickedAddressId = this.$store.getters.getAddress.id
@@ -97,6 +91,10 @@ export default {
           console.log(error)
           console.log('删除失败！')
         })
+    },
+    addAddress() {
+      this.$store.dispatch('setNewAddress', '')
+      this.$router.push({ name: 'addAddress' })
     },
     editer(item) {
       this.$router.push({
