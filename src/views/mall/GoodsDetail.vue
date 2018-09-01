@@ -40,7 +40,7 @@
       <div class="goods-desc" v-html='goodsDetail.goodsDesc'></div>
     </div>
     <div class="goodsdetail_footer">
-      <div><img src="../../assets/images/shoppingcart_.png" />
+      <div><img style="margin-left:36%;" src="../../assets/images/service.png" />
         <p>客服</p>
       </div>
       <div @click="$router.push({name:'shoppingCart'})"><img src="../../assets/images/shoppingcart_.png" />

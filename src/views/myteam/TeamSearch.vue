@@ -8,7 +8,7 @@
         <div class="detail" v-if='show'>
             <div class="one">
                 <img src="../../assets/images/4.jpg" />
-                <p>余生不送</p>
+                <p>{{message.username}}</p>
             </div>
             <div class="two">
                 <p class="phone">手机号码:
@@ -18,7 +18,7 @@
                     <span>总代</span>
                 </p>
                 <p>注册时间:
-                    <span>2017-10-12</span>
+                    <span>{{message.registerTime}}</span>
                 </p>
                 <p>本月业绩:
                     <span>222222.00</span>
@@ -31,9 +31,9 @@
         <p v-if='hide' style='text-align:center;'>未搜索到相关成员</p>
     </div>
 </template>
+
 <script>
 import axios from 'axios'
-
 export default {
   data() {
     return {
