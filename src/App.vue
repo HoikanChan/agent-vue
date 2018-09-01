@@ -20,7 +20,7 @@ body {
   font-family: '苹方' !important;
 }
 #app {
-  height: 100vh;
+  min-height: 100vh;
   background: #f6f6f6;
 }
 button.round-btn {

@@ -1,7 +1,7 @@
 <template>
   <div class="myorder">
     <div class="myorder_head">
-      <img class="back" src="../../assets/images/back.png" /> 我的订单
+      <img class="back" src="../../assets/images/back.png" @click="$router.go(-1)"/> 我的订单
     </div>
     <div class="things">
       <a :class="{'active':tabNow === 1}" @click="tabNow=1">全部</a>
@@ -10,7 +10,7 @@
     </div>
     <div class="shoppings">
       <div class="first" v-if="tabNow ===1">
-        <div v-for="item in orders" :key="item.key">
+        <div class="oreder-item" v-for="item in orders" :key="item.key">
           <div class="shophead">
             <img src="../../assets/images/9.jpg" />
             <span>{{item.userName}}</span>
@@ -44,7 +44,7 @@
         <div class="norecord" v-if="orders.length === 0"> 暂无记录</div>
       </div>
       <div class="first" v-if="tabNow ===2">
-        <div v-for="item in toDeleverOrder" :key="item.key">
+        <div class="oreder-item" v-for="item in toDeleverOrder" :key="item.key">
           <div class="shophead">
             <img src="../../assets/images/9.jpg" />
             <span>{{item.userName}}</span>
@@ -78,7 +78,7 @@
         <div class="norecord" v-if="toDeleverOrder.length === 0"> 暂无记录</div>
       </div>
       <div class="first" v-if="tabNow ===3">
-        <div v-for="item in toReceiveOrder" :key="item.key">
+        <div class="oreder-item" v-for="item in toReceiveOrder" :key="item.key">
           <div class="shophead">
             <img src="../../assets/images/9.jpg" />
             <span>{{item.userName}}</span>
@@ -156,6 +156,11 @@ export default {
 </script>
 <style lang="less" scoped>
 .myorder {
+  padding-bottom: 1em;
+  .oreder-item {
+    margin-bottom: 1em;
+    box-shadow: -2px 2px 2px #e5e5e5;
+  }
   .myorder_head {
     height: 0.44rem;
     line-height: 0.44rem;
@@ -327,7 +332,7 @@ export default {
     border: 1px solid #5b50d3;
   }
 }
-.norecord{
+.norecord {
   text-align: center;
 }
 .active {

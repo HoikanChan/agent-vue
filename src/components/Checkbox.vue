@@ -1,7 +1,9 @@
 <template>
   <label class="material-checkbox" @click="updateValue" :class="{selected:value}">
     <input type="checkbox">
-    <span><slot></slot></span>
+    <span>
+      <slot></slot>
+    </span>
   </label>
 </template>
 <script>
@@ -58,34 +60,6 @@ export default {
     transform: scale(1);
     -ms-transform: scale(0);
     transition: opacity 0.5s, transform 0.5s;
-    // &:checked {
-    //   background-color: @background_color_2;
-    //   & + span {
-    //     &::before {
-    //       border-color: @border_color_1;
-    //       background-color: @background_color_2;
-    //     }
-    //     &::after {
-    //       border-color: @border_color_4;
-    //     }
-    //   }
-    //   &:active {
-    //     & + span {
-    //       &::before {
-    //         border-color: @border_color_2;
-    //         background-color: @background_color_1;
-    //       }
-    //     }
-    //   }
-    //   &:disabled {
-    //     & + span {
-    //       &::before {
-    //         border-color: @border_color_2;
-    //         background-color: @background_color_3;
-    //       }
-    //     }
-    //   }
-    // }
     &:disabled {
       opacity: 0;
       & + span {
@@ -94,20 +68,6 @@ export default {
           border-color: @border_color_3;
         }
       }
-    }
-    &:active {
-      & + span {
-        &::before {
-          border-color: @border_color_1;
-        }
-      }
-    }
-  }
-  &:active {
-    > input {
-      opacity: 1;
-      transform: scale(0);
-      transition: opacity 0s, transform 0s;
     }
   }
   > span {
