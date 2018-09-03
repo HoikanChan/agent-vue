@@ -552,5 +552,3 @@ export default {
   }
 }
 </style>
-
-

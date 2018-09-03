@@ -312,5 +312,3 @@ export default {
   color: #5b50d3;
 }
 </style>
-
-

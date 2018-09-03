@@ -43,4 +43,3 @@ div.bottom-part {
   margin-top: 18vh;
 }
 </style>
-
