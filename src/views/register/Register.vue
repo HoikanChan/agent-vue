@@ -19,7 +19,7 @@
       <x-input label-width="1rem" readonly title="注册等级" type="text" placeholder="VIP顾客" :required="true" ref="userLevel" v-model="form.userLevel">
         <x-icon slot="right" type="ios-arrow-forward" mini @click.native="show=true" size="15"></x-icon>
       </x-input>
-      <x-input label-width="1rem" title="推荐人" type="text" placeholder="请输入推荐人的名字" :required="true" ref="referralCode" v-model="form.referralCode" readOnly>
+      <x-input label-width="1rem" title="邀请码" type="text" placeholder="请输入推荐人的名字" readonly :required="true" ref="referralCode" v-model="form.referralCode" readOnly>
       </x-input>
       <x-input label-width="1rem" title="审核凭证" type="text" placeholder="请上传支付凭证图片" :required="true" ref="payOrder" v-model="form.payOrder">
       </x-input>
@@ -60,7 +60,9 @@ export default {
   },
   data() {
     return {
-      form: {},
+      form: {
+        referralCode: this.$route.query.referralCode || null
+      },
       popupPickedgrade: '',
       show: false,
       gradeList: [],
@@ -74,11 +76,20 @@ export default {
     }
   },
   methods: {
-    sendCode() {
+    async sendCode() {
       if (this.$refs.mobile.valid) {
         if (typeof this.countDown === 'number') return
         this.countDown = 60
-        AuthService.sendCode(this.form.mobile)
+        const result = await AuthService.sendCode(this.form.mobile)
+        if (result.errno) {
+          this.countDown = ''
+          this.$vux.toast.show({
+            width: '15em',
+            type: 'warn',
+            text: result.errmsg
+          })
+          return
+        }
         let interval = setInterval(() => {
           this.countDown--
           if (this.countDown === 0) {

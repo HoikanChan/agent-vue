@@ -183,7 +183,7 @@ export default {
     a {
       display: block;
       width: 17.2%;
-      height: 0.41rem;
+      height: 0.38rem;
       line-height: 0.41rem;
       text-align: center;
       float: left;
