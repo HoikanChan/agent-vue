@@ -1,9 +1,9 @@
 <template>
   <div class="user">
     <div class="head">
-      <div><img src="../../assets/images/13.jpg" /></div>
-      <p>{{$store.getters.getUser.username}}</p>
-      <p>{{$store.getters.getUser.userLevelId | level}}</p>
+      <div><img :src="user.avatar || defaultAvatar" alt=""></div>
+      <p>{{user.username}}</p>
+      <p>{{user.userLevelName}}</p>
       <router-link to="/userSetting"><img class="set" src="../../assets/images/set.png" /></router-link>
       <router-link to="/messages"><img style="width:.2rem;height:.21rem;" class="code_" src="../../assets/images/message.png" /></router-link>
     </div>
@@ -21,7 +21,7 @@
           <img src="../../assets/images/team_point.png" />
           <p>团队业绩</p>
         </li>
-        <li  @click="$router.push({name:'mypoints'})">
+        <li @click="$router.push({name:'mypoints'})">
           <img src="../../assets/images/point_user.png" />
           <p>我的积分</p>
         </li>
@@ -54,11 +54,21 @@
   </div>
 </template>
 <script>
+import AuthService from 'services/AuthenticationService'
+import defaultAvatar from 'assets/images/avatar.png'
+
 export default {
   data() {
     return {
-      msg: '用户'
+      msg: '用户',
+      defaultAvatar: defaultAvatar,
+      user: {}
     }
+  },
+  async mounted() {
+    const result = (await AuthService.userinfo()).data
+    console.log(result)
+    this.user = result || {}
   }
 }
 </script>

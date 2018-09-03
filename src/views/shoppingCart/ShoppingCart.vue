@@ -73,7 +73,7 @@
   </div>
 </template>
 <script>
-import { XHeader, XButton, Checker, CheckerItem } from 'vux'
+import { XHeader, XButton, Checker, CheckerItem, debounce } from 'vux'
 import Checkbox from 'components/Checkbox'
 import InputNumber from 'components/InputNumber'
 import ShoppingCartService from 'services/ShoppingCartService'
@@ -111,6 +111,7 @@ export default {
   },
   methods: {
     async updateCart() {
+      this.pickedIds = []
       const result = await ShoppingCartService.get()
       this.total = result.cartTotal
       this.products = result.cartList ? result.cartList : []
@@ -120,14 +121,13 @@ export default {
             this.pickedIds.push(product.id)
           }
         })
-        this.adjustChooseAll()
       }
+      this.adjustChooseAll()
     },
     async toggleEdit() {
       if (this.isEditing === true) {
         await Promise.all(
           this.products.map(async item => {
-            console.log(item)
             return await ShoppingCartService.update({
               cartId: item.id,
               goodsId: item.goodsId,
@@ -151,9 +151,10 @@ export default {
         this.chooseAll = false
       }
     },
-    async checkProduct(item) {
+    checkProduct: debounce(async function(item) {
+      if (this.flag) return
+      this.flag = true
       this.adjustChooseAll()
-      console.log(this.pickedIds, item.id)
       //点击的商品当前是否选中
       setTimeout(async () => {
         const isChecked = this.pickedIds.includes(item.id)
@@ -161,12 +162,13 @@ export default {
           .data
         this.total = result.cartTotal
       }, 100)
-    },
+      this.flag = false
+    }, 100),
     //点击全选选择所有项目
     async doChooseAll() {
       if (this.flag) return
       this.flag = true
-      if (this.deletAll === true) {
+      if (this.chooseAll === true) {
         await ShoppingCartService.check(this.productIds, true)
       } else {
         this.pickedIds = []
