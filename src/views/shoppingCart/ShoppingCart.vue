@@ -151,11 +151,15 @@ export default {
         this.chooseAll = false
       }
     },
-    checkProduct(item) {
+    async checkProduct(item) {
       this.adjustChooseAll()
+      console.log(this.pickedIds, item.id)
       //点击的商品当前是否选中
-      const isChecked = this.pickedIds.includes(item.id)
-      ShoppingCartService.check(item.id, isChecked)
+      setTimeout(async () => {
+        const isChecked = this.pickedIds.includes(item.id)
+        const result = (await ShoppingCartService.check(item.id, isChecked)).data
+        this.total = result.cartTotal
+      }, 100)
     },
     //点击全选选择所有项目
     async doChooseAll() {
