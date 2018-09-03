@@ -50,195 +50,190 @@
 </template>
 <script>
 export default {
-    data(){
-        return{
-
-        }
-    }
+  data() {
+    return {}
+  }
 }
 </script>
 <style lang="less">
-.order_detail{
-    .detail_head{
-        height: .44rem;
-        line-height: .44rem;
-        padding: 0 4.8%;
-        text-align: center;
-        font-size: .18rem;
-        border-bottom: 1px solid #ccc;
-        .back{
-            float: left;
-            width: .1rem;
-            height: .16rem;
-            margin-top: .15rem;
-           
-        }
+.order_detail {
+  .detail_head {
+    height: 0.44rem;
+    line-height: 0.44rem;
+    padding: 0 4.8%;
+    text-align: center;
+    font-size: 0.18rem;
+    border-bottom: 1px solid #ccc;
+    .back {
+      float: left;
+      width: 0.1rem;
+      height: 0.16rem;
+      margin-top: 0.15rem;
     }
-    .ordernumber{
-        height: .84rem;
-        background: url('../../assets/images/order_bg.png') no-repeat center/cover;
-        p{
-            font-size: .13rem;
-            color: #fff;
-            padding-left: 12%;
-            padding-top: .2rem;
-        }
-        .number{
-            padding-top: 0;
-        }
+  }
+  .ordernumber {
+    height: 0.84rem;
+    background: url('../../assets/images/order_bg.png') no-repeat center/cover;
+    p {
+      font-size: 0.13rem;
+      color: #fff;
+      padding-left: 12%;
+      padding-top: 0.2rem;
     }
-    .address{
-        height: 1.04rem;
-        padding: 0 4.8%;
-        background: #fff;
-        .top{
-            width: 100%;
-            height: .42rem;
-            p{
-            display: inline-block;
-            margin-left: 7.2%;
-            font-size: .13rem;
-            height: .22rem;
-            line-height: .22rem;
-            margin-top: .2rem;
-            font-weight: bold;
-            float: left;
-            }
-            .right{
-                float: right;
-            }
-        }
-        .loation{
-            width: 100%;
-            height: .5rem;
-            margin-top: .12rem;
-            img{
-                display: inline-block;
-                width: .17rem;
-                height: .22rem;
-                float: left;
-            }
-            .locate{
-                width: 93%;
-                height: .5rem;
-                float: right;
-                font-size: .13rem;
-                padding-left: 2%;
-                span{
-                    height: .15rem;
-                    line-height: .15rem;
-                }
-            }
-        }
-       
+    .number {
+      padding-top: 0;
     }
-    ul{
-        li{
-            height: 1.41rem;
-            padding: 0 4.8%;
-            border-bottom: 1px solid #ccc;
-            .left{
-                width: 1.1rem;
-                height: 1.1rem;
-                margin-top: .15rem;
-                float: left;
-                img{
-                    width: 1.1rem;
-                    height: 1.1rem;
-                }
-            }
-            .right{
-                float: right;
-                width: 60%;
-                height: 1.41rem;
-                .name{
-                    font-size: .14rem;
-                    margin-top: .12rem;
-                    font-weight: bold;
-                }
-                .msg{
-                    font-size: .13rem;
-                    color: #666;
-                    margin-top: .06rem;
-                }
-                .msg_{
-                    font-size: .13rem;
-                    color: #666;
-                }
-                .price{
-                    font-size: .2rem;
-                    color: #5b50d3;
-                    font-weight: bold;
-                    margin-top: .28rem;
-                    display: inline-block;
-                }
-                .number{
-                    float: right;
-                    margin-top: .28rem;
-                    font-size: .2rem;
-                }
-            }
-        }
+  }
+  .address {
+    height: 1.04rem;
+    padding: 0 4.8%;
+    background: #fff;
+    .top {
+      width: 100%;
+      height: 0.42rem;
+      p {
+        display: inline-block;
+        margin-left: 7.2%;
+        font-size: 0.13rem;
+        height: 0.22rem;
+        line-height: 0.22rem;
+        margin-top: 0.2rem;
+        font-weight: bold;
+        float: left;
+      }
+      .right {
+        float: right;
+      }
     }
-    .order_price{
-        height: .42rem;
-        border-bottom: 1px solid #ccc;
-        padding: 0 4.8%;
-        background: #fff;
-        p{
-            height: .42rem;
-            line-height: .42rem;
-            font-size: .13rem;
-            color: #666;
-            font-weight: bold;
-            span{
-                float: right;
-                font-weight: bold;
-                font-size: .14rem;
-                color: #5b50d3;
-            }
+    .loation {
+      width: 100%;
+      height: 0.5rem;
+      margin-top: 0.12rem;
+      img {
+        display: inline-block;
+        width: 0.17rem;
+        height: 0.22rem;
+        float: left;
+      }
+      .locate {
+        width: 93%;
+        height: 0.5rem;
+        float: right;
+        font-size: 0.13rem;
+        padding-left: 2%;
+        span {
+          height: 0.15rem;
+          line-height: 0.15rem;
         }
+      }
     }
-    .order_time{
-        height: .42rem;
-        border-bottom: 1px solid #ccc;
-        padding: 0 4.8%;
-        background: #fff;
-        p{
-            height: .42rem;
-            line-height: .42rem;
-            font-size: .13rem;
-            color: #666;
-            font-weight: bold;
-            span{
-                float: right;
-                font-weight: bold;
-                font-size: .14rem;
-                color: #666;
-                i{
-                    font-weight: bold;
-                }
-            }
+  }
+  ul {
+    li {
+      height: 1.41rem;
+      padding: 0 4.8%;
+      border-bottom: 1px solid #ccc;
+      .left {
+        width: 1.1rem;
+        height: 1.1rem;
+        margin-top: 0.15rem;
+        float: left;
+        img {
+          width: 1.1rem;
+          height: 1.1rem;
         }
+      }
+      .right {
+        float: right;
+        width: 60%;
+        height: 1.41rem;
+        .name {
+          font-size: 0.14rem;
+          margin-top: 0.12rem;
+          font-weight: bold;
+        }
+        .msg {
+          font-size: 0.13rem;
+          color: #666;
+          margin-top: 0.06rem;
+        }
+        .msg_ {
+          font-size: 0.13rem;
+          color: #666;
+        }
+        .price {
+          font-size: 0.2rem;
+          color: #5b50d3;
+          font-weight: bold;
+          margin-top: 0.28rem;
+          display: inline-block;
+        }
+        .number {
+          float: right;
+          margin-top: 0.28rem;
+          font-size: 0.2rem;
+        }
+      }
     }
-    .buyer{
-        height: .68rem;
-        background: #fff;
-        padding: 0 4.8%;
-        h3{
-            display: inline-block;
-            height: .17rem;
-            line-height: .17rem;
-            padding-top: .13rem;
-        }
-        p{
-            display: inline-block;
-            padding-left: 1%;
-        }
+  }
+  .order_price {
+    height: 0.42rem;
+    border-bottom: 1px solid #ccc;
+    padding: 0 4.8%;
+    background: #fff;
+    p {
+      height: 0.42rem;
+      line-height: 0.42rem;
+      font-size: 0.13rem;
+      color: #666;
+      font-weight: bold;
+      span {
+        float: right;
+        font-weight: bold;
+        font-size: 0.14rem;
+        color: #5b50d3;
+      }
     }
+  }
+  .order_time {
+    height: 0.42rem;
+    border-bottom: 1px solid #ccc;
+    padding: 0 4.8%;
+    background: #fff;
+    p {
+      height: 0.42rem;
+      line-height: 0.42rem;
+      font-size: 0.13rem;
+      color: #666;
+      font-weight: bold;
+      span {
+        float: right;
+        font-weight: bold;
+        font-size: 0.14rem;
+        color: #666;
+        i {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+  .buyer {
+    height: 0.68rem;
+    background: #fff;
+    padding: 0 4.8%;
+    h3 {
+      display: inline-block;
+      height: 0.17rem;
+      line-height: 0.17rem;
+      padding-top: 0.13rem;
+    }
+    p {
+      display: inline-block;
+      padding-left: 1%;
+    }
+  }
 }
-ul li:last-child{
-    border-bottom: none;
+ul li:last-child {
+  border-bottom: none;
 }
 </style>
-

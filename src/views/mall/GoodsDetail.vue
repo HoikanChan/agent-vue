@@ -153,7 +153,7 @@ export default {
 }
 </script>
 <style lang='less' scoped>
-img{
+img {
   width: 100%;
   height: auto;
 }

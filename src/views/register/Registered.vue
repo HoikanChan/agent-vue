@@ -56,4 +56,3 @@ div.bottom-part {
   margin-top: 1.92rem;
 }
 </style>
-

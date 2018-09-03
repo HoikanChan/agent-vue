@@ -157,7 +157,8 @@ export default {
       //点击的商品当前是否选中
       setTimeout(async () => {
         const isChecked = this.pickedIds.includes(item.id)
-        const result = (await ShoppingCartService.check(item.id, isChecked)).data
+        const result = (await ShoppingCartService.check(item.id, isChecked))
+          .data
         this.total = result.cartTotal
       }, 100)
     },

@@ -41,97 +41,101 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from 'axios'
 export default {
-    data(){
-        return{
-            member:[],
-            pickedTeam: {},
-            current:0
-        }
-    },
-    mounted() {
-         var id = this.$route.params.id;
-         axios.get('http://124.200.40.10:17080/agent/api/v1/team/teamOfChild?childId=100970').then(res=>{
-             console.log(res)
-             this.member=res.data.data
-         })
-    },
-     methods: {
+  data() {
+    return {
+      member: [],
+      pickedTeam: {},
+      current: 0
+    }
+  },
+  mounted() {
+    var id = this.$route.params.id
+    axios
+      .get(
+        'http://124.200.40.10:17080/agent/api/v1/team/teamOfChild?childId=100970'
+      )
+      .then(res => {
+        console.log(res)
+        this.member = res.data.data
+      })
+  },
+  methods: {
     switchTab(tabName, item) {
       this.pickedTeam = item.users
       this.tabNow = tabName
     },
-    addClass:function(index){
-        this.current=index;
+    addClass: function(index) {
+      this.current = index
     }
-  },
+  }
 }
 </script>
 <style lang="less">
-.active{
-    color: #5b50d3;
+.active {
+  color: #5b50d3;
 }
-.member{
-     .team_head{
-            height: .44rem;
-            text-align: center;
-            padding: 0 4.8%;
-            line-height: .44rem;
-            font-size: .16rem;
-            color: #000;
-            .back{
-                float: left;
-                width: .1rem;
-                height: .16rem;
-                margin-top: .15rem;
-            }
-            .cash{
-                float: right;
-                width: .2rem;
-                height: .2rem;
-                margin-top: .12rem;
-                margin-right: .01rem;
-            }
-        }
-        .detail{
-            width: 100%;
-            height: 1.53rem;
-            background: #5b50d3;
-            .one{
-                width: 40%;
-                height: 1.53rem;
-                float:left;
-                img{
-                    width: .62rem;
-                    height: .62rem;
-                    border-radius: 50%;
-                    border:1px solid #fff;
-                    margin-left:30%;
-                    margin-top:.35rem;
-                }
-                p{
-                    text-align:center;
-                    color:#fff;
-                    font-size:.15rem;
-                }
-            }
-            .two{
-                width:60%;
-                height:1.53rem;
-                float:left;
-                .phone{
-                    margin-top:.28rem;
-                }
-                p{
-                    color:#fff;
-                    margin-left:15.1%;
-                    margin-top:.01rem;
-                    font-size:.12rem;
-                }
-            }
-        }
-        .level {
+.member {
+  .team_head {
+    height: 0.44rem;
+    text-align: center;
+    padding: 0 4.8%;
+    line-height: 0.44rem;
+    font-size: 0.16rem;
+    color: #000;
+    .back {
+      float: left;
+      width: 0.1rem;
+      height: 0.16rem;
+      margin-top: 0.15rem;
+    }
+    .cash {
+      float: right;
+      width: 0.2rem;
+      height: 0.2rem;
+      margin-top: 0.12rem;
+      margin-right: 0.01rem;
+    }
+  }
+  .detail {
+    width: 100%;
+    height: 1.53rem;
+    background: #5b50d3;
+    .one {
+      width: 40%;
+      height: 1.53rem;
+      float: left;
+      img {
+        width: 0.62rem;
+        height: 0.62rem;
+        border-radius: 50%;
+        border: 1px solid #fff;
+        margin-left: 30%;
+        margin-top: 0.35rem;
+      }
+      p {
+        text-align: center;
+        color: #fff;
+        font-size: 0.15rem;
+      }
+    }
+    .two {
+      width: 60%;
+      height: 1.53rem;
+      float: left;
+      .phone {
+        margin-top: 0.28rem;
+      }
+      p {
+        color: #fff;
+        margin-left: 15.1%;
+        margin-top: 0.01rem;
+        font-size: 0.12rem;
+      }
+    }
+  }
+  .level {
     width: 100%;
     height: 0.71rem;
     background: #fff;
@@ -187,4 +191,3 @@ export default {
   }
 }
 </style>
-

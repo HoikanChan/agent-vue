@@ -19,12 +19,12 @@
     </div>
 </template>
 <script>
-import XHeader from 'vux';
+import XHeader from 'vux'
 export default {
   data() {
     return {}
   },
-  components:{
+  components: {
     XHeader
   }
 }
