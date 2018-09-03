@@ -263,23 +263,23 @@ export default {
 }
 .hot_topic {
   width: 100%;
-  border-left: 0.02rem solid #d60000;
+  border-left: 0.02rem solid #5b50d3;
   margin-left: 4.8%;
   margin-top: 0.2rem;
   padding-left: 0.9%;
 }
 .history_topic {
   width: 100%;
-  border-left: 0.02rem solid #d60000;
+  border-left: 0.02rem solid #5b50d3;
   margin-left: 4.8%;
   margin-top: 0.2rem;
   padding-left: 0.9%;
 }
 
 .category .wrap #category_nav li.active a {
-  border-bottom: 0.04rem solid #de3338;
-  padding: 0 0.1rem 0.08rem 0.1rem;
-  color: #de3338;
+  border-bottom: 0.04rem solid #5b50d3;
+  padding: 0 0.1rem 0.1rem 0.1rem;
+  color: #5b50d3;
 }
 a {
   color: #999;

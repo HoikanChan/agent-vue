@@ -7,14 +7,14 @@
     </swiper>
     <div class="goods_message">
       <p class="name">{{goodsDetail.goodsBrief}}
-        <span>(10支/盒)</span>
+        <!-- <span>(10支/盒)</span> -->
       </p>
       <p class="num">已售</p>
       <span>{{goodsDetail.sellVolume?goodsDetail.sellVolume:0}}</span>
       <p class="num" style="padding-left:6.4%">库存</p>
-      <span>{{goodsDetail.goodsNumber}}</span>
+      <span>{{pickedProduct?pickedProduct.goodsNumber:goodsDetail.goodsNumber}}</span>
       <div style="display:flex;justify-content:space-between;">
-        <p class="price">￥{{goodsDetail.memberPrice}}</p>
+        <p class="price">￥{{Number(pickedProduct?pickedProduct.price:goodsDetail.memberPrice)*amount | numFilter}}</p>
         <input-number size="mini" :value.sync="amount" :min="1"></input-number>
       </div>
     </div>
@@ -30,9 +30,9 @@
           <!-- <span>{{goodsDetail.goodsUnit?goodsDetail.goodsUnit:'暂无'}}</span> -->
         </p>
       </div>
-      <p>套盒
+      <!-- <p>套盒
         <span>乳液体</span>
-      </p>
+      </p> -->
     </div>
     <div class="goods_picture">
       <div class="topic_pic">产品详情</div>
@@ -89,10 +89,10 @@ export default {
   },
   methods: {
     async addGoods() {
-      if (this.pickedProductId) {
+      if (this.pickedProduct) {
         const result = await ShoppingCartService.add({
           goodsId: this.goodsDetail.id,
-          productId: this.pickedProductId,
+          productId: this.pickedProduct.productId,
           number: this.amount
         })
         this.$vux.toast.show({
@@ -106,26 +106,60 @@ export default {
     }
   },
   computed: {
-    pickedProductId: function() {
+    pickedProduct: function() {
       if (this.pickedSpec.some(i => i === '')) {
         return null
       }
       return this.productList.find(
         i => JSON.stringify(i.specIds) === JSON.stringify(this.pickedSpec)
-      ).productId
+      )
+    }
+  },
+  watch: {
+    pickedSpec: {
+      handler: function(newValue, oldValue) {
+        console.log(newValue, oldValue)
+        //js中数组是否包含另一个数组检测的方法
+        const isContained = (a, b) => {
+          if (!(a instanceof Array) || !(b instanceof Array)) return false
+          if (a.length < b.length) return false
+          var aStr = a.toString()
+          for (var i = 0, len = b.length; i < len; i++) {
+            if (aStr.indexOf(b[i]) == -1) return false
+          }
+          return true
+        }
+        newValue.forEach((newVal, index) => {
+          for (let i = 0; i < this.specificationList.length; i++) {
+            if (i !== index) {
+              for (let val of this.specificationList[i].valueList) {
+                const hasThisSpec = this.productList.some(item => {
+                  return isContained(item.specIds, [val.id, newVal])
+                })
+                val.disabled = !hasThisSpec
+              }
+            }
+          }
+        })
+      },
+      deep: true
     }
   },
   async activated() {
     const id = this.$route.params.id
-    this.goodsDetail = (await MallService.getGoodsDetail(id)).data.info
+    const result = (await MallService.getGoodsDetail(id)).data
+    if (!result) {
+      return
+    }
+    this.goodsDetail = result.info
     this.images = this.goodsDetail
       ? this.goodsDetail.goodsImgList.map(i => i.imgUrl)
       : []
     //可选规格组合
-    this.productList = (await MallService.getGoodsDetail(
-      id
-    )).data.productList.map(i => {
+    this.productList = result.productList.map(i => {
       return {
+        goodsNumber: i.goodsNumber,
+        price: i.memberPrice,
         productId: i.id,
         specIds: i.goodsSpecificationIds
           .split('_')
@@ -136,9 +170,7 @@ export default {
     //初始化，选择规格
     this.pickedSpec = this.productList[0].specIds.slice()
     //所有规格
-    this.specificationList = (await MallService.getGoodsDetail(
-      id
-    )).data.specificationList
+    this.specificationList = result.specificationList
     for (let spec of this.specificationList) {
       for (let val of spec.valueList) {
         const hasThisSpec = this.productList.some(item => {

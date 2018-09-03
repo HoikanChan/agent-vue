@@ -46,5 +46,9 @@ export default {
   // 更新用户信息
   updatePersonalInfo(form) {
     return Api().post('user/updatePersonal', form)
+  },
+  // 获取二维码
+  getQrCode() {
+    return Api().post('user/getQrCode')
   }
 }

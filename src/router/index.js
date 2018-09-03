@@ -181,7 +181,9 @@ router.beforeEach((to, from, next) => {
     !store.state.user &&
     to.name !== 'login' &&
     to.name !== 'forgetPassword' &&
-    to.name !== 'register'
+    to.name !== 'register' &&
+    to.name !== 'userSetting' &&
+    to.name !== 'mycode'
   ) {
     next({
       name: 'login'

@@ -1,31 +1,45 @@
 <template>
-    <div class="code_user">
-        <div class="code_top">
-            我的二维码
-            <img src="../../assets/images/back.png" />
-        </div>
-        <div>
-            <!-- <img src="../../assets/images/msg_code.png" /> -->
-            <div class="head_msg">
-                <div><img src="../../assets/images/20.jpg" /></div>
-                <div>
-                    <p>大傻子</p>
-                    <p>广州市</p>
-                </div>
-            </div>
-            <img class="msg_code" src="../../assets/images/msg_code.png" />
-            <p>扫一扫上面的二维码，可加盟代理</p>
-        </div>
+  <div class="code_user">
+    <div class="code_top">
+      我的二维码
+      <img src="../../assets/images/back.png" @click="$router.go(-1)"/>
     </div>
+    <div>
+      <!-- <img src="../../assets/images/msg_code.png" /> -->
+      <div class="head_msg">
+        <div> <img :src="user.avatar || defaultAvatar" alt=""></div>
+        <div>
+          <p>{{user.nickname}}</p>
+          <p>{{user.location}}</p>
+        </div>
+      </div>
+      <img class="msg_code" :src="qrcode" />
+      <p>扫一扫上面的二维码，可加盟代理</p>
+    </div>
+  </div>
 </template>
 <script>
-import XHeader from 'vux'
+import AuthService from 'services/AuthenticationService'
+import defaultAvatar from 'assets/images/avatar.png'
+
+import { XHeader, XImg } from 'vux'
 export default {
   data() {
-    return {}
+    return {
+      qrcode: null,
+      user: {},
+      defaultAvatar: defaultAvatar
+    }
   },
   components: {
-    XHeader
+    XHeader,
+    XImg
+  },
+  async mounted() {
+    const result = (await AuthService.getQrCode()).data
+    this.qrcode = result ? result.qrcode : null
+    const user = (await AuthService.userinfo()).data
+    this.user = user ? user : {}
   }
 }
 </script>

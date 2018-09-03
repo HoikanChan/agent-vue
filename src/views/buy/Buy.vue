@@ -232,8 +232,8 @@ export default {
   }
   img {
     position: absolute;
-    left: -0.3rem;
-    top: 0.06rem;
+    left: -0.22rem;
+    top: 0rem;
   }
   .forward-icon {
     fill: #7e74ea;
@@ -344,6 +344,7 @@ export default {
       line-height: 0.5rem;
       font-size: 0.12rem;
       font-weight: bold;
+      float: right;
       span {
         float: right;
       }

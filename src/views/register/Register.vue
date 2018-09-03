@@ -8,7 +8,7 @@
       <x-input label-width="1rem" title="手机号码" placeholder="请输入手机号码" :required="true" ref="mobile" v-model="form.mobile" is-type="china-mobile">
       </x-input>
       <x-input label-width="1rem" title="验证码" type="text" placeholder="请输入验证码" :required="true" ref="code" v-model="form.SMSCode">
-        <x-button slot="right" type="primary" mini @click.native="sendCode">{{ countDown || '获取验证码'}}</x-button>
+        <x-button slot="right" type="primary" mini @click.native="sendCode">{{ countDown || '获取'}}</x-button>
       </x-input>
       <x-input label-width="1rem" title="用户名" type="text" placeholder="请输入2-5个汉字" :required="true" ref="cnName" v-model="form.username" :is-type="cnNameValidator">
       </x-input>
@@ -19,7 +19,7 @@
       <x-input label-width="1rem" readonly title="注册等级" type="text" placeholder="VIP顾客" :required="true" ref="userLevel" v-model="form.userLevel">
         <x-icon slot="right" type="ios-arrow-forward" mini @click.native="show=true" size="15"></x-icon>
       </x-input>
-      <x-input label-width="1rem" title="推荐人" type="text" placeholder="请输入推荐人的名字" :required="true" ref="referralCode" v-model="form.referralCode" readOnly>
+      <x-input label-width="1rem" title="邀请码" type="text" placeholder="请输入推荐人的名字" readonly :required="true" ref="referralCode" v-model="form.referralCode" readOnly>
       </x-input>
       <x-input label-width="1rem" title="审核凭证" type="text" placeholder="请上传支付凭证图片" :required="true" ref="payOrder" v-model="form.payOrder">
       </x-input>
@@ -60,7 +60,9 @@ export default {
   },
   data() {
     return {
-      form: {},
+      form: {
+        referralCode: this.$route.query.referralCode || null
+      },
       popupPickedgrade: '',
       show: false,
       gradeList: [],
@@ -74,11 +76,20 @@ export default {
     }
   },
   methods: {
-    sendCode() {
+    async sendCode() {
       if (this.$refs.mobile.valid) {
         if (typeof this.countDown === 'number') return
         this.countDown = 60
-        AuthService.sendCode(this.form.mobile)
+        const result = await AuthService.sendCode(this.form.mobile)
+        if (result.errno) {
+          this.countDown = ''
+          this.$vux.toast.show({
+            width: '15em',
+            type: 'warn',
+            text: result.errmsg
+          })
+          return
+        }
         let interval = setInterval(() => {
           this.countDown--
           if (this.countDown === 0) {
@@ -138,11 +149,39 @@ export default {
   .weui-cells {
     font-size: 0.15rem !important;
     box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
-      0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+      10px 10px 10px 0px rgba(189, 188, 188, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+    border-radius: .03rem;
   }
 }
 </style>
 <style lang="less">
+.weui-label{
+    color: #333;
+    font-size: .13rem;
+    font-weight: bold;
+}
+.weui-input{
+    color: #ccc !important;
+    font-size: .12rem !important;
+}
+.weui-btn_mini{
+    height: .28rem !important;
+    line-height: .28rem !important;
+    width: .45rem !important;
+    font-size: .12rem !important;
+    padding:0 !important;
+    margin:0 !important;
+    font-weight:bold;
+}
+.weui-btn_primary{
+  width:.74rem;
+}
+.weui-btn_plain-default{
+  color:#333;
+}
+#code{
+  width:.74rem;
+}
 .popup {
   .popup-header {
     display: flex;
