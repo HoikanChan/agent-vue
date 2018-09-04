@@ -8,7 +8,7 @@ export default () => {
     return res.data
   })
   api.interceptors.response.use(res => {
-    if (res.errno && res.errmsg === '请先登录') {
+    if (res.errno && res.errmsg.includes('登录')) {
       router.push({ name: 'login' })
     }
     return res

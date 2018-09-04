@@ -132,13 +132,12 @@ export default {
     }
   }
   .upgrade {
-    width: 100%;
     height: 1.63rem;
     background: #5b50d3;
+    display: flex;
     .rank {
-      width: 50%;
+      flex: 1;
       height: 1.63rem;
-      float: left;
       position: relative;
       .face {
         width: 0.54rem;
@@ -168,9 +167,8 @@ export default {
       }
     }
     .up {
-      width: 50%;
+      flex: 1;
       height: 1.63rem;
-      float: left;
       position: relative;
       .up_img {
         width: 0.82rem;

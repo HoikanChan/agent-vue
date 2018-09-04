@@ -41,7 +41,11 @@
             <!-- <router-link to="#">查看物流</router-link> -->
           </div>
         </div>
-        <div class="norecord" v-if="orders.length === 0"> 暂无记录</div>
+        <div class="norecord" v-if="orders.length === 0">
+          <img src="../../assets/images/noorder.png"/>
+          <p>你没有相关订单</p>
+          <p>可以去看看有哪些想买的！</p>
+        </div>
       </div>
       <div class="first" v-if="tabNow ===2">
         <div class="oreder-item" v-for="item in toDeleverOrder" :key="item.key">
@@ -75,7 +79,11 @@
             <!-- <router-link to="#">查看物流</router-link> -->
           </div>
         </div>
-        <div class="norecord" v-if="toDeleverOrder.length === 0"> 暂无记录</div>
+        <div class="norecord" v-if="toDeleverOrder.length === 0">
+          <img src="../../assets/images/noorder.png"/>
+          <p>你没有相关订单</p>
+          <p>可以去看看有哪些想买的！</p>
+        </div>
       </div>
       <div class="first" v-if="tabNow ===3">
         <div class="oreder-item" v-for="item in toReceiveOrder" :key="item.key">
@@ -109,7 +117,11 @@
             <!-- <router-link to="#">查看物流</router-link> -->
           </div>
         </div>
-        <div class="norecord" v-if="toReceiveOrder.length === 0"> 暂无记录</div>
+        <div class="norecord" v-if="toReceiveOrder.length === 0"> 
+          <img src="../../assets/images/noorder.png"/>
+          <p>你没有相关订单</p>
+          <p>可以去看看有哪些想买的！</p>
+        </div>
       </div>
     </div>
   </div>
@@ -334,6 +346,18 @@ export default {
 }
 .norecord {
   text-align: center;
+  img {
+    width: 1.58rem;
+    height: auto;
+    margin-top: 1.03rem;
+  }
+  p {
+    font-size: 0.15rem;
+    color: #9890ec;
+    &:nth-child(2) {
+      margin-top: 0.35rem;
+    }
+  }
 }
 .active {
   border-bottom: 0.04rem solid #5b50d3;

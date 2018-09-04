@@ -37,7 +37,8 @@ export default {
   },
   async mounted() {
     const result = (await AuthService.getQrCode()).data
-    this.qrcode = result ? result.qrcode : null
+    this.qrcode = result ? result.qrCode : null
+    console.log(result)
     const user = (await AuthService.userinfo()).data
     this.user = user ? user : {}
   }

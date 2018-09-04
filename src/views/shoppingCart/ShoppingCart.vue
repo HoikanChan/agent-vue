@@ -1,9 +1,9 @@
 <template>
   <div class="shoppingcart">
     <x-header :left-options="{backText: ''}">购物车</x-header>
-    <div class="editer">
+    <div class="editer" v-show="show">
       <img style="" src="../../assets/images/19.jpg" />
-      <p>不问明天</p>
+      <p>{{$store.getters.getUser.username}}</p>
       <span @click="toggleEdit">{{isEditing?"完成":"编辑"}}</span>
     </div>
     <checker v-model="pickedIds" default-item-class="demo2-item" selected-item-class="selected" radio-required type="checkbox" v-if="!isEditing">
@@ -60,7 +60,7 @@
         </div>
       </checker-item>
     </checker>
-    <div class="shopcart_footer ">
+    <div class="shopcart_footer " v-show="show">
       <material-checkbox class="checkbox " :value.sync="chooseAll" @click.native.stop="doChooseAll()" v-if="!isEditing">全选</material-checkbox>
       <div class="close_price " @click="checkout ">{{isEditing?'删除':'结算'}}</div>
       <div class="price_all ">
@@ -69,6 +69,11 @@
         </p>
         <p>不含运费</p>
       </div>
+    </div>
+    <div class="nothings" v-if="products.length === 0">
+        <img src="../../assets/images/noshoppings.png" />
+        <p>你的购物车没有商品</p>
+        <p>赶快去挑选吧！</p>
     </div>
   </div>
 </template>
@@ -98,7 +103,8 @@ export default {
       isEditing: false,
       num: 1,
       flag: false,
-      total: {}
+      total: {},
+      show: true
     }
   },
   computed: {
@@ -121,6 +127,8 @@ export default {
             this.pickedIds.push(product.id)
           }
         })
+      } else {
+        this.show = false
       }
       this.adjustChooseAll()
     },
@@ -234,7 +242,6 @@ export default {
       width: 0.9rem;
       height: 0.9rem;
       margin-left: 4%;
-      margin-top: 0.15rem;
       img {
         width: 100%;
         height: auto;
@@ -297,7 +304,7 @@ export default {
   height: 0.5rem;
   background: #fff;
   position: fixed;
-  bottom: 0.47rem;
+  bottom: 0.51rem;
   padding-left: 4%;
   .checkbox {
     position: absolute;
@@ -326,6 +333,24 @@ export default {
       }
     }
   }
+}
+.nothings {
+  text-align: center;
+  img {
+    width: 1.58rem;
+    height: auto;
+    margin-top: 1.08rem;
+  }
+  p {
+    font-size: 0.15rem;
+    color: #9890ec;
+    &:nth-child(2) {
+      margin-top: 0.13rem;
+    }
+  }
+}
+.vux-header {
+  border-bottom: 1px solid #ccc;
 }
 </style>
 

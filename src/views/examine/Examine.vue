@@ -301,8 +301,8 @@ export default {
           margin-left: 47%;
         }
         button {
-          margin-left: 20%;
-          margin-top: 0.15rem;
+          margin-left: 37%;
+          margin-top: 0.36rem;
         }
       }
     }
@@ -310,5 +310,9 @@ export default {
 }
 .show {
   color: #5b50d3;
+}
+.weui-btn_mini {
+  padding: 0 0.1rem;
+  line-height: 0.2rem;
 }
 </style>

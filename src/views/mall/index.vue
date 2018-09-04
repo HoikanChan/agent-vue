@@ -5,7 +5,7 @@
       <span @click="shop">取消</span>
     </div>
     <div class="wrap" v-if="goods">
-      <ul class="category_nav" id="category_nav">
+      <ul class="category_nav" id="category_nav" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="5">
         <li v-for="item in categories" :key="item.id" v-bind:class="[selectedTabId===item.id ? activeClass : '']" @click="selectedTabId=item.id">
           <a href="#">
             {{item.name}}
@@ -23,7 +23,7 @@
           </div>
         </div>
       </div>
-    <div v-if="goodsList.length === 0" style="text-align:center;padding:2em;"> 暂时没有数据</div>
+      <div v-if="goodsList.length === 0" style="text-align:center;padding:2em;"> 暂时没有数据</div>
     </div>
     <div class="search_goods" v-else>
       <div class="hot_search">
@@ -47,9 +47,12 @@
 import Footer from '../../components/public/Footer.vue'
 import MallService from 'services/MallService'
 import GoodsItem from 'components/GoodsItem'
-
+import infiniteScroll from 'vue-infinite-scroll'
 export default {
   name: 'mall-index',
+  directives: {
+    infiniteScroll
+  },
   components: {
     'v-footer': Footer,
     GoodsItem
@@ -59,21 +62,11 @@ export default {
       title: '分类',
       activeClass: 'active',
       selectedTabId: '',
-      goodsList: [
-        {
-          poiId: 3271694,
-          frontImg:
-            'http://p0.meituan.net/600.600/deal/__38666717__4597520.jpg',
-          title: '拉图牛排馆',
-          avgScore: 3.9,
-          allCommentNum: 3561,
-          address: '北站/建设路建设路35-1号后座（金城广场斜对面）',
-          avgPrice: 45,
-          dealList: []
-        }
-      ],
+      busy: false,
+      goodsList: [],
       categories: [],
-      goods: true
+      goods: true,
+      page: 1
     }
   },
   methods: {
@@ -82,12 +75,26 @@ export default {
     },
     shop: function() {
       this.goods = true
+    },
+    loadMore: async function() {
+      this.busy = true
+      const result = (await MallService.getGoodsList(
+        this.selectedTabId,
+        this.page++
+      )).data
+      this.goodsList = [...this.goodsList, ...result]
+      this.busy = !result.length
+      // if (!result.length) {
+      //   this.page = 1
+      //   this.busy = false
+      // }
     }
   },
   watch: {
     selectedTabId: async function(val) {
-      const goodsList = (await MallService.getGoodsList(val)).data
-      this.goodsList = goodsList
+      this.page = 1
+      this.goodsList = []
+      this.busy = false
     }
   },
   async mounted() {
@@ -100,12 +107,10 @@ export default {
         }
       ].concat(categoryList)
     }
-    const goodsList = (await MallService.getGoodsList()).data
-    this.goodsList = goodsList
   }
 }
 </script>
-<style lang="less">
+<style lang="less" scoped>
 @import url('../../assets/css/all.css');
 
 @color_1: #b3b3b3;
@@ -134,14 +139,12 @@ export default {
 .warp {
   width: 100%;
   height: 0.44rem;
-  overflow-x: auto;
 }
 .category_nav {
   width: 100%;
   height: 0.44rem;
   background: #fff;
   border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
   li {
     width: 25%;
     height: 0.44rem;
@@ -156,16 +159,15 @@ export default {
   }
 }
 .goods {
-  width: 100%;
   height: auto;
-  overflow: hidden;
-  padding-bottom: 0.5rem;
+  overflow: scroll;
+  padding-bottom: 1rem;
   > div {
     width: 44%;
     height: 2.67rem;
     background: #fff;
     margin-top: 0.1rem;
-    &:nth-child(2n& + 1) {
+    &:nth-child(2n + 1) {
       margin-left: 4.8%;
       float: left;
     }
@@ -182,7 +184,6 @@ export default {
       }
     }
     .good_name {
-      width: 95%;
       height: 0.37rem;
       line-height: 0.37rem;
       font-size: 0.14rem;

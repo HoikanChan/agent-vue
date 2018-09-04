@@ -67,7 +67,6 @@ export default {
   },
   async mounted() {
     const result = (await AuthService.userinfo()).data
-    console.log(result)
     this.user = result || {}
   }
 }
