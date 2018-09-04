@@ -3,7 +3,7 @@
     <x-header :left-options="{backText: ''}">购物车</x-header>
     <div class="editer">
       <img style="" src="../../assets/images/19.jpg" />
-      <p>不问明天</p>
+      <p>{{$store.getters.getUser.username}}</p>
       <span @click="toggleEdit">{{isEditing?"完成":"编辑"}}</span>
     </div>
     <checker v-model="pickedIds" default-item-class="demo2-item" selected-item-class="selected" radio-required type="checkbox" v-if="!isEditing">

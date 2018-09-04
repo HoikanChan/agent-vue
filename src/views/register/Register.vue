@@ -19,7 +19,9 @@
       <x-input label-width="1rem" readonly title="注册等级" type="text" placeholder="VIP顾客" :required="true" ref="userLevel" v-model="form.userLevel">
         <x-icon slot="right" type="ios-arrow-forward" mini @click.native="show=true" size="15"></x-icon>
       </x-input>
-      <x-input label-width="1rem" title="邀请码" type="text" placeholder="请输入推荐人的名字" readonly :required="true" ref="referralCode" v-model="form.referralCode" readOnly>
+      <x-input label-width="1rem" title="邀请人" type="text" placeholder="请输入推荐人的名字" readonly ref="referralName" v-model="referralName">
+      </x-input>
+      <x-input label-width="1rem" title="邀请码" type="text" placeholder="请输入推荐人的名字邀请码" :readonly="!!form.referralCode" :required="true" ref="referralCode" v-model="form.referralCode">
       </x-input>
       <x-input label-width="1rem" title="审核凭证" type="text" placeholder="请上传支付凭证图片" :required="true" ref="payOrder" v-model="form.payOrder">
       </x-input>
@@ -63,6 +65,7 @@ export default {
       form: {
         referralCode: this.$route.query.referralCode || null
       },
+      referralName: this.$route.query.userName || null,
       popupPickedgrade: '',
       show: false,
       gradeList: [],
@@ -141,6 +144,7 @@ export default {
   async mounted() {
     const result = (await AuthService.getGradeList()).data
     this.gradeList = result
+    console.log(this.$route.query)
   }
 }
 </script>

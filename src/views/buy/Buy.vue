@@ -44,7 +44,7 @@
       <x-input title="买家留言" v-model="postscript" type="text" placeholder="选填：对本次交易的说明"></x-input>
       <p>
         <span>商品总价</span>
-        <strong>￥0</strong>
+        <strong>￥{{bill.goodsTotalPrice}}</strong>
       </p>
       <p>
         <span>运费</span>
@@ -52,7 +52,7 @@
       </p>
       <p>
         <span>当前金额</span>
-        <strong>￥{{bill.goodsTotalPrice}}</strong>
+        <strong>￥{{bill.orderTotalPrice}}</strong>
       </p>
       <div class="total">
 
