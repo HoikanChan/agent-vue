@@ -5,7 +5,7 @@
       <span @click="shop">取消</span>
     </div>
     <div class="wrap" v-if="goods">
-      <ul class="category_nav" id="category_nav" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="5">
+      <ul class="category_nav" id="category_nav">
         <li v-for="item in categories" :key="item.id" v-bind:class="[selectedTabId===item.id ? activeClass : '']" @click="selectedTabId=item.id">
           <a href="#">
             {{item.name}}
@@ -16,7 +16,7 @@
     <div class="category_container" v-if="goods">
       <div class="shoppings">
         <div class="all">
-          <div class="goods">
+          <div class="goods" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="50">
             <div v-for="(item,index) in goodsList" :key="index">
               <GoodsItem :item="item" />
             </div>
@@ -77,6 +77,7 @@ export default {
       this.goods = true
     },
     loadMore: async function() {
+      console.log('object')
       this.busy = true
       const result = (await MallService.getGoodsList(
         this.selectedTabId,
@@ -157,59 +158,6 @@ export default {
   a {
     font-size: 0.14rem;
     padding: 0 0.1rem 0.08rem 0.1rem;
-  }
-}
-.goods {
-  height: auto;
-  overflow: scroll;
-  padding-bottom: 1rem;
-  > div {
-    width: 44%;
-    height: 2.67rem;
-    background: #fff;
-    margin-top: 0.1rem;
-    &:nth-child(2n + 1) {
-      margin-left: 4.8%;
-      float: left;
-    }
-    &:nth-child(2n) {
-      margin-right: 4.8%;
-      float: right;
-    }
-    .good_img {
-      width: 100%;
-      height: 1.67rem;
-      img {
-        width: 100%;
-        height: 1.67rem;
-      }
-    }
-    .good_name {
-      width: 95%;
-      height: 0.37rem;
-      line-height: 0.37rem;
-      font-size: 0.14rem;
-      font-weight: 600;
-      padding-left: 5%;
-    }
-    .good_container {
-      width: 90%;
-      height: 0.32rem;
-      margin-left: 5%;
-      font-size: 0.12rem;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
-      overflow: hidden;
-    }
-    .good_price {
-      width: 90%;
-      height: 0.31rem;
-      line-height: 0.31rem;
-      margin-left: 5%;
-      font-weight: bold;
-      font-size: 0.14rem;
-    }
   }
 }
 .empty {

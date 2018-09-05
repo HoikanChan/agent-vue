@@ -1,66 +1,66 @@
-.goods{
-    width: 100%;
-    height: auto;
-    overflow: hidden;
-    padding-bottom: .5rem;
+.goods {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  padding-bottom: 0.8rem;
 }
-.goods >div {
-    width: 44%;
-    height: 2.67rem;
-    background: #f8e0f2;
-    margin-top: .1rem;
-    background: #fff;
+.goods > div {
+  width: 44%;
+  height: 2.67rem;
+  background: #f8e0f2;
+  margin-top: 0.1rem;
+  background: #fff;
 }
-.goods>div:nth-child(2n+1){
-    margin-left: 4.8%;
-    float: left;
+.goods > div:nth-child(2n + 1) {
+  margin-left: 4.8%;
+  float: left;
 }
-.goods >div:nth-child(2n){
-    margin-right: 4.8%;
-    float: right;
+.goods > div:nth-child(2n) {
+  margin-right: 4.8%;
+  float: right;
 }
-.goods>div a .good_img{
-    width: 100%;
-    height: 1.67rem;
+.goods > div a .good_img {
+  width: 100%;
+  height: 1.67rem;
 }
-.goods>div .good_img img{
-    width: 100%;
-    height: 1.67rem;
+.goods > div .good_img img {
+  width: 100%;
+  height: 1.67rem;
 }
-.goods>div .good_name{
-    width: 95%;
-    height: .37rem;
-    line-height: .37rem;
-    font-size: .14rem;
-    font-weight:600;
-    padding-left: 5%;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
-    overflow: hidden;
-    color: #333;
+.goods > div .good_name {
+  width: 95%;
+  height: 0.37rem;
+  line-height: 0.37rem;
+  font-size: 0.14rem;
+  font-weight: 600;
+  padding-left: 5%;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  color: #333;
 }
-.goods a >div .good_container{
-    width: 90%;
-    height: .32rem;
-    margin-left: 5%;
-    font-size: .12rem;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    overflow: hidden;
-    color: #333;
+.goods a > div .good_container {
+  width: 90%;
+  height: 0.32rem;
+  margin-left: 5%;
+  font-size: 0.12rem;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  color: #333;
 }
-.goods a >div .good_price{
-    width: 90%;
-    height: .31rem;
-    line-height: .31rem;
-    margin-left: 5%;
-    font-weight: bold;
-    font-size: .14rem;
-    color: #5b50d3;
+.goods a > div .good_price {
+  width: 90%;
+  height: 0.31rem;
+  line-height: 0.31rem;
+  margin-left: 5%;
+  font-weight: bold;
+  font-size: 0.14rem;
+  color: #5b50d3;
 }
-.empty{
-    width: 100%;
-    height: .5rem;
+.empty {
+  width: 100%;
+  height: 0.5rem;
 }

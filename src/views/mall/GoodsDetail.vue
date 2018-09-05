@@ -18,7 +18,7 @@
         <input-number size="mini" :value.sync="amount" :min="1"></input-number>
       </div>
     </div>
-    <div class="specification">
+    <div class="specification" v-if="productList.length">
       <p>规格
       </p>
       <div class="spec-select">
@@ -146,6 +146,9 @@ export default {
     }
   },
   async activated() {
+    this.specificationList = []
+    this.pickedSpec = []
+    this.productList = []
     const id = this.$route.params.id
     const result = (await MallService.getGoodsDetail(id)).data
     if (!result) {
@@ -167,8 +170,10 @@ export default {
           .reverse()
       }
     })
-    //初始化，选择规格
-    this.pickedSpec = this.productList[0].specIds.slice()
+    if (this.productList.length) {
+      //初始化，选择规格
+      this.pickedSpec = this.productList[0].specIds.slice()
+    }
     //所有规格
     this.specificationList = result.specificationList
     for (let spec of this.specificationList) {
@@ -304,9 +309,9 @@ img {
   }
 }
 .specification {
-  // height: 1.34rem;
   width: 100%;
   background: #fff;
+  padding: 1em 0;
   margin-top: 0.1rem;
   .spec-select {
     p {
@@ -330,7 +335,6 @@ img {
 }
 .goods_picture {
   width: 100%;
-  height: 0.4rem;
   position: relative;
   .topic_pic {
     width: 22.6%;

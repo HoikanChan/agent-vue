@@ -81,16 +81,9 @@ export default {
 </script>
 
 <style lang="less">
-#vux-x-input-as5yy,
-#vux-x-input-fg65i {
-  font-family: '苹方';
-  font-size: 14px;
-  color: #ccc;
-}
 .login-container {
   padding-top: 24px;
   background: #fff;
-  height: 100vh;
   .vux-x-icon {
     fill: #333;
   }
