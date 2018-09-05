@@ -57,7 +57,6 @@ export default {
         'http://124.200.40.10:17080/agent/api/v1/team/teamOfChild?childId=100970'
       )
       .then(res => {
-        console.log(res)
         this.member = res.data.data
       })
   },

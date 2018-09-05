@@ -118,7 +118,6 @@ export default {
   watch: {
     pickedSpec: {
       handler: function(newValue, oldValue) {
-        console.log(newValue, oldValue)
         //js中数组是否包含另一个数组检测的方法
         const isContained = (a, b) => {
           if (!(a instanceof Array) || !(b instanceof Array)) return false

@@ -46,7 +46,6 @@ const store = new Vuex.Store({
   actions: {
     //添加购物车
     addGoods: (state, item) => {
-      console.log(item)
       commit('addGoods', item)
     },
     //删除购物车商品

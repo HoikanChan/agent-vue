@@ -155,10 +155,8 @@ export default {
       if (this.flag) return
       this.flag = true
       this.adjustChooseAll()
-      console.log(this.pickedIds)
       //点击的商品当前是否选中
       setTimeout(async () => {
-        console.log(this.pickedIds)
         const isChecked = this.pickedIds.includes(item.id)
         const result = (await ShoppingCartService.check(item.id, isChecked))
           .data

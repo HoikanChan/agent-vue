@@ -12,7 +12,6 @@ export default {
   },
   //修改购物车商品数量
   update(product) {
-    console.log(product)
     return Api().post('cart/update', product)
   },
   //删除购物车记录

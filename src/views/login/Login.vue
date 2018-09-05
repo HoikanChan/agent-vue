@@ -1,6 +1,6 @@
 <template>
   <div class="login-container">
- 
+
     <span style="position:absolute;top:18px;left:18px">
     </span>
     <div class="title">
@@ -82,7 +82,7 @@ export default {
 
 <style lang="less">
 .login-container {
-  padding-top: 24px;
+  height: 100vh;
   background: #fff;
   .vux-x-icon {
     fill: #333;
@@ -107,7 +107,7 @@ export default {
   }
   .title {
     text-align: center;
-    padding: 46px 0;
+    padding: 60px 0 46px;
     h2 {
       display: inline;
       margin: 24px auto;

@@ -19,10 +19,10 @@
       <div v-for="item in applyList" :key="item.id" class="tab-content">
         <div>
           <p>审核人:
-            <span>{{item.applyUserName}}</span>
+            <span>{{item.auditUserName}}</span>
           </p>
           <p>手机号码:
-            <span>{{item.applyUserTel}}</span>
+            <span>{{item.auditUserTel}}</span>
           </p>
           <p v-if=" item.levelName">升级等级:
             <span>{{item.levelName|| '无'}}</span>
@@ -44,7 +44,7 @@
     <div class="tab-wrapper" v-show="tabNow==='upgrade'">
       <div v-for="item in auditList" :key="item.id" class="tab-content">
         <div>
-          <p>审核人:
+          <p>申请人:
             <span>{{item.applyUserName}}</span>
           </p>
           <p>手机号码:

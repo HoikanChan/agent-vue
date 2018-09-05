@@ -77,7 +77,6 @@ export default {
       this.goods = true
     },
     loadMore: async function() {
-      console.log('object')
       this.busy = true
       const result = (await MallService.getGoodsList(
         this.selectedTabId,

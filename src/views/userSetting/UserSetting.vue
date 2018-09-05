@@ -128,11 +128,11 @@ export default {
       defaultAvatar: defaultAvatar,
       form: {
         avatar: '',
-        nickname: 'faifai',
+        nickname: '',
         gender: '1',
         birthday: '2018-03-14',
-        mobile: '15655552222',
-        registerTime: '2018-02-13',
+        mobile: '',
+        registerTime: '',
         location: [],
         isVerified: '未认证'
       }

@@ -144,7 +144,6 @@ export default {
   async mounted() {
     const result = (await AuthService.getGradeList()).data
     this.gradeList = result
-    console.log(this.$route.query)
   }
 }
 </script>

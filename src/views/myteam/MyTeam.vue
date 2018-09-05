@@ -84,7 +84,6 @@ export default {
           .then(result => {
             // console.log(result.data.data)
             this.member = result.data.data
-            console.log(this.member)
             this.pickedTeam = this.member[this.tabNow].users
             // console.log(JSON.stringify(this.member))
           })
