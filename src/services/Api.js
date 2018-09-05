@@ -2,7 +2,10 @@ import axios from 'axios'
 import router from '../router'
 export default () => {
   const api = axios.create({
-    baseURL: 'http://124.200.40.10:17080/agent/api/v1/'
+    //测试地址
+    // baseURL: 'http://dl.upyuns.com/agent/api/v1/'
+    //正式地址
+    baseURL: 'http://dl.upyuns.com/agent/api/v1/'
   })
   api.interceptors.response.use(res => {
     return res.data

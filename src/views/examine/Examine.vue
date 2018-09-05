@@ -30,10 +30,15 @@
           <p>订单类型:
             <span>{{item.orderTypeText || '无'}}</span>
           </p>
+          <p>申请积分数:
+            <span>{{item.credit || '无'}}</span>
+          </p>
           <p>审核状态:
             <span>{{item.statusText|| '无'}}</span>
           </p>
-          <p>时间：<span>{{item.createTime || '无'}}</span></p>
+          <p>时间：
+            <span>{{item.createTime || '无'}}</span>
+          </p>
         </div>
         <div>
           <img :src="item.auditUserAvatar" />
@@ -56,10 +61,15 @@
           <p>订单类型:
             <span>{{item.orderTypeText || '无'}}</span>
           </p>
+          <p>申请积分数:
+            <span>{{item.credit || '无'}}</span>
+          </p>
           <p>审核状态:
             <span>{{item.statusText|| '无'}}</span>
           </p>
-          <p>时间：<span>{{item.createTime || '无'}}</span></p>
+          <p>时间：
+            <span>{{item.createTime || '无'}}</span>
+          </p>
         </div>
         <div>
           <img :src="item.auditUserAvatar" />
@@ -68,8 +78,8 @@
       </div>
       <h3 v-if="auditList.length === 0" style="text-align:center;padding:0.5rem;"> 暂无记录</h3>
     </div>
-    <div class="shade" v-if="modalShow"></div>
-    <div class="modal" v-if="modalShow">
+    <div class="shade" v-show="modalShow"></div>
+    <div class="modal" v-show="modalShow">
       <h2>审核 <img src="../../assets/images/flase.png" @click="modalShow=false" /></h2>
       <div class="proptype">
         <br>
@@ -103,10 +113,15 @@ import {
   Group,
   XButton,
   Badge,
+  XDialog,
   Checker,
-  CheckerItem
+  CheckerItem,
+  TransferDomDirective as TransferDom
 } from 'vux'
 export default {
+  directives: {
+    TransferDom
+  },
   components: {
     XHeader,
     XInput,
@@ -114,6 +129,7 @@ export default {
     Group,
     XButton,
     Badge,
+    XDialog,
     Checker,
     CheckerItem,
     'material-checkbox': Checkbox

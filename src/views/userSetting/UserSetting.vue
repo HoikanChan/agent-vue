@@ -34,9 +34,9 @@
     </group>
 
     <group style="margin-top: .2rem;">
-      <x-input placeholder-align="right" title="实名认证" type="text" readonly :show-clear="false" v-model="form.isVerified">
+      <!-- <x-input placeholder-align="right" title="实名认证" type="text" readonly :show-clear="false" v-model="form.isVerified">
         <x-icon slot="right" type="ios-arrow-forward" style="margin-top: 6px;fill:#aaa" size="15" @click="$router.push({name:'realName'})"></x-icon>
-      </x-input>
+      </x-input> -->
     </group>
     <div v-transfer-dom>
       <popup v-model="sexShow">
@@ -130,7 +130,7 @@ export default {
         avatar: '',
         nickname: '',
         gender: '1',
-        birthday: '2018-03-14',
+        birthday: '',
         mobile: '',
         registerTime: '',
         location: [],
@@ -164,7 +164,6 @@ export default {
       this.$router.push({ path: '/login' })
     },
     async updatePersonalInfo() {
-      console.log(this.$refs.address.nameValue)
       const result = await AuthService.updatePersonalInfo({
         gender: this.form.gender,
         nickname: this.form.nickname,
@@ -180,10 +179,15 @@ export default {
     },
     async upateInfo() {
       this.form = (await AuthService.userinfo()).data
-      this.form.birthday = this.form.birthday.slice(0, -9)
+      this.form.birthday = this.form.birthday
+        ? this.form.birthday.slice(0, -9)
+        : ''
       this.form.location = this.form.location
         ? this.form.location.split(' ')
-        : []
+        : ['', '', '']
+      this.form.registerTime = this.form.registerTime
+        ? this.form.registerTime
+        : ''
     }
   },
   async mounted() {

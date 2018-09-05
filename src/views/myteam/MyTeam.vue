@@ -71,16 +71,14 @@ export default {
   },
   mounted() {
     axios
-      .get('http://124.200.40.10:17080/agent/api/v1/team/referrer')
+      .get('http://dl.upyuns.com/agent/api/v1/team/referrer')
       .then(response => {
         this.referrer = response.data.data.username
+        axios.get('http://dl.upyuns.com/agent/api/v1/team/parent').then(res => {
+          this.direct = res.data.data.username
+        })
         axios
-          .get('http://124.200.40.10:17080/agent/api/v1/team/parent')
-          .then(res => {
-            this.direct = res.data.data.username
-          })
-        axios
-          .get('http://124.200.40.10:17080/agent/api/v1/team/children')
+          .get('http://dl.upyuns.com/agent/api/v1/team/children')
           .then(result => {
             // console.log(result.data.data)
             this.member = result.data.data

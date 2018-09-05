@@ -19,6 +19,7 @@
 </template>
 <script>
 import AddressService from 'services/AddressService'
+import ShoppingCartService from 'services/ShoppingCartService'
 
 import {
   XHeader,
@@ -107,7 +108,9 @@ export default {
           provinceName,
           cityName,
           detailInfo,
-          id: this.$store.getters.getNewAddress.id || null
+          id: this.$store.getters.getNewAddress
+            ? this.$store.getters.getNewAddress.id
+            : null
         })
         this.$store.commit('setAddress', result.data)
         if (result.errno) {
@@ -117,6 +120,8 @@ export default {
             text: result.errmsg
           })
         } else {
+          const checkresult = await ShoppingCartService.checkout(result.data.id)
+          this.$store.dispatch('setBill', checkresult.data)
           this.form = {
             telNumber: '',
             userName: '',

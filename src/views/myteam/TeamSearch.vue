@@ -51,9 +51,7 @@ export default {
       var text = this.text
       var show = this.show
       axios
-        .get(
-          'http://124.200.40.10:17080/agent/api/v1/team/search?keyword=' + text
-        )
+        .get('http://dl.upyuns.com/agent/api/v1/team/search?keyword=' + text)
         .then(res => {
           console.log(res)
           if (res.data.data === '') {

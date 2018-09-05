@@ -92,8 +92,13 @@ export default {
   },
   watch: {
     selectedTabId: async function(val) {
-      this.page = 1
       this.goodsList = []
+      this.page = 1
+      const result = (await MallService.getGoodsList(
+        this.selectedTabId,
+        this.page++
+      )).data
+      this.goodsList = result
       this.busy = false
     }
   },

@@ -33,13 +33,13 @@ export default {
   },
   mounted() {
     axios
-      .get('http://124.200.40.10:17080/agent/api/v1/performance/info')
+      .get('http://dl.upyuns.com/agent/api/v1/performance/info')
       .then(res => {
         // console.log(res)
         this.performance = res.data.data
       })
     axios
-      .get('http://124.200.40.10:17080/agent/api/v1//performance/recordList')
+      .get('http://dl.upyuns.com/agent/api/v1//performance/recordList')
       .then(response => {
         // console.log(response)
         this.teamcash = response.data.data

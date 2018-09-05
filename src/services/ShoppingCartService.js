@@ -32,8 +32,8 @@ export default {
 
   // cartIds   修改记录id，多个id以逗号分隔（可选）
   // addressId 收货地址id（可选）
-  checkout() {
-    return Api().post('cart/checkout', {})
+  checkout(addressId) {
+    return Api().post('cart/checkout', { addressId: addressId })
   },
   pay({ addressId, psw, postscript }) {
     return Api().post('order/submit', {
