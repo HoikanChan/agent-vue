@@ -380,14 +380,15 @@ export default {
   > div {
     width: 100%;
     height: 0.4rem;
-    opacity: 0.3;
-    background: #999;
+    background-color: rgba(153, 153, 153, 0.3);
     margin-top: 0.16rem;
     text-align: center;
     line-height: 0.4rem;
 
     span {
       color: #5b50d3;
+      font-size: 0.16rem;
+      font-weight: bold;
     }
   }
   img {

@@ -3,7 +3,6 @@
     <div class="team_head">
       <a href="javascript:;" onClick="javascript:history.back(-1);"><img class="back" src="../../assets/images/back.png" /></a>
       {{info.username}}
-      <img class="cash" src="../../assets/images/team_cash.png" />
     </div>
     <div class="detail">
       <div class="one">

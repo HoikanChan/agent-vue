@@ -153,7 +153,7 @@ export default {
 </script>
 <style lang="less" scoped>
 .vux-popup-header-right {
-  color: #5b50d3;
+  color: #5b50d3 !important;
 }
 body {
   background: #f8f8f8;

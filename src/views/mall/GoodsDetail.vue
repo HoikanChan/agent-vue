@@ -14,7 +14,7 @@
       <p class="num" style="padding-left:6.4%">库存</p>
       <span>{{pickedProduct?pickedProduct.goodsNumber:goodsDetail.goodsNumber}}</span>
       <div style="display:flex;justify-content:space-between;">
-        <p class="price">￥{{Number(pickedProduct?pickedProduct.price:goodsDetail.memberPrice)*amount | numFilter}}</p>
+        <p class="price">￥{{Number(pickedProduct?pickedProduct.price:goodsDetail.memberPrice) | numFilter}}</p>
         <input-number size="mini" :value.sync="amount" :min="1"></input-number>
       </div>
     </div>
@@ -48,7 +48,7 @@
       </div>
       <div @click="addGoods()">加入购物车</div>
       <!-- <div @click="$router.push({name:'buy'})">立即购买</div> -->
-      <div @click="$router.push({name:'buy'})"></div>
+      <div @click="$router.push({name:'buy'})">立即购买</div>
     </div>
     <toast v-model="showToast" type="text" :time="800" is-show-mask text="请先选择规格" position="top" width='10em' />
   </div>

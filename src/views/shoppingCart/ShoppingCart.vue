@@ -74,6 +74,7 @@
       <img src="../../assets/images/noshoppings.png" />
       <p>你的购物车没有商品</p>
       <p>赶快去挑选吧！</p>
+      <div @click="$router.push({name:'mall'})">去挑选</div>
     </div>
   </div>
 </template>
@@ -232,15 +233,15 @@ export default {
 .vux-checker-item {
   width: 100%;
 }
+.vux-header {
+  border-bottom: 1px solid #eee !important;
+}
 .detail {
   padding: 0 0.2rem 0 0.2rem;
-  border-bottom: 1px solid #ccc;
+  border-top: 1px solid #eee;
   background: #fff;
   display: flex;
   align-items: center;
-  &:first-child {
-    border-bottom: none;
-  }
   > div {
     &:nth-child(2) {
       width: 0.9rem;
@@ -351,6 +352,18 @@ export default {
     &:nth-child(2) {
       margin-top: 0.13rem;
     }
+  }
+  div {
+    display: block;
+    width: 90.6%;
+    height: 0.38rem;
+    line-height: 0.38rem;
+    color: #fff;
+    font-size: 0.15rem;
+    border-radius: 0.02rem;
+    margin: 1.05rem auto;
+    text-align: center;
+    background: #5b50d3;
   }
 }
 .vux-header {

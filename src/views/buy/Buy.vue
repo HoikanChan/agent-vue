@@ -38,9 +38,9 @@
       </div>
     </div>
     <group class="bills-detail">
-      <x-input title="送货时间" readonly type="text" placeholder="送货时间不限" v-model="bills.msg">
+      <!-- <x-input title="送货时间" readonly type="text" placeholder="送货时间不限" v-model="bills.msg">
         <x-icon slot="right" type="ios-arrow-forward" size="20"></x-icon>
-      </x-input>
+      </x-input> -->
       <x-input title="买家留言" v-model="postscript" type="text" placeholder="选填：对本次交易的说明"></x-input>
       <p>
         <span>商品总价</span>
@@ -66,7 +66,7 @@
         <p>消耗积分：
           <span>{{bill.orderTotalPrice}}</span>
         </p>
-        <p>合计金额：{{bill.orderTotalPrice}}</p>
+        <!-- <p>合计金额：{{bill.orderTotalPrice}}</p> -->
       </div>
       <div @click.stop="submitBills">提交订单</div>
     </div>
@@ -74,11 +74,12 @@
     <div v-transfer-dom>
       <x-dialog v-model="dialogShow" class="dialog" hide-on-blur @on-hide="hideDialog">
         <div style="padding:15px;">
-          <h3>确认密码</h3>
+          <h3>请输入密码</h3>
           <group>
             <x-input type="password" v-model="password" :required="true" ref="payPsw">
             </x-input>
           </group>
+          <img @click="close()" style="width:.14rem;height:.14rem;position: absolute;top: .1rem;left: 88.3%;" src="../../assets/images/close.png" />
         </div>
         <button class="pay-btn" @click="pay()">确认支付</button>
         <br>
@@ -133,6 +134,9 @@ export default {
     }
   },
   methods: {
+    close() {
+      this.dialogShow = false
+    },
     submitBills() {
       if (!this.address) {
         this.toastShow = true
@@ -217,7 +221,6 @@ export default {
   font-size: 14px;
   font-weight: bold;
   height: 1.04rem;
-  border-bottom: 1px solid #ccc;
   background: #fff;
   display: flex;
   justify-content: center;
@@ -263,7 +266,7 @@ export default {
     }
   }
   div.total {
-    padding: 10px 15px 42px;
+    padding: 15px;
     text-align: right;
     position: relative;
     &:before {
@@ -364,11 +367,18 @@ export default {
     padding: 0.13rem;
     background-color: #d7d7d7;
     color: @primary-color;
+    font-weight: bold;
   }
 }
 </style>
 
 <style lang="less">
+.weui-cell {
+  padding: 15px 15px !important;
+}
+.bills-detail p {
+  padding: 15px 15px !important;
+}
 .bills-detail .weui-cells {
   font-size: 14px !important;
   margin-top: 0;
