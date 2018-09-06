@@ -10,14 +10,14 @@
       <img class="img" src="../../assets/images/team_search.png" />
       <div class="realtion">
         <p class="man">我的推荐人</p>
-        <img class="head" src="../../assets/images/20.jpg" />
-        <p class="mantwo">{{referrer}}</p>
+        <img class="head" :src="referrer.avatar" />
+        <p class="mantwo">{{referrer.username}}</p>
       </div>
       <img class="relate" src="../../assets/images/relation.png" />
       <div class="realtion_">
         <p class="man_">直属上级</p>
-        <img class="head_" src="../../assets/images/20.jpg" />
-        <p class="mantwo_">{{direct}}</p>
+        <img class="head_" :src="direct.avatar" />
+        <p class="mantwo_">{{direct.username}}</p>
       </div>
     </div>
     <div class="level">
@@ -31,7 +31,7 @@
       <ul class="members">
         <li v-for="(item,key) in pickedTeam" :key="key" :value='item.id'>
           <div @click="viewChild(item.id,item)">
-            <img class="jpg" src="../../assets/images/15.jpg" />
+            <img class="jpg" :src="item.avatar" />
             <span>{{item.username}}</span>
             <img class="right" src="../../assets/images/right.png" />
           </div>
@@ -81,9 +81,9 @@ export default {
   },
   mounted() {
     TeamService.getReferrer().then(response => {
-      this.referrer = response.data.username
+      this.referrer = response.data
       TeamService.getParent().then(res => {
-        this.direct = res.data.username
+        this.direct = res.data
       })
       TeamService.getChildren().then(result => {
         this.member = result.data

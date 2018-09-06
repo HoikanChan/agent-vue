@@ -26,9 +26,9 @@ export default {
 @font_family_1: 'Roboto', 'Segoe UI', BlinkMacSystemFont, system-ui,
   -apple-system;
 @background_color_1: rgba(0, 0, 0, 0.42);
-@background_color_2: #2196f3;
+@background_color_2: #5b50d3;
 @background_color_3: rgba(0, 0, 0, 0.26);
-@border_color_1: #2196f3;
+@border_color_1: #5b50d3;
 @border_color_2: transparent;
 @border_color_3: rgba(0, 0, 0, 0.26);
 @border_color_4: #fff;

@@ -135,6 +135,7 @@ export default {
     color: @color_2;
     font-weight: bold;
     padding-left: 1.5%;
+    font-size: 0.14rem;
   }
 }
 .warp {

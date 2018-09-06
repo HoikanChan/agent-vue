@@ -254,7 +254,7 @@ export default {
   .tab {
     width: 100%;
     height: 1.1rem;
-    border-top: 1px solid #ccc;
+    border-top: 1px solid #eee;
     background: #fff;
     display: flex;
     box-shadow: -2px 2px 2px #e5e5e5;

@@ -28,7 +28,7 @@
       </div>
     </div>
     <div class="all_recode">
-      <p @click="show=true" style="border-bottom:solid 1px #ccc">{{pickedTypeTitle}}
+      <p @click="show=true">{{pickedTypeTitle}}
         <img src="../../assets/images/style.png" /></p>
       <ul>
         <li v-for="(item,key) in mypointsList" :key="key">
@@ -282,7 +282,7 @@ export default {
   }
   .point_body {
     width: 100%;
-    height: 1.44rem;
+    height: 1.55rem;
     background: url('../../assets/images/point_bg.png') no-repeat center/cover;
     text-align: center;
     color: #fff;
@@ -294,20 +294,21 @@ export default {
       width: 45.6%;
       height: 0.26rem;
       margin-left: 27.2%;
-      margin-top: 0.16rem;
+      margin-top: 0.08rem;
+      font-size: 0.13rem;
       .record {
         width: 50%;
-        height: 0.26rem;
+        height: 0.3rem;
         border-radius: 0.13rem 0 0 0.13rem;
         background: #5b50d3;
         float: left;
-        line-height: 0.26rem;
+        line-height: 0.3rem;
         text-align: center;
       }
       .deeded {
         width: 50%;
-        height: 0.26rem;
-        line-height: 0.26rem;
+        height: 0.3rem;
+        line-height: 0.3rem;
         text-align: center;
         border-radius: 0 0.13rem 0.13rem 0;
         background: #fff;
@@ -317,15 +318,15 @@ export default {
     }
   }
   .date {
-    height: 0.64rem;
+    height: 0.66rem;
     background: #5b50d3;
-    margin-top: 0.1rem;
     padding: 0 4.8%;
     color: #fff;
     .time {
       width: 70%;
       height: 0.64rem;
       float: left;
+      font-size: 0.15rem;
       h3 {
         margin-top: 0.13rem;
         font-weight: normal;
@@ -355,8 +356,8 @@ export default {
   .all_recode {
     background: #fff;
     p {
-      height: 0.35rem;
-      line-height: 0.35rem;
+      height: 0.45rem;
+      line-height: 0.45rem;
       padding-left: 4.8%;
       font-size: 0.16rem;
       font-weight: bold;
@@ -384,12 +385,11 @@ export default {
     }
     ul {
       li {
-        height: 0.95rem;
+        height: 1.1rem;
         padding: 0 4.8%;
-        border-bottom: 1px solid #ccc;
+        border-top: 1px solid #eee;
         .type {
           padding-left: 0;
-          padding-bottom: 0.08rem;
           display: flex;
           justify-content: space-between;
           span {
