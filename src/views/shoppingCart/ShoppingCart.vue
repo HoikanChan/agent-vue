@@ -71,9 +71,9 @@
       </div>
     </div>
     <div class="nothings" v-if="products.length === 0">
-        <img src="../../assets/images/noshoppings.png" />
-        <p>你的购物车没有商品</p>
-        <p>赶快去挑选吧！</p>
+      <img src="../../assets/images/noshoppings.png" />
+      <p>你的购物车没有商品</p>
+      <p>赶快去挑选吧！</p>
     </div>
   </div>
 </template>
@@ -104,7 +104,7 @@ export default {
       num: 1,
       flag: false,
       total: {},
-      show: true
+      show: false
     }
   },
   computed: {
@@ -127,6 +127,7 @@ export default {
             this.pickedIds.push(product.id)
           }
         })
+        this.show = true
       } else {
         this.show = false
       }

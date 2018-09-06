@@ -102,6 +102,7 @@ export default {
 .head div img {
   width: 100%;
   height: auto;
+  border-radius: 50%;
 }
 .head p {
   text-align: center;
