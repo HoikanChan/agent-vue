@@ -1,62 +1,77 @@
 <template>
-    <div class="member">
-        <div class="team_head">
-           <a href="javascript:;" onClick="javascript:history.back(-1);"><img class="back" src="../../assets/images/back.png" /></a>
-            余生不送
-            <img class="cash" src="../../assets/images/team_cash.png" />
-        </div>
-        <div class="detail">
-            <div class="one">
-                <img src="../../assets/images/4.jpg" />
-                <p>余生不送</p>
-            </div>
-            <div class="two">
-                <p class="phone">手机号码：<span>15797964844</span></p>
-                <p>代理等级：<span>总代</span></p>
-                <p>注册时间：<span>2017-10-12</span></p>
-                <p>本月业绩：<span>222222.00</span></p>
-                <p>累计业绩：<span>8888888.00</span></p>
-            </div>
-        </div>
-        <div class="level">
-            <a to="#" @click="switchTab(key,item)" v-for="(item,key,index) in member" :key="key"  v-on:click="addClass(index)" v-bind:class="{ active:index==current}">
-                <p class="first" >{{item.count}}</p>
-               
-                <p class="second">{{key}}</p>
-            </a>
-        </div>
-        <div>
-            <ul class="members">
-              
-                <li v-for="(item,key) in pickedTeam" :key="key" :value='item.id'>
-                  <img class="jpg" src="../../assets/images/15.jpg" />
-                  <span>{{item.username}}</span>
-                  <img class="right" src="../../assets/images/right.png" />
-                </li>
-                
-            </ul>
-            <div v-if="pickedTeam.length === 0" style="text-align:center"> 暂时没有数据</div>
-        </div>
-    </div>   
+  <div class="member">
+    <div class="team_head">
+      <a href="javascript:;" onClick="javascript:history.back(-1);"><img class="back" src="../../assets/images/back.png" /></a>
+      {{info.username}}
+      <img class="cash" src="../../assets/images/team_cash.png" />
+    </div>
+    <div class="detail">
+      <div class="one">
+        <img :src="info.avatar" />
+        <p>{{info.username}}</p>
+      </div>
+      <div class="two">
+        <p class="phone">手机号码:
+          <span>{{info.mobile}}</span>
+        </p>
+        <p>代理等级:
+          <span>{{info.userLevelName}}</span>
+        </p>
+        <p>注册时间:
+          <span>{{info.registerTime}}</span>
+        </p>
+        <p>本月业绩:
+          <span>222222.00</span>
+        </p>
+        <p>累计业绩:
+          <span>8888888.00</span>
+        </p>
+      </div>
+    </div>
+    <div class="level">
+      <a to="#" @click="switchTab(key,item)" v-for="(item,key,index) in member" :key="key" v-on:click="addClass(index)" v-bind:class="{ active:index==current}">
+        <p class="first">{{item.count}}</p>
+
+        <p class="second">{{key}}</p>
+      </a>
+    </div>
+    <div>
+      <ul class="members">
+
+        <li v-for="(item,key) in pickedTeam" :key="key" :value='item.id'>
+          <img class="jpg" src="../../assets/images/15.jpg" />
+          <span>{{item.username}}</span>
+          <img class="right" src="../../assets/images/right.png" />
+        </li>
+
+      </ul>
+      <div v-if="pickedTeam.length === 0" style="text-align:center"> 暂时没有数据</div>
+    </div>
+  </div>
 </template>
 
 <script>
-import axios from 'axios'
+import TeamService from 'services/TeamService'
+
 export default {
   data() {
     return {
       member: [],
-      pickedTeam: {},
+      pickedTeam: [],
       current: 0
     }
   },
+  computed: {
+    info: function() {
+      return this.$route.params.info || {}
+    }
+  },
   mounted() {
-    var id = this.$route.params.id
-    axios
-      .get('http://dl.upyuns.com/agent/api/v1/team/teamOfChild?childId=100970')
-      .then(res => {
-        this.member = res.data.data
-      })
+    let id = this.$route.params.id
+    TeamService.childInfo(id).then(res => {
+      this.member = res.data
+      this.pickedTeam = this.member[this.current].users || []
+    })
   },
   methods: {
     switchTab(tabName, item) {
@@ -69,7 +84,7 @@ export default {
   }
 }
 </script>
-<style lang="less">
+<style lang="less" scoped>
 .active {
   color: #5b50d3;
 }
