@@ -72,7 +72,7 @@
           </p>
         </div>
         <div>
-          <img :src="item.auditUserAvatar" />
+          <img :src="item.applyUserAvatar" />
           <x-button mini plain type="primary" @click.native="aduitModalShow(item.id)">审核</x-button>
         </div>
       </div>

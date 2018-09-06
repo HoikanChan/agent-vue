@@ -163,6 +163,7 @@ export default {
 <style lang="less" scoped>
 .check {
   background: #fff;
+  min-height: 100vh;
   .check_head {
     height: 0.44rem;
     line-height: 0.44rem;

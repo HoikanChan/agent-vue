@@ -30,11 +30,11 @@
     <div>
       <ul class="members">
         <li v-for="(item,key) in pickedTeam" :key="key" :value='item.id'>
-          <router-link :to="`/member_detail/${item.id}`">
+          <div @click="viewChild(item.id,item)">
             <img class="jpg" src="../../assets/images/15.jpg" />
             <span>{{item.username}}</span>
             <img class="right" src="../../assets/images/right.png" />
-          </router-link>
+          </div>
         </li>
       </ul>
       <div v-if="pickedTeam.length === 0" style="text-align:center"> 暂时没有数据</div>
@@ -43,7 +43,8 @@
 </template>
 <script>
 import { XHeader } from 'vux'
-import axios from 'axios'
+import TeamService from 'services/TeamService'
+
 export default {
   data() {
     return {
@@ -67,25 +68,28 @@ export default {
     },
     addClass: function(index) {
       this.current = index
+    },
+    viewChild(id, info) {
+      this.$router.push({
+        name: 'member_detail',
+        params: {
+          id: id,
+          info: info
+        }
+      })
     }
   },
   mounted() {
-    axios
-      .get('http://dl.upyuns.com/agent/api/v1/team/referrer')
-      .then(response => {
-        this.referrer = response.data.data.username
-        axios.get('http://dl.upyuns.com/agent/api/v1/team/parent').then(res => {
-          this.direct = res.data.data.username
-        })
-        axios
-          .get('http://dl.upyuns.com/agent/api/v1/team/children')
-          .then(result => {
-            // console.log(result.data.data)
-            this.member = result.data.data
-            this.pickedTeam = this.member[this.tabNow].users
-            // console.log(JSON.stringify(this.member))
-          })
+    TeamService.getReferrer().then(response => {
+      this.referrer = response.data.username
+      TeamService.getParent().then(res => {
+        this.direct = res.data.username
       })
+      TeamService.getChildren().then(result => {
+        this.member = result.data
+        this.pickedTeam = this.member[this.tabNow].users
+      })
+    })
   }
 }
 </script>

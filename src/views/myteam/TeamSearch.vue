@@ -1,72 +1,68 @@
 <template>
-    <div class='teamsearch'>
-        <div class="search">
-            <img @click="$router.push({name:'myteam'})" style="width:.12rem;height:.21rem;margin-left:4.8%;" src="../../assets/images/back.png" />
-            <input type="text" placeholder="搜索成员" v-model='text' />
-            <span v-if='abandon' @click='search_member()'>确定</span>
-        </div>
-        <div class="detail" v-if='show'>
-            <div class="one">
-                <img src="../../assets/images/4.jpg" />
-                <p>{{message.username}}</p>
-            </div>
-            <div class="two">
-                <p class="phone">手机号码:
-                    <span>{{message.mobile}}</span>
-                </p>
-                <p>代理等级:
-                    <span>总代</span>
-                </p>
-                <p>注册时间:
-                    <span>{{message.registerTime}}</span>
-                </p>
-                <p>本月业绩:
-                    <span>222222.00</span>
-                </p>
-                <p>累计业绩:
-                    <span>8888888.00</span>
-                </p>
-            </div>
-        </div>
-        <p v-if='hide' style='text-align:center;'>未搜索到相关成员</p>
+  <div class='teamsearch'>
+    <div class="search">
+      <img @click="$router.push({name:'myteam'})" style="width:.12rem;height:.21rem;margin-left:4.8%;" src="../../assets/images/back.png" />
+      <input type="text" placeholder="搜索成员" v-model='keyword' />
+      <span @click='search()'>确定</span>
     </div>
+    <div class="detail" v-for="(member,index) in members" :key="index">
+      <div class="one">
+        <img :src="member.avatar" />
+        <p>{{member.username}}</p>
+      </div>
+      <div class="two">
+        <p class="phone">手机号码：
+          <span>{{member.mobile}}</span>
+        </p>
+        <p>代理等级：
+          <span>{{member.userLevelName}}</span>
+        </p>
+        <p>注册时间：
+          <span>{{member.registerTime}}</span>
+        </p>
+        <p>本月业绩：
+          <span>222222.00</span>
+        </p>
+        <p>累计业绩：
+          <span>8888888.00</span>
+        </p>
+      </div>
+    </div>
+    <p v-if='hide' style='text-align:center;'>未搜索到相关成员</p>
+  </div>
 </template>
 
 <script>
-import axios from 'axios'
+import TeamService from 'services/TeamService'
+import { debounce } from 'vux'
+
 export default {
   data() {
     return {
-      msg: '用户',
-      text: '',
-      abandon: true,
-      show: false,
-      message: [],
+      keyword: '',
+      members: [],
       hide: true
     }
   },
-  mounted() {},
+  watch: {
+    keyword: debounce(async function() {
+      this.search()
+    }, 300)
+  },
+  mounted() {
+    this.search()
+  },
   methods: {
-    search_member() {
-      var text = this.text
-      var show = this.show
-      axios
-        .get('http://dl.upyuns.com/agent/api/v1/team/search?keyword=' + text)
-        .then(res => {
-          console.log(res)
-          if (res.data.data === '') {
-            this.hide = true
-          } else {
-            this.message = res.data.data[0]
-            this.show = true
-            this.hide = false
-          }
-        })
+    search() {
+      TeamService.search(this.keyword).then(res => {
+        this.members = res.data || []
+        this.hide = res.data.length === 0
+      })
     }
   }
 }
 </script>
-<style lang="less">
+<style lang="less" scoped>
 @color_1: #b3b3b3;
 @color_2: #000;
 .teamsearch {
