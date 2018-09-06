@@ -7,7 +7,7 @@
     <group>
       <p class="avatar-cell">
         <span>头像</span>
-        <vue-core-image-upload :crop="false" @imageuploading="imageuploading" @imageuploaded="imageuploaded" :data="data" :max-file-size="5242880" url="http://dl.upyuns.com/agent/api/v1/pic/upload">
+        <vue-core-image-upload :crop="false" @imageuploading="imageuploading" @imageuploaded="imageuploaded" :data="data" :max-file-size="5242880" :url="uploadUrl">
           <img :src="form.avatar || defaultAvatar" alt="">
         </vue-core-image-upload>
       </p>
@@ -78,6 +78,7 @@
   </div>
 </template>
 <script>
+import { uploadUrl } from 'services/Api'
 import AuthService from 'services/AuthenticationService'
 import defaultAvatar from 'assets/images/avatar.png'
 import Checkbox from 'components/Checkbox'
@@ -124,6 +125,7 @@ export default {
       data: {},
       flag: false,
       msg: '个人设置',
+      uploadUrl: uploadUrl,
       datetime0: '',
       sexShow: false,
       timeShow: false,

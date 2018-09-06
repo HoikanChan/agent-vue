@@ -1,77 +1,99 @@
 <template>
-    <div class="check">
-        <x-header :left-options="{backText: ''}">
-            <span>升级</span>
-        </x-header>
-        <div class="upgrade">
-            <div class="rank">
-                <img class="face" src="../../assets/images/22.jpg" />
-                <img class="grade" src="../../assets/images/rank.png" />
-                <p>大区</p>
-            </div>
-            <div class="up">
-                <img class="up_img" src="../../assets/images/up.png" />
-                <span @click="upgrade">升级</span>
-            </div>
-        </div>
-        <checker v-model="pickedId" default-item-class="demo2-item" selected-item-class="selected" radio-required>
-            <checker-item v-for="(item,index) in upgradeList" :key="index" :value="item.levelId">
-                <div class="option_referer">
-                    <div class="option">
-                        <div class="checkbox-wrapper">
-                            <material-checkbox></material-checkbox>
-                        </div>
-                        <span>{{item.levelName}}</span>
-
-                        <i>{{item.price}}</i>
-                        <img src="../../assets/images/right.png" />
-                    </div>
-                    <div class="referer">
-                        <div>
-                            <p>审核人:
-                                <span>{{item.name}}</span>
-                            </p>
-                            <p>手机号码:
-                                <span>{{item.telNumber}}</span>
-                            </p>
-                            <p>注册等级:
-                                <span>{{item.userLevelName}}</span>
-                            </p>
-                            <p>推荐人:
-                                <span>{{item.referrerName}}</span>
-                            </p>
-                        </div>
-                        <div>
-                            <img src="../../assets/images/22.jpg" />
-                        </div>
-                    </div>
-                </div>
-            </checker-item>
-        </checker>
-        <h3 v-if="upgradeList.length === 0" style="text-align:center;margin-top:2em;">暂无升级内容</h3>
-        <div class="shade" v-show="flag"></div>
-        <div class="modal" v-show="flag">
-            <p>等待审核</p>
-            <p>审核结果将以系统消息通知</p>
-            <div @click="close">我知道了</div>
-        </div>
+  <div class="check">
+    <x-header :left-options="{backText: ''}">
+      <span>升级</span>
+    </x-header>
+    <div class="upgrade">
+      <div class="rank">
+        <img class="face" src="../../assets/images/22.jpg" />
+        <img class="grade" src="../../assets/images/rank.png" />
+        <p>大区</p>
+      </div>
+      <div class="up">
+        <img class="up_img" src="../../assets/images/up.png" />
+        <span @click="upgrade">升级</span>
+      </div>
     </div>
+    <p class="tips-card">升级规则：根据不同等级冲值对应的积分升级</p>
+    <br><br>
+    <checker v-model="pickedId" default-item-class="demo2-item" selected-item-class="selected" radio-required>
+      <checker-item v-for="(item,index) in upgradeList" :key="index" :value="item.levelId">
+        <div class="option_referer">
+          <div class="option">
+            <div class="checkbox-wrapper">
+              <material-checkbox></material-checkbox>
+            </div>
+            <span>{{item.levelName}}</span>
+
+            <i>{{item.price}}</i>
+            <img src="../../assets/images/right.png" />
+          </div>
+
+          <div class="referer-wrapper" v-show="item.levelId === pickedId">
+            <div class="referer">
+              <div>
+                <p>审核人:
+                  <span>{{item.name}}</span>
+                </p>
+                <p>手机号码:
+                  <span>{{item.telNumber}}</span>
+                </p>
+                <p>注册等级:
+                  <span>{{item.userLevelName}}</span>
+                </p>
+                <p>推荐人:
+                  <span>{{item.referrerName}}</span>
+                </p>
+              </div>
+              <div>
+                <img :src="item.avatar" />
+              </div>
+            </div>
+            <p class="upload-line" @click.stop="()=>{}">
+              <span>上传审核凭证：</span>
+              <vue-core-image-upload :crop="false" @imageuploading="imageuploading" @imageuploaded="imageuploaded" :data="data" :max-file-size="5242880" :url="uploadUrl">
+                <img src="../../assets/images/upload.png" alt="" style="width:2em;">
+              </vue-core-image-upload>
+            </p>
+            <br>
+            <div v-show="item.payPicUrl">
+              <img :src="item.payPicUrl" alt="" style=" width: 100%; height: 100%;">
+            </div>
+          </div>
+
+        </div>
+      </checker-item>
+    </checker>
+    <h3 v-if="upgradeList.length === 0" style="text-align:center;margin-top:2em;">暂无升级内容</h3>
+    <div class="shade" v-show="flag"></div>
+    <div class="modal" v-show="flag">
+      <p>等待审核</p>
+      <p>审核结果将以系统消息通知</p>
+      <div @click="close">我知道了</div>
+    </div>
+  </div>
 </template>
 
 <script>
 import ApplyService from 'services/ApplyService'
 import { XHeader, Checker, CheckerItem, Checklist } from 'vux'
 import Checkbox from 'components/Checkbox'
+import VueCoreImageUpload from 'vue-core-image-upload'
+import { uploadUrl } from 'services/Api'
+
 export default {
   components: {
     CheckerItem,
     Checker,
     Checklist,
     XHeader,
-    'material-checkbox': Checkbox
+    'material-checkbox': Checkbox,
+    'vue-core-image-upload': VueCoreImageUpload
   },
   data() {
     return {
+      data: {},
+      uploadUrl: uploadUrl,
       flag: false,
       checked: true,
       pickedId: '',
@@ -82,6 +104,22 @@ export default {
     this.update()
   },
   methods: {
+    imageuploading() {
+      this.$vux.loading.show({
+        text: '正在上传'
+      })
+    },
+    imageuploaded(res) {
+      this.$vux.loading.hide()
+      if (res.errno == 0) {
+        for (let item of this.upgradeList) {
+          if (item.levelId === this.pickedId) {
+            item.payPicUrl = res.data.url
+          }
+        }
+        this.upgradeList = this.upgradeList.slice()
+      }
+    },
     async upgrade() {
       if (!this.pickedId) {
         this.$vux.toast.show({
@@ -91,7 +129,13 @@ export default {
         })
         return
       }
-      const result = await ApplyService.upgrade(this.pickedId)
+      console.log(this.upgradeList.find(i => i.levelId === this.pickedId))
+      const result = await ApplyService.upgrade({
+        levelId: this.pickedId,
+        payPicUrl:
+          this.upgradeList.find(i => i.levelId === this.pickedId).payPicUrl ||
+          null
+      })
       if (result.errno) {
         this.$vux.toast.show({
           width: '10em',
@@ -118,6 +162,7 @@ export default {
 </script>
 <style lang="less" scoped>
 .check {
+  background: #fff;
   .check_head {
     height: 0.44rem;
     line-height: 0.44rem;
@@ -130,6 +175,22 @@ export default {
       height: 0.16rem;
       margin-top: 0.15rem;
     }
+  }
+  .tips-card {
+    background: #fff;
+    font-size: 1.2em;
+    text-align: center;
+    box-shadow: -2px 2px 2px #e5e5e5;
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
+      0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+    padding: 1.2em 1em;
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 5px;
+    position: absolute;
+    top: 1.86rem;
+    left: 50%;
+    transform: translateX(-50%);
   }
   .upgrade {
     height: 1.63rem;
@@ -212,37 +273,48 @@ export default {
         color: #5b50d3;
       }
     }
-    .referer {
+
+    .referer-wrapper {
       width: 88%;
       margin: 0.1rem auto;
-      border-radius: 0.04rem;
-      overflow: hidden;
-      > div {
-        &:nth-child(1) {
-          width: 70%;
-          height: 1.1rem;
-          float: left;
-          p {
-            height: 0.27rem;
-            line-height: 0.27rem;
-            font-size: 0.13rem;
-            padding-left: 6%;
-            font-weight: bold;
-          }
+
+      .upload-line {
+        font-size: 0.13rem;
+        padding: 0 5%;
+        display: flex;
+        justify-content: space-between;
+        font-weight: bold;
+        align-items: center;
+      }
+      .referer {
+        border-radius: 0.04rem;
+        overflow: hidden;
+        display: flex;
+        > div {
           &:nth-child(1) {
-            margin-top: 0.15rem;
+            display: inline-block;
+            width: 70%;
+            p {
+              height: 0.27rem;
+              line-height: 0.27rem;
+              font-size: 0.13rem;
+              padding-left: 6%;
+              font-weight: bold;
+            }
+            &:nth-child(1) {
+              margin-top: 0.05rem;
+            }
           }
-        }
-        &:nth-child(2) {
-          width: 30%;
-          height: 1.1rem;
-          float: left;
-          img {
-            width: 0.3rem;
-            height: 0.3rem;
-            border-radius: 0.02rem;
-            margin-top: 0.23rem;
-            margin-left: 47%;
+          &:nth-child(2) {
+            width: 30%;
+            display: inline-block;
+            img {
+              width: 0.3rem;
+              height: 0.3rem;
+              border-radius: 0.02rem;
+              margin-top: 0.23rem;
+              margin-left: 47%;
+            }
           }
         }
       }

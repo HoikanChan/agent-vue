@@ -5,7 +5,7 @@
       <!-- <x-icon slot="right" type="more" size="35" style="fill:#333;position:relative;top:-8px;left:-3px;"></x-icon> -->
     </x-header>
     <div class="point_body">
-      <p>{{mypoints.credit}}
+      <p>{{mypoints?mypoints.credit:"无"}}
         <span>元</span>
       </p>
       <div class="detail">
@@ -17,10 +17,10 @@
       <div class="time">
         <h3>{{pickedTime}}</h3>
         <p>支出
-          <span>{{mypointsinfo.outTotalCredit}}</span>
+          <span>{{mypointsinfo?mypointsinfo.outTotalCredit:"无"}}</span>
         </p>
         <p>收入
-          <span>{{mypointsinfo.inTotalCredit}}</span>
+          <span>{{mypointsinfo?mypointsinfo.inTotalCredit:"无"}}</span>
         </p>
       </div>
       <div class="rili">
@@ -28,7 +28,7 @@
       </div>
     </div>
     <div class="all_recode">
-      <p @click="show=true" :key="key" style="border-bottom:solid 1px #ccc">{{pickedTypeTitle}}
+      <p @click="show=true" style="border-bottom:solid 1px #ccc">{{pickedTypeTitle}}
         <img src="../../assets/images/style.png" /></p>
       <ul>
         <li v-for="(item,key) in mypointsList" :key="key">
@@ -48,24 +48,37 @@
 
       </ul>
     </div>
-    <div class="shade" v-if="flag"></div>
-    <div class="modal" v-if="flag">
-      <h2>积分充值 <img src="../../assets/images/flase.png" @click="hide()" /></h2>
-      <div class="proptype">
-        <p>上级姓名：{{chargeInfo.auditName}}</p>
-        <p>上级联系方式：{{chargeInfo.mobile}}</p>
-        <br>
-        <group>
-          <x-input title="" type="number" v-model="chargeForm.credit" :required="true" placeholder="请输入申请积分数"></x-input>
-        </group>
-        <group>
-          <x-textarea title="" :max="100" v-model="chargeForm.postscript" placeholder="请输入留言" type="text"></x-textarea>
-        </group>
-      </div>
-      <x-button type="primary" action-type="submit" class="round-btn submit" @click.native="submit()">确定</x-button>
-      <p>转让成功系统将自动发送消息</p>
-    </div>
 
+    <div v-transfer-dom>
+      <x-dialog v-model="flag">
+        <div class="modal">
+          <h2>积分充值 <img src="../../assets/images/flase.png" @click="hide()" /></h2>
+          <div class="proptype">
+            <p>上级姓名：{{chargeInfo.auditName}}</p>
+            <p>上级联系方式：{{chargeInfo.mobile}}</p>
+            <br>
+            <group>
+              <x-input title="" type="number" v-model="chargeForm.credit" :required="true" placeholder="请输入申请积分数"></x-input>
+            </group>
+            <group>
+              <x-textarea title="" :max="100" v-model="chargeForm.postscript" placeholder="请输入留言" type="text"></x-textarea>
+            </group>
+            <p class="upload-line">
+              <span>上传审核凭证</span>
+              <vue-core-image-upload :crop="false" @imageuploading="imageuploading" @imageuploaded="imageuploaded" :data="data" :max-file-size="5242880" :url="uploadUrl">
+                <img src="../../assets/images/upload.png" alt="" style="width:2.5em;">
+              </vue-core-image-upload>
+            </p>
+            <div v-show="chargeForm.payPicUrl">
+              <br>
+              <img :src="chargeForm.payPicUrl" alt="" style=" width: 100%; height: 100%;">
+            </div>
+          </div>
+          <x-button type="primary" action-type="submit" class="round-btn submit" @click.native="submit()">确定</x-button>
+          <p>转让成功系统将自动发送消息</p>
+        </div>
+      </x-dialog>
+    </div>
     <div v-transfer-dom>
       <popup v-model="show">
         <div class="popup">
@@ -97,10 +110,14 @@
 <script>
 import ApplyService from 'services/ApplyService'
 import PointService from 'services/PointService'
+import VueCoreImageUpload from 'vue-core-image-upload'
+import { uploadUrl } from 'services/Api'
+
 import { dateFormat } from 'vux'
 import {
   XInput,
   XTextarea,
+  XDialog,
   XButton,
   Group,
   DatetimeView,
@@ -116,24 +133,30 @@ export default {
   components: {
     XInput,
     XTextarea,
+    XDialog,
     Group,
     DatetimeView,
     XButton,
     Alert,
     XButton,
     Popup,
-    XHeader
+    XHeader,
+    'vue-core-image-upload': VueCoreImageUpload
   },
   data() {
     return {
+      data: {},
+
       show: false,
+      uploadUrl: uploadUrl,
       timeShow: false,
       mypoints: null,
       mypointsList: [],
       mypointsinfo: null,
       chargeForm: {
         credit: null,
-        postscript: ''
+        postscript: '',
+        payPicUrl: ''
       },
       chargeInfo: {},
       flag: false,
@@ -174,6 +197,17 @@ export default {
     pickType(type) {
       this.popupPickedType = type
     },
+    imageuploading() {
+      this.$vux.loading.show({
+        text: '正在上传'
+      })
+    },
+    imageuploaded(res) {
+      this.$vux.loading.hide()
+      if (res.errno == 0) {
+        this.chargeForm.payPicUrl = res.data.url
+      }
+    },
     typeChoosed() {
       this.show = false
       this.pickedType = this.popupPickedType
@@ -197,6 +231,11 @@ export default {
           type: result.errno ? 'warn' : 'success',
           text: result.errmsg
         })
+        this.chargeForm = {
+          credit: null,
+          postscript: '',
+          payPicUrl: ''
+        }
         this.flag = false
       }
     },
@@ -401,57 +440,55 @@ export default {
     filter: alpha(opacity=30);
     display: block;
   }
-  .modal {
-    position: absolute;
-    z-index: 101;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 72%;
-    height: 3.5rem;
-    margin: auto;
-    display: block;
-    border-radius: 0.05rem;
-    background: #fff;
-    h2 {
-      text-align: center;
-      font-size: 0.18rem;
-      margin-top: 0.27rem;
-      position: relative;
-      img {
-        width: 0.35rem;
-        height: 0.35rem;
-        position: absolute;
-        left: 82%;
-        top: -0.2rem;
-      }
-    }
-    .proptype {
-      width: 75%;
-      margin: 0.15rem auto;
-      p {
-        text-align: left;
-        padding: 0 15px;
-        line-height: 1em;
-      }
-    }
-    .submit {
-      width: 86%;
+}
+.modal {
+  margin: auto;
+  display: block;
+  padding: 1em 0;
+  border-radius: 0.05rem;
+  background: #fff;
+  .upload-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  h2 {
+    text-align: center;
+    font-size: 0.18rem;
+    margin-top: 0.27rem;
+    position: relative;
+    img {
+      width: 0.35rem;
       height: 0.35rem;
-      background: #5b50d3;
-      color: #fff;
-      line-height: 0.35rem;
-      text-align: center;
-      border-radius: 0.2rem;
-      margin-top: 0.15rem;
-      font-size: 0.14rem;
+      position: absolute;
+      right: 5%;
+      top: -0.2rem;
     }
+  }
+  .proptype {
+    width: 75%;
+    margin: 0.15rem auto;
     p {
-      text-align: center;
-      margin-top: 0.1rem;
-      color: #999;
+      text-align: left;
+      padding: 0 15px;
+      line-height: 1em;
     }
+  }
+  .submit {
+    width: 86%;
+    height: 0.35rem;
+    background: #5b50d3;
+    color: #fff;
+    line-height: 0.35rem;
+    text-align: center;
+    border-radius: 0.2rem;
+    margin-top: 0.15rem;
+    font-size: 0.14rem;
+  }
+  p {
+    text-align: center;
+    margin-top: 0.1rem;
+    color: #999;
   }
 }
 .popup {
@@ -515,11 +552,6 @@ export default {
 </style>
 <style lang="less">
 .mypoints {
-  .modal {
-    input {
-      text-align: right;
-    }
-  }
   .weui-cells:before {
     border: none !important;
   }

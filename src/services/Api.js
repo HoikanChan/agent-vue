@@ -1,11 +1,12 @@
 import axios from 'axios'
 import router from '../router'
+const host = 'http://dl.upyuns.com/agent/api/v1/'
 export default () => {
   const api = axios.create({
     //测试地址
     // baseURL: 'http://dl.upyuns.com/agent/api/v1/'
     //正式地址
-    baseURL: 'http://dl.upyuns.com/agent/api/v1/'
+    baseURL: host
   })
   api.interceptors.response.use(res => {
     return res.data
@@ -18,3 +19,6 @@ export default () => {
   })
   return api
 }
+//图片上传地址
+const uploadUrl = `${host}pic/upload`
+export { uploadUrl }

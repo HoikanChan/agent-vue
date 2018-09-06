@@ -23,8 +23,14 @@
       </x-input>
       <x-input label-width="1rem" title="邀请码" type="text" placeholder="请输入推荐人的名字邀请码" :readonly="!!form.referralCode" :required="true" ref="referralCode" v-model="form.referralCode">
       </x-input>
-      <x-input label-width="1rem" title="审核凭证" type="text" placeholder="请上传支付凭证图片" ref="payOrder" v-model="form.payOrder">
+      <x-input label-width="1rem" title="审核凭证" type="text" readonly placeholder="请上传支付凭证图片" ref="payOrder" v-model="form.payOrder">
+        <vue-core-image-upload slot="right" :crop="false" @imageuploading="imageuploading" @imageuploaded="imageuploaded" :data="data" :max-file-size="5242880" :url="uploadUrl">
+          <img src="../../assets/images/upload.png" type="ios-arrow-forward" mini @click.native="show=true" style="width:2em" />
+        </vue-core-image-upload>
       </x-input>
+      <div v-show="form.payPicUrl" style="padding:1em">
+        <img :src="form.payPicUrl" alt="" style=" width: 100%; height: 100%;">
+      </div>
     </group>
     <x-button type="primary" action-type="submit" @click.native="register()" style="margin-top:.5rem;width: 90.4%;">提交审核</x-button>
     <div v-transfer-dom>
@@ -48,6 +54,9 @@
 <script>
 import { XButton, XInput, Group, XHeader, Popup, TransferDom } from 'vux'
 import AuthService from 'services/AuthenticationService'
+import VueCoreImageUpload from 'vue-core-image-upload'
+import { uploadUrl } from 'services/Api'
+
 export default {
   name: 'Register',
   directives: {
@@ -58,10 +67,13 @@ export default {
     XInput,
     Group,
     XHeader,
-    Popup
+    Popup,
+    'vue-core-image-upload': VueCoreImageUpload
   },
   data() {
     return {
+      data: {},
+      uploadUrl: uploadUrl,
       form: {
         referralCode: this.$route.query.referralCode || null
       },
@@ -79,6 +91,17 @@ export default {
     }
   },
   methods: {
+    imageuploading() {
+      this.$vux.loading.show({
+        text: '正在上传'
+      })
+    },
+    imageuploaded(res) {
+      this.$vux.loading.hide()
+      if (res.errno == 0) {
+        this.form.payPicUrl = res.data.url
+      }
+    },
     async sendCode() {
       if (this.$refs.mobile.valid) {
         if (typeof this.countDown === 'number') return
@@ -149,6 +172,7 @@ export default {
 </script>
 <style lang="less">
 .register-container {
+  padding-bottom: 5em;
   .weui-cells {
     font-size: 0.15rem !important;
     box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),

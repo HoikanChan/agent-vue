@@ -4,10 +4,10 @@ export default {
   getUpgradeList() {
     return Api().get('applyOrder/upgradeList')
   },
-  upgrade(levelId) {
-    return Api().get('applyOrder/upgradeSubmit', {
-      params: { levelId: levelId }
-    })
+  //methods: Post
+  //params: levelId,payPicUrl
+  upgrade(content) {
+    return Api().post('applyOrder/upgradeSubmit', content)
   },
   //列取我的审核订单
   auditList(levelId) {
