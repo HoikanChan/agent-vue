@@ -1,6 +1,6 @@
 <template>
   <div class="login-container">
- 
+
     <span style="position:absolute;top:18px;left:18px">
     </span>
     <div class="title">
@@ -81,16 +81,9 @@ export default {
 </script>
 
 <style lang="less">
-#vux-x-input-as5yy,
-#vux-x-input-fg65i {
-  font-family: '苹方';
-  font-size: 14px;
-  color: #ccc;
-}
 .login-container {
-  padding-top: 24px;
-  background: #fff;
   height: 100vh;
+  background: #fff;
   .vux-x-icon {
     fill: #333;
   }
@@ -114,7 +107,7 @@ export default {
   }
   .title {
     text-align: center;
-    padding: 46px 0;
+    padding: 60px 0 46px;
     h2 {
       display: inline;
       margin: 24px auto;

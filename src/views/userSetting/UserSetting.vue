@@ -7,7 +7,9 @@
     <group>
       <p class="avatar-cell">
         <span>头像</span>
-        <img :src="form.avatar || defaultAvatar" alt="">
+        <vue-core-image-upload :crop="false" @imageuploading="imageuploading" @imageuploaded="imageuploaded" :data="data" :max-file-size="5242880" url="http://dl.upyuns.com/agent/api/v1/pic/upload">
+          <img :src="form.avatar || defaultAvatar" alt="">
+        </vue-core-image-upload>
       </p>
       <x-input placeholder-align="right" title="昵称" type="text" placeholder="请输入昵称" :required="true" ref="code" v-model="form.nickname">
       </x-input>
@@ -34,9 +36,9 @@
     </group>
 
     <group style="margin-top: .2rem;">
-      <x-input placeholder-align="right" title="实名认证" type="text" readonly :show-clear="false" v-model="form.isVerified">
+      <!-- <x-input placeholder-align="right" title="实名认证" type="text" readonly :show-clear="false" v-model="form.isVerified">
         <x-icon slot="right" type="ios-arrow-forward" style="margin-top: 6px;fill:#aaa" size="15" @click="$router.push({name:'realName'})"></x-icon>
-      </x-input>
+      </x-input> -->
     </group>
     <div v-transfer-dom>
       <popup v-model="sexShow">
@@ -92,6 +94,7 @@ import {
   CheckerItem,
   ChinaAddressV4Data
 } from 'vux'
+import VueCoreImageUpload from 'vue-core-image-upload'
 export default {
   name: 'UserSetting',
   directives: {
@@ -107,7 +110,8 @@ export default {
     'material-checkbox': Checkbox,
     XAddress,
     Checker,
-    CheckerItem
+    CheckerItem,
+    'vue-core-image-upload': VueCoreImageUpload
   },
   computed: {
     sex: function() {
@@ -117,6 +121,7 @@ export default {
   },
   data() {
     return {
+      data: {},
       flag: false,
       msg: '个人设置',
       datetime0: '',
@@ -128,17 +133,29 @@ export default {
       defaultAvatar: defaultAvatar,
       form: {
         avatar: '',
-        nickname: 'faifai',
+        nickname: '',
         gender: '1',
-        birthday: '2018-03-14',
-        mobile: '15655552222',
-        registerTime: '2018-02-13',
+        birthday: '',
+        mobile: '',
+        registerTime: '',
         location: [],
         isVerified: '未认证'
       }
     }
   },
   methods: {
+    imageuploading() {
+      this.$vux.loading.show({
+        text: '正在上传'
+      })
+    },
+    imageuploaded(res) {
+      this.$vux.loading.hide()
+      console.log(res)
+      if (res.errno == 0) {
+        this.form.avatar = res.data.url
+      }
+    },
     showSexPopUp() {
       this.sexShow = true
     },
@@ -164,8 +181,8 @@ export default {
       this.$router.push({ path: '/login' })
     },
     async updatePersonalInfo() {
-      console.log(this.$refs.address.nameValue)
       const result = await AuthService.updatePersonalInfo({
+        avatar: this.form.avatar,
         gender: this.form.gender,
         nickname: this.form.nickname,
         birthday: this.form.birthday,
@@ -180,10 +197,15 @@ export default {
     },
     async upateInfo() {
       this.form = (await AuthService.userinfo()).data
-      this.form.birthday = this.form.birthday.slice(0, -9)
+      this.form.birthday = this.form.birthday
+        ? this.form.birthday.slice(0, -9)
+        : ''
       this.form.location = this.form.location
         ? this.form.location.split(' ')
-        : []
+        : ['', '', '']
+      this.form.registerTime = this.form.registerTime
+        ? this.form.registerTime
+        : ''
     }
   },
   async mounted() {
@@ -203,6 +225,8 @@ export default {
   position: relative;
   img {
     width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
     cursor: pointer;
   }
   &:before {

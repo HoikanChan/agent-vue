@@ -2,7 +2,7 @@
   <div class="address">
     <x-header :left-options="{backText: ''}" @on-click-back="$router.push({name:'buy'})">
       <span>收货地址</span>
-      <!-- <x-icon slot="overwrite-left" type="ios-arrow-back" size="35" style="position:relative;top:-8px;left:-3px;" @click="$router.push({name:'buy'})"></x-icon> -->
+      <x-icon slot="overwrite-left" type="ios-arrow-back" size="25" style="position:relative;top:-2px;" @click="$router.push({name:'buy'})"></x-icon>
       <!-- <x-icon slot="right" type="more" size="35" style="fill:#333;position:relative;top:-8px;left:-3px;"></x-icon> -->
       <i style="float:right;position: absolute;left: 85%;font-size:.15rem;color:#7e74ea;" @click="toggleEdit()">{{isEditing?"完成":"编辑"}}</i>
     </x-header>
@@ -34,7 +34,8 @@
 <script>
 import { XHeader, Checker, CheckerItem } from 'vux'
 import Checkbox from 'components/Checkbox'
-import axios from 'axios'
+import AddressService from 'services/AddressService'
+
 export default {
   components: {
     XHeader,
@@ -69,20 +70,16 @@ export default {
   },
   methods: {
     getaddress() {
-      axios
-        .get('http://124.200.40.10:17080/agent/api/v1/address/list')
+      AddressService.get()
         .then(response => {
-          console.log(response.data.data)
-          this.addresses = response.data.data
+          this.addresses = response.data
         })
         .catch(error => {
           console.log(error)
         })
     },
     del(id) {
-      console.log(id)
-      axios
-        .get('http://124.200.40.10:17080/agent/api/v1/address/delete?id=' + id)
+      AddressService.delete(id)
         .then(response => {
           console.log('删除成功！')
           this.getaddress()

@@ -5,7 +5,7 @@ import store from '../store'
 Vue.use(Router)
 
 const router = new Router({
-  mode: 'history',
+  mode: 'hash',
   base: __dirname,
   routes: [
     {
@@ -181,7 +181,9 @@ router.beforeEach((to, from, next) => {
     !store.state.user &&
     to.name !== 'login' &&
     to.name !== 'forgetPassword' &&
+    to.name !== 'recoveredPassword' &&
     to.name !== 'register' &&
+    to.name !== 'registered' &&
     to.name !== 'userSetting' &&
     to.name !== 'mycode'
   ) {

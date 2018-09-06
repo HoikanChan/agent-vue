@@ -19,10 +19,10 @@
       <div v-for="item in applyList" :key="item.id" class="tab-content">
         <div>
           <p>审核人:
-            <span>{{item.applyUserName}}</span>
+            <span>{{item.auditUserName}}</span>
           </p>
           <p>手机号码:
-            <span>{{item.applyUserTel}}</span>
+            <span>{{item.auditUserTel}}</span>
           </p>
           <p v-if=" item.levelName">升级等级:
             <span>{{item.levelName|| '无'}}</span>
@@ -30,10 +30,15 @@
           <p>订单类型:
             <span>{{item.orderTypeText || '无'}}</span>
           </p>
+          <p>申请积分数:
+            <span>{{item.credit ===null? '无':item.credit }}</span>
+          </p>
           <p>审核状态:
             <span>{{item.statusText|| '无'}}</span>
           </p>
-          <p>时间：<span>{{item.createTime || '无'}}</span></p>
+          <p>时间：
+            <span>{{item.createTime || '无'}}</span>
+          </p>
         </div>
         <div>
           <img :src="item.auditUserAvatar" />
@@ -44,7 +49,7 @@
     <div class="tab-wrapper" v-show="tabNow==='upgrade'">
       <div v-for="item in auditList" :key="item.id" class="tab-content">
         <div>
-          <p>审核人:
+          <p>申请人:
             <span>{{item.applyUserName}}</span>
           </p>
           <p>手机号码:
@@ -56,10 +61,15 @@
           <p>订单类型:
             <span>{{item.orderTypeText || '无'}}</span>
           </p>
+          <p>申请积分数:
+            <span>{{item.credit ===null? '无':item.credit }}</span>
+          </p>
           <p>审核状态:
             <span>{{item.statusText|| '无'}}</span>
           </p>
-          <p>时间：<span>{{item.createTime || '无'}}</span></p>
+          <p>时间：
+            <span>{{item.createTime || '无'}}</span>
+          </p>
         </div>
         <div>
           <img :src="item.auditUserAvatar" />
@@ -68,8 +78,8 @@
       </div>
       <h3 v-if="auditList.length === 0" style="text-align:center;padding:0.5rem;"> 暂无记录</h3>
     </div>
-    <div class="shade" v-if="modalShow"></div>
-    <div class="modal" v-if="modalShow">
+    <div class="shade" v-show="modalShow"></div>
+    <div class="modal" v-show="modalShow">
       <h2>审核 <img src="../../assets/images/flase.png" @click="modalShow=false" /></h2>
       <div class="proptype">
         <br>
@@ -103,10 +113,15 @@ import {
   Group,
   XButton,
   Badge,
+  XDialog,
   Checker,
-  CheckerItem
+  CheckerItem,
+  TransferDomDirective as TransferDom
 } from 'vux'
 export default {
+  directives: {
+    TransferDom
+  },
   components: {
     XHeader,
     XInput,
@@ -114,6 +129,7 @@ export default {
     Group,
     XButton,
     Badge,
+    XDialog,
     Checker,
     CheckerItem,
     'material-checkbox': Checkbox

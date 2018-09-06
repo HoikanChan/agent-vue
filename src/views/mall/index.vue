@@ -5,7 +5,7 @@
       <span @click="shop">取消</span>
     </div>
     <div class="wrap" v-if="goods">
-      <ul class="category_nav" id="category_nav" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="5">
+      <ul class="category_nav" id="category_nav">
         <li v-for="item in categories" :key="item.id" v-bind:class="[selectedTabId===item.id ? activeClass : '']" @click="selectedTabId=item.id">
           <a href="#">
             {{item.name}}
@@ -16,7 +16,7 @@
     <div class="category_container" v-if="goods">
       <div class="shoppings">
         <div class="all">
-          <div class="goods">
+          <div class="goods" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="50">
             <div v-for="(item,index) in goodsList" :key="index">
               <GoodsItem :item="item" />
             </div>
@@ -92,8 +92,13 @@ export default {
   },
   watch: {
     selectedTabId: async function(val) {
-      this.page = 1
       this.goodsList = []
+      this.page = 1
+      const result = (await MallService.getGoodsList(
+        this.selectedTabId,
+        this.page++
+      )).data
+      this.goodsList = result
       this.busy = false
     }
   },

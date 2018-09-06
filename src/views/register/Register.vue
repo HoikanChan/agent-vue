@@ -23,7 +23,7 @@
       </x-input>
       <x-input label-width="1rem" title="邀请码" type="text" placeholder="请输入推荐人的名字邀请码" :readonly="!!form.referralCode" :required="true" ref="referralCode" v-model="form.referralCode">
       </x-input>
-      <x-input label-width="1rem" title="审核凭证" type="text" placeholder="请上传支付凭证图片" :required="true" ref="payOrder" v-model="form.payOrder">
+      <x-input label-width="1rem" title="审核凭证" type="text" placeholder="请上传支付凭证图片" ref="payOrder" v-model="form.payOrder">
       </x-input>
     </group>
     <x-button type="primary" action-type="submit" @click.native="register()" style="margin-top:.5rem;width: 90.4%;">提交审核</x-button>
@@ -144,7 +144,6 @@ export default {
   async mounted() {
     const result = (await AuthService.getGradeList()).data
     this.gradeList = result
-    console.log(this.$route.query)
   }
 }
 </script>
@@ -153,38 +152,39 @@ export default {
   .weui-cells {
     font-size: 0.15rem !important;
     box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
-      10px 10px 10px 0px rgba(189, 188, 188, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
-    border-radius: .03rem;
+      10px 10px 10px 0px rgba(189, 188, 188, 0.14),
+      0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+    border-radius: 0.03rem;
   }
 }
 </style>
 <style lang="less">
-.weui-label{
-    color: #333;
-    font-size: .13rem;
-    font-weight: bold;
+.weui-label {
+  color: #333;
+  font-size: 0.13rem;
+  font-weight: bold;
 }
-.weui-input{
-    color: #ccc !important;
-    font-size: .12rem !important;
+.weui-input {
+  color: #ccc !important;
+  font-size: 0.12rem !important;
 }
-.weui-btn_mini{
-    height: .28rem !important;
-    line-height: .28rem !important;
-    width: .45rem !important;
-    font-size: .12rem !important;
-    padding:0 !important;
-    margin:0 !important;
-    font-weight:bold;
+.weui-btn_mini {
+  height: 0.28rem !important;
+  line-height: 0.28rem !important;
+  width: 0.45rem !important;
+  font-size: 0.12rem !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-weight: bold;
 }
-.weui-btn_primary{
-  width:.74rem;
+.weui-btn_primary {
+  width: 0.74rem;
 }
-.weui-btn_plain-default{
-  color:#333;
+.weui-btn_plain-default {
+  color: #333;
 }
-#code{
-  width:.74rem;
+#code {
+  width: 0.74rem;
 }
 .popup {
   .popup-header {

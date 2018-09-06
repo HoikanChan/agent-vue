@@ -39,7 +39,7 @@
             <p class="clock">{{item.createTime}}
             </p>
             <span>剩余:
-              <i>{{item.inUserCredit || '无'}}</i>
+              <i>{{item.userCredit || '无'}}</i>
             </span>
           </div>
           <p class="pay">{{item.statusText}}</p>

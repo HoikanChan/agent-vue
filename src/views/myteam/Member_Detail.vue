@@ -53,11 +53,8 @@ export default {
   mounted() {
     var id = this.$route.params.id
     axios
-      .get(
-        'http://124.200.40.10:17080/agent/api/v1/team/teamOfChild?childId=100970'
-      )
+      .get('http://dl.upyuns.com/agent/api/v1/team/teamOfChild?childId=100970')
       .then(res => {
-        console.log(res)
         this.member = res.data.data
       })
   },

@@ -15,7 +15,7 @@
           <div><img :src="item.listPicUrl" /></div>
           <div>
             <p>{{item.goodsName}}
-              <span>(10支/一盒)</span>
+              <!-- <span>(10支/一盒)</span> -->
             </p>
             <p>产品规格
               <span>{{item.goodsSpecifitionNameValue}}</span>
@@ -42,7 +42,7 @@
           <div><img :src="item.listPicUrl" /></div>
           <div>
             <p>{{item.goodsName}}
-              <span>(10支/一盒)</span>
+              <!-- <span>(10支/一盒)</span> -->
             </p>
             <p>产品规格
               <span>{{item.goodsSpecifitionNameValue}}</span>
