@@ -7,7 +7,9 @@
     <group>
       <p class="avatar-cell">
         <span>头像</span>
-        <img :src="form.avatar || defaultAvatar" alt="">
+        <vue-core-image-upload :crop="false" @imageuploading="imageuploading" @imageuploaded="imageuploaded" :data="data" :max-file-size="5242880" url="http://dl.upyuns.com/agent/api/v1/pic/upload">
+          <img :src="form.avatar || defaultAvatar" alt="">
+        </vue-core-image-upload>
       </p>
       <x-input placeholder-align="right" title="昵称" type="text" placeholder="请输入昵称" :required="true" ref="code" v-model="form.nickname">
       </x-input>
@@ -92,6 +94,7 @@ import {
   CheckerItem,
   ChinaAddressV4Data
 } from 'vux'
+import VueCoreImageUpload from 'vue-core-image-upload'
 export default {
   name: 'UserSetting',
   directives: {
@@ -107,7 +110,8 @@ export default {
     'material-checkbox': Checkbox,
     XAddress,
     Checker,
-    CheckerItem
+    CheckerItem,
+    'vue-core-image-upload': VueCoreImageUpload
   },
   computed: {
     sex: function() {
@@ -117,6 +121,7 @@ export default {
   },
   data() {
     return {
+      data: {},
       flag: false,
       msg: '个人设置',
       datetime0: '',
@@ -139,6 +144,18 @@ export default {
     }
   },
   methods: {
+    imageuploading() {
+      this.$vux.loading.show({
+        text: '正在上传'
+      })
+    },
+    imageuploaded(res) {
+      this.$vux.loading.hide()
+      console.log(res)
+      if (res.errno == 0) {
+        this.form.avatar = res.data.url
+      }
+    },
     showSexPopUp() {
       this.sexShow = true
     },
@@ -165,6 +182,7 @@ export default {
     },
     async updatePersonalInfo() {
       const result = await AuthService.updatePersonalInfo({
+        avatar: this.form.avatar,
         gender: this.form.gender,
         nickname: this.form.nickname,
         birthday: this.form.birthday,
@@ -207,6 +225,8 @@ export default {
   position: relative;
   img {
     width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
     cursor: pointer;
   }
   &:before {

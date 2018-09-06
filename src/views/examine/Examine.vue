@@ -31,7 +31,7 @@
             <span>{{item.orderTypeText || '无'}}</span>
           </p>
           <p>申请积分数:
-            <span>{{item.credit || '无'}}</span>
+            <span>{{item.credit ===null? '无':item.credit }}</span>
           </p>
           <p>审核状态:
             <span>{{item.statusText|| '无'}}</span>
@@ -62,7 +62,7 @@
             <span>{{item.orderTypeText || '无'}}</span>
           </p>
           <p>申请积分数:
-            <span>{{item.credit || '无'}}</span>
+            <span>{{item.credit ===null? '无':item.credit }}</span>
           </p>
           <p>审核状态:
             <span>{{item.statusText|| '无'}}</span>

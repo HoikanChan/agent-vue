@@ -23,7 +23,7 @@
       </x-input>
       <x-input label-width="1rem" title="邀请码" type="text" placeholder="请输入推荐人的名字邀请码" :readonly="!!form.referralCode" :required="true" ref="referralCode" v-model="form.referralCode">
       </x-input>
-      <x-input label-width="1rem" title="审核凭证" type="text" placeholder="请上传支付凭证图片" :required="true" ref="payOrder" v-model="form.payOrder">
+      <x-input label-width="1rem" title="审核凭证" type="text" placeholder="请上传支付凭证图片" ref="payOrder" v-model="form.payOrder">
       </x-input>
     </group>
     <x-button type="primary" action-type="submit" @click.native="register()" style="margin-top:.5rem;width: 90.4%;">提交审核</x-button>

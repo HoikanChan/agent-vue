@@ -71,8 +71,7 @@ export default {
   }
 }
 </script>
-<style>
-@import url('../../assets/css/user.css');
+<style scoped>
 .things a img:first-child {
   display: none;
 }
@@ -87,5 +86,66 @@ export default {
 }
 .router-link-active {
   color: #d60000;
+}
+.head {
+  width: 100%;
+  height: 1.88rem;
+  background: url('../../assets/images/bg_user.png') no-repeat center/cover;
+  position: relative;
+}
+.head div {
+  width: 0.46rem;
+  height: 0.46rem;
+  margin-left: 44%;
+  padding-top: 0.45rem;
+}
+.head div img {
+  width: 100%;
+  height: auto;
+}
+.head p {
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+  font-size: 0.14rem;
+}
+.head p:nth-child(2) {
+  margin-top: 0.1rem;
+}
+.set {
+  position: absolute;
+  left: 5.6%;
+  top: 0.13rem;
+  width: 0.18rem;
+  height: 0.19rem;
+}
+.code_ {
+  position: absolute;
+  top: 0.13rem;
+  left: 87%;
+  width: 0.2rem;
+  height: 0.21rem;
+}
+.user .all {
+  width: 100%;
+  height: 2.4rem;
+  background: #fff;
+}
+.user_all {
+  width: 92%;
+  height: 2.4rem;
+  margin-left: 4%;
+  padding-top: 0.05rem;
+}
+.user_all li {
+  width: 25%;
+  height: 0.75rem;
+  float: left;
+  text-align: center;
+}
+.user_all li img {
+  width: 0.39rem;
+  height: 0.39rem;
+  margin-top: 0.15rem;
 }
 </style>

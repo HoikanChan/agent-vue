@@ -20,6 +20,7 @@
   "dependencies": {
     "array-find": "^1.0.0",
     "axios": "^0.15.3",
+    "deepmerge": "^2.1.1",
     "fastclick": "^1.0.6",
     "js-sha256": "^0.9.0",
     "lodash.debounce": "^4.0.8",
@@ -30,6 +31,7 @@
     "validator": "^6.2.1",
     "vue": "^2.5.11",
     "vue-cli": "^2.8.1",
+    "vue-core-image-upload": "^2.4.11",
     "vue-infinite-scroll": "^2.0.2",
     "vue-resource": "^1.5.1",
     "vue-router": "^3.0.1",
