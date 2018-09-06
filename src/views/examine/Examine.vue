@@ -303,6 +303,12 @@ export default {
           font-size: 0.13rem;
           padding-left: 6%;
           font-weight: bold;
+          &:nth-child(1) {
+            margin-top: 0.15rem;
+          }
+          &:last-child {
+            margin-bottom: 0.15rem;
+          }
         }
       }
       &:nth-child(2) {

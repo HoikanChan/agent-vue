@@ -11,11 +11,11 @@
                 <p>余生不送</p>
             </div>
             <div class="two">
-                <p class="phone">手机号码:<span>15797964844</span></p>
-                <p>代理等级:<span>总代</span></p>
-                <p>注册时间:<span>2017-10-12</span></p>
-                <p>本月业绩:<span>222222.00</span></p>
-                <p>累计业绩:<span>8888888.00</span></p>
+                <p class="phone">手机号码：<span>15797964844</span></p>
+                <p>代理等级：<span>总代</span></p>
+                <p>注册时间：<span>2017-10-12</span></p>
+                <p>本月业绩：<span>222222.00</span></p>
+                <p>累计业绩：<span>8888888.00</span></p>
             </div>
         </div>
         <div class="level">
@@ -119,7 +119,7 @@ export default {
     }
     .two {
       width: 60%;
-      height: 1.53rem;
+      height: 1.52rem;
       float: left;
       .phone {
         margin-top: 0.28rem;
@@ -128,7 +128,10 @@ export default {
         color: #fff;
         margin-left: 15.1%;
         margin-top: 0.01rem;
-        font-size: 0.12rem;
+        font-size: 0.13rem;
+        span {
+          // padding-left: 1%;
+        }
       }
     }
   }

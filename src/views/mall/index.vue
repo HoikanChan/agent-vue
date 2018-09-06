@@ -84,10 +84,6 @@ export default {
       )).data
       this.goodsList = [...this.goodsList, ...result]
       this.busy = !result.length
-      // if (!result.length) {
-      //   this.page = 1
-      //   this.busy = false
-      // }
     }
   },
   watch: {
@@ -149,7 +145,7 @@ export default {
   width: 100%;
   height: 0.44rem;
   background: #fff;
-  border-top: 1px solid #ccc;
+  // border-top: 1px solid #ccc;
   li {
     width: 25%;
     height: 0.44rem;
@@ -161,58 +157,6 @@ export default {
   a {
     font-size: 0.14rem;
     padding: 0 0.1rem 0.08rem 0.1rem;
-  }
-}
-.goods {
-  height: auto;
-  overflow: scroll;
-  padding-bottom: 1rem;
-  > div {
-    width: 44%;
-    height: 2.67rem;
-    background: #fff;
-    margin-top: 0.1rem;
-    &:nth-child(2n + 1) {
-      margin-left: 4.8%;
-      float: left;
-    }
-    &:nth-child(2n) {
-      margin-right: 4.8%;
-      float: right;
-    }
-    .good_img {
-      width: 100%;
-      height: 1.67rem;
-      img {
-        width: 100%;
-        height: 1.67rem;
-      }
-    }
-    .good_name {
-      height: 0.37rem;
-      line-height: 0.37rem;
-      font-size: 0.14rem;
-      font-weight: 600;
-      padding-left: 5%;
-    }
-    .good_container {
-      width: 90%;
-      height: 0.32rem;
-      margin-left: 5%;
-      font-size: 0.12rem;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
-      overflow: hidden;
-    }
-    .good_price {
-      width: 90%;
-      height: 0.31rem;
-      line-height: 0.31rem;
-      margin-left: 5%;
-      font-weight: bold;
-      font-size: 0.14rem;
-    }
   }
 }
 .empty {

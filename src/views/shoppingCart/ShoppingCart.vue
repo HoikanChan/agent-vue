@@ -238,6 +238,9 @@ export default {
   background: #fff;
   display: flex;
   align-items: center;
+  &:first-child {
+    border-bottom: none;
+  }
   > div {
     &:nth-child(2) {
       width: 0.9rem;

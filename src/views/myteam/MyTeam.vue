@@ -236,6 +236,9 @@ export default {
       line-height: 0.53rem;
       border-bottom: 1px solid #ccc;
       padding: 0 4.8%;
+      &:first-child {
+        border-bottom: none;
+      }
       .jpg {
         width: 0.33rem;
         height: 0.33rem;
