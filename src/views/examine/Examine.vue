@@ -90,6 +90,7 @@
         <div class="tab-img" style="text-align:center;position:relative">
           <spinner type="bubbles" size="40" style="position:absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);"></spinner>
           <p>审核凭证：</p>
+          <br/>
           <x-img :src="item.payPic" @on-success="success" @on-error="error" class="ximg-demo" error-class="ximg-error" :offset="-100" container=".tab-wrapper"></x-img>
         </div>
       </div>
@@ -176,14 +177,12 @@ export default {
 
   methods: {
     success(src, ele) {
-      console.log('success load', src)
       const span = ele.parentNode.querySelector('span')
       ele.parentNode.removeChild(span)
     },
     error(src, ele, msg) {
-      console.log('error load', msg, src)
       const span = ele.parentNode.querySelector('span')
-      span.innerText = '加载失败...'
+      span.innerText = '没有上传审核凭证...'
     },
     aduitModalShow(id) {
       this.auditId = id
@@ -209,8 +208,8 @@ export default {
       this.update()
     }
   },
-  async activated() {
-    this.update()
+  async mounted() {
+    await this.update()
   }
 }
 </script>
@@ -357,11 +356,14 @@ export default {
           width: 30%;
           height: 1.1rem;
           img {
-            width: 0.3rem;
-            height: 0.3rem;
-            border-radius: 0.02rem;
-            margin-top: 0.23rem;
-            margin-left: 47%;
+            width: 0.5rem;
+            height: 0.5rem;
+            box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
+              10px 10px 10px 0px rgba(189, 188, 188, 0.14),
+              0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+            border-radius: 50%;
+            margin-top: 0.2rem;
+            margin-left: 20%;
           }
           button {
             margin-left: 37%;

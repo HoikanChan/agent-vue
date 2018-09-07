@@ -24,8 +24,6 @@ export default {
 <style lang='less'>
 .authorization {
   .authorize {
-    // background: url('../../assets/images/authorization.png') no-repeat center;
-    // background-size: cover;
     img {
       width: 100%;
       height: auto;
