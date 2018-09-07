@@ -160,7 +160,6 @@ export default {
         height: 0.3rem;
         position: inherit;
         border-radius: 50%;
-        border: 1px solid #fff;
       }
       .mantwo {
         color: #fff;
@@ -192,7 +191,6 @@ export default {
         height: 0.3rem;
         position: inherit;
         border-radius: 50%;
-        border: 1px solid #fff;
       }
       .mantwo_ {
         color: #fff;
@@ -237,10 +235,10 @@ export default {
     li {
       height: 0.53rem;
       line-height: 0.53rem;
-      border-bottom: 1px solid #ccc;
+      border-top: 1px solid #eee;
       padding: 0 4.8%;
       &:first-child {
-        border-bottom: none;
+        border-top: none;
       }
       .jpg {
         width: 0.33rem;
