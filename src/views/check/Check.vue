@@ -179,7 +179,7 @@ export default {
   }
   .tips-card {
     background: #fff;
-    font-size: 1.2em;
+    font-size: 1em;
     text-align: center;
     box-shadow: -2px 2px 2px #e5e5e5;
     box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
