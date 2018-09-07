@@ -267,7 +267,7 @@ export default {
     }
   }
   div.total {
-    padding: 10px 15px 42px;
+    padding: 15px;
     text-align: right;
     position: relative;
     &:before {
