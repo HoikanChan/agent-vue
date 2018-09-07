@@ -25,10 +25,9 @@
 }
 .goods > div .good_img img {
   width: 100%;
-  height: 1.67rem;
+  height: auto;
 }
-.goods > div .good_name {
-  width: 95%;
+.goods > div a .good_name {
   height: 0.37rem;
   line-height: 0.37rem;
   font-size: 0.14rem;
@@ -51,7 +50,7 @@
   overflow: hidden;
   color: #333;
 }
-.goods a > div .good_price {
+.goods > div a .good_price {
   width: 90%;
   height: 0.31rem;
   line-height: 0.31rem;

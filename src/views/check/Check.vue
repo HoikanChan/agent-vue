@@ -1,5 +1,5 @@
 <template>
-  <div class="check">
+  <div class="check-wrapper">
     <x-header :left-options="{backText: ''}">
       <span>升级</span>
       <img slot="overwrite-left" src="../../assets/images/back.png" size="25" style="width:.09rem;height:auto;position:relative;top:-2px;" @click="$router.back(-1)">
@@ -162,7 +162,7 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-.check {
+.check-wrapper {
   background: #fff;
   min-height: 100vh;
   .check_head {
@@ -180,7 +180,7 @@ export default {
   }
   .tips-card {
     background: #fff;
-    font-size: 1.2em;
+    font-size: 1em;
     text-align: center;
     box-shadow: -2px 2px 2px #e5e5e5;
     box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
@@ -376,7 +376,7 @@ export default {
 }
 </style>
 <style lang="less">
-.check {
+.check-wrapper {
   .vux-checker-item {
     width: 100%;
     background: #fff;
