@@ -1,5 +1,5 @@
 <template>
-  <div class="check">
+  <div class="check-wrapper">
     <x-header :left-options="{backText: ''}">
       <span>升级</span>
     </x-header>
@@ -161,7 +161,7 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-.check {
+.check-wrapper {
   background: #fff;
   min-height: 100vh;
   .check_head {
@@ -375,7 +375,7 @@ export default {
 }
 </style>
 <style lang="less">
-.check {
+.check-wrapper {
   .vux-checker-item {
     width: 100%;
     background: #fff;

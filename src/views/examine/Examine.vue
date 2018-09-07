@@ -353,11 +353,14 @@ export default {
           width: 30%;
           height: 1.1rem;
           img {
-            width: 0.3rem;
-            height: 0.3rem;
-            border-radius: 0.02rem;
-            margin-top: 0.23rem;
-            margin-left: 47%;
+            width: 0.5rem;
+            height: 0.5rem;
+            box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
+              10px 10px 10px 0px rgba(189, 188, 188, 0.14),
+              0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+            border-radius: 50%;
+            margin-top: 0.2rem;
+            margin-left: 20%;
           }
           button {
             margin-left: 37%;
