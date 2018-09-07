@@ -19,10 +19,11 @@
     <div class="date">
       <div class="time">
         <h3>{{pickedTime}}</h3>
-        <p>支出
+        <p>支出&nbsp
           <span>{{mypointsinfo?mypointsinfo.outTotalCredit:"0"}}</span>元
         </p>
-        <p>收入
+        &nbsp
+        <p>收入&nbsp
           <span>{{mypointsinfo?mypointsinfo.inTotalCredit:"0"}}</span>元
         </p>
       </div>
@@ -223,9 +224,10 @@ export default {
     },
     async submit() {
       if (!this.chargeForm.credit) {
-        this.$vux.alert.show({
-          title: '输入不能为空',
-          content: '请重新输入'
+        this.$vux.toast.show({
+          type: 'warn',
+          width: '15em',
+          text: '申请积分不为空'
         })
       } else {
         const result = await ApplyService.chargePoint(this.chargeForm)
@@ -341,10 +343,6 @@ export default {
       p {
         display: inline-block;
         margin-top: 0.02rem;
-        width: 40%;
-        span {
-          padding-left: 10%;
-        }
       }
     }
     .rili {

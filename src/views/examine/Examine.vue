@@ -87,6 +87,7 @@
         <div class="tab-img" style="text-align:center;position:relative">
           <spinner type="bubbles" size="40" style="position:absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);"></spinner>
           <p>审核凭证：</p>
+          <br/>
           <x-img :src="item.payPic" @on-success="success" @on-error="error" class="ximg-demo" error-class="ximg-error" :offset="-100" container=".tab-wrapper"></x-img>
         </div>
       </div>
@@ -173,14 +174,12 @@ export default {
 
   methods: {
     success(src, ele) {
-      console.log('success load', src)
       const span = ele.parentNode.querySelector('span')
       ele.parentNode.removeChild(span)
     },
     error(src, ele, msg) {
-      console.log('error load', msg, src)
       const span = ele.parentNode.querySelector('span')
-      span.innerText = '加载失败...'
+      span.innerText = '没有上传审核凭证...'
     },
     aduitModalShow(id) {
       this.auditId = id
@@ -206,8 +205,8 @@ export default {
       this.update()
     }
   },
-  async activated() {
-    this.update()
+  async mounted() {
+    await this.update()
   }
 }
 </script>

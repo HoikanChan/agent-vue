@@ -80,7 +80,6 @@ export default {
     del(id) {
       AddressService.delete(id)
         .then(response => {
-          console.log('删除成功！')
           this.getaddress()
         })
         .catch(error => {
@@ -129,37 +128,8 @@ export default {
     text-align: right;
     height: 0.3rem;
     line-height: 0.3rem;
-    // border-top:1px solid #ccc;
   }
 }
-// .address-detail {
-//   font-size: 14px;
-//   height: 1.04rem;
-//   border-bottom: 1px solid #ccc;
-//   background: #fff;
-//   display: flex;
-//   justify-content: center;
-//   flex-direction: column;
-//   padding: 0 0.5rem 0 0.3rem;
-//   position: relative;
-//   p {
-//     margin: 0.05rem 0;
-//     position: relative;
-//     display: flex;
-//     justify-content: space-between;
-//   }
-//   img {
-//     position: absolute;
-//     left: -0.3rem;
-//     top: -0.05rem;
-//   }
-//   .forward-icon {
-//     fill: #7e74ea;
-//     position: absolute;
-//     right: 0.2rem;
-//     bottom: 0.05rem;
-//   }
-// }
 .checkbox-wrapper {
   position: absolute;
   right: 0.05rem;

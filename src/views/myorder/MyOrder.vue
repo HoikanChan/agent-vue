@@ -1,7 +1,7 @@
 <template>
   <div class="myorder">
     <div class="myorder_head">
-      <img class="back" src="../../assets/images/back.png" @click="$router.go(-1)"/> 我的订单
+      <img class="back" src="../../assets/images/back.png" @click="$router.push({name:'user'})"/> 我的订单
     </div>
     <div class="things">
       <a :class="{'active':tabNow === 1}" @click="tabNow=1">全部</a>

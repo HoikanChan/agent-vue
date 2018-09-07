@@ -2,7 +2,7 @@
   <div class="shoppingcart">
     <x-header :left-options="{backText: ''}">购物车</x-header>
     <div class="editer" v-show="show">
-      <img style="" src="../../assets/images/19.jpg" />
+      <img style="" :src="$store.getters.getUser.avatar" />
       <p>{{$store.getters.getUser.username}}</p>
       <span @click="toggleEdit">{{isEditing?"完成":"编辑"}}</span>
     </div>
@@ -225,8 +225,7 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-@color_1: #666;
-@color_2: #5b50d3;
+@import url('../../assets/css/shoppingcart.css');
 
 @color_1: #666;
 @color_2: #5b50d3;
@@ -369,8 +368,4 @@ export default {
 .vux-header {
   border-bottom: 1px solid #ccc;
 }
-</style>
-
-<style>
-@import url('../../assets/css/shoppingcart.css');
 </style>
