@@ -8,10 +8,11 @@
     </div>
     <group>
       <x-input title="message" placeholder="请输入手机号码" :required="true" ref="mobile" v-model="loginForm.mobile" is-type="china-mobile">
-        <x-icon slot="label" type="android-phone-portrait" style="padding-right:10px;display:block;"></x-icon>
+        <!-- <x-icon slot="label" type="android-phone-portrait" style="padding-right:10px;display:block;"></x-icon> -->
+        <img slot="label" style="width:.14rem;height:auto;padding-right:10px;display:block;" src="../../assets/images/phone.png" />
       </x-input>
       <x-input title="message" type="password" placeholder="请输入密码" :required="true" ref="password" v-model="loginForm.password">
-        <x-icon slot="label" type="ios-locked-outline" style="padding-right:10px;display:block;"></x-icon>
+        <img slot="label" style="width:.14rem;height:auto;padding-right:10px;display:block;" src="../../assets/images/password.png" />
       </x-input>
       <div class="forgot-password">
         <a @click="$router.push({name:'forgetPassword' })">忘记密码？</a>
@@ -81,6 +82,13 @@ export default {
 </script>
 
 <style lang="less">
+.weui-input {
+  font-size: 0.14rem !important;
+  color: #ccc !important;
+}
+.weui-cell {
+  padding: 15px !important;
+}
 .login-container {
   height: 100vh;
   background: #fff;

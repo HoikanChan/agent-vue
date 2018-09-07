@@ -1,6 +1,9 @@
 <template>
   <div class="examine">
-    <x-header :left-options="{backText: ''}">审核</x-header>
+    <x-header :left-options="{backText: ''}">
+      <span>审核</span>
+      <img slot="overwrite-left" src="../../assets/images/back.png" size="25" style="width:.09rem;height:auto;position:relative;top:-2px;" @click="$router.back(-1)">
+      </x-header>
     <div class="tab">
       <div @click="tabNow='register'">
         <img src="../../assets/images/register_check.png" v-if="tabNow==='register'" />

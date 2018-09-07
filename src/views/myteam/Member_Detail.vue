@@ -1,7 +1,7 @@
 <template>
   <div class="member">
     <div class="team_head">
-      <a href="javascript:;" onClick="javascript:history.back(-1);"><img class="back" src="../../assets/images/back.png" /></a>
+      <img slot="overwrite-left" src="../../assets/images/back.png" style="width:.09rem;height:auto;position:relative;top:14px;float:left;" @click="$router.back(-1)">
       {{info.username}}
     </div>
     <div class="detail">

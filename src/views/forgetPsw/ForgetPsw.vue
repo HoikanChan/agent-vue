@@ -1,20 +1,21 @@
 <template>
   <div class="forget-psw-container">
     <x-header :left-options="{backText: ''}" style="border-bottom: 1px solid #ccc ;">忘记密码</x-header>
+    
     <div class="content">
       <group>
         <x-input title="message" placeholder="请输入手机号码" :required="true" ref="mobile" v-model="form.mobile" is-type="china-mobile">
-          <x-icon slot="label" type="android-phone-portrait" style="padding-right:10px;display:block;"></x-icon>
+          <img slot="label" style="width:.14rem;height:auto;padding-right:10px;display:block;" src="../../assets/images/phone.png" />
         </x-input>
         <x-input type="text" placeholder="请输入验证码" :required="true" ref="code" v-model="form.SMSCode">
-          <x-icon slot="label" type="ios-locked-outline" style="display:block;padding-right:10px;"></x-icon>
+         <img slot="label" style="width:.14rem;height:auto;padding-right:10px;display:block;" src="../../assets/images/password.png" />
           <x-button slot="right" type="primary" mini @click.native="sendCode">{{ countDown || '获取验证码'}}</x-button>
         </x-input>
         <x-input title="message" type="password" placeholder="设置新密码" :required="true" ref="psw" v-model="form.password">
-          <x-icon slot="label" type="ios-locked-outline" style="padding-right:10px;display:block;"></x-icon>
+          <img slot="label" style="width:.14rem;height:auto;padding-right:10px;display:block;" src="../../assets/images/password.png" />
         </x-input>
         <x-input title="message" type="password" placeholder="确认密码" :required="true" v-model="form.confirmPassword" ref="confirmPassword" :equal-with="form.password">
-          <x-icon slot="label" type="ios-locked-outline" style="padding-right:10px;display:block;"></x-icon>
+          <img slot="label" style="width:.14rem;height:auto;padding-right:10px;display:block;" src="../../assets/images/password.png" />
         </x-input>
         <x-button style="margin-top:46px;" type="primary" action-type="submit" class="round-btn" @click.native="modifyPsw()">提交修改</x-button>
       </group>

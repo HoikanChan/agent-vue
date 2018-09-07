@@ -1,6 +1,9 @@
 <template>
   <div class="shoppingcart">
-    <x-header :left-options="{backText: ''}">购物车</x-header>
+    <x-header :left-options="{backText: ''}">
+      <span>购物车</span>
+      <img slot="overwrite-left" src="../../assets/images/back.png" size="25" style="width:.09rem;height:auto;position:relative;top:-2px;" @click="$router.back(-1)">
+      </x-header>
     <div class="editer" v-show="show">
       <img style="" src="../../assets/images/19.jpg" />
       <p>{{$store.getters.getUser.username}}</p>

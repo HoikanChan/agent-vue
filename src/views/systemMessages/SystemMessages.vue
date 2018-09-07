@@ -1,7 +1,8 @@
 <template>
   <div class="realname-container">
     <x-header :left-options="{backText: ''}" style="border-bottom: 1px solid #ccc ;">
-      系统消息
+      <span>系统消息</span>
+      <img slot="overwrite-left" src="../../assets/images/back.png" size="25" style="width:.09rem;height:auto;position:relative;top:-2px;" @click="$router.back(-1)">
       <a slot="right" type="more" size="35" style="color:#5b50d3">清空</a>
     </x-header>
     <div class="content">

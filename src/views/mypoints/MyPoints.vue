@@ -2,7 +2,7 @@
   <div class="mypoints">
     <x-header :left-options="{backText: ''}">
       <span>我的积分</span>
-      <!-- <x-icon slot="right" type="more" size="35" style="fill:#333;position:relative;top:-8px;left:-3px;"></x-icon> -->
+      <img slot="overwrite-left" src="../../assets/images/back.png" size="25" style="width:.09rem;height:auto;position:relative;top:-2px;" @click="$router.back(-1)">
     </x-header>
     <div class="point_body">
       <p>可用积分：{{mypoints?mypoints.credit:"0.00"}}

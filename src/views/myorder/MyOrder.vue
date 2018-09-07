@@ -182,8 +182,8 @@ export default {
     border-bottom: 1px solid #ccc;
     .back {
       float: left;
-      width: 0.1rem;
-      height: 0.16rem;
+      width: 0.09rem;
+      height: auto;
       margin-top: 0.15rem;
     }
   }
