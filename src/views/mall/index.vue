@@ -44,7 +44,7 @@
   </div>
 </template>
 <script>
-import Footer from '../../components/public/Footer.vue'
+import Footer from '../../components/Footer'
 import MallService from 'services/MallService'
 import GoodsItem from 'components/GoodsItem'
 import infiniteScroll from 'vue-infinite-scroll'

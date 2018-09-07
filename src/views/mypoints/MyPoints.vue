@@ -5,7 +5,10 @@
       <!-- <x-icon slot="right" type="more" size="35" style="fill:#333;position:relative;top:-8px;left:-3px;"></x-icon> -->
     </x-header>
     <div class="point_body">
-      <p>{{mypoints?mypoints.credit:"无"}}
+      <p>可用积分：{{mypoints?mypoints.credit:"0.00"}}
+        <span>元</span>
+      </p>
+      <p>押金：{{mypoints?mypoints.deposit:"0.00"}}
         <span>元</span>
       </p>
       <div class="detail">
@@ -17,10 +20,10 @@
       <div class="time">
         <h3>{{pickedTime}}</h3>
         <p>支出
-          <span>{{mypointsinfo?mypointsinfo.outTotalCredit:"无"}}</span>
+          <span>{{mypointsinfo?mypointsinfo.outTotalCredit:"0"}}</span>元
         </p>
         <p>收入
-          <span>{{mypointsinfo?mypointsinfo.inTotalCredit:"无"}}</span>
+          <span>{{mypointsinfo?mypointsinfo.inTotalCredit:"0"}}</span>元
         </p>
       </div>
       <div class="rili">
@@ -33,13 +36,13 @@
       <ul>
         <li v-for="(item,key) in mypointsList" :key="key">
           <p class="type">{{item.logTypeText}}
-            <span>{{item.credit}} </span>
+            <span>{{item.credit}} 元</span>
           </p>
           <div class="time_balance">
             <p class="clock">{{item.createTime}}
             </p>
             <span>剩余:
-              <i>{{item.userCredit || '无'}}</i>
+              <i>{{item.userCredit || '0'}}</i>元
             </span>
           </div>
           <p class="pay">{{item.statusText}}</p>
@@ -287,8 +290,11 @@ export default {
     text-align: center;
     color: #fff;
     p {
-      font-size: 0.26rem;
-      padding-top: 0.42rem;
+      font-size: 0.2rem;
+      padding-bottom: 0.2em;
+      &:first-child {
+        padding-top: 0.32rem;
+      }
     }
     .detail {
       width: 45.6%;

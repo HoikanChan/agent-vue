@@ -30,7 +30,7 @@
     <div>
       <ul class="members">
         <li v-for="(item,key) in pickedTeam" :key="key" :value='item.id'>
-          <div @click="viewChild(item.id,item)">
+          <div @click="viewChild(item.id)">
             <img class="jpg" :src="item.avatar" />
             <span>{{item.username}}</span>
             <img class="right" src="../../assets/images/right.png" />
@@ -69,12 +69,11 @@ export default {
     addClass: function(index) {
       this.current = index
     },
-    viewChild(id, info) {
+    viewChild(id) {
       this.$router.push({
         name: 'member_detail',
         params: {
-          id: id,
-          info: info
+          id: id
         }
       })
     }
