@@ -5,9 +5,9 @@
     </x-header>
     <div class="upgrade">
       <div class="rank">
-        <img class="face" src="../../assets/images/22.jpg" />
+        <img class="face" :src="$store.getters.getUser.avatar" />
         <img class="grade" src="../../assets/images/rank.png" />
-        <p>大区</p>
+        <p>{{$store.getters.getUser?$store.getters.getUser.userLevelName:"暂无等级"}}</p>
       </div>
       <div class="up">
         <img class="up_img" src="../../assets/images/up.png" />
@@ -23,9 +23,9 @@
             <div class="checkbox-wrapper">
               <material-checkbox></material-checkbox>
             </div>
-            <span>{{item.levelName}}</span>
+            <span>{{item.levelName}} {{ item.price|cnNum}} + 押金{{item.deposit|cnNum}}</span>
 
-            <i>{{item.price}}</i>
+            <i>{{item.deposit+item.price | cnNum}}</i>
             <img src="../../assets/images/right.png" />
           </div>
 
@@ -204,7 +204,6 @@ export default {
       .face {
         width: 0.54rem;
         height: 0.54rem;
-        border: 1px solid #fff;
         border-radius: 50%;
         margin-left: 40.5%;
         margin-top: 0.32rem;
@@ -225,7 +224,7 @@ export default {
         left: 36.8%;
         top: 0.78rem;
         text-align: center;
-        font-size: 0.15rem;
+        font-size: 0.13rem;
       }
     }
     .up {
@@ -281,7 +280,7 @@ export default {
 
       .upload-line {
         font-size: 0.13rem;
-        padding: 0 5%;
+        padding: 0 4%;
         display: flex;
         justify-content: space-between;
         font-weight: bold;
@@ -310,10 +309,13 @@ export default {
             width: 30%;
             display: inline-block;
             img {
-              width: 0.3rem;
-              height: 0.3rem;
-              border-radius: 0.02rem;
-              margin-top: 0.23rem;
+              width: 0.5rem;
+              height: 0.5rem;
+              box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
+                10px 10px 10px 0px rgba(189, 188, 188, 0.14),
+                0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+              border-radius: 50%;
+              margin-top: 0.1rem;
               margin-left: 47%;
             }
           }

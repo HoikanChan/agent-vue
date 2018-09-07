@@ -206,7 +206,7 @@ export default {
       this.update()
     }
   },
-  async mounted() {
+  async activated() {
     this.update()
   }
 }
