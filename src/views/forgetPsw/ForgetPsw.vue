@@ -1,7 +1,10 @@
 <template>
   <div class="forget-psw-container">
-    <x-header :left-options="{backText: ''}" style="border-bottom: 1px solid #ccc ;">忘记密码</x-header>
-    
+    <x-header :left-options="{backText: ''}" style="border-bottom: 1px solid #ccc ;">
+      <span>忘记密码</span>
+      <img slot="overwrite-left" src="../../assets/images/back.png" size="25" style="width:.09rem;height:auto;position:relative;top:-2px;" @click="$router.back(-1)">
+      </x-header>
+
     <div class="content">
       <group>
         <x-input title="message" placeholder="请输入手机号码" :required="true" ref="mobile" v-model="form.mobile" is-type="china-mobile">

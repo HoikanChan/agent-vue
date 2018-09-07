@@ -179,7 +179,7 @@ export default {
     padding: 0 4.8%;
     text-align: center;
     font-size: 0.18rem;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #eee;
     .back {
       float: left;
       width: 0.09rem;
@@ -191,7 +191,7 @@ export default {
     height: 0.41rem;
     padding: 0 4.8%;
     background: #fff;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #eee;
     a {
       display: block;
       width: 17.2%;
@@ -282,7 +282,7 @@ export default {
       .add {
         height: 0.43rem;
         line-height: 0.43rem;
-        border-bottom: 1px solid #ccc;
+        border-bottom: 1px solid #eee;
         background: #fff;
         font-size: 0.13rem;
         text-align: right;
@@ -313,7 +313,7 @@ export default {
 .add {
   height: 0.43rem;
   line-height: 0.43rem;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #eee;
   background: #fff;
   font-size: 0.13rem;
   text-align: right;
