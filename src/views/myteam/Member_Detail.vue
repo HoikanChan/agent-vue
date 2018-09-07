@@ -20,10 +20,10 @@
           <span>{{info.registerTime}}</span>
         </p>
         <p>本月业绩:
-          <span>222222.00</span>
+          <span>{{info.currentPerformance ||'0.00'}}</span>
         </p>
         <p>累计业绩:
-          <span>8888888.00</span>
+          <span>{{info.performance ||'0.00'}}</span>
         </p>
       </div>
     </div>
@@ -57,19 +57,19 @@ export default {
     return {
       member: [],
       pickedTeam: [],
-      current: 0
-    }
-  },
-  computed: {
-    info: function() {
-      return this.$route.params.info || {}
+      current: 0,
+      info: {}
     }
   },
   mounted() {
     let id = this.$route.params.id
     TeamService.childInfo(id).then(res => {
-      this.member = res.data
-      this.pickedTeam = this.member[this.current].users || []
+      if (res.data) {
+        this.info = res.data['performance']
+        delete res.data.performance
+        this.member = res.data
+        this.pickedTeam = this.member[this.current].users || []
+      }
     })
   },
   methods: {

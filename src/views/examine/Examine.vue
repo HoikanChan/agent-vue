@@ -17,63 +17,77 @@
     </div>
     <div class="tab-wrapper" v-show="tabNow==='register'">
       <div v-for="item in applyList" :key="item.id" class="tab-content">
-        <div>
-          <p>审核人:
-            <span>{{item.auditUserName}}</span>
-          </p>
-          <p>手机号码:
-            <span>{{item.auditUserTel}}</span>
-          </p>
-          <p v-if=" item.levelName">升级等级:
-            <span>{{item.levelName|| '无'}}</span>
-          </p>
-          <p>订单类型:
-            <span>{{item.orderTypeText || '无'}}</span>
-          </p>
-          <p>申请积分数:
-            <span>{{item.credit ===null? '无':item.credit }}</span>
-          </p>
-          <p>审核状态:
-            <span>{{item.statusText|| '无'}}</span>
-          </p>
-          <p>时间：
-            <span>{{item.createTime || '无'}}</span>
-          </p>
+        <div class="tab-text">
+          <div>
+            <p>审核人:
+              <span>{{item.auditUserName}}</span>
+            </p>
+            <p>手机号码:
+              <span>{{item.auditUserTel}}</span>
+            </p>
+            <p v-if=" item.levelName">升级等级:
+              <span>{{item.levelName|| '无'}}</span>
+            </p>
+            <p>订单类型:
+              <span>{{item.orderTypeText || '无'}}</span>
+            </p>
+            <p>申请积分数:
+              <span>{{item.credit ===null? '无':item.credit }}</span>
+            </p>
+            <p>审核状态:
+              <span>{{item.statusText|| '无'}}</span>
+            </p>
+            <p>时间：
+              <span>{{item.createTime || '无'}}</span>
+            </p>
+          </div>
+          <div>
+            <img :src="item.auditUserAvatar" />
+          </div>
         </div>
-        <div>
-          <img :src="item.auditUserAvatar" />
+        <div class="tab-img" style="text-align:center;position:relative">
+          <spinner type="bubbles" size="40" style="position:absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);"></spinner>
+          <p>审核凭证：</p>
+          <x-img :src="item.payPic" @on-success="success" @on-error="error" class="ximg-demo" error-class="ximg-error" :offset="-100" container=".tab-wrapper"></x-img>
         </div>
       </div>
       <h3 v-if="applyList.length === 0" style="text-align:center;padding:0.5rem;"> 暂无记录</h3>
     </div>
     <div class="tab-wrapper" v-show="tabNow==='upgrade'">
       <div v-for="item in auditList" :key="item.id" class="tab-content">
-        <div>
-          <p>申请人:
-            <span>{{item.applyUserName}}</span>
-          </p>
-          <p>手机号码:
-            <span>{{item.applyUserTel}}</span>
-          </p>
-          <p v-if=" item.levelName">升级等级:
-            <span>{{item.levelName|| '无'}}</span>
-          </p>
-          <p>订单类型:
-            <span>{{item.orderTypeText || '无'}}</span>
-          </p>
-          <p>申请积分数:
-            <span>{{item.credit ===null? '无':item.credit }}</span>
-          </p>
-          <p>审核状态:
-            <span>{{item.statusText|| '无'}}</span>
-          </p>
-          <p>时间：
-            <span>{{item.createTime || '无'}}</span>
-          </p>
+        <div class="tab-text">
+          <div>
+            <p>申请人:
+              <span>{{item.applyUserName}}</span>
+            </p>
+            <p>手机号码:
+              <span>{{item.applyUserTel}}</span>
+            </p>
+            <p v-if=" item.levelName">升级等级:
+              <span>{{item.levelName|| '无'}}</span>
+            </p>
+            <p>订单类型:
+              <span>{{item.orderTypeText || '无'}}</span>
+            </p>
+            <p>申请积分数:
+              <span>{{item.credit ===null? '无':item.credit }}</span>
+            </p>
+            <p>审核状态:
+              <span>{{item.statusText|| '无'}}</span>
+            </p>
+            <p>时间：
+              <span>{{item.createTime || '无'}}</span>
+            </p>
+          </div>
+          <div>
+            <img :src="item.applyUserAvatar" />
+            <x-button mini plain type="primary" @click.native="aduitModalShow(item.id)">审核</x-button>
+          </div>
         </div>
-        <div>
-          <img :src="item.applyUserAvatar" />
-          <x-button mini plain type="primary" @click.native="aduitModalShow(item.id)">审核</x-button>
+        <div class="tab-img" style="text-align:center;position:relative">
+          <spinner type="bubbles" size="40" style="position:absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);"></spinner>
+          <p>审核凭证：</p>
+          <x-img :src="item.payPic" @on-success="success" @on-error="error" class="ximg-demo" error-class="ximg-error" :offset="-100" container=".tab-wrapper"></x-img>
         </div>
       </div>
       <h3 v-if="auditList.length === 0" style="text-align:center;padding:0.5rem;"> 暂无记录</h3>
@@ -114,8 +128,10 @@ import {
   XButton,
   Badge,
   XDialog,
+  XImg,
   Checker,
   CheckerItem,
+  Spinner,
   TransferDomDirective as TransferDom
 } from 'vux'
 export default {
@@ -130,8 +146,10 @@ export default {
     XButton,
     Badge,
     XDialog,
+    XImg,
     Checker,
     CheckerItem,
+    Spinner,
     'material-checkbox': Checkbox
   },
   data() {
@@ -154,6 +172,16 @@ export default {
   },
 
   methods: {
+    success(src, ele) {
+      console.log('success load', src)
+      const span = ele.parentNode.querySelector('span')
+      ele.parentNode.removeChild(span)
+    },
+    error(src, ele, msg) {
+      console.log('error load', msg, src)
+      const span = ele.parentNode.querySelector('span')
+      span.innerText = '加载失败...'
+    },
     aduitModalShow(id) {
       this.auditId = id
       this.modalShow = true
@@ -178,7 +206,7 @@ export default {
       this.update()
     }
   },
-  async mounted() {
+  async activated() {
     this.update()
   }
 }
@@ -293,38 +321,49 @@ export default {
     background: #fff;
     box-shadow: -2px 2px 2px #e5e5e5;
     border-bottom: 1px solid #ccc;
-    > div {
-      &:first-child {
-        width: 70%;
-        float: left;
-        p {
-          height: 0.27rem;
-          line-height: 0.27rem;
-          font-size: 0.13rem;
-          padding-left: 6%;
-          font-weight: bold;
-          &:nth-child(1) {
-            margin-top: 0.15rem;
-          }
-          &:last-child {
-            margin-bottom: 0.15rem;
-          }
-        }
+    .tab-img {
+      padding: 1em;
+      p {
+        text-align: left;
+        font-size: 0.13rem;
+        font-weight: bold;
       }
-      &:nth-child(2) {
-        width: 30%;
-        height: 1.1rem;
-        float: left;
-        img {
-          width: 0.3rem;
-          height: 0.3rem;
-          border-radius: 0.02rem;
-          margin-top: 0.23rem;
-          margin-left: 47%;
+    }
+    .ximg-demo {
+      min-width: 50%;
+      height: auto;
+    }
+
+    .tab-text {
+      display: flex;
+      > div {
+        &:first-child {
+          width: 70%;
+          p {
+            height: 0.27rem;
+            line-height: 0.27rem;
+            font-size: 0.13rem;
+            padding-left: 6%;
+            font-weight: bold;
+            &:nth-child(1) {
+              margin-top: 0.15rem;
+            }
+          }
         }
-        button {
-          margin-left: 37%;
-          margin-top: 0.36rem;
+        &:nth-child(2) {
+          width: 30%;
+          height: 1.1rem;
+          img {
+            width: 0.3rem;
+            height: 0.3rem;
+            border-radius: 0.02rem;
+            margin-top: 0.23rem;
+            margin-left: 47%;
+          }
+          button {
+            margin-left: 37%;
+            margin-top: 0.36rem;
+          }
         }
       }
     }
@@ -336,5 +375,20 @@ export default {
 .weui-btn_mini {
   padding: 0 0.1rem;
   line-height: 0.2rem;
+}
+</style>
+<style lang="less">
+.examine {
+  .vux-spinner {
+    height: auto;
+    width: auto;
+  }
+  .ximg-error {
+    background-color: yellow;
+  }
+  .ximg-error:after {
+    content: '加载失败';
+    color: red;
+  }
 }
 </style>

@@ -5,7 +5,7 @@
       <input type="text" placeholder="搜索成员" v-model='keyword' />
       <span @click='search()'>确定</span>
     </div>
-    <div class="detail" v-for="(member,index) in members" :key="index">
+    <div class="detail" v-for="(member,index) in members" :key="index" style="border-bottom: solid 1px #fff;">
       <div class="one">
         <img :src="member.avatar" />
         <p>{{member.username}}</p>
@@ -20,11 +20,11 @@
         <p>注册时间：
           <span>{{member.registerTime}}</span>
         </p>
-        <p>本月业绩：
-          <span>222222.00</span>
+        <p>本月业绩: &nbsp
+          <span>{{member.currentPerformance ||'0.00'}}</span>
         </p>
-        <p>累计业绩：
-          <span>8888888.00</span>
+        <p>累计业绩: &nbsp
+          <span>{{member.performance ||'0.00'}}</span>
         </p>
       </div>
     </div>
