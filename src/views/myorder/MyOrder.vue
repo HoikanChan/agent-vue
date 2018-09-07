@@ -171,7 +171,6 @@ export default {
   padding-bottom: 1em;
   .oreder-item {
     margin-bottom: 1em;
-    box-shadow: -2px 2px 2px #e5e5e5;
   }
   .myorder_head {
     height: 0.44rem;
@@ -248,12 +247,19 @@ export default {
           }
           .right {
             float: right;
-            width: 60%;
+            width: 64%;
             height: 1.41rem;
             .name {
               font-size: 0.14rem;
-              margin-top: 0.12rem;
               font-weight: bold;
+              height: 0.38rem;
+              font-weight: 600;
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 2;
+              overflow: hidden;
+              color: #000;
+              margin: 0.12rem 0 0 0;
             }
             .msg {
               font-size: 0.13rem;
@@ -263,17 +269,18 @@ export default {
             .msg_ {
               font-size: 0.13rem;
               color: #666;
+              margin-top: 0.05rem;
             }
             .price {
               font-size: 0.2rem;
               color: #5b50d3;
               font-weight: bold;
-              margin-top: 0.28rem;
+              margin-top: 0.12rem;
               display: inline-block;
             }
             .number {
               float: right;
-              margin-top: 0.28rem;
+              margin-top: 0.12rem;
               font-size: 0.2rem;
             }
           }

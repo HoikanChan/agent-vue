@@ -1,7 +1,6 @@
 <template>
   <div class="goods-detail">
-    <x-icon type="ios-arrow-back" size="30" class="back-icon" @click="$router.go(-1)"></x-icon>
-    <x-icon type="more" size="30" class="more-icon"></x-icon>
+    <img slot="overwrite-left" src="../../assets/images/back.png" size="25" style="width:.09rem;height:auto;position:absolute;top:.14rem;left:5%;z-index:101;" @click="$router.back(-1)">
     <swiper auto height="2.08rem" dots-class="custom-bottom" dots-position="center">
       <swiper-item class="swiper-demo-img" v-for="(item, index) in images" :key="index"><img :src="item"></swiper-item>
     </swiper>

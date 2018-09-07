@@ -71,7 +71,7 @@
     <div class="modal" v-if="flag">
       <p>温馨提醒</p>
       <p>是否退出当前帐号</p>
-      <div @click="tologin">
+      <div class="logout" @click="tologin">
         <span>确定</span>
       </div>
       <img @click="close" src="../../assets/images/close.png" />
@@ -378,7 +378,7 @@ export default {
       margin-top: 0.09rem;
     }
   }
-  > div {
+  .logout {
     width: 100%;
     height: 0.4rem;
     background-color: rgba(153, 153, 153, 0.3);

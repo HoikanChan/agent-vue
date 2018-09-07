@@ -233,7 +233,7 @@ export default {
     display: block;
   }
   .modal {
-    position: absolute;
+    position: fixed;
     z-index: 101;
     top: 0;
     bottom: 0;

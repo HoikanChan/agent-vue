@@ -55,7 +55,7 @@
 
     <div v-transfer-dom>
       <x-dialog v-model="flag">
-        <div class="modal">
+        <div class="recharge">
           <h2>积分充值 <img src="../../assets/images/flase.png" @click="hide()" /></h2>
           <div class="proptype">
             <p>上级姓名：{{chargeInfo.auditName}}</p>
@@ -445,7 +445,7 @@ export default {
     display: block;
   }
 }
-.modal {
+.recharge {
   margin: auto;
   display: block;
   padding: 1em 0;

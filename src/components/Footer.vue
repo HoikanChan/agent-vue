@@ -46,7 +46,7 @@ export default {
   width: 100%;
   height: 0.47rem;
   display: flex;
-  border-top: 1px solid #ccc;
+  border-top: 1px solid #eee;
   justify-content: space-around;
   padding-top: 4px;
   background: #fff;
