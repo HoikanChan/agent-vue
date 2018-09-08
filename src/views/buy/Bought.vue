@@ -24,10 +24,10 @@ div.top-part {
   p {
     color: #fff;
     position: absolute;
-    top: 28%;
+    top: 21%;
     // top: 1.8rem;
     left: 50%;
-    font-size: 0.2rem;
+    font-size: 0.19rem;
     transform: translateX(-50%);
   }
   @media only screen and (device-width: 375px) and (device-height: 812px) {

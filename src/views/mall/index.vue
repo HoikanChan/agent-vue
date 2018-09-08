@@ -229,7 +229,7 @@ export default {
 
 .category .wrap #category_nav li.active a {
   border-bottom: 0.04rem solid #5b50d3;
-  padding: 0 0.1rem 0.1rem 0.1rem;
+  padding: 0 0.14rem 0.1rem 0.14rem;
   color: #5b50d3;
 }
 a {

@@ -25,19 +25,19 @@
 }
 .goods > div .good_img img {
   width: 100%;
-  height: auto;
+  height: 1.67rem;
 }
 .goods > div a .good_name {
-  height: 0.34rem;
+  height: 0.32rem;
   font-size: 0.12rem;
   font-weight: 600;
-  padding-left: 5%;
+  padding: 0 5%;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
-  color: #333;
-  margin: 0.06rem 0;
+  color: #000;
+  margin: 0.08rem 0;
 }
 .goods a > div .good_container {
   width: 90%;
@@ -52,16 +52,21 @@
 }
 .goods > div a .good_price {
   width: 90%;
-  height: 0.16rem;
-  line-height: 0.16rem;
+  height: 0.18rem;
+  line-height: 0.18rem;
   margin-left: 5%;
   font-weight: bold;
   font-size: 0.12rem;
-  color: #5b50d3;
+}
+.goods > div a .good_price:nth-child(4) {
+  color: #999;
 }
 .goods > div a .good_price:nth-child(3) {
   color: #999;
   padding-top: 0.08rem;
+}
+.goods > div a .good_price:nth-child(4) i {
+  color: #5b50d3;
 }
 .empty {
   width: 100%;

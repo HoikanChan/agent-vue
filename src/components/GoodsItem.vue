@@ -8,8 +8,8 @@
     <div class="good_price" style="text-decoration:line-through;">零售价：￥
       <i>{{item.retailPrice}}</i>
     </div>
-    <div class="good_price">会员价：￥
-      <i>{{item.memberPrice}}</i>
+    <div class="good_price">会员价：
+      <i>￥{{item.memberPrice}}</i>
     </div>
   </router-link>
 </template>

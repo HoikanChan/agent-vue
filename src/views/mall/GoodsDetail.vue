@@ -1,6 +1,9 @@
 <template>
   <div class="goods-detail">
-    <img slot="overwrite-left" src="../../assets/images/back.png" size="25" style="width:.09rem;height:auto;position:absolute;top:.14rem;left:5%;z-index:101;" @click="$router.back(-1)">
+     <x-header :left-options="{backText: ''}" style="border-bottom:none;">
+      <span>诗蒂莲</span>
+      <img slot="overwrite-left" src="../../assets/images/back.png" size="25" style="width:.09rem;height:auto;position:relative;top:-2px;" @click="$router.back(-1)">
+    </x-header>
     <swiper auto height="2.08rem" dots-class="custom-bottom" dots-position="center">
       <swiper-item class="swiper-demo-img" v-for="(item, index) in images" :key="index"><img :src="item"></swiper-item>
     </swiper>
@@ -13,8 +16,8 @@
       <p class="num" style="padding-left:6.4%">库存</p>
       <span>{{pickedProduct?pickedProduct.goodsNumber:goodsDetail.goodsNumber}}</span>
       <div style="display:flex;justify-content:space-between;">
-        <p class="price">￥{{Number(pickedProduct?pickedProduct.price:goodsDetail.memberPrice) | numFilter}}</p>
-        <input-number size="mini" :value.sync="amount" :min="1"></input-number>
+        <p class="price"><i></i>￥{{Number(pickedProduct?pickedProduct.price:goodsDetail.memberPrice) || numFilter}}</p>
+        <input-number size="mini" :value.sync="amount" :min="1" style="padding-right:4.8%;"></input-number>
       </div>
     </div>
     <div class="specification" v-if="productList.length">
@@ -194,7 +197,7 @@ img {
   height: auto;
 }
 .demo1-item {
-  border: 1px solid #ececec;
+  border: 1px solid #eee;
   color: #aaa;
   padding: 5px 15px;
   cursor: not-allowed;
@@ -278,11 +281,11 @@ img {
 
 .goods_message {
   width: 100%;
-  height: 1.15rem;
+  height: 1.22rem;
   background: #fff;
   .name {
-    height: 0.47rem;
-    line-height: 0.47rem;
+    height: 0.46rem;
+    line-height: 0.46rem;
     font-size: 0.18rem;
     font-weight: 600;
     padding-left: 4.8%;
@@ -297,6 +300,7 @@ img {
   span {
     font-weight: 600;
     font-size: 0.14rem;
+    color: #5b50d3;
   }
   .price {
     height: 0.35rem;
@@ -366,5 +370,20 @@ img {
     border: 1px solid #aaa;
     color: #333 !important;
   }
+}
+.input-number-decrement {
+  border-radius: 0 !important;
+  border: 1px solid #999 !important;
+}
+.input-number-increment {
+  border-radius: 0 !important;
+  border: 1px solid #999 !important;
+}
+.input-number {
+  padding: 0 4px !important;
+}
+.input-number {
+  border-top: 1px solid #999 !important;
+  border-bottom: 1px solid #999 !important;
 }
 </style>
