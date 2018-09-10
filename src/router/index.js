@@ -185,6 +185,7 @@ router.beforeEach((to, from, next) => {
     to.name !== 'register' &&
     to.name !== 'registered' &&
     to.name !== 'userSetting' &&
+    to.name !== 'mall' &&
     to.name !== 'mycode'
   ) {
     next({

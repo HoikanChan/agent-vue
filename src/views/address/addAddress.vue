@@ -128,7 +128,7 @@ export default {
             detailInfo: '',
             area: []
           }
-          this.$router.push({ name: 'address' })
+          this.$router.push({ name: 'buy' })
         }
       } else {
         this.toastShow = true

@@ -29,6 +29,8 @@
     <group style="margin-top: .1rem;">
       <x-input placeholder-align="right" readonly title="手机号码" type="text" placeholder="请输入手机号码" :required="true" v-model="form.mobile" is-type="china-mobile">
       </x-input>
+      <x-input placeholder-align="right" title="推荐码" type="text" readonly :show-clear="false" :required="true" v-model="form.referralCode">
+      </x-input>
       <x-input placeholder-align="right" title="注册时间" type="text" readonly :show-clear="false" :required="true" v-model="form.registerTime">
       </x-input>
       <x-address ref="address" title="所在地" v-model="form.location" :list="addressData" placeholder="请选择地址">
