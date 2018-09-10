@@ -16,14 +16,19 @@
     <div class="category_container" v-if="goods">
       <div class="shoppings">
         <div class="all">
-          <div class="goods" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="50">
-            <div v-for="(item,index) in goodsList" :key="index">
+          <div class="goods">
+            <div v-for="(item,index) in goodsList" :key="index" class="goods-item">
               <GoodsItem :item="item" />
             </div>
+            <infinite-loading @infinite="infiniteHandler" spinner="spiral" style="margin-top:2em">
+              <span slot="no-more">
+                ---暂无更多商品---
+              </span>
+            </infinite-loading>
           </div>
         </div>
       </div>
-      <div v-if="goodsList.length === 0" style="text-align:center;padding:2em;"> 暂时没有数据</div>
+      <!-- <div v-if="goodsList.length === 0" style="text-align:center;padding:2em;"> 暂时没有数据</div> -->
     </div>
     <div class="search_goods" v-else>
       <div class="hot_search">
@@ -48,6 +53,7 @@ import Footer from '../../components/Footer'
 import MallService from 'services/MallService'
 import GoodsItem from 'components/GoodsItem'
 import infiniteScroll from 'vue-infinite-scroll'
+import InfiniteLoading from 'vue-infinite-loading'
 export default {
   name: 'mall-index',
   directives: {
@@ -55,7 +61,8 @@ export default {
   },
   components: {
     'v-footer': Footer,
-    GoodsItem
+    GoodsItem,
+    InfiniteLoading
   },
   data() {
     return {
@@ -76,14 +83,17 @@ export default {
     shop: function() {
       this.goods = true
     },
-    loadMore: async function() {
-      this.busy = true
+    infiniteHandler: async function($state) {
       const result = (await MallService.getGoodsList(
         this.selectedTabId,
         this.page++
       )).data
-      this.goodsList = [...this.goodsList, ...result]
-      this.busy = !result.length
+      if (result.length) {
+        this.goodsList = [...this.goodsList, ...result]
+        $state.loaded()
+      } else {
+        $state.complete()
+      }
     }
   },
   watch: {
