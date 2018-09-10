@@ -2,7 +2,7 @@
   <div class="address">
     <x-header :left-options="{backText: ''}" @on-click-back="$router.push({name:'buy'})">
       <span>收货地址</span>
-      <x-icon slot="overwrite-left" type="ios-arrow-back" size="25" style="position:relative;top:-2px;" @click="$router.push({name:'buy'})"></x-icon>
+      <img slot="overwrite-left" src="../../assets/images/back.png" size="25" style="width:.09rem;height:auto;position:relative;top:-2px;" @click="$router.push({name:'buy'})">
       <i style="float:right;position: absolute;left: 85%;font-size:.15rem;color:#7e74ea;" @click="toggleEdit()">{{isEditing?"完成":"编辑"}}</i>
     </x-header>
     <div class="content">
@@ -10,7 +10,7 @@
         <checker-item v-for="(item,index) in addresses" :key="index" :value="item.id" ref="dataInfo">
           <div class="address-detail">
             <div class="checkbox-wrapper">
-              <material-checkbox></material-checkbox>
+              <material-checkbox v-show="!isEditing"></material-checkbox>
             </div>
             <p>
               <span>收货人：{{item.userName}}</span>
@@ -20,6 +20,10 @@
               <span>收货地址：{{item.provinceName}}{{item.cityName}}{{item.countyName}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
             </p>
             <div class='editer' v-if="isEditing">
+              <CheckIcon :value.sync="item.isDefault" @click.native.stop="setDefault(item.id)">
+                <span>设为默认地址</span>
+              </CheckIcon>
+              &nbsp&nbsp&nbsp&nbsp&nbsp
               <span style="padding-right:10%;" @click.stop="editer(item)">修改</span>
               <span style="padding-right:10%;" @click.stop="del(item.id)">删除</span>
             </div>
@@ -31,8 +35,10 @@
   </div>
 </template>
 <script>
-import { XHeader, Checker, CheckerItem } from 'vux'
+import { XHeader, Checker, CheckerItem, CheckIcon } from 'vux'
 import Checkbox from 'components/Checkbox'
+//去掉父级元素为selected class 时选中的属性
+import addressCheckbox from './Checkbox'
 import AddressService from 'services/AddressService'
 
 export default {
@@ -40,7 +46,9 @@ export default {
     XHeader,
     Checker,
     CheckerItem,
-    'material-checkbox': Checkbox
+    CheckIcon,
+    'material-checkbox': Checkbox,
+    Checkbox: addressCheckbox
   },
   data() {
     return {
@@ -61,17 +69,30 @@ export default {
       )
     }
   },
-  activated() {
-    this.getaddress()
-    if (this.$store.getters.getAddress) {
-      this.pickedAddressId = this.$store.getters.getAddress.id
-    }
+  async activated() {
+    await this.getaddress()
   },
   methods: {
+    async setDefault(id) {
+      for (let add of this.addresses) {
+        if (add.id !== id) {
+          add.isDefault = false
+        }
+      }
+    },
     getaddress() {
       AddressService.get()
         .then(response => {
-          this.addresses = response.data
+          this.addresses = response.data.map(i => {
+            i.isDefault = !!i.isDefault
+            return i
+          })
+          if (this.$store.getters.getAddress) {
+            this.pickedAddressId = this.$store.getters.getAddress.id
+          } else {
+            console.log(this.addresses)
+            this.pickedAddressId = this.addresses.find(i => !!i.isDefault).id
+          }
         })
         .catch(error => {
           console.log(error)
@@ -97,7 +118,17 @@ export default {
       })
       this.$store.dispatch('setNewAddress', item)
     },
-    toggleEdit() {
+    async toggleEdit() {
+      if (this.isEditing === true) {
+        const defaultAddress = this.addresses.find(i => i.isDefault)
+        if (defaultAddress) {
+          await AddressService.update({
+            id: defaultAddress.id,
+            isDefault: defaultAddress.isDefault ? 1 : 0
+          })
+          await this.getaddress()
+        }
+      }
       this.isEditing = !this.isEditing
     }
   }
@@ -108,6 +139,7 @@ export default {
   margin-bottom: 0.5rem;
 }
 .address-detail {
+  position: relative;
   width: 90%;
   padding: 0 5%;
   background: #fff;
@@ -123,6 +155,8 @@ export default {
     }
   }
   .editer {
+    display: flex;
+    align-items: center;
     text-align: right;
     color: #999;
     text-align: right;
@@ -133,6 +167,8 @@ export default {
 .checkbox-wrapper {
   position: absolute;
   right: 0.05rem;
+  top: 50%;
+  transform: translateY(-50%);
 }
 </style>
 <style lang="less">
@@ -156,16 +192,16 @@ export default {
   position: fixed;
   bottom: 0;
 }
-.vux-checker-item {
-  width: 100%;
-}
-.material-checkbox {
-  line-height: 90px !important;
-}
-.material-checkbox > span[data-v-3fe23622]::after {
-  top: 30px !important;
-}
-.vux-checker-item {
-  border-bottom: 1px solid #ccc;
+.address {
+  .vux-checker-item {
+    width: 100%;
+  }
+  .vux-checker-item {
+    border-bottom: 1px solid #ccc;
+  }
+  .weui-icon-success,
+  .weui-icon-success:before {
+    color: #655ad8 !important;
+  }
 }
 </style>

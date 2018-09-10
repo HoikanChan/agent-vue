@@ -1,7 +1,7 @@
 <template>
   <div @click.stop>
     <span class="input-number-decrement" @click.stop="updateValue(false)" :class="{'is-disabled': minDisabled}">–</span>
-    <input class="input-number" type="number" :value="value" min="0" max="10" @input="handleChange" @change="handleChange" ref="input">
+    <input class="input-number" type="number" :value="value" min="1" max="10" @input="handleChange" @change="handleChange" ref="input">
     <span class="input-number-increment" @click.stop="updateValue(true)">+</span>
   </div>
 </template>
@@ -9,7 +9,7 @@
 export default {
   methods: {
     updateValue(isIncrement) {
-      if (!isIncrement && Number(this.value) === 0) return
+      if (!isIncrement && Number(this.value) === 1) return
       this.$emit('update:value', isIncrement ? this.value + 1 : this.value - 1)
     },
     handleChange(event) {

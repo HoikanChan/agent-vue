@@ -12,7 +12,7 @@
       <div class="first" v-if="tabNow ===1">
         <div class="oreder-item" v-for="item in orders" :key="item.key">
           <div class="shophead">
-            <img src="../../assets/images/9.jpg" />
+            <img :src="$store.getters.getUser.avatar" />
             <span>{{item.userName}}</span>
             <i>{{item.orderStatusText}}</i>
           </div>

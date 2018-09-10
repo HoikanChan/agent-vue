@@ -13,7 +13,8 @@
       <p class="num" style="padding-left:6.4%">库存</p>
       <span>{{pickedProduct?pickedProduct.goodsNumber:goodsDetail.goodsNumber}}</span>
       <div style="display:flex;justify-content:space-between;">
-        <p class="price">￥{{Number(pickedProduct?pickedProduct.price:goodsDetail.memberPrice) | numFilter}}</p>
+        <p class="price" style="text-decoration: line-through;">零售价￥{{Number(pickedProduct?pickedProduct.retailPrice:goodsDetail.retailPrice) }}</p>
+        <p class="price">会员价￥{{Number(pickedProduct?pickedProduct.memberPrice:goodsDetail.memberPrice) }}</p>
         <input-number size="mini" :value.sync="amount" :min="1"></input-number>
       </div>
     </div>
@@ -78,11 +79,6 @@ export default {
       productList: [],
       amount: 1,
       demo1: '',
-      product: {
-        poiId: 3271694,
-        title: '拉图牛排馆',
-        price: 45
-      },
       showToast: false,
       images: []
     }
@@ -161,7 +157,8 @@ export default {
     this.productList = result.productList.map(i => {
       return {
         goodsNumber: i.goodsNumber,
-        price: i.memberPrice,
+        memberPrice: i.memberPrice,
+        retailPrice: i.retailPrice,
         productId: i.id,
         specIds: i.goodsSpecificationIds
           .split('_')
