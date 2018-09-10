@@ -54,7 +54,7 @@ p {
   margin-left: 4%;
   margin-top: 0.5rem;
 }
-.check {
+/* .check {
   width: 0.21rem;
   height: 0.21rem;
   position: absolute;
@@ -64,7 +64,7 @@ p {
 }
 .check:first-child {
   z-index: 1;
-}
+} */
 
 .order_list li > div {
   float: left;

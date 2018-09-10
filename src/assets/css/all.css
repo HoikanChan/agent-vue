@@ -25,20 +25,19 @@
 }
 .goods-item .good_img img {
   width: 100%;
-  height: 1.67rem;
+  height: auto;
 }
-.goods-item .good_name {
-  width: 95%;
-  height: 0.37rem;
-  line-height: 0.37rem;
-  font-size: 0.14rem;
+.goods > div a .good_name {
+  height: 0.34rem;
+  font-size: 0.12rem;
   font-weight: 600;
   padding-left: 5%;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
+  -webkit-line-clamp: 2;
   overflow: hidden;
   color: #333;
+  margin: 0.06rem 0;
 }
 .goods a > div .good_container {
   width: 90%;
@@ -51,14 +50,18 @@
   overflow: hidden;
   color: #333;
 }
-.goods a > div .good_price {
+.goods > div a .good_price {
   width: 90%;
-  height: 0.31rem;
-  line-height: 0.31rem;
+  height: 0.16rem;
+  line-height: 0.16rem;
   margin-left: 5%;
   font-weight: bold;
-  font-size: 0.14rem;
+  font-size: 0.12rem;
   color: #5b50d3;
+}
+.goods > div a .good_price:nth-child(3) {
+  color: #999;
+  padding-top: 0.08rem;
 }
 .empty {
   width: 100%;

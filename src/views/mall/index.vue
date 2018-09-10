@@ -20,9 +20,12 @@
             <div v-for="(item,index) in goodsList" :key="index" class="goods-item">
               <GoodsItem :item="item" />
             </div>
-            <infinite-loading @infinite="infiniteHandler" spinner="spiral" style="margin-top:2em">
+            <infinite-loading @infinite="infiniteHandler" spinner="spiral" style="margin-top:2em" ref="sroller">
               <span slot="no-more">
                 ---暂无更多商品---
+              </span>
+              <span slot="no-results">
+                ---暂无商品---
               </span>
             </infinite-loading>
           </div>
@@ -98,6 +101,7 @@ export default {
   },
   watch: {
     selectedTabId: async function(val) {
+      this.$refs.sroller.stateChanger.reset()
       this.goodsList = []
       this.page = 1
       const result = (await MallService.getGoodsList(

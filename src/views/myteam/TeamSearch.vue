@@ -20,10 +20,10 @@
         <p>注册时间：
           <span>{{member.registerTime}}</span>
         </p>
-        <p>本月业绩: &nbsp
+        <p>本月业绩: &nbsp;
           <span>{{member.currentPerformance ||'0.00'}}</span>
         </p>
-        <p>累计业绩: &nbsp
+        <p>累计业绩: &nbsp;
           <span>{{member.performance ||'0.00'}}</span>
         </p>
       </div>

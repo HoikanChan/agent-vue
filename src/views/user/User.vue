@@ -149,4 +149,9 @@ export default {
   height: 0.39rem;
   margin-top: 0.15rem;
 }
+.user_all li p {
+  color: #999;
+  height: 0.21rem;
+  line-height: 0.21rem;
+}
 </style>

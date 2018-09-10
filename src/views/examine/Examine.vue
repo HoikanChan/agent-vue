@@ -1,6 +1,9 @@
 <template>
   <div class="examine">
-    <x-header :left-options="{backText: ''}">审核</x-header>
+    <x-header :left-options="{backText: ''}">
+      <span>审核</span>
+      <img slot="overwrite-left" src="../../assets/images/back.png" size="25" style="width:.09rem;height:auto;position:relative;top:-2px;" @click="$router.back(-1)">
+      </x-header>
     <div class="tab">
       <div @click="tabNow='register'">
         <img src="../../assets/images/register_check.png" v-if="tabNow==='register'" />
@@ -211,6 +214,10 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+.vux-x-img,
+.b-lazy {
+  max-width: 82%;
+}
 .examine {
   .shade {
     position: fixed;
@@ -226,7 +233,7 @@ export default {
     display: block;
   }
   .modal {
-    position: absolute;
+    position: fixed;
     z-index: 101;
     top: 0;
     bottom: 0;
@@ -321,16 +328,21 @@ export default {
     box-shadow: -2px 2px 2px #e5e5e5;
     border-bottom: 1px solid #ccc;
     .tab-img {
-      padding: 1em;
+      padding: 0 1em;
       p {
         text-align: left;
         font-size: 0.13rem;
         font-weight: bold;
+        height: 0.28rem;
+        line-height: 0.28rem;
+        margin-bottom: 0.12rem;
       }
     }
     .ximg-demo {
       min-width: 50%;
       height: auto;
+      margin-bottom: 0.23rem;
+      border-radius: 0.04rem;
     }
 
     .tab-text {
@@ -363,8 +375,8 @@ export default {
             margin-left: 20%;
           }
           button {
-            margin-left: 37%;
-            margin-top: 0.36rem;
+            margin-left: 22%;
+            margin-top: 0.35rem;
           }
         }
       }

@@ -171,7 +171,6 @@ export default {
   padding-bottom: 1em;
   .oreder-item {
     margin-bottom: 1em;
-    box-shadow: -2px 2px 2px #e5e5e5;
   }
   .myorder_head {
     height: 0.44rem;
@@ -179,11 +178,11 @@ export default {
     padding: 0 4.8%;
     text-align: center;
     font-size: 0.18rem;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #eee;
     .back {
       float: left;
-      width: 0.1rem;
-      height: 0.16rem;
+      width: 0.09rem;
+      height: auto;
       margin-top: 0.15rem;
     }
   }
@@ -191,7 +190,7 @@ export default {
     height: 0.41rem;
     padding: 0 4.8%;
     background: #fff;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #eee;
     a {
       display: block;
       width: 17.2%;
@@ -248,12 +247,19 @@ export default {
           }
           .right {
             float: right;
-            width: 60%;
+            width: 64%;
             height: 1.41rem;
             .name {
               font-size: 0.14rem;
-              margin-top: 0.12rem;
               font-weight: bold;
+              height: 0.38rem;
+              font-weight: 600;
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 2;
+              overflow: hidden;
+              color: #000;
+              margin: 0.12rem 0 0 0;
             }
             .msg {
               font-size: 0.13rem;
@@ -263,17 +269,18 @@ export default {
             .msg_ {
               font-size: 0.13rem;
               color: #666;
+              margin-top: 0.05rem;
             }
             .price {
               font-size: 0.2rem;
               color: #5b50d3;
               font-weight: bold;
-              margin-top: 0.28rem;
+              margin-top: 0.12rem;
               display: inline-block;
             }
             .number {
               float: right;
-              margin-top: 0.28rem;
+              margin-top: 0.12rem;
               font-size: 0.2rem;
             }
           }
@@ -282,7 +289,7 @@ export default {
       .add {
         height: 0.43rem;
         line-height: 0.43rem;
-        border-bottom: 1px solid #ccc;
+        border-bottom: 1px solid #eee;
         background: #fff;
         font-size: 0.13rem;
         text-align: right;
@@ -313,7 +320,7 @@ export default {
 .add {
   height: 0.43rem;
   line-height: 0.43rem;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #eee;
   background: #fff;
   font-size: 0.13rem;
   text-align: right;

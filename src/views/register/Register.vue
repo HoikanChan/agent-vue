@@ -3,12 +3,15 @@
     <span style="position:absolute;top:18px;left:18px">
       <x-icon type="ios-close-empty" size="30"></x-icon>
     </span>
-    <x-header :left-options="{backText: ''}" style="border-bottom: 1px solid #ccc ;">注册</x-header>
+    <x-header :left-options="{backText: ''}" style="border-bottom: 1px solid #ccc ;">
+      <span>注册</span>
+      <img slot="overwrite-left" src="../../assets/images/back.png" size="25" style="width:.09rem;height:auto;position:relative;top:-2px;" @click="$router.back(-1)">
+      </x-header>
     <group style="padding:.2rem">
       <x-input label-width="1rem" title="手机号码" placeholder="请输入手机号码" :required="true" ref="mobile" v-model="form.mobile" is-type="china-mobile">
       </x-input>
       <x-input label-width="1rem" title="验证码" type="text" placeholder="请输入验证码" :required="true" ref="code" v-model="form.SMSCode">
-        <x-button slot="right" type="primary" mini @click.native="sendCode">{{ countDown || '获取'}}</x-button>
+        <x-button slot="right" type="primary" mini @click.native="sendCode">{{ countDown || '获取验证码'}}</x-button>
       </x-input>
       <x-input label-width="1rem" title="用户名" type="text" placeholder="请输入2-5个汉字" :required="true" ref="cnName" v-model="form.username" :is-type="cnNameValidator">
       </x-input>
@@ -195,7 +198,7 @@ export default {
 .weui-btn_mini {
   height: 0.28rem !important;
   line-height: 0.28rem !important;
-  width: 0.45rem !important;
+  width: 0.76rem !important;
   font-size: 0.12rem !important;
   padding: 0 !important;
   margin: 0 !important;
