@@ -15,6 +15,7 @@
         <img slot="label" style="width:.14rem;height:auto;padding-right:10px;display:block;" src="../../assets/images/password.png" />
       </x-input>
       <div class="forgot-password">
+        <check-icon :value.sync="isKeepPsw"><span>记住密码</span></check-icon>
         <a @click="$router.push({name:'forgetPassword' })">忘记密码？</a>
         <a @click="$router.push({name:'register' })">去注册？</a>
       </div>
@@ -24,21 +25,29 @@
 </template>
 <script>
 import AuthService from 'services/AuthenticationService'
-import { XButton, XInput, Group } from 'vux'
+import { setCookie, getCookie, delCookie } from '../../util/cookie'
+
+import { XButton, CheckIcon, XInput, Group } from 'vux'
 export default {
   name: 'Login',
   components: {
     XButton,
+    CheckIcon,
     XInput,
     Group
   },
   data: function() {
     return {
+      isKeepPsw: false,
       loginForm: {
         mobile: '',
         password: ''
       }
     }
+  },
+  mounted() {
+    this.loginForm.mobile = getCookie('mobile') || ''
+    this.loginForm.password = getCookie('password') || ''
   },
   methods: {
     close() {
@@ -74,6 +83,13 @@ export default {
         } else {
           this.$store.dispatch('setUser', result.data)
           this.$router.push({ name: 'home' })
+          if (this.isKeepPsw) {
+            setCookie('mobile', this.loginForm.mobile, 7)
+            setCookie('password', this.loginForm.password, 7)
+          } else {
+            delCookie('mobile')
+            delCookie('password')
+          }
         }
       }
     }
@@ -92,6 +108,10 @@ export default {
 .login-container {
   height: 100vh;
   background: #fff;
+  .weui-icon-success,
+  .weui-icon-success:before {
+    color: #655ad8 !important;
+  }
   .vux-x-icon {
     fill: #333;
   }
@@ -127,6 +147,8 @@ export default {
   }
   .forgot-password {
     text-align: right;
+    display: flex;
+    align-items: center;
     padding-top: 16px;
     a {
       color: @primary-color;
