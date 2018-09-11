@@ -10,7 +10,7 @@
         <span>电话号码：{{address.telNumber}}</span>
       </p>
       <p>
-        <img src="../../assets/images/location.png" alt="" style="width:0.18rem;">
+        <img src="../../assets/images/location.png" alt="" style="width:0.17rem;">
         <span>收货地址：{{address.provinceName+address.cityName+address.countyName+address.detailInfo}}</span>
       </p>
       <x-icon type="ios-arrow-forward" style="fill:#7e74ea" size="24" class="forward-icon" @click="$router.push({name:'address'})"></x-icon>
@@ -51,8 +51,8 @@
         <strong>￥{{bill.freightPrice}}</strong>
       </p>
       <p>
-        <span>当前金额</span>
-        <strong>￥{{bill.orderTotalPrice}}</strong>
+        <span>当前积分</span>
+        <strong style="color:#5b50d3;">{{bill.orderTotalPrice}}</strong>
       </p>
       <div class="total">
 
@@ -236,7 +236,7 @@ export default {
   img {
     position: absolute;
     left: -0.22rem;
-    top: 0rem;
+    top: 0.02rem;
   }
   .forward-icon {
     fill: #7e74ea;
@@ -298,15 +298,20 @@ export default {
     .title {
       font-size: 14px;
       font-weight: bold;
+      line-height: 14px;
     }
     .info {
       flex: 1 1 auto;
       font-size: 14px;
+      .unit {
+        margin-top: 0.1rem;
+      }
     }
     .foot {
       display: flex;
       justify-content: space-between;
       font-size: 18px;
+      line-height: 15px;
       span.price {
         color: @primary-color;
       }
@@ -380,7 +385,7 @@ export default {
   padding: 15px 15px !important;
 }
 .bills-detail .weui-cells {
-  font-size: 14px !important;
+  font-size: 13px !important;
   margin-top: 0;
 }
 .dialog .weui-dialog {

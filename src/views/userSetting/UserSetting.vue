@@ -84,6 +84,8 @@
 import { uploadUrl } from 'services/Api'
 import AuthService from 'services/AuthenticationService'
 import defaultAvatar from 'assets/images/avatar.png'
+import { delCookie } from '../../util/cookie'
+
 import Checkbox from 'components/Checkbox'
 import {
   XButton,
@@ -183,6 +185,8 @@ export default {
     tologin() {
       AuthService.logout()
       this.$store.dispatch('setUser', '')
+      delCookie('mobile')
+      delCookie('password')
       this.$router.push({ path: '/login' })
     },
     async updatePersonalInfo() {

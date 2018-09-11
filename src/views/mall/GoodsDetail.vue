@@ -15,14 +15,15 @@
       <span>{{goodsDetail.sellVolume?goodsDetail.sellVolume:0}}</span>
       <p class="num" style="padding-left:6.4%">库存</p>
       <span>{{pickedProduct?pickedProduct.goodsNumber:goodsDetail.goodsNumber}}</span>
-      <div style="display:flex;justify-content:space-between;">
+      <input-number size="mini" :value.sync="amount" :min="1" style="padding-left:29%;display:inline-block;"></input-number>
+      <div style="display:flex;justify-content:flex-start;">
         <p class="price" style="text-decoration: line-through;">零售价￥{{Number(pickedProduct?pickedProduct.retailPrice:goodsDetail.retailPrice) }}</p>
-        <p class="price">会员价￥{{Number(pickedProduct?pickedProduct.memberPrice:goodsDetail.memberPrice) }}</p>
-        <input-number size="mini" :value.sync="amount" :min="1"></input-number>
+        <p class="price">会员价<i>￥{{Number(pickedProduct?pickedProduct.memberPrice:goodsDetail.memberPrice) }}</i></p>
+        
       </div>
     </div>
     <div class="specification" v-if="productList.length">
-      <p>规格
+      <p>选择规格
       </p>
       <div class="spec-select">
         <p v-for="(spec,index) in specificationList" :key="index">
@@ -39,7 +40,6 @@
     </div>
     <div class="goods_picture">
       <div class="topic_pic">产品详情</div>
-      <div class="line"></div>
       <div class="goods-desc" v-html='goodsDetail.goodsDesc'></div>
     </div>
     <div class="goodsdetail_footer">
@@ -200,8 +200,10 @@ img {
   cursor: not-allowed;
 }
 .demo1-item-selected {
-  border: 2px solid green !important;
+  border: none !important;
   margin: -1px;
+  background: #5b50d3 !important;
+  color: #fff !important;
 }
 //todo:背景色没了
 #app {
@@ -302,10 +304,14 @@ img {
   .price {
     height: 0.35rem;
     line-height: 0.35rem;
-    font-size: 0.2rem;
+    font-size: 0.12rem;
     font-weight: bold;
     padding-left: 4.8%;
-    color: @color_2;
+    color: #999;
+    i {
+      color: #5b50d3;
+      font-weight: bold;
+    }
   }
 }
 .specification {
@@ -364,23 +370,40 @@ img {
 <style lang="less">
 .goods-detail {
   .vux-tap-active {
-    border: 1px solid #aaa;
-    color: #333 !important;
+    border: none;
+    background: #f5f5f5;
+    color: #333;
+    border-radius: 0.02rem;
+    font-size: 0.13rem;
   }
 }
 .input-number-decrement {
   border-radius: 0 !important;
-  border: 1px solid #999 !important;
+  margin-right: 2px;
+  font-size: 0.16rem;
 }
 .input-number-increment {
   border-radius: 0 !important;
-  border: 1px solid #999 !important;
+  margin-left: -2px !important;
+  font-size: 0.16rem;
 }
 .input-number {
   padding: 0 4px !important;
 }
 .input-number {
-  border-top: 1px solid #999 !important;
-  border-bottom: 1px solid #999 !important;
+  color: #5b50d3;
+  font-weight: bold;
+  font-size: 0.19rem;
+}
+.input-number,
+.input-number-decrement,
+.input-number-increment {
+  border: none !important;
+  background: #f5f5f5 !important;
+  border-radius: 0.02rem;
+}
+.input-number-decrement,
+.input-number-increment {
+  color: #999 !important;
 }
 </style>

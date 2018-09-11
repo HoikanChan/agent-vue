@@ -19,13 +19,14 @@
             <p style="padding-bottom:.15rem;">
               <span>收货地址：{{item.provinceName}}{{item.cityName}}{{item.countyName}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
             </p>
-            <div class='editer' v-if="isEditing">
+            <div class='editer' v-if="isEditing" style="font-size:.14rem;color:#999;">
               <CheckIcon :value.sync="item.isDefault" @click.native.stop="setDefault(item.id)">
                 <span>设为默认地址</span>
               </CheckIcon>
-              &nbsp&nbsp&nbsp&nbsp&nbsp
-              <span style="padding-right:10%;" @click.stop="editer(item)">修改</span>
-              <span style="padding-right:10%;" @click.stop="del(item.id)">删除</span>
+              <img style="width:.14rem;height:auto;padding-left:18%;" src="../../assets/images/editer.png" />
+              <span style="margin-left:1%;" @click.stop="editer(item)">修改</span>
+              <img style="width:.11rem;height:auto;padding-left:18%;" src="../../assets/images/delete.png" />
+              <span style="margin-left:1%;" @click.stop="del(item.id)">删除</span>
             </div>
           </div>
         </checker-item>
@@ -160,8 +161,8 @@ export default {
     text-align: right;
     color: #999;
     text-align: right;
-    height: 0.3rem;
-    line-height: 0.3rem;
+    height: 0.4rem;
+    line-height: 0.4rem;
   }
 }
 .checkbox-wrapper {
@@ -174,7 +175,7 @@ export default {
 <style lang="less">
 .address-form {
   .weui-cells {
-    font-size: 0.13rem;
+    font-size: 0.14rem;
     margin-top: 0;
     label {
       font-weight: bold;
