@@ -252,6 +252,7 @@ export default {
     position: relative;
     display: flex;
     justify-content: space-between;
+    font-weight: 500;
     &:before {
       content: ' ';
       position: absolute;
@@ -310,7 +311,7 @@ export default {
     .foot {
       display: flex;
       justify-content: space-between;
-      font-size: 18px;
+      font-size: 20px;
       line-height: 15px;
       span.price {
         color: @primary-color;
@@ -351,7 +352,7 @@ export default {
       display: inline-block;
       line-height: 0.5rem;
       font-size: 0.12rem;
-      font-weight: bold;
+      font-weight: 500;
       float: right;
       span {
         float: right;
@@ -395,5 +396,8 @@ export default {
   &:before {
     border: none;
   }
+}
+.weui-label {
+  font-weight: 500;
 }
 </style>

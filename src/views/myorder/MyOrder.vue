@@ -239,15 +239,15 @@ export default {
             width: 1.1rem;
             height: 1.1rem;
             margin-top: 0.15rem;
-            float: left;
+            display: inline-block;
             img {
               width: 1.1rem;
               height: 1.1rem;
             }
           }
           .right {
-            float: right;
-            width: 64%;
+            display: inline-block;
+            width: 58%;
             height: 1.41rem;
             .name {
               font-size: 0.14rem;

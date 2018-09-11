@@ -5,7 +5,7 @@
       <img slot="overwrite-left" src="../../assets/images/back.png" size="25" style="width:.09rem;height:auto;position:relative;top:-2px;" @click="$router.back(-1)">
       <a slot="right" class="save-btn" @click="updatePersonalInfo">保存</a>
     </x-header>
-    <group>
+    <group style="border:none">
       <p class="avatar-cell">
         <span>头像</span>
         <vue-core-image-upload :crop="false" @imageuploading="imageuploading" @imageuploaded="imageuploaded" :data="data" :max-file-size="5242880" :url="uploadUrl">
@@ -227,7 +227,7 @@ export default {
   color: @primary-color !important;
 }
 .avatar-cell {
-  padding: 12px 15px;
+  padding: 13px 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -245,8 +245,8 @@ export default {
     top: 0;
     right: 0;
     height: 1px;
-    border-top: 1px solid #d9d9d9;
-    color: #d9d9d9;
+    border-top: 1px solid #eee;
+    color: #eee;
     -webkit-transform-origin: 0 0;
     transform-origin: 0 0;
     -webkit-transform: scaleY(0.5);
@@ -315,10 +315,19 @@ export default {
     color: #999;
   }
   .weui-cell {
-    padding: 12px 15px;
+    padding: 15.5px 15px;
   }
   .vux-popup-header-right {
     color: @primary-color !important;
+  }
+  .vux-cell-box:not(:first-child):before {
+    border-top: 1px solid #eee;
+  }
+  .weui-cell:before {
+    border-top: 1px solid #eee;
+  }
+  .weui-cells {
+    font-size: 0.14rem !important;
   }
 }
 .popup {
@@ -336,7 +345,7 @@ export default {
   line-height: 0.4rem;
   text-align: center;
   margin: 0.27rem auto;
-  border-radius: 0.1rem;
+  border-radius: 0.08rem;
   font-size: 0.14rem;
   color: white;
 }

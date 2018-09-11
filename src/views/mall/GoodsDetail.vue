@@ -329,8 +329,6 @@ img {
     margin: 1em 2em 3em;
   }
   > p {
-    // height: 0.32rem;
-    // // line-height: 0.32rem;
     font-size: 0.13rem;
     font-weight: 600;
     padding-left: 4.8%;
@@ -362,8 +360,15 @@ img {
     z-index: -1;
   }
   .goods-desc {
-    padding: 0.2rem;
+    padding: 0.2rem 0;
     margin-bottom: 0.5rem;
+    p {
+      width: 100%;
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
   }
 }
 </style>

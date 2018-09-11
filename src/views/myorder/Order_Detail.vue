@@ -55,7 +55,7 @@ export default {
   }
 }
 </script>
-<style lang="less">
+<style lang="less" scoped>
 .order_detail {
   .detail_head {
     height: 0.44rem;
@@ -116,7 +116,7 @@ export default {
         float: left;
       }
       .locate {
-        width: 93%;
+        width: 90%;
         height: 0.5rem;
         float: right;
         font-size: 0.13rem;
@@ -178,7 +178,7 @@ export default {
   }
   .order_price {
     height: 0.42rem;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #eee;
     padding: 0 4.8%;
     background: #fff;
     p {
@@ -197,7 +197,7 @@ export default {
   }
   .order_time {
     height: 0.42rem;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #eee;
     padding: 0 4.8%;
     background: #fff;
     p {
