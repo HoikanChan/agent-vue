@@ -28,7 +28,7 @@
                 </p>
                 <br>
                 <!-- <p class="msg_">乳液体</p> -->
-                <p class="price">￥{{product.retailPrice}}</p>
+                <p class="price">￥{{product.marketPrice}}</p>
                 <span class="number">×{{product.number}}</span>
               </div>
             </li>
