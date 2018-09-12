@@ -235,10 +235,12 @@ export default {
         li {
           height: 1.41rem;
           padding: 0 4.8%;
+          display: flex;
           .left {
             width: 1.1rem;
             height: 1.1rem;
             margin-top: 0.15rem;
+            margin-right: 0.1rem;
             float: left;
             img {
               width: 1.1rem;

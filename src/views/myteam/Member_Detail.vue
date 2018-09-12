@@ -1,8 +1,7 @@
 <template>
   <div class="member">
     <div class="team_head">
-      <img slot="overwrite-left" src="../../assets/images/back.png" style="width:.09rem;height:auto;position:relative;top:14px;float:left;" @click="$router.back(-1)">
-      {{info.username}}
+      <img slot="overwrite-left" src="../../assets/images/back.png" style="width:.09rem;height:auto;position:relative;top:14px;float:left;" @click="$router.back(-1)"> {{info.username}}
     </div>
     <div class="detail">
       <div class="one">
@@ -17,7 +16,7 @@
           <span>{{info.userLevelName}}</span>
         </p>
         <p>注册时间:
-          <span>{{info.registerTime}}</span>
+          <span>{{info.registerTime |dateFormat('YYYY-MM-DD')}}</span>
         </p>
         <p>本月业绩:
           <span>{{info.currentPerformance ||'0.00'}}</span>
@@ -51,8 +50,11 @@
 
 <script>
 import TeamService from 'services/TeamService'
-
+import { dateFormat } from 'vux'
 export default {
+  filters: {
+    dateFormat
+  },
   data() {
     return {
       member: [],
@@ -61,14 +63,16 @@ export default {
       info: {}
     }
   },
-  mounted() {
+  activated() {
     let id = this.$route.params.id
     TeamService.childInfo(id).then(res => {
       if (res.data) {
         this.info = res.data['performance']
         delete res.data.performance
         this.member = res.data
-        this.pickedTeam = this.member[this.current].users || []
+        this.pickedTeam = this.member[this.current]
+          ? this.member[this.current].users
+          : []
       }
     })
   },
