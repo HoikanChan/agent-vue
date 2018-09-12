@@ -28,7 +28,7 @@
                 </p>
                 <br>
                 <!-- <p class="msg_">乳液体</p> -->
-                <p class="price">￥{{product.retailPrice}}</p>
+                <p class="price">￥{{product.marketPrice}}</p>
                 <span class="number">×{{product.number}}</span>
               </div>
             </li>
@@ -235,18 +235,18 @@ export default {
         li {
           height: 1.41rem;
           padding: 0 4.8%;
+          display: flex;
+          justify-content: space-between;
           .left {
             width: 1.1rem;
             height: 1.1rem;
             margin-top: 0.15rem;
-            display: inline-block;
             img {
               width: 1.1rem;
               height: 1.1rem;
             }
           }
           .right {
-            display: inline-block;
             width: 58%;
             height: 1.41rem;
             .name {

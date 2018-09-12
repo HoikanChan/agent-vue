@@ -15,7 +15,7 @@
       <span>{{goodsDetail.sellVolume?goodsDetail.sellVolume:0}}</span>
       <p class="num" style="padding-left:6.4%">库存</p>
       <span>{{pickedProduct?pickedProduct.goodsNumber:goodsDetail.goodsNumber}}</span>
-      <input-number size="mini" :value.sync="amount" :min="1" style="padding-left:29%;display:inline-block;"></input-number>
+      <input-number size="mini" :value.sync="amount" :min="1" style="padding-left:20%;display:inline-block;"></input-number>
       <div style="display:flex;justify-content:flex-start;">
         <p class="price" style="text-decoration: line-through;">零售价￥{{Number(pickedProduct?pickedProduct.retailPrice:goodsDetail.retailPrice) }}</p>
         <p class="price">会员价<i>￥{{Number(pickedProduct?pickedProduct.memberPrice:goodsDetail.memberPrice) }}</i></p>
