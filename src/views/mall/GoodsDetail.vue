@@ -381,34 +381,38 @@ img {
     border-radius: 0.02rem;
     font-size: 0.13rem;
   }
-}
-.input-number-decrement {
-  border-radius: 0 !important;
-  margin-right: 2px;
-  font-size: 0.16rem;
-}
-.input-number-increment {
-  border-radius: 0 !important;
-  margin-left: -2px !important;
-  font-size: 0.16rem;
-}
-.input-number {
-  padding: 0 4px !important;
-}
-.input-number {
-  color: #5b50d3;
-  font-weight: bold;
-  font-size: 0.19rem;
-}
-.input-number,
-.input-number-decrement,
-.input-number-increment {
-  border: none !important;
-  background: #f5f5f5 !important;
-  border-radius: 0.02rem;
-}
-.input-number-decrement,
-.input-number-increment {
-  color: #999 !important;
+  .input-number-decrement {
+    border-radius: 0 !important;
+    margin-right: 2px;
+    font-size: 0.16rem;
+  }
+  .input-number-increment {
+    border-radius: 0 !important;
+    margin-left: -2px !important;
+    font-size: 0.16rem;
+  }
+  .input-number {
+    padding: 0 4px !important;
+  }
+  .input-number {
+    color: #5b50d3;
+    font-weight: bold;
+    font-size: 0.19rem;
+  }
+  .input-number,
+  .input-number-decrement,
+  .input-number-increment {
+    border: none !important;
+    background: #f5f5f5 !important;
+    border-radius: 0.02rem;
+  }
+  .input-number-decrement,
+  .input-number-increment {
+    color: #999 !important;
+  }
+  .fr-fin {
+    width: 100%;
+    height: auto;
+  }
 }
 </style>

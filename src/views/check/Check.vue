@@ -245,7 +245,7 @@ export default {
         text-align: center;
         position: absolute;
         color: #5b50d3;
-        left: 39.2%;
+        left: 41%;
         top: 0.53rem;
       }
     }

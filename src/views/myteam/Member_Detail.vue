@@ -26,6 +26,7 @@
         </p>
       </div>
     </div>
+    <div style="height:.5rem;line-height:.5rem;font-size:.15rem;font-weight:500;background:#fff;text-align:center">{{info.username}}的成员</div>
     <div class="level">
       <a to="#" @click="switchTab(key,item)" v-for="(item,key,index) in member" :key="key" v-on:click="addClass(index)" v-bind:class="{ active:index==current}">
         <p class="first">{{item.count}}</p>
@@ -43,7 +44,10 @@
         </li>
 
       </ul>
-      <div v-if="pickedTeam.length === 0" style="text-align:center"> 暂时没有数据</div>
+      <div v-if="pickedTeam.length === 0" style="text-align:center">
+        <img src="../../assets/images/noman.png" style="width:.44rem;height:auto;margin-top:.84rem;" />
+        <p style="font-size:.15rem;color:#9890ec;margin-top:.16rem;">暂无成员</p>
+      </div>
     </div>
   </div>
 </template>
@@ -115,37 +119,35 @@ export default {
   }
   .detail {
     width: 100%;
-    height: 1.53rem;
-    background: #5b50d3;
+    height: 1.74rem;
+    background: url('../../assets/images/msg_bg.png') no-repeat center/cover;
+    display: flex;
     .one {
-      width: 40%;
-      height: 1.53rem;
-      float: left;
+      width: 42%;
+      height: 1.74rem;
       img {
         width: 0.62rem;
         height: 0.62rem;
         border-radius: 50%;
         margin-left: 30%;
-        margin-top: 0.35rem;
+        margin-top: 0.45rem;
       }
       p {
         text-align: center;
         color: #fff;
         font-size: 0.15rem;
+        margin-top: 0.1rem;
       }
     }
     .two {
-      width: 60%;
-      height: 1.52rem;
-      float: left;
+      width: 58%;
+      height: 1.74rem;
       .phone {
-        margin-top: 0.28rem;
+        margin-top: 0.44rem;
       }
       p {
         color: #fff;
-        margin-left: 15.1%;
-        margin-top: 0.01rem;
-        font-size: 0.13rem;
+        font-size: 0.14rem;
         span {
           // padding-left: 1%;
         }
@@ -156,6 +158,7 @@ export default {
     width: 100%;
     height: 0.71rem;
     background: #fff;
+    box-shadow: 0px 3px 10px #c2bfbf;
     a {
       display: block;
       width: 24.7%;

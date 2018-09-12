@@ -266,6 +266,9 @@ export default {
       font-size: 0.14rem;
       text-align: center;
     }
+    .weui-btn_mini {
+      padding: 0 0.6em;
+    }
   }
   .popup-content {
     display: flex;
@@ -328,6 +331,14 @@ export default {
   }
   .weui-cells {
     font-size: 0.14rem !important;
+  }
+
+  .vux-popup-picker-container {
+    .vux-popup-header {
+      .vux-popup-header-right {
+        color: #5b50d3 !important;
+      }
+    }
   }
 }
 .popup {

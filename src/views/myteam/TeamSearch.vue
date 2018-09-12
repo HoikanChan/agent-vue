@@ -1,7 +1,7 @@
 <template>
   <div class='teamsearch'>
     <div class="search">
-      <img @click="$router.push({name:'myteam'})" style="width:.12rem;height:.21rem;margin-left:4.8%;" src="../../assets/images/back.png" />
+      <img @click="$router.push({name:'myteam'})" style="width:.09rem;height:auto;margin-left:4.8%;" src="../../assets/images/back.png" />
       <input type="text" placeholder="搜索成员" v-model='keyword' />
       <span @click='search()'>确定</span>
     </div>

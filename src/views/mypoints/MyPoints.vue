@@ -5,11 +5,11 @@
       <img slot="overwrite-left" src="../../assets/images/back.png" size="25" style="width:.09rem;height:auto;position:relative;top:-2px;" @click="$router.back(-1)">
     </x-header>
     <div class="point_body">
-      <p>可用积分：{{mypoints?mypoints.credit:"0.00"}}
-        <span>元</span>
+      <p>可用积分：￥{{mypoints?mypoints.credit:"0.00"}}
+        <!-- <span>元</span> -->
       </p>
-      <p>押金：{{mypoints?mypoints.deposit:"0.00"}}
-        <span>元</span>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;押金：￥{{mypoints?mypoints.deposit:"0.00"}}
+        <!-- <span>元</span> -->
       </p>
       <div class="detail">
         <div class="record">积分明细</div>
@@ -37,13 +37,13 @@
       <ul>
         <li v-for="(item,key) in mypointsList" :key="key">
           <p class="type">{{item.logTypeText}}
-            <span>{{item.credit}} 元</span>
+            <span>{{item.credit}} </span>
           </p>
           <div class="time_balance">
             <p class="clock">{{item.createTime}}
             </p>
             <span>剩余:
-              <i>{{item.userCredit || '0'}}</i>元
+              <i>{{item.userCredit || '0'}}</i>
             </span>
           </div>
           <p class="pay">{{item.statusText}}</p>
@@ -101,7 +101,7 @@
       <popup v-model="timeShow">
         <div class="time-popup">
           <div class="popup-header">
-            <x-button mini plain @click.native="timeShow=flase" style="background-color:#fff;border:1px solid #f4f4f4">取消</x-button>
+            <x-button mini plain @click.native="timeShow=flase" style="background-color:#fff;border:1px solid #c2c2c2">取消</x-button>
             <h4></h4>
             <x-button mini type="primary" @click.native="timeChoosed">完成</x-button>
           </div>
@@ -287,21 +287,21 @@ export default {
   }
   .point_body {
     width: 100%;
-    height: 1.55rem;
+    height: 1.78rem;
     background: url('../../assets/images/point_bg.png') no-repeat center/cover;
-    text-align: center;
+    text-align: left;
     color: #fff;
     p {
-      font-size: 0.2rem;
-      padding-bottom: 0.2em;
+      font-size: 0.19rem;
+      padding-left: 37%;
       &:first-child {
-        padding-top: 0.32rem;
+        padding-top: 0.45rem;
       }
     }
     .detail {
       width: 45.6%;
       height: 0.26rem;
-      margin-left: 27.2%;
+      margin-left: 40%;
       margin-top: 0.08rem;
       font-size: 0.13rem;
       .record {
@@ -336,13 +336,14 @@ export default {
       height: 0.64rem;
       font-size: 0.15rem;
       h3 {
-        margin-top: 0.13rem;
+        margin-top: 0.11rem;
         font-weight: normal;
-        font-size: 0.14rem;
+        font-size: 0.16rem;
       }
       p {
         display: inline-block;
         margin-top: 0.02rem;
+        font-size: 0.13rem;
       }
     }
     .rili {
@@ -358,8 +359,8 @@ export default {
   .all_recode {
     background: #fff;
     p {
-      height: 0.45rem;
-      line-height: 0.45rem;
+      height: 0.55rem;
+      line-height: 0.55rem;
       padding-left: 4.8%;
       font-size: 0.16rem;
       font-weight: bold;
@@ -387,9 +388,13 @@ export default {
     }
     ul {
       li {
-        height: 1.1rem;
+        height: 1rem;
         padding: 0 4.8%;
         border-top: 1px solid #eee;
+        p {
+          height: 0.45rem;
+          line-height: 0.45rem;
+        }
         .type {
           padding-left: 0;
           display: flex;
@@ -407,8 +412,8 @@ export default {
         .clock {
           padding-left: 0;
           font-weight: normal;
-          height: 0.3rem;
-          line-height: 0.3rem;
+          height: 0.24rem;
+          line-height: 0.24rem;
           display: inline-block;
           width: 60%;
           i {
@@ -449,7 +454,7 @@ export default {
   padding: 1em 0;
   border-radius: 0.05rem;
   background: #fff;
-  max-height: 4rem;
+  max-height: 3.5rem;
   overflow: scroll;
   .upload-line {
     display: flex;
@@ -459,14 +464,14 @@ export default {
   h2 {
     text-align: center;
     font-size: 0.18rem;
-    margin-top: 0.27rem;
+    margin-top: 0.1rem;
     position: relative;
     img {
-      width: 0.35rem;
-      height: 0.35rem;
+      width: 0.43rem;
+      height: auto;
       position: absolute;
       right: 5%;
-      top: -0.2rem;
+      top: -0.15rem;
     }
   }
   .proptype {
@@ -476,6 +481,8 @@ export default {
       text-align: left;
       padding: 0 15px;
       line-height: 1em;
+      font-size: 0.13rem;
+      color: rgb(51, 51, 51);
     }
   }
   .submit {
@@ -504,8 +511,16 @@ export default {
     h4 {
       flex: 1 1 auto;
       font-weight: 500;
-      font-size: 0.14rem;
+      font-size: 0.13rem;
       text-align: center;
+      color: #666;
+    }
+    .weui-btn_mini {
+      padding: 0 0.6em;
+      font-size: 0.12rem;
+    }
+    .weui-btn_plain-default {
+      border: 1px solid #c2c2c2;
     }
   }
   .popup-content {
@@ -521,7 +536,8 @@ export default {
       margin: 1%;
       padding: 0.15rem 0;
       background: #fff;
-      color: #333;
+      color: #666;
+      font-size: 0.14rem;
       &:nth-child(3n-2) {
         margin-left: 0;
       }
@@ -543,13 +559,17 @@ export default {
   .popup-header {
     display: flex;
     padding: 8px 0.15rem;
-    background: #ddd;
+    background: #eee;
     align-items: center;
     h4 {
       flex: 1 1 auto;
       font-weight: 500;
       font-size: 0.14rem;
       text-align: center;
+    }
+    .weui-btn_mini {
+      padding: 0 0.6em;
+      font-size: 0.12rem;
     }
   }
 }
@@ -585,6 +605,9 @@ export default {
     padding: 1em 0 !important;
     height: 3em;
     line-height: 1em;
+  }
+  .weui-btn_mini {
+    padding: 0 0.6em !important;
   }
 }
 </style>

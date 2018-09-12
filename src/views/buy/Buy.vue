@@ -6,8 +6,8 @@
     </x-header>
     <div class="address-detail" v-if="address">
       <p>
-        <span>收货人：{{address.userName}}</span>
-        <span>电话号码：{{address.telNumber}}</span>
+        <span>收货人:{{address.userName}}</span>
+        <span>电话号码:{{address.telNumber}}</span>
       </p>
       <p>
         <img src="../../assets/images/location.png" alt="" style="width:0.17rem;">

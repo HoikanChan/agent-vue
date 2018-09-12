@@ -37,7 +37,10 @@
           </div>
         </li>
       </ul>
-      <div v-if="pickedTeam.length === 0" style="text-align:center"> 暂时没有数据</div>
+      <div v-if="pickedTeam.length === 0" style="text-align:center">
+        <img src="../../assets/images/noman.png" style="width:.44rem;height:auto;margin-top:.84rem;" />
+        <p style="font-size:.15rem;color:#9890ec;margin-top:.16rem;">暂无成员</p>
+      </div>
     </div>
   </div>
 </template>
@@ -203,6 +206,7 @@ export default {
     width: 100%;
     height: 0.71rem;
     background: #fff;
+    box-shadow: 0px 0px 10px #c2bfbf;
     a {
       display: block;
       width: 24.7%;

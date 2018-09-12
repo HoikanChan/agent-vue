@@ -371,4 +371,11 @@ export default {
 .vux-header {
   border-bottom: 1px solid #ccc;
 }
+.shoppingcart {
+  .input-number-decrement,
+  .input-number-increment {
+    width: 20px !important;
+    border-radius: 0 !important;
+  }
+}
 </style>
