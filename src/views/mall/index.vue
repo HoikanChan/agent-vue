@@ -25,7 +25,9 @@
                 ---暂无更多商品---
               </span>
               <span slot="no-results">
-                ---暂无商品---
+                <img style="width:1.58rem;height:auto;margin-top:.82rem;" src="../../assets/images/nomore.png" />
+                <p style="color:#9890ec;margin-top:.35rem;font-size:.15rem;">暂无商品</p>
+                <p style="color:#9890ec;font-size:.15rem;">敬请精品上市</p>
               </span>
             </infinite-loading>
           </div>
