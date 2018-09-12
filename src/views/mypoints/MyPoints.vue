@@ -330,10 +330,10 @@ export default {
     background: #5b50d3;
     padding: 0 4.8%;
     color: #fff;
+    display: flex;
+    justify-content: space-between;
     .time {
-      width: 70%;
       height: 0.64rem;
-      float: left;
       font-size: 0.15rem;
       h3 {
         margin-top: 0.13rem;
@@ -346,9 +346,7 @@ export default {
       }
     }
     .rili {
-      width: 30%;
       height: 0.64rem;
-      float: left;
       img {
         width: 0.24rem;
         height: 0.23rem;

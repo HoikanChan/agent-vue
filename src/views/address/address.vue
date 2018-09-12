@@ -205,4 +205,7 @@ export default {
     color: #655ad8 !important;
   }
 }
+.vux-check-icon > span {
+  line-height: 40px;
+}
 </style>
