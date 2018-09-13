@@ -43,6 +43,9 @@ export default {
 }
 </script>
 <style lang='less' scoped>
+body {
+  background: url('../../assets/images/code_bg.png');
+}
 .code_user {
   .code {
     width: 87%;
@@ -57,12 +60,14 @@ export default {
       justify-content: space-evenly;
       align-items: center;
       div {
-        &:first-child img {
-          width: 0.67rem;
-          height: auto;
-          border-radius: 0.03rem;
-          margin: 0;
-          padding-left: 16%;
+        &:first-child {
+          padding-left: 8%;
+          img {
+            width: 0.67rem;
+            height: auto;
+            border-radius: 0.03rem;
+            margin: 0;
+          }
         }
         &:nth-child(2) {
           height: 0.6rem;

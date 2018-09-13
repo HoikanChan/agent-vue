@@ -1,14 +1,17 @@
 <template>
   <div class="realname-container">
-    <x-header :left-options="{backText: ''}" style="border-bottom: 1px solid #ccc ;">实名认证</x-header>
+   <x-header :left-options="{backText: ''}">
+      <span>实名认证</span>
+      <img slot="overwrite-left" src="../../assets/images/back.png" size="25" style="width:.09rem;height:auto;position:relative;top:-2px;" @click="$router.back(-1)">
+    </x-header>
     <div class="content">
       <group>
         <x-input label-width="1rem" title="真实姓名" placeholder="请输入名字" :required="true" ref="mobile" v-model="form.realname" :is-type="cnNameValidator">
         </x-input>
-        <x-input label-width="1rem" title="身份证号码" type="text" placeholder="请输入身份证" :required="true" ref="code" v-model="form.idCard" :is-type="idCard">
+        <x-input style="border:none;" label-width="1rem" title="身份证号码" type="text" placeholder="请输入身份证" :required="true" ref="code" v-model="form.idCard" :is-type="idCard">
         </x-input>
       </group>
-      <x-button style="margin-top:46px;width: 90%;" type="primary" action-type="submit" @click.native="register()">确定</x-button>
+      <x-button style="margin-top:48px;width: 90%;border-radius: 6px;font-size: 16px;" type="primary" action-type="submit" @click.native="register()">确定</x-button>
     </div>
   </div>
 </template>
@@ -72,12 +75,33 @@ export default {
       }
     }
     .weui-cell {
-      border-bottom: 2px solid @border-color;
-      padding: 16px;
+      border-bottom: 1px solid #eee;
+      padding: 13.5px;
       &:before {
         border: none;
       }
     }
+  }
+  .weui-input {
+    font-size: 0.12rem;
+    color: #999;
+  }
+  .vux-header {
+    border-bottom: 1px solid #eee;
+  }
+  // .weui-cell{
+  //   &:first-child{
+  //     border-radius: 6px;
+  //   }
+  //   &:nth-child(2){
+  //     border-radius: 0 6px;
+  //   }
+  // }
+  .vux-no-group-title {
+    border-radius: 6px;
+  }
+  .weui-cell:before {
+    border: none;
   }
 }
 </style>

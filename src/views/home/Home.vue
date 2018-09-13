@@ -53,7 +53,7 @@ img {
 .nav {
   width: 100%;
   height: 3.95rem;
-  padding-bottom: 4em;
+  padding-bottom: 3.4em;
 }
 .nav div {
   display: block;

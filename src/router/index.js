@@ -141,6 +141,11 @@ const router = new Router({
       component: resolve => require(['../views/myorder/Order_Detail'], resolve)
     },
     {
+      path: '/logistics',
+      name: 'logistics',
+      component: resolve => require(['../views/myorder/Logistics'], resolve)
+    },
+    {
       path: '/address',
       name: 'address',
       component: resolve => require(['../views/address/address'], resolve)

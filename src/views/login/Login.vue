@@ -15,9 +15,11 @@
         <img slot="label" style="width:.14rem;height:auto;padding-right:10px;display:block;" src="../../assets/images/password.png" />
       </x-input>
       <div class="forgot-password">
-        <check-icon :value.sync="isKeepPsw"><span>记住密码</span></check-icon>
-        <a @click="$router.push({name:'forgetPassword' })">忘记密码？</a>
-        <a @click="$router.push({name:'register' })">去注册？</a>
+        <check-icon :value.sync="isKeepPsw">
+          <span>记住密码</span>
+        </check-icon>
+        <a style="margin-left:10%;" @click="$router.push({name:'forgetPassword' })">忘记密码？</a>
+        <!-- <a @click="$router.push({name:'register' })">去注册？</a> -->
       </div>
       <x-button type="primary" action-type="submit" class="round-btn" @click.native="login()">登录</x-button>
     </group>
@@ -81,6 +83,11 @@ export default {
             text: result.errmsg
           })
         } else {
+          if (this.$store.getters.getUser.id !== result.data.id) {
+            this.$store.dispatch('setBill', '')
+            this.$store.commit('setAddress', '')
+            this.$store.dispatch('setNewAddress', '')
+          }
           this.$store.dispatch('setUser', result.data)
           this.$router.push({ name: 'home' })
           if (this.isKeepPsw) {

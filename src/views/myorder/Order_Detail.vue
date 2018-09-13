@@ -46,6 +46,10 @@
             <h3>买家留言</h3>
             <p>请尽快发货......</p>
         </div>
+        <div class="consignee">
+          <router-link to="#">查看物流</router-link>
+          <router-link to="#" class="blue">确认收货</router-link>
+        </div>
     </div>
 </template>
 <script>
@@ -225,6 +229,7 @@ export default {
     height: 0.68rem;
     background: #fff;
     padding: 0 4.8%;
+    margin-bottom: 0.53rem;
     h3 {
       display: inline-block;
       height: 0.17rem;
@@ -234,6 +239,30 @@ export default {
     p {
       display: inline-block;
       padding-left: 1%;
+    }
+  }
+  .consignee {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: #fff;
+    width: 100%;
+    height: 0.53rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    a {
+      width: 0.62rem;
+      height: 0.22rem;
+      line-height: 0.22rem;
+      text-align: center;
+      border: 1px solid #999;
+      margin-right: 4.8%;
+      border-radius: 0.03rem;
+    }
+    .blue {
+      color: #5b50d3;
+      border-color: #5b50d3;
     }
   }
 }

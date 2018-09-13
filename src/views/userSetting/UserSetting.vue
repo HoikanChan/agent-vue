@@ -340,6 +340,12 @@ export default {
       }
     }
   }
+  .weui-cells:after {
+    border-bottom: none;
+  }
+  .weui-cells:before {
+    border-top: none;
+  }
 }
 .popup {
   .vux-checker-box {
