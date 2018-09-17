@@ -4,7 +4,7 @@
       <span>诗蒂莲</span>
       <img slot="overwrite-left" src="../../assets/images/back.png" size="25" style="width:.09rem;height:auto;position:relative;top:-2px;" @click="$router.back(-1)">
     </x-header>
-    <swiper auto height="2.08rem" dots-class="custom-bottom" dots-position="center">
+    <swiper auto height="2.87rem" dots-class="custom-bottom" dots-position="center">
       <swiper-item class="swiper-demo-img" v-for="(item, index) in images" :key="index"><img :src="item"></swiper-item>
     </swiper>
     <div class="goods_message">

@@ -13,7 +13,8 @@
         <img src="../../assets/images/location.png" alt="" style="width:0.17rem;">
         <span>收货地址：{{address.provinceName+address.cityName+address.countyName+address.detailInfo}}</span>
       </p>
-      <x-icon type="ios-arrow-forward" style="fill:#7e74ea" size="24" class="forward-icon" @click="$router.push({name:'address'})"></x-icon>
+      <!-- <x-icon type="ios-arrow-forward" style="fill:#7e74ea" size="24" class="forward-icon" @click="$router.push({name:'address'})"></x-icon> -->
+      <img src="../../assets/images/right.png" @click="$router.push({name:'address'})"/>
     </div>
     <div class="place" v-else>
       <router-link to="/addAddress">
