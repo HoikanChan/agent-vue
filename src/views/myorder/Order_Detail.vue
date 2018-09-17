@@ -1,61 +1,88 @@
 <template>
-    <div class="order_detail">
-       <x-header :left-options="{backText: ''}" style="border-bottom:none;">
+  <div class="order_detail">
+    <x-header :left-options="{backText: ''}" style="border-bottom:none;">
       <span>订单详情</span>
       <img slot="overwrite-left" src="../../assets/images/back.png" size="25" style="width:.09rem;height:auto;position:relative;top:-2px;" @click="$router.back(-1)">
     </x-header>
-        <div class="ordernumber">
-            <p>等待卖家发货</p>
-            <p class="number">订单编号:<span>20131219246437</span></p>
-        </div>
-        <div class="address">
-            <div class="top">
-                <p>收货人：<span>陈琴</span></p>
-                <p class="right">联系电话：<span>15797964844</span></p>
-            </div>
-            <div class="loation">
-                <img src="../../assets/images/location.png" />
-                <div class="locate">
-                    <span>收货地址:<i>广东省广州市花都区新华街道花都区迎兵大道和合新城</i></span>
-                </div>
-            </div>
-        </div>
-        <ul>
-            <li>
-                <div class="left"><img src="../../assets/images/22.jpg" /></div>
-                <div class="right">
-                    <p class="name">好吃的可爱多
-                        <span>(10支/一盒)</span>
-                    </p>
-                    <p class="msg">产品信息
-                        <span>10支/一盒</span>
-                    </p>
-                    <p class="msg_">乳液体</p>
-                    <p class="price">￥990.00</p>
-                    <span class="number">×12</span>
-                </div>
-            </li>
-        </ul>
-        <div class="order_price">
-            <p>商品总价<span>1800</span></p>
-        </div>
-        <div class="order_time">
-            <p>下单时间<span>2018-8-8&nbsp;&nbsp;&nbsp;<i>17:33</i></span></p>
-        </div>
-        <div class="buyer">
-            <h3>买家留言</h3>
-            <p>请尽快发货......</p>
-        </div>
+    <div class="ordernumber">
+      <p>{{orderInfo.orderStatusText}}</p>
+      <p class="number">订单编号:
+        <span>{{orderInfo.orderSn}}</span>
+      </p>
     </div>
+    <div class="address">
+      <div class="top">
+        <p>收货人：
+          <span>{{orderInfo.consignee}}</span>
+        </p>
+        <p class="right">联系电话：
+          <span>{{orderInfo.mobile}}</span>
+        </p>
+      </div>
+      <div class="loation">
+        <img src="../../assets/images/location.png" />
+        <div class="locate">
+          <span>收货地址:
+            <i>{{orderInfo.address}}</i>
+          </span>
+        </div>
+      </div>
+    </div>
+    <ul>
+      <li v-for="item in info.orderGoods" :key="item.id">
+        <div class="left"><img :src="item.listPicUrl" /></div>
+        <div class="right">
+          <p class="name">{{item.goodsName}}
+            <!-- <span>(10支/一盒)</span> -->
+          </p>
+          <p class="msg">产品信息
+            <span>{{item.goodsSpecifitionNameValue}}</span>
+          </p>
+          <!-- <p class="msg_">乳液体</p> -->
+          <br>
+          <p class="price">￥{{item.marketPrice}}</p>
+          <span class="number">×{{item.number}}</span>
+        </div>
+      </li>
+    </ul>
+    <div class="order_price">
+      <p>商品总价
+        <span>{{orderInfo.actualPrice}}</span>
+      </p>
+    </div>
+    <div class="order_time">
+      <p>下单时间
+        <span>{{orderInfo.payTime}}
+        </span>
+      </p>
+    </div>
+    <div class="buyer">
+      <h3>买家留言</h3>
+      <p>{{orderInfo.postscript}}</p>
+    </div>
+  </div>
 </template>
 <script>
 import { XHeader } from 'vux'
+import OrderService from 'services/OrderService'
+
 export default {
   components: {
     XHeader
   },
   data() {
-    return {}
+    return {
+      info: {}
+    }
+  },
+  computed: {
+    orderInfo: function() {
+      return this.info ? this.info.orderInfo : {}
+    }
+  },
+  async activated() {
+    const result = await OrderService.detail(this.$route.query.id)
+    this.info = result.data || {}
   }
 }
 </script>
@@ -82,6 +109,7 @@ export default {
       font-size: 0.13rem;
       color: #fff;
       padding-left: 12%;
+      width: 2rem;
       padding-top: 0.2rem;
     }
     .number {

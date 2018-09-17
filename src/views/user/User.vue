@@ -2,7 +2,7 @@
   <div class="user">
     <div class="head">
       <div><img :src="user.avatar || defaultAvatar" alt=""></div>
-      <p>{{user.username}}</p>
+      <p>{{user.nickname}}</p>
       <p>{{user.userLevelName}}</p>
       <router-link to="/userSetting"><img class="set" src="../../assets/images/set.png" /></router-link>
       <router-link to="/messages"><img style="width:.2rem;height:.21rem;" class="code_" src="../../assets/images/message.png" /></router-link>

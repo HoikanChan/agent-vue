@@ -1,7 +1,7 @@
 <template>
   <div class="myorder">
     <div class="myorder_head">
-      <img class="back" src="../../assets/images/back.png" @click="$router.push({name:'user'})"/> 我的订单
+      <img class="back" src="../../assets/images/back.png" @click="$router.push({name:'user'})" /> 我的订单
     </div>
     <div class="things">
       <a :class="{'active':tabNow === 1}" @click="tabNow=1">全部</a>
@@ -11,12 +11,12 @@
     <div class="shoppings">
       <div class="first" v-if="tabNow ===1">
         <div class="oreder-item" v-for="item in orders" :key="item.key">
-          <div class="shophead">
+          <div class="shophead" @click="view(item.id)">
             <img :src="$store.getters.getUser.avatar" />
             <span>{{item.userName}}</span>
             <i>{{item.orderStatusText}}</i>
           </div>
-          <ul>
+          <ul  @click="view(item.id)">
             <li v-for="product in item.orderGoodsEntityList" :key="product.key">
               <div class="left"><img :src="product.listPicUrl" /></div>
               <div class="right">
@@ -42,19 +42,19 @@
           </div>
         </div>
         <div class="norecord" v-if="orders.length === 0">
-          <img src="../../assets/images/noorder.png"/>
+          <img src="../../assets/images/noorder.png" />
           <p>你没有相关订单</p>
           <p>可以去看看有哪些想买的！</p>
         </div>
       </div>
       <div class="first" v-if="tabNow ===2">
         <div class="oreder-item" v-for="item in toDeleverOrder" :key="item.key">
-          <div class="shophead">
-            <img src="../../assets/images/9.jpg" />
+          <div class="shophead"  @click="view(item.id)">
+            <img :src="$store.getters.getUser.avatar" />
             <span>{{item.userName}}</span>
             <i>{{item.orderStatusText}}</i>
           </div>
-          <ul>
+          <ul  @click="view(item.id)">
             <li v-for="product in item.orderGoodsEntityList" :key="product.key">
               <div class="left"><img :src="product.listPicUrl" /></div>
               <div class="right">
@@ -76,23 +76,24 @@
             <i>{{item.orderPrice}}</i>元(运费:{{item.shippingFee}}元)</div>
           <div class="logistics">
             <router-link to="#" class="blue" @click.native="confirm(item.id)">确认收货</router-link>
+            <router-link to="#" class="blue">查看详情</router-link>
             <!-- <router-link to="#">查看物流</router-link> -->
           </div>
         </div>
         <div class="norecord" v-if="toDeleverOrder.length === 0">
-          <img src="../../assets/images/noorder.png"/>
+          <img src="../../assets/images/noorder.png" />
           <p>你没有相关订单</p>
           <p>可以去看看有哪些想买的！</p>
         </div>
       </div>
       <div class="first" v-if="tabNow ===3">
         <div class="oreder-item" v-for="item in toReceiveOrder" :key="item.key">
-          <div class="shophead">
-            <img src="../../assets/images/9.jpg" />
+          <div class="shophead"  @click="view(item.id)">
+            <img :src="$store.getters.getUser.avatar" />
             <span>{{item.userName}}</span>
             <i>{{item.orderStatusText}}</i>
           </div>
-          <ul>
+          <ul  @click="view(item.id)">
             <li v-for="product in item.orderGoodsEntityList" :key="product.key">
               <div class="left"><img :src="product.listPicUrl" /></div>
               <div class="right">
@@ -114,11 +115,12 @@
             <i>{{item.orderPrice}}</i>元(运费:{{item.shippingFee}}元)</div>
           <div class="logistics">
             <router-link to="#" class="blue" @click.native="confirm(item.id)">确认收货</router-link>
+            <router-link to="#" class="blue" @click.native="view(item.id)">查看详情</router-link>
             <!-- <router-link to="#">查看物流</router-link> -->
           </div>
         </div>
-        <div class="norecord" v-if="toReceiveOrder.length === 0"> 
-          <img src="../../assets/images/noorder.png"/>
+        <div class="norecord" v-if="toReceiveOrder.length === 0">
+          <img src="../../assets/images/noorder.png" />
           <p>你没有相关订单</p>
           <p>可以去看看有哪些想买的！</p>
         </div>
@@ -152,6 +154,9 @@ export default {
       await OrderService.confirm(orderId)
       await this.update()
       this.$vux.loading.hide()
+    },
+    view(id) {
+      this.$router.push({ name: 'order_detail', query: { id: id } })
     },
     async update() {
       const result = (await OrderService.get({
