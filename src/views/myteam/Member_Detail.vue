@@ -1,7 +1,7 @@
 <template>
   <div class="member">
     <div class="team_head">
-      <img slot="overwrite-left" src="../../assets/images/back.png" style="width:.09rem;height:auto;position:relative;top:14px;float:left;" @click="$router.back(-1)"> {{info.username}}
+      <img slot="overwrite-left" src="../../assets/images/back.png" style="width:.09rem;height:auto;position:relative;top:14px;float:left;" @click="$router.push({name:'user'})" > {{info.username}}
     </div>
     <div class="detail">
       <div class="one">
@@ -120,7 +120,7 @@ export default {
   .detail {
     width: 100%;
     height: 1.74rem;
-    background: url('../../assets/images/msg_bg.png') no-repeat center/cover;
+    // background: url('../../assets/images/msg_bg.png') no-repeat center/cover;
     display: flex;
     .one {
       width: 42%;
