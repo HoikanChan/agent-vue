@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <swiper auto height="2.08rem" dots-class="custom-bottom" dots-position="center">
+    <swiper auto height="2rem" dots-class="custom-bottom" dots-position="center">
       <swiper-item class="swiper-demo-img" v-for="(item, index) in images" :key="index"><img :src="item.imageUrl"></swiper-item>
     </swiper>
     <div class="nav">
