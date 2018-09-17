@@ -219,6 +219,7 @@ export default {
           text: 'Loading'
         })
         const result = await ShoppingCartService.checkout()
+        console.log(result)
         this.$store.dispatch('setBill', result.data)
         this.$vux.loading.hide()
         this.$router.push({ name: 'buy' })

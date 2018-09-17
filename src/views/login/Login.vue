@@ -18,8 +18,8 @@
         <check-icon :value.sync="isKeepPsw">
           <span>记住密码</span>
         </check-icon>
-        <a @click="$router.push({name:'forgetPassword' })">忘记密码？</a>
-        <a @click="$router.push({name:'register' })">去注册？</a>
+        <a style="margin-left:10%;" @click="$router.push({name:'forgetPassword' })">忘记密码？</a>
+        <!-- <a @click="$router.push({name:'register' })">去注册？</a> -->
       </div>
       <x-button type="primary" action-type="submit" class="round-btn" @click.native="login()">登录</x-button>
     </group>
