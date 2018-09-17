@@ -313,6 +313,7 @@ export default {
 </style>
 <style lang="less">
 .usersetting {
+  padding-bottom: 0.27rem;
   .weui-input {
     text-align: right;
     color: #999;
@@ -362,6 +363,7 @@ export default {
   line-height: 0.4rem;
   text-align: center;
   margin: 0.27rem auto;
+  margin-bottom: 0;
   border-radius: 0.08rem;
   font-size: 0.14rem;
   color: white;

@@ -140,11 +140,11 @@ const router = new Router({
       name: 'order_detail',
       component: resolve => require(['../views/myorder/Order_Detail'], resolve)
     },
-    {
-      path: '/logistics',
-      name: 'logistics',
-      component: resolve => require(['../views/myorder/Logistics'], resolve)
-    },
+    // {
+    //   path: '/logistics',
+    //   name: 'logistics',
+    //   component: resolve => require(['../views/myorder/Logistics'], resolve)
+    // },
     {
       path: '/address',
       name: 'address',
