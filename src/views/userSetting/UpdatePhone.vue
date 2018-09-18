@@ -14,7 +14,7 @@
                     <img slot="label" style="width:.14rem;height:auto;padding-right:10px;display:block;" src="../../assets/images/verify.png" />
                     <x-button slot="right" type="primary" mini @click.native="sendCode">{{ countDown || '获取验证码'}}</x-button>
                 </x-input>
-                <x-button style="margin-top:60px;height:.4rem;line-height:.4rem;font-size:.13rem;" type="primary" action-type="submit" class="round-btn" @click.native="modifyPhone()">验证并绑定</x-button>
+                <x-button style="margin-top:60px;height:.4rem;line-height:.4rem;font-size:.14rem;" type="primary" action-type="submit" class="round-btn" @click.native="modifyPhone()">验证并绑定</x-button>
             </group>
         </div>
     </div>
@@ -61,6 +61,10 @@ export default {
         }
       }
     }
+  }
+  .weui-btn_mini {
+    padding: 0 1em;
+    font-size: 12px;
   }
 }
 </style>
