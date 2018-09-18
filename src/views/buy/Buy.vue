@@ -193,13 +193,16 @@ export default {
 
 <style lang="less" scoped>
 @color_1: #999;
+.product-list {
+  background: #fff;
+}
 .vux-x-icon {
   fill: #000;
 }
 .place {
   width: 100%;
   height: 1.04rem;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #eee;
   background: #fff;
   display: flex;
   justify-content: center;
@@ -229,6 +232,7 @@ export default {
   flex-direction: column;
   padding: 0 0.3rem 0 0.5rem;
   position: relative;
+  border-bottom: 1px solid #eee;
   p {
     margin: 0.05rem 0;
     position: relative;
@@ -295,7 +299,7 @@ export default {
 .product-item {
   padding: 0.15rem;
   display: flex;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #eee;
   &:last-child {
     border-bottom: none;
   }

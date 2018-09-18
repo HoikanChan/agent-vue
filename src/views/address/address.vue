@@ -23,9 +23,9 @@
               <CheckIcon :value.sync="item.isDefault" @click.native.stop="setDefault(item.id)">
                 <span>设为默认地址</span>
               </CheckIcon>
-              <img style="width:.14rem;height:auto;padding-left:18%;" src="../../assets/images/editer.png" />
+              <img style="width:.14rem;height:auto;padding-left:15%;" src="../../assets/images/editer.png" />
               <span style="margin-left:1%;" @click.stop="editer(item)">修改</span>
-              <img style="width:.11rem;height:auto;padding-left:18%;" src="../../assets/images/delete.png" />
+              <img style="width:.11rem;height:auto;padding-left:15%;" src="../../assets/images/delete.png" />
               <span style="margin-left:1%;" @click.stop="del(item.id)">删除</span>
             </div>
           </div>

@@ -195,7 +195,6 @@ export default {
     height: 0.41rem;
     padding: 0 4.8%;
     background: #fff;
-    border-bottom: 1px solid #eee;
     a {
       display: block;
       width: 17.2%;
@@ -221,6 +220,7 @@ export default {
         line-height: 0.4rem;
         background: #fff;
         padding: 0 4.8%;
+        border-bottom: 1px solid #eee;
         img {
           width: 0.23rem;
           height: 0.23rem;
@@ -237,11 +237,16 @@ export default {
         }
       }
       ul {
+        background: #fff;
         li {
           height: 1.41rem;
           padding: 0 4.8%;
           display: flex;
           justify-content: space-between;
+          border-top: 1px solid #eee;
+          &:first-child {
+            border-top: none;
+          }
           .left {
             width: 1.1rem;
             height: 1.1rem;
