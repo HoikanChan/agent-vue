@@ -23,7 +23,7 @@
         <img src="../../assets/images/location.png" />
         <div class="locate">
           <span>收货地址:
-            <i>{{orderInfo.address}}</i>
+            <i>{{orderInfo.detailAddress}}</i>
           </span>
         </div>
       </div>

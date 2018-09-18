@@ -13,7 +13,7 @@
       <x-input label-width="1rem" title="验证码" type="text" placeholder="请输入验证码" :required="true" ref="code" v-model="form.SMSCode">
         <x-button slot="right" type="primary" mini @click.native="sendCode">{{ countDown || '获取验证码'}}</x-button>
       </x-input>
-      <x-input label-width="1rem" title="用户名" type="text" placeholder="请输入2-5个汉字" :required="true" ref="cnName" v-model="form.username" :is-type="cnNameValidator">
+      <x-input label-width="1rem" title="用户名" type="text" placeholder="请输入用户名" :required="true" ref="cnName" v-model="form.username">
       </x-input>
       <x-input label-width="1rem" title="密码" type="password" placeholder="请输入6-16个字符的密码" :required="true" :min="6" :max="16" ref="psw" v-model="form.password">
       </x-input>
@@ -84,13 +84,7 @@ export default {
       popupPickedgrade: '',
       show: false,
       gradeList: [],
-      countDown: '',
-      cnNameValidator: function(value) {
-        return {
-          valid: value.match(/^[\u4e00-\u9fa5]{2,4}$/),
-          msg: '请输入2-5个汉字'
-        }
-      }
+      countDown: ''
     }
   },
   methods: {
@@ -139,12 +133,14 @@ export default {
         this.$refs.mobile.valid &&
         this.$refs.psw.valid &&
         this.$refs.confirmPassword.valid &&
-        this.$refs.cnName.valid &&
         this.$refs.code.valid &&
-        this.$refs.userLevel.valid &&
         this.$refs.referralCode.valid
       ) {
+        this.$vux.loading.show({
+          text: '注册中..'
+        })
         const result = await AuthService.register(this.form)
+        this.$vux.loading.hide()
         if (result.errno) {
           this.$vux.toast.show({
             width: '10em',
@@ -154,6 +150,12 @@ export default {
         } else {
           this.$router.push({ name: 'registered' })
         }
+      } else {
+        this.$vux.toast.show({
+          width: '10em',
+          type: 'warn',
+          text: '请完善注册信息'
+        })
       }
     },
     pickGrade(id) {

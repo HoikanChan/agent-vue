@@ -65,7 +65,7 @@ body {
           padding-left: 8%;
           img {
             width: 0.67rem;
-            height: auto;
+            height: 0.67rem;
             border-radius: 0.03rem;
             margin: 0;
           }
