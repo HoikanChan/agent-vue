@@ -10,11 +10,11 @@
         <span>电话号码:{{address.telNumber}}</span>
       </p>
       <p>
-        <img src="../../assets/images/location.png" alt="" style="width:0.17rem;">
+        <img class="location" src="../../assets/images/location.png" alt="" style="width:0.17rem;">
         <span>收货地址：{{address.provinceName+address.cityName+address.countyName+address.detailInfo}}</span>
       </p>
       <!-- <x-icon type="ios-arrow-forward" style="fill:#7e74ea" size="24" class="forward-icon" @click="$router.push({name:'address'})"></x-icon> -->
-      <img src="../../assets/images/right.png" @click="$router.push({name:'address'})"/>
+      <img src="../../assets/images/right.png" class="view-address-btn" @click="$router.push({name:'address'})" />
     </div>
     <div class="place" v-else>
       <router-link to="/addAddress">
@@ -235,10 +235,16 @@ export default {
     display: flex;
     justify-content: space-between;
   }
-  img {
+  .location {
     position: absolute;
     left: -0.22rem;
     top: 0.02rem;
+  }
+  .view-address-btn {
+    position: absolute;
+    bottom: 0.2rem;
+    right: 0.2rem;
+    width: 0.8em;
   }
   .forward-icon {
     fill: #7e74ea;

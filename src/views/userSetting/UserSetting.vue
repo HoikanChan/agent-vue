@@ -29,7 +29,9 @@
     <group style="margin-top: .1rem;">
       <x-input placeholder-align="right" readonly title="手机号码" type="text" placeholder="请输入手机号码" :required="true" v-model="form.mobile" is-type="china-mobile">
       </x-input>
-      <x-input placeholder-align="right" title="推荐码" type="text" readonly :show-clear="false" :required="true" v-model="form.referralCode">
+      <x-input placeholder-align="right" id="referralCode" title="推荐码" type="text" readonly :show-clear="false" :required="true" v-model="form.referralCode">
+        <x-button slot="right" type="primary" mini style="margin-left:1em" id="copy-btn" class="tag-read" :data-clipboard-text="form.referralCode" @click.native="copy">复制
+        </x-button>
       </x-input>
       <x-input placeholder-align="right" title="注册时间" type="text" readonly :show-clear="false" :required="true" v-model="form.registerTime">
       </x-input>
@@ -85,7 +87,7 @@ import { uploadUrl } from 'services/Api'
 import AuthService from 'services/AuthenticationService'
 import defaultAvatar from 'assets/images/avatar.png'
 import { delCookie } from '../../util/cookie'
-
+import ClipboardJS from 'clipboard'
 import Checkbox from 'components/Checkbox'
 import {
   XButton,
@@ -181,6 +183,28 @@ export default {
     },
     close() {
       this.flag = false
+    },
+    copy() {
+      var clipboard = new ClipboardJS('.tag-read')
+      clipboard.on('success', e => {
+        this.$vux.toast.show({
+          width: '15em',
+          type: 'success',
+          text: '已复制到粘贴板'
+        })
+        // 释放内存
+        clipboard.destroy()
+      })
+      clipboard.on('error', e => {
+        // 不支持复制
+        this.$vux.toast.show({
+          width: '15em',
+          type: 'warn',
+          text: '该浏览器不支持自动复制'
+        })
+        // 释放内存
+        clipboard.destroy()
+      })
     },
     tologin() {
       AuthService.logout()

@@ -1,9 +1,9 @@
 <template>
   <div class="category">
-    <div class="search">
+    <!-- <div class="search">
       <input type="text" placeholder="搜索商品" @click="search" />
       <span @click="shop">取消</span>
-    </div>
+    </div> -->
     <div class="wrap" v-if="goods">
       <ul class="category_nav" id="category_nav">
         <li v-for="item in categories" :key="item.id" v-bind:class="[selectedTabId===item.id ? activeClass : '']" @click="selectedTabId=item.id">
@@ -257,12 +257,17 @@ a {
 }
 .wrap {
   position: fixed;
-  top: 0.44rem;
+  //暂时屏蔽
+  top: 0rem;
+  // top: 0.44rem;
   width: 100%;
 }
 .category_container {
   min-height: 80vh;
-  margin-top: 0.9rem;
+
+  //暂时屏蔽
+  margin-top: 44px;
+  // margin-top: 0.9rem;
   background: #f6f6f6;
 }
 .search_goods {
