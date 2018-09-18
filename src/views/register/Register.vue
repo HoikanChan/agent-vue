@@ -3,7 +3,7 @@
     <span style="position:absolute;top:18px;left:18px">
       <x-icon type="ios-close-empty" size="30"></x-icon>
     </span>
-    <x-header :left-options="{backText: ''}" style="border-bottom: 1px solid #ccc ;">
+    <x-header :left-options="{backText: ''}" style="border-bottom: 1px solid #eee ;">
       <span>注册</span>
       <img slot="overwrite-left" src="../../assets/images/back.png" size="25" style="width:.09rem;height:auto;position:relative;top:-2px;" @click="$router.back(-1)">
       </x-header>
@@ -13,16 +13,16 @@
       <x-input label-width="1rem" title="验证码" type="text" placeholder="请输入验证码" :required="true" ref="code" v-model="form.SMSCode">
         <x-button slot="right" type="primary" mini @click.native="sendCode">{{ countDown || '获取验证码'}}</x-button>
       </x-input>
-      <x-input label-width="1rem" title="用户名" type="text" placeholder="请输入2-5个汉字" :required="true" ref="cnName" v-model="form.username" :is-type="cnNameValidator">
+      <x-input label-width="1rem" title="用户名" type="text" placeholder="请输入用户名" :required="true" ref="cnName" v-model="form.username">
       </x-input>
       <x-input label-width="1rem" title="密码" type="password" placeholder="请输入6-16个字符的密码" :required="true" :min="6" :max="16" ref="psw" v-model="form.password">
       </x-input>
       <x-input label-width="1rem" title="确定密码" type="password" placeholder="请输入密码" :required="true" v-model="form.confirmPassword" ref="confirmPassword" :equal-with="form.password">
       </x-input>
-      <x-input label-width="1rem" readonly title="注册等级" type="text" placeholder="VIP顾客" :required="true" ref="userLevel" v-model="form.userLevel">
+      <x-input label-width="1rem" readonly title="注册等级" type="text" placeholder="请选择等级" :required="true" ref="userLevel" v-model="form.userLevel">
         <x-icon slot="right" type="ios-arrow-forward" mini @click.native="show=true" size="15"></x-icon>
       </x-input>
-      <x-input label-width="1rem" title="邀请人" type="text" placeholder="请输入推荐人的名字" readonly ref="referralName" v-model="referralName">
+      <x-input label-width="1rem" title="邀请人" type="text" placeholder="请输入推荐人的名字"  ref="referralName" v-model="referralName">
       </x-input>
       <x-input label-width="1rem" title="邀请码" type="text" placeholder="请输入推荐人的名字邀请码" :readonly="!!form.referralCode" :required="true" ref="referralCode" v-model="form.referralCode">
       </x-input>
@@ -84,13 +84,7 @@ export default {
       popupPickedgrade: '',
       show: false,
       gradeList: [],
-      countDown: '',
-      cnNameValidator: function(value) {
-        return {
-          valid: value.match(/^[\u4e00-\u9fa5]{2,4}$/),
-          msg: '请输入2-5个汉字'
-        }
-      }
+      countDown: ''
     }
   },
   methods: {
@@ -139,12 +133,14 @@ export default {
         this.$refs.mobile.valid &&
         this.$refs.psw.valid &&
         this.$refs.confirmPassword.valid &&
-        this.$refs.cnName.valid &&
         this.$refs.code.valid &&
-        this.$refs.userLevel.valid &&
         this.$refs.referralCode.valid
       ) {
+        this.$vux.loading.show({
+          text: '注册中..'
+        })
         const result = await AuthService.register(this.form)
+        this.$vux.loading.hide()
         if (result.errno) {
           this.$vux.toast.show({
             width: '10em',
@@ -154,6 +150,12 @@ export default {
         } else {
           this.$router.push({ name: 'registered' })
         }
+      } else {
+        this.$vux.toast.show({
+          width: '10em',
+          type: 'warn',
+          text: '请完善注册信息'
+        })
       }
     },
     pickGrade(id) {
@@ -178,10 +180,11 @@ export default {
   padding-bottom: 5em;
   .weui-cells {
     font-size: 0.15rem !important;
-    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
-      10px 10px 10px 0px rgba(189, 188, 188, 0.14),
-      0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+    // box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
+    //   10px 10px 10px 0px rgba(189, 188, 188, 0.14),
+    //   0px 2px 1px -1px rgba(0, 0, 0, 0.12);
     border-radius: 0.03rem;
+    box-shadow: 0px 0px 10px 2px #c2bfbf;
   }
 }
 </style>
@@ -189,11 +192,12 @@ export default {
 .weui-label {
   color: #333;
   font-size: 0.13rem;
-  font-weight: bold;
+  font-weight: 500;
 }
 .weui-input {
   color: #ccc !important;
   font-size: 0.12rem !important;
+  font-weight: 500;
 }
 .weui-btn_mini {
   height: 0.28rem !important;
@@ -202,7 +206,6 @@ export default {
   font-size: 0.12rem !important;
   padding: 0 !important;
   margin: 0 !important;
-  font-weight: bold;
 }
 .weui-btn_primary {
   width: 0.74rem;
@@ -212,6 +215,12 @@ export default {
 }
 #code {
   width: 0.74rem;
+}
+.weui-cell:before {
+  border-top: 1px solid #eee !important;
+}
+.weui-cell {
+  padding: 14.5px 15px !important;
 }
 .popup {
   .popup-header {
