@@ -206,6 +206,7 @@ export default {
     },
     async upateInfo() {
       this.form = (await AuthService.userinfo()).data
+      this.$store.dispatch('setUser', this.form)
       this.form.birthday = this.form.birthday
         ? this.form.birthday.slice(0, -9)
         : ''

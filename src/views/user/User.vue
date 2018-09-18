@@ -1,9 +1,9 @@
 <template>
   <div class="user">
     <div class="head">
-      <div><img :src="user.avatar || defaultAvatar" alt=""></div>
-      <p>{{user.nickname}}</p>
-      <p>{{user.userLevelName}}</p>
+      <div><img :src="$store.getters.getUser.avatar || defaultAvatar" alt=""></div>
+      <p>{{$store.getters.getUser.nickname}}</p>
+      <p>{{$store.getters.getUser.userLevelName}}</p>
       <router-link to="/userSetting"><img class="set" src="../../assets/images/set.png" /></router-link>
       <router-link to="/messages"><img style="width:.2rem;height:.21rem;" class="code_" src="../../assets/images/message.png" /></router-link>
     </div>
@@ -65,7 +65,7 @@ export default {
       user: {}
     }
   },
-  async mounted() {
+  async activated() {
     const result = (await AuthService.userinfo()).data
     this.user = result || {}
   }

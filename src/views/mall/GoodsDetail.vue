@@ -51,7 +51,7 @@
       </div>
       <div @click="addGoods()">加入购物车</div>
       <!-- <div @click="$router.push({name:'buy'})">立即购买</div> -->
-      <div @click="$router.push({name:'buy'})">立即购买</div>
+      <div @click="nomore()">立即购买</div>
     </div>
     <toast v-model="showToast" type="text" :time="800" is-show-mask text="请先选择规格" position="top" width='10em' />
   </div>
@@ -102,6 +102,9 @@ export default {
       } else {
         this.showToast = true
       }
+    },
+    nomore() {
+      alert('此功能暂未开放！请先加入购物车再购买商品！')
     }
   },
   computed: {
