@@ -13,9 +13,9 @@
       <div><img src='../../assets/images/authorising.png' />
         <p>我的授权书</p>
       </div>
-      <div><img src='../../assets/images/cash.png' />
+      <!-- <div><img src='../../assets/images/cash.png' />
         <p>我的押金</p>
-      </div>
+      </div> -->
       <div @click="$router.push({name:'teamcash'})"><img src='../../assets/images/grade.png' />
         <p>我的业绩</p>
       </div>
@@ -102,21 +102,21 @@ img {
   margin-left: 39.4%;
   margin-top: 0.27rem;
 }
-.nav div:nth-child(4) img {
+/* .nav div:nth-child(4) img {
   display: block;
   width: 0.32rem;
   height: 0.37rem;
   margin-left: 40%;
   margin-top: 0.26rem;
-}
-.nav div:nth-child(5) img {
+} */
+.nav div:nth-child(4) img {
   display: block;
   width: 0.4rem;
   height: 0.35rem;
   margin-left: 37.8%;
   margin-top: 0.27rem;
 }
-.nav div:nth-child(6) {
+.nav div:nth-child(5) {
   line-height: 1.14rem;
 }
 .nav div:nth-child(2) {
