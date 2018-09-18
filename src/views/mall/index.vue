@@ -14,6 +14,11 @@
       </ul>
     </div>
     <div class="category_container" v-if="goods">
+      <div v-if="goodsList.length === 0" style="text-align:center;">
+        <img style="width:1.58rem;height:auto;margin-top:.82rem;" src="../../assets/images/nomore.png" />
+            <p style="color:#9890ec;margin-top:.35rem;font-size:.15rem;">暂无商品</p>
+            <p style="color:#9890ec;font-size:.15rem;">敬请精品上市</p>
+      </div>
       <div class="shoppings">
         <div class="all">
           <div class="goods">
@@ -25,15 +30,12 @@
                 ---暂无更多商品---
               </span>
               <span slot="no-results">
-                <img style="width:1.58rem;height:auto;margin-top:.82rem;" src="../../assets/images/nomore.png" />
-                <p style="color:#9890ec;margin-top:.35rem;font-size:.15rem;">暂无商品</p>
-                <p style="color:#9890ec;font-size:.15rem;">敬请精品上市</p>
               </span>
             </infinite-loading>
           </div>
         </div>
       </div>
-      <!-- <div v-if="goodsList.length === 0" style="text-align:center;padding:2em;"> 暂时没有数据</div> -->
+  
     </div>
     <div class="search_goods" v-else>
       <div class="hot_search">
@@ -104,6 +106,7 @@ export default {
   watch: {
     selectedTabId: async function(val) {
       this.$refs.sroller.stateChanger.reset()
+      console.log(this.$refs.sroller)
       this.goodsList = []
       this.page = 1
       const result = (await MallService.getGoodsList(
