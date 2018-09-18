@@ -80,6 +80,12 @@ const router = new Router({
       name: 'userSetting'
     },
     {
+      path: '/updatePhone',
+      component: resolve =>
+        require(['../views/userSetting/UpdatePhone'], resolve),
+      name: 'updatePhone'
+    },
+    {
       path: '/realname',
       component: resolve =>
         require(['../views/userSetting/RealNameRegistration'], resolve),
