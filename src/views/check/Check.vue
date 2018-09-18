@@ -53,12 +53,12 @@
             <p class="upload-line" @click.stop="()=>{}">
               <span>上传审核凭证：</span>
               <vue-core-image-upload :crop="false" @imageuploading="imageuploading" @imageuploaded="imageuploaded" :data="data" :max-file-size="5242880" :url="uploadUrl">
-                <img src="../../assets/images/upload.png" alt="" style="width:2em;">
+                <img src="../../assets/images/upload.png" alt="" style="width:2em;margin-right:.06rem;">
               </vue-core-image-upload>
             </p>
             <br>
-            <div v-show="item.payPicUrl">
-              <img :src="item.payPicUrl" alt="" style=" width: 100%; height: 100%;">
+            <div v-show="item.payPicUrl" style="width:84.4%;margin:0 auto;">
+              <img :src="item.payPicUrl" alt="" style=" width: 100%; height: 100%;margin-bottom:.24rem;">
             </div>
           </div>
 
@@ -183,14 +183,15 @@ export default {
     font-size: 14px;
     text-align: center;
     box-shadow: -2px 2px 2px #e5e5e5;
-    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
-      0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+    // box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
+    //   0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+    box-shadow: 0px 2px 8px 1px #d3d0d0;
     padding: 0.2rem 1em;
     width: 80%;
     margin: 0 auto;
     border-radius: 5px;
     position: absolute;
-    top: 1.86rem;
+    top: 1.8rem;
     left: 50%;
     transform: translateX(-50%);
   }
@@ -253,7 +254,7 @@ export default {
   .option_referer {
     .option {
       padding: 0 4.8%;
-      border-bottom: 1px solid #ccc;
+      border-bottom: 1px solid #eee;
       display: flex;
       align-items: center;
       .checkbox-wrapper {
@@ -278,7 +279,8 @@ export default {
     .referer-wrapper {
       width: 88%;
       margin: 0.1rem auto;
-
+      box-shadow: 0px 5px 7px 1px #d3d0d0;
+      border-radius: 0.06rem;
       .upload-line {
         font-size: 0.13rem;
         padding: 0 4%;
@@ -310,13 +312,12 @@ export default {
             width: 30%;
             display: inline-block;
             img {
-              width: 0.5rem;
-              height: 0.5rem;
+              width: 0.35rem;
+              height: 0.35rem;
               box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
                 10px 10px 10px 0px rgba(189, 188, 188, 0.14),
                 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
-              border-radius: 50%;
-              margin-top: 0.1rem;
+              margin-top: 0.14rem;
               margin-left: 47%;
             }
           }
