@@ -22,4 +22,4 @@ export default () => {
 }
 //图片上传地址
 const uploadUrl = `${host}pic/upload`
-export { uploadUrl }
+export { host, uploadUrl }
