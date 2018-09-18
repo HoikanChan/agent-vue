@@ -13,6 +13,7 @@
         </div>
       </div>
       <img class="msg_code" :src="qrcode" />
+      <p>推荐码：{{user.referralCode}}</p>
       <p>扫一扫上面的二维码，可加盟代理</p>
     </div>
   </div>
@@ -91,7 +92,7 @@ body {
       }
     }
     p {
-      margin-top: 0.2rem;
+      margin-top: 0.1rem;
       color: rgb(102, 102, 102);
     }
   }
