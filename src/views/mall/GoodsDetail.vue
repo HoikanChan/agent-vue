@@ -103,6 +103,9 @@ export default {
       } else {
         this.showToast = true
       }
+    },
+    nomore() {
+      alert('此功能暂未开放！请先加入购物车再购买商品！')
     }
   },
   computed: {

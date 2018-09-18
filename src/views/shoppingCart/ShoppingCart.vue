@@ -276,12 +276,14 @@ export default {
           display: inline-block;
           white-space: nowrap;
           color: @color_2;
+          margin-top: 0.12rem;
         }
         .number {
           font-size: 0.18rem;
           color: @color_1;
           font-weight: bold;
           padding-right: 7.8%;
+          margin-top: 0.12rem;
         }
       }
       p {

@@ -25,7 +25,7 @@ export default {
 @color_1: rgba(0, 0, 0, 0.87);
 @font_family_1: 'Roboto', 'Segoe UI', BlinkMacSystemFont, system-ui,
   -apple-system;
-@background_color_1: rgba(0, 0, 0, 0.42);
+@background_color_1: rgba(0, 0, 0, 0.2) !important;
 @background_color_2: #5b50d3;
 @background_color_3: rgba(0, 0, 0, 0.26);
 @border_color_1: #5b50d3;
@@ -75,7 +75,7 @@ export default {
       content: '';
       display: inline-block;
       margin-right: 8px;
-      border: solid 2px rgba(0, 0, 0, 0.42);
+      border: solid 2px rgba(0, 0, 0, 0.2) !important;
       border-radius: 50%;
       width: 20px;
       height: 20px;
