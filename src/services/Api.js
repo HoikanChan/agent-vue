@@ -1,6 +1,7 @@
 import axios from 'axios'
 import router from '../router'
-const host = 'http://dl.upyuns.com/agent/api/v1/'
+// const host = 'http://dl.upyuns.com/agent/api/v1/'
+const host = 'http://124.200.40.10:17080/agent/api/v1/'
 export default () => {
   const api = axios.create({
     //测试地址

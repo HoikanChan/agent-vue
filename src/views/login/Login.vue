@@ -83,7 +83,10 @@ export default {
             text: result.errmsg
           })
         } else {
-          if (this.$store.getters.getUser.id !== result.data.id) {
+          if (
+            this.$store.getters.getUser &&
+            this.$store.getters.getUser.id !== result.data.id
+          ) {
             this.$store.dispatch('setBill', '')
             this.$store.commit('setAddress', '')
             this.$store.dispatch('setNewAddress', '')

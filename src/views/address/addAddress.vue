@@ -6,7 +6,7 @@
     <group class="address-form">
       <x-input title="收货人" placeholder="请输入收货人" :required="true" ref="name" v-model="form.userName">
       </x-input>
-      <x-input title="联系电话" placeholder="请输入联系电话" :required="true" ref="telNumber" v-model="form.telNumber" is-type="china-telNumber">
+      <x-input title="联系电话" placeholder="请输入联系电话" is-type="china-mobile" :required="true" ref="telNumber" v-model="form.telNumber">
       </x-input>
       <x-address ref="area" title="所在地" v-model="form.area" :list="addressData" placeholder="请选择地址">
       </x-address>
