@@ -38,7 +38,7 @@ export default {
     }
   },
   mounted() {
-    axios.get('http://dl.upyuns.com/agent/api/v1/adv/index').then(response => {
+    axios.get('http://sdl.cwzbz.com/agent/api/v1/adv/index').then(response => {
       // console.log(response)
       this.images = response.data.data
     })

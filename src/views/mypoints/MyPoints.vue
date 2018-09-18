@@ -234,7 +234,7 @@ export default {
         this.$vux.toast.show({
           width: '15em',
           type: result.errno ? 'warn' : 'success',
-          text: result.errmsg
+          text: result.errno ? result.errmsg : '提交成功，等待上级审核'
         })
         this.chargeForm = {
           credit: null,

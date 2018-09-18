@@ -101,7 +101,7 @@ export default {
 }
 .head div img {
   width: 100%;
-  height: auto;
+  height: 100%;
   border-radius: 50%;
 }
 .head p {
