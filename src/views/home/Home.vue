@@ -26,6 +26,7 @@
 <script>
 import axios from 'axios'
 import { Swiper, SwiperItem } from 'vux'
+import { host } from 'services/Api'
 export default {
   components: {
     Swiper,
@@ -38,7 +39,7 @@ export default {
     }
   },
   mounted() {
-    axios.get('http://sdl.cwzbz.com/agent/api/v1/adv/index').then(response => {
+    axios.get(host + 'adv/index').then(response => {
       // console.log(response)
       this.images = response.data.data
     })

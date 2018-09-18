@@ -180,12 +180,12 @@ export default {
   }
   .tips-card {
     background: #fff;
-    font-size: 1em;
+    font-size: 14px;
     text-align: center;
     box-shadow: -2px 2px 2px #e5e5e5;
     box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
       0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
-    padding: 1.2em 1em;
+    padding: 0.2rem 1em;
     width: 80%;
     margin: 0 auto;
     border-radius: 5px;

@@ -41,14 +41,14 @@
           <img src="../../assets/images/upgrade.png" />
           <p>升级</p>
         </li>
-        <li>
+        <!-- <li>
           <img src="../../assets/images/cash_user.png" />
           <p>押金</p>
         </li>
         <li>
           <img src="../../assets/images/more.png" />
           <p>更多</p>
-        </li>
+        </li> -->
       </ul>
     </div>
   </div>
@@ -129,12 +129,12 @@ export default {
 }
 .user .all {
   width: 100%;
-  height: 2.4rem;
+  height: 1.8rem;
   background: #fff;
 }
 .user_all {
   width: 92%;
-  height: 2.4rem;
+  height: 1.8rem;
   margin-left: 4%;
   padding-top: 0.05rem;
 }
@@ -150,7 +150,7 @@ export default {
   margin-top: 0.15rem;
 }
 .user_all li p {
-  color: #999;
+  color: #666;
   height: 0.21rem;
   line-height: 0.21rem;
 }

@@ -249,7 +249,7 @@ export default {
   color: #5b50d3;
 }
 a {
-  color: #999;
+  color: #666;
 }
 .search {
   position: fixed;

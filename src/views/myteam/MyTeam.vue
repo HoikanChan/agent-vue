@@ -123,18 +123,18 @@ export default {
   }
   .agency {
     width: 100%;
-    height: 1.42rem;
+    height: 1.78rem;
     background: #5b50d3;
     position: relative;
     input {
       display: inline-block;
-      width: 59.2%;
+      width: 46.2%;
       height: 0.28rem;
       line-height: 0.28rem;
       background: #fff;
-      margin-top: 0.14rem;
+      margin-top: 0.25rem;
       margin-left: 11.4%;
-      padding-left: 18%;
+      padding-left: 31%;
       border-radius: 0.03rem;
       font-family: '苹方';
       font-size: 0.13rem;
@@ -143,31 +143,33 @@ export default {
       width: 0.16rem;
       height: 0.16rem;
       position: absolute;
-      left: 24.1%;
-      top: 0.19rem;
+      left: 37%;
+      top: 0.3rem;
     }
     .realtion {
       width: 21.4%;
       height: 0.77rem;
       margin-left: 19.2%;
-      margin-top: 0.11rem;
+      margin-top: 0.07rem;
       text-align: center;
       float: left;
+      font-size: 0.13rem;
       .man {
         color: #fff;
-        height: 0.24rem;
-        line-height: 0.24rem;
+        height: 0.32rem;
+        line-height: 0.32rem;
       }
       .head {
-        width: 0.3rem;
-        height: 0.3rem;
+        width: 0.41rem;
+        height: 0.41rem;
         position: inherit;
         border-radius: 50%;
+        border: 0.01rem solid #fff;
       }
       .mantwo {
         color: #fff;
-        height: 0.2rem;
-        line-height: 0.2rem;
+        height: 0.24rem;
+        line-height: 0.24rem;
       }
     }
     .relate {
@@ -181,24 +183,26 @@ export default {
       width: 21.4%;
       height: 0.77rem;
       margin-left: 3.3%;
-      margin-top: 0.11rem;
+      margin-top: 0.07rem;
       text-align: center;
       float: left;
+      font-size: 0.13rem;
       .man_ {
         color: #fff;
-        height: 0.24rem;
-        line-height: 0.24rem;
+        height: 0.32rem;
+        line-height: 0.32rem;
       }
       .head_ {
-        width: 0.3rem;
-        height: 0.3rem;
+        width: 0.41rem;
+        height: 0.41rem;
         position: inherit;
         border-radius: 50%;
+        border: 0.01rem solid #fff;
       }
       .mantwo_ {
         color: #fff;
-        height: 0.2rem;
-        line-height: 0.2rem;
+        height: 0.24rem;
+        line-height: 0.24rem;
       }
     }
   }
