@@ -27,7 +27,7 @@
       </x-input> -->
     </group>
     <group style="margin-top: .1rem;">
-       <p class="avatar-cell">
+      <p class="avatar-cell">
         <span>手机号码</span>
         <span style="display:flex;align-items:center;" @click="$router.push({name:'updatePhone'})">
           <span style="color: #999;">{{form.mobile}}</span>
@@ -213,6 +213,7 @@ export default {
     },
     tologin() {
       AuthService.logout()
+      this.flag = false
       this.$store.dispatch('setUser', '')
       delCookie('mobile')
       delCookie('password')
