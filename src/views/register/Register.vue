@@ -22,7 +22,7 @@
       <x-input label-width="1rem" readonly title="注册等级" type="text" placeholder="请选择等级" :required="true" ref="userLevel" v-model="form.userLevel">
         <x-icon slot="right" type="ios-arrow-forward" mini @click.native="show=true" size="15"></x-icon>
       </x-input>
-      <x-input label-width="1rem" title="邀请人" type="text" placeholder="系统根据邀请码自动识别"  readonly ref="referralName" v-model="referralName">
+      <x-input label-width="1rem" title="邀请人" type="text" placeholder="系统根据邀请码自动识别"  readonly ref="referralName" v-model="referrerName">
       </x-input>
       <x-input label-width="1rem" title="邀请码" type="text" placeholder="请输入推荐人的名字邀请码" readonly :required="true" ref="referralCode" v-model="form.referralCode">
       </x-input>
@@ -86,6 +86,11 @@ export default {
       show: false,
       gradeList: [],
       countDown: ''
+    }
+  },
+  computed: {
+    referrerName: function() {
+      return referrer.realName || referrer.nickname || referrer.username
     }
   },
   methods: {
