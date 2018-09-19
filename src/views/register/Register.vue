@@ -3,7 +3,7 @@
     <span style="position:absolute;top:18px;left:18px">
       <x-icon type="ios-close-empty" size="30"></x-icon>
     </span>
-    <x-header :left-options="{backText: ''}" style="border-bottom: 1px solid #ccc ;">
+    <x-header :left-options="{backText: ''}" style="border-bottom: 1px solid #eee ;">
       <span>注册</span>
       <img slot="overwrite-left" src="../../assets/images/back.png" size="25" style="width:.09rem;height:auto;position:relative;top:-2px;" @click="$router.back(-1)">
     </x-header>
@@ -19,7 +19,7 @@
       </x-input>
       <x-input label-width="1rem" title="确定密码" type="password" placeholder="请输入密码" :required="true" v-model="form.confirmPassword" ref="confirmPassword" :equal-with="form.password">
       </x-input>
-      <x-input label-width="1rem" readonly title="注册等级" type="text" placeholder="VIP顾客" :required="true" ref="userLevel" v-model="form.userLevel">
+      <x-input label-width="1rem" readonly title="注册等级" type="text" placeholder="请选择等级" :required="true" ref="userLevel" v-model="form.userLevel">
         <x-icon slot="right" type="ios-arrow-forward" mini @click.native="show=true" size="15"></x-icon>
       </x-input>
       <x-input label-width="1rem" title="邀请人" type="text" placeholder="系统根据邀请码自动识别"  readonly ref="referralName" v-model="referralName">
@@ -180,42 +180,47 @@ export default {
   padding-bottom: 5em;
   .weui-cells {
     font-size: 0.15rem !important;
-    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
-      10px 10px 10px 0px rgba(189, 188, 188, 0.14),
-      0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+    // box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
+    //   10px 10px 10px 0px rgba(189, 188, 188, 0.14),
+    //   0px 2px 1px -1px rgba(0, 0, 0, 0.12);
     border-radius: 0.03rem;
+    box-shadow: 0px 0px 10px 2px #c2bfbf;
   }
 }
 </style>
 <style lang="less">
-.register-container {
-  .weui-label {
-    color: #333;
-    font-size: 0.13rem;
-    font-weight: bold;
-  }
-  .weui-input {
-    color: #ccc !important;
-    font-size: 0.12rem !important;
-  }
-  .weui-btn_mini {
-    height: 0.28rem !important;
-    line-height: 0.28rem !important;
-    width: 0.76rem !important;
-    font-size: 0.12rem !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    font-weight: bold;
-  }
-  .weui-btn_primary {
-    width: 0.74rem;
-  }
-  .weui-btn_plain-default {
-    color: #333;
-  }
+.weui-label {
+  color: #333;
+  font-size: 0.13rem;
+  font-weight: 500;
+}
+.weui-input {
+  color: #ccc !important;
+  font-size: 0.12rem !important;
+  font-weight: 500;
+}
+.weui-btn_mini {
+  height: 0.28rem !important;
+  line-height: 0.28rem !important;
+  width: 0.76rem !important;
+  font-size: 0.12rem !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.weui-btn_primary {
+  width: 0.74rem;
+}
+.weui-btn_plain-default {
+  color: #333;
 }
 #code {
   width: 0.74rem;
+}
+.weui-cell:before {
+  border-top: 1px solid #eee !important;
+}
+.weui-cell {
+  padding: 14.5px 15px !important;
 }
 .popup {
   .popup-header {

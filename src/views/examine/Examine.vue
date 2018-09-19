@@ -365,18 +365,18 @@ export default {
           width: 30%;
           height: 1.1rem;
           img {
-            width: 0.5rem;
-            height: 0.5rem;
+            width: 0.35rem;
+            height: 0.35rem;
             box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
               10px 10px 10px 0px rgba(189, 188, 188, 0.14),
               0px 2px 1px -1px rgba(0, 0, 0, 0.12);
-            border-radius: 50%;
-            margin-top: 0.2rem;
-            margin-left: 20%;
+            // border-radius: 50%;
+            margin-top: 0.15rem;
+            margin-left: 45%;
           }
           button {
-            margin-left: 22%;
-            margin-top: 0.35rem;
+            margin-left: 38%;
+            margin-top: 0.7rem;
           }
         }
       }

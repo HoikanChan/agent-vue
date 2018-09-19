@@ -11,11 +11,13 @@
       <p class="name">{{goodsDetail.goodsBrief}}
         <!-- <span>(10支/盒)</span> -->
       </p>
+      <div style="display:inline-block;width:71%;">
       <p class="num">已售</p>
       <span>{{goodsDetail.sellVolume?goodsDetail.sellVolume:0}}</span>
       <p class="num" style="padding-left:6.4%">库存</p>
       <span>{{pickedProduct?pickedProduct.goodsNumber:goodsDetail.goodsNumber}}</span>
-      <input-number size="mini" :value.sync="amount" :min="1" style="padding-left:20%;display:inline-block;"></input-number>
+      </div>
+      <input-number size="mini" :value.sync="amount" :min="1" style="display:inline-block;"></input-number>
       <div style="display:flex;justify-content:flex-start;">
         <p class="price" style="text-decoration: line-through;">零售价￥{{Number(pickedProduct?pickedProduct.retailPrice:goodsDetail.retailPrice) }}</p>
         <p class="price">会员价<i>￥{{Number(pickedProduct?pickedProduct.memberPrice:goodsDetail.memberPrice) }}</i></p>
@@ -282,9 +284,9 @@ img {
 @color_2: #5b50d3;
 
 .goods_message {
-  width: 100%;
   height: 1.22rem;
   background: #fff;
+  text-align: left;
   .name {
     height: 0.46rem;
     line-height: 0.46rem;
@@ -292,28 +294,31 @@ img {
     font-weight: 600;
     padding-left: 4.8%;
   }
-  .num {
-    margin-top: 0.14rem;
-    font-weight: 600;
-    font-size: 0.14rem;
-    display: inline-block;
-    padding-left: 4.8%;
-  }
-  span {
-    font-weight: 600;
-    font-size: 0.14rem;
-    color: #5b50d3;
-  }
-  .price {
-    height: 0.35rem;
-    line-height: 0.35rem;
-    font-size: 0.12rem;
-    font-weight: bold;
-    padding-left: 4.8%;
-    color: #999;
-    i {
+  div {
+    text-align: left;
+    .num {
+      margin-top: 0.14rem;
+      font-weight: 600;
+      font-size: 0.14rem;
+      display: inline-block;
+      padding-left: 7.8%;
+    }
+    span {
+      font-weight: 600;
+      font-size: 0.14rem;
       color: #5b50d3;
+    }
+    .price {
+      height: 0.35rem;
+      line-height: 0.35rem;
+      font-size: 0.12rem;
       font-weight: bold;
+      padding-left: 5.4%;
+      color: #999;
+      i {
+        color: #5b50d3;
+        font-weight: bold;
+      }
     }
   }
 }
