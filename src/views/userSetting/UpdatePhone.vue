@@ -136,5 +136,9 @@ export default {
       }
     }
   }
+  .weui-btn_mini {
+    padding: 0 0.8em;
+    border-radius: 3px;
+  }
 }
 </style>

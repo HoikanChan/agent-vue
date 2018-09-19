@@ -84,7 +84,7 @@
           </div>
           <div>
             <img :src="item.applyUserAvatar" />
-            <x-button mini plain type="primary" @click.native="aduitModalShow(item.id)">审核</x-button>
+            <x-button mini plain type="primary" @click.native="aduitModalShow(item.id)" style="width:.44rem !important;height:.2rem !important;line-height:.2rem !important; margin-left: 37% !important;margin-top: 1.62rem !important;">审核</x-button>
           </div>
         </div>
         <div class="tab-img" style="text-align:center;position:relative">
@@ -325,21 +325,21 @@ export default {
     border-radius: 0.04rem;
     overflow: hidden;
     background: #fff;
-    box-shadow: -2px 2px 2px #e5e5e5;
-    border-bottom: 1px solid #ccc;
+    box-shadow: 0px 4px 10px 0px #d3d0d0;
+    border-bottom: 1px solid #eee;
     .tab-img {
       padding: 0 1em;
       p {
         text-align: left;
         font-size: 0.13rem;
-        font-weight: bold;
+        font-weight: 500;
         height: 0.28rem;
         line-height: 0.28rem;
         margin-bottom: 0.12rem;
       }
     }
     .ximg-demo {
-      min-width: 50%;
+      min-width: 82%;
       height: auto;
       margin-bottom: 0.23rem;
       border-radius: 0.04rem;
@@ -355,7 +355,7 @@ export default {
             line-height: 0.27rem;
             font-size: 0.13rem;
             padding-left: 6%;
-            font-weight: bold;
+            font-weight: 500;
             &:nth-child(1) {
               margin-top: 0.15rem;
             }

@@ -381,7 +381,6 @@ export default {
   .vux-checker-item {
     width: 100%;
     background: #fff;
-    border-bottom: 1px solid #ccc;
   }
 }
 </style>

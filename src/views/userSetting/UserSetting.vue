@@ -37,6 +37,7 @@
       <x-input placeholder-align="right" id="referralCode" title="推荐码" type="text" readonly :show-clear="false" :required="true" v-model="form.referralCode">
         <x-button slot="right" type="primary" mini style="margin-left:1em" id="copy-btn" class="tag-read" :data-clipboard-text="form.referralCode" @click.native="copy">复制
         </x-button>
+        <!-- <img slot="right" style="margin-left:1em" id="copy-btn" class="tag-read" :data-clipboard-text="form.referralCode" @click.native="copy" src="../../assets/images/referral_code.png" /> -->
       </x-input>
       <x-input placeholder-align="right" title="注册时间" type="text" readonly :show-clear="false" :required="true" v-model="form.registerTime">
       </x-input>

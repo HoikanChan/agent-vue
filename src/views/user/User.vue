@@ -89,20 +89,21 @@ export default {
 }
 .head {
   width: 100%;
-  height: 1.88rem;
+  height: 2.08rem;
   background: url('../../assets/images/bg_user.png') no-repeat center/cover;
   position: relative;
 }
 .head div {
-  width: 0.46rem;
-  height: 0.46rem;
+  width: 0.49rem;
+  height: 0.49rem;
   margin-left: 44%;
-  padding-top: 0.45rem;
+  padding-top: 0.63rem;
 }
 .head div img {
   width: 100%;
   height: 100%;
   border-radius: 50%;
+  border: 2px solid #fff;
 }
 .head p {
   text-align: center;
@@ -116,7 +117,7 @@ export default {
 .set {
   position: absolute;
   left: 5.6%;
-  top: 0.13rem;
+  top: 0.33rem;
   width: 0.18rem;
   height: 0.19rem;
 }

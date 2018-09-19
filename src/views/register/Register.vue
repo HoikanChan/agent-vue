@@ -191,7 +191,7 @@ export default {
     //   10px 10px 10px 0px rgba(189, 188, 188, 0.14),
     //   0px 2px 1px -1px rgba(0, 0, 0, 0.12);
     border-radius: 0.03rem;
-    box-shadow: 0px 0px 10px 2px #c2bfbf;
+    box-shadow: 0px 4px 10px 0px #d3d0d0;
   }
 }
 </style>
