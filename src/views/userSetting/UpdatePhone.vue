@@ -9,16 +9,15 @@
     </p>
     <div class="update">
       <group>
-        <x-input type="text" placeholder="请输入旧手机验证码" :required="true" ref="code" v-model="form.SMSCode">
-          <img slot="label" style="width:.14rem;height:auto;padding-right:10px;display:block;" src="../../assets/images/verify.png" />
-          <x-button slot="right" type="primary" mini @click.native="sendCode(false)">{{ countDown || '获取验证码'}}</x-button>
-        </x-input>
-        <x-input title="message" placeholder="请输入新手机号码" :required="true" ref="mobile" v-model="form.mobile" is-type="china-mobile">
+        <x-input title="message" placeholder="请输入新手机号码" :required="true" ref="newMobile" v-model="form.newMobile" is-type="china-mobile">
           <img slot="label" style="width:.14rem;height:auto;padding-right:10px;display:block;" src="../../assets/images/phone.png" />
+          <x-button slot="right" type="primary" mini @click.native="sendCode">{{ countDown || '获取验证码'}}</x-button>
         </x-input>
-        <x-input type="text" placeholder="请输入新手机验证码" :required="true" ref="code" v-model="form.SMSCode">
+        <x-input type="text" placeholder="请输入旧手机验证码" :required="true" ref="SMSCodeOfOldMobile" v-model="form.SMSCodeOfOldMobile">
           <img slot="label" style="width:.14rem;height:auto;padding-right:10px;display:block;" src="../../assets/images/verify.png" />
-          <x-button slot="right" type="primary" mini @click.native="sendCode(true)">{{ newCodecountDown || '获取验证码'}}</x-button>
+        </x-input>
+        <x-input type="text" placeholder="请输入新手机验证码" :required="true" ref="SMSCodeOfNewMobile" v-model="form.SMSCodeOfNewMobile">
+          <img slot="label" style="width:.14rem;height:auto;padding-right:10px;display:block;" src="../../assets/images/verify.png" />
         </x-input>
         <x-button style="margin-top:60px;" type="primary" action-type="submit" class="round-btn" @click.native="modifyPhone()">验证并绑定</x-button>
       </group>
@@ -28,14 +27,12 @@
 <script>
 import { XButton, XInput, Group, XHeader } from 'vux'
 import AuthService from 'services/AuthenticationService'
+import { setTimeout } from 'timers'
 
 export default {
   data() {
     return {
-      form: {
-        mobile: '',
-        SMSCode: ''
-      },
+      form: {},
       countDown: '',
       newCodecountDown: ''
     }
@@ -47,36 +44,71 @@ export default {
     XInput
   },
   methods: {
-    async sendCode(isNewCode) {
-      let theCountDown = isNewCode ? this.newCodecountDown : this.countDown
-      if (typeof theCountDown === 'number') return
-      if (isNewCode && !this.$refs.mobile.valid) {
+    async sendCode() {
+      if (this.$refs.newMobile.valid) {
+        if (typeof this.countDown === 'number') return
+        this.countDown = 60
+        const result = await AuthService.changeMobileSMSCode(
+          this.form.newMobile
+        )
+        if (result.errno) {
+          this.countDown = ''
+          this.$vux.toast.show({
+            width: '15em',
+            type: 'warn',
+            text: result.errmsg
+          })
+          return
+        }
+        let interval = setInterval(() => {
+          this.countDown--
+          if (this.countDown === 0) {
+            this.countDown = ''
+            clearInterval(interval)
+          }
+        }, 1000)
+      } else {
         this.$vux.toast.show({
           width: '15em',
           type: 'warn',
           text: '请先输入手机号码'
         })
-        return
       }
-      theCountDown = 60
-      // let result = await AuthService.sendCode(this.form.mobile)
-      let result = { errno: 0 }
-      if (result.errno) {
-        theCountDown = ''
-        this.$vux.toast.show({
-          width: '15em',
-          type: 'warn',
-          text: result.errmsg
+    },
+    async modifyPhone() {
+      if (
+        this.$refs.newMobile.valid &&
+        this.$refs.SMSCodeOfOldMobile.valid &&
+        this.$refs.SMSCodeOfNewMobile.valid
+      ) {
+        this.$vux.loading.show({
+          text: '修改手机中..'
         })
-        return
-      }
-      let interval = setInterval(() => {
-        theCountDown--
-        if (theCountDown === 0) {
-          theCountDown = ''
-          clearInterval(interval)
+        const result = await AuthService.changeMobile(this.form)
+        this.$vux.loading.hide()
+        if (result.errno === 0) {
+          this.$vux.toast.show({
+            width: '10em',
+            type: 'success',
+            text: '修改成功'
+          })
+          setTimeout(() => {
+            this.$router.push({ name: 'login' })
+          }, 2000)
+        } else {
+          this.$vux.toast.show({
+            width: '10em',
+            type: 'warn',
+            text: result.errmsg || result.msg
+          })
         }
-      }, 1000)
+      } else {
+        this.$vux.toast.show({
+          width: '10em',
+          type: 'warn',
+          text: '请完善信息'
+        })
+      }
     }
   }
 }
@@ -97,7 +129,7 @@ export default {
         }
         .weui-cell {
           border-bottom: 2px solid #eee;
-          .weui-cell:before {
+          &:before {
             border-top: none !important;
           }
         }

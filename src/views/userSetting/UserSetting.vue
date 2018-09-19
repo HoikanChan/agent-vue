@@ -2,7 +2,7 @@
   <div class="usersetting">
     <x-header :left-options="{backText: ''}">
       <span>个人设置</span>
-      <img slot="overwrite-left" src="../../assets/images/back.png" size="25" style="width:.09rem;height:auto;position:relative;top:-2px;" @click="$router.back(-1)">
+      <img slot="overwrite-left" src="../../assets/images/back.png" size="25" style="width:.09rem;height:auto;position:relative;top:-2px;" @click="$router.push({name:'user'})">
       <a slot="right" class="save-btn" @click="updatePersonalInfo">保存</a>
     </x-header>
     <group style="border:none">
@@ -27,8 +27,13 @@
       </x-input> -->
     </group>
     <group style="margin-top: .1rem;">
-      <x-input placeholder-align="right" readonly title="手机号码" type="text" placeholder="请输入手机号码" :required="true" v-model="form.mobile" is-type="china-mobile">
-      </x-input>
+       <p class="avatar-cell">
+        <span>手机号码</span>
+        <span style="display:flex;align-items:center;" @click="$router.push({name:'updatePhone'})">
+          <span style="color: #999;">{{form.mobile}}</span>
+          <x-icon slot="right" type="ios-arrow-forward" style="fill:#aaa" size="15"></x-icon>
+        </span>
+      </p>
       <x-input placeholder-align="right" id="referralCode" title="推荐码" type="text" readonly :show-clear="false" :required="true" v-model="form.referralCode">
         <x-button slot="right" type="primary" mini style="margin-left:1em" id="copy-btn" class="tag-read" :data-clipboard-text="form.referralCode" @click.native="copy">复制
         </x-button>
