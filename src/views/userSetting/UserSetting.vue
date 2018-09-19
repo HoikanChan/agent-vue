@@ -49,7 +49,7 @@
     <group style="margin-top: .2rem;">
       <p class="avatar-cell">
         <span>实名认证</span>
-        <span style="display:flex;align-items:center;" @click="$router.push({name:'realName'})">
+        <span style="display:flex;align-items:center;" @click="checkRealName">
           <span style="color: #999;">{{form.realNameAuditStatus |realNameType}}</span>
           <x-icon slot="right" type="ios-arrow-forward" style="fill:#aaa" size="15" ></x-icon>
         </span>
@@ -191,6 +191,13 @@ export default {
         this.form.avatar = res.data.url
       }
     },
+    checkRealName() {
+      if (this.form.realNameAuditStatus === null) {
+        this.$router.push({ name: 'realName' })
+      } else if (typeof this.form.realNameAuditStatus === 'number') {
+        this.$router.push({ name: 'realNameState' })
+      }
+    },
     showSexPopUp() {
       this.sexShow = true
     },
@@ -306,6 +313,7 @@ export default {
     left: 15px;
   }
 }
+
 .popup {
   .popup-header {
     display: flex;

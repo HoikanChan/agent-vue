@@ -92,6 +92,12 @@ const router = new Router({
       name: 'realName'
     },
     {
+      path: '/realnameState',
+      component: resolve =>
+        require(['../views/userSetting/RealNameState'], resolve),
+      name: 'realNameState'
+    },
+    {
       path: '/goodsdetail/:id',
       name: 'goodsdetail',
       component: resolve => require(['../views/mall/GoodsDetail'], resolve)

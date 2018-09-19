@@ -17,7 +17,7 @@
           <vue-core-image-upload :crop="false" @imageuploading="imageuploading" @imageuploaded="picHeaduploaded" :data="data" :max-file-size="5242880" :url="uploadUrl">
 
             <img :src="form.picHead" v-if="form.picHead" alt="">
-            <img v-else src="../../assets/images/banner2.png" alt="">
+            <img v-else src="../../assets/images/idsample_head.png" alt="">
           </vue-core-image-upload>
         </p>
         <p class="avatar-cell">
@@ -26,7 +26,7 @@
           </span>
           <vue-core-image-upload :crop="false" @imageuploading="imageuploading" @imageuploaded="picTailuploaded" :data="data" :max-file-size="5242880" :url="uploadUrl">
             <img :src="form.picTail" v-if="form.picTail" alt="">
-            <img v-else src="../../assets/images/banner2.png" alt="">
+            <img v-else src="../../assets/images/idsample_tail.png" alt="">
           </vue-core-image-upload>
         </p>
       </group>
@@ -98,6 +98,7 @@ export default {
         })
         return
       }
+
       this.$vux.toast.show({
         width: '10em',
         type: 'success',
@@ -105,6 +106,11 @@ export default {
       })
       setTimeout(() => {
         this.$router.push({ name: 'userSetting' })
+        this.form = {
+          realName: '',
+          picHead: '',
+          picTail: ''
+        }
       }, 2000)
     },
     imageuploading() {

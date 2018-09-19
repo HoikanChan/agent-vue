@@ -78,5 +78,9 @@ export default {
     return Api().get('userCertification/apply', {
       params: params
     })
+  },
+  //查看实名认证申请
+  viewUserCertification() {
+    return Api().get('userCertification/info')
   }
 }
