@@ -12,8 +12,8 @@
         </div>
         <ul class="team_grades">
 
-            <li class="first_month" v-for="(item,index) in teamcash" style="margin-bottom:0.5em;  box-shadow: -2px 2px 2px #e5e5e5;">{{item.months}}团队业绩
-                <span>{{item.credit}}</span>
+            <li class="first_month" v-for="(item,index) in teamcash" style="margin-bottom:0.5em;box-shadow: 0px 3px 10px #c2bfbf;">{{item.months}}团队业绩
+                <span>{{item.credit}}元</span>
             </li>
         </ul>
     </div>
@@ -90,10 +90,11 @@ export default {
       background: #fff;
       margin-top: 0.05rem;
       line-height: 0.47rem;
-      font-size: 0.13rem;
-      font-weight: bold;
+      font-size: 0.15rem;
+      font-weight: 500;
       span {
         float: right;
+        color: #5b50d3;
       }
     }
   }

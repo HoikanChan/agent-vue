@@ -252,7 +252,7 @@ export default {
       margin-left: 4%;
       img {
         width: 100%;
-        height: auto;
+        height: 100%;
       }
       p {
         &:nth-child(3) {

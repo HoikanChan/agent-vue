@@ -363,7 +363,7 @@ export default {
       line-height: 0.55rem;
       padding-left: 4.8%;
       font-size: 0.16rem;
-      font-weight: bold;
+      font-weight: 500;
       img {
         width: 0.15rem;
         height: 0.08rem;
