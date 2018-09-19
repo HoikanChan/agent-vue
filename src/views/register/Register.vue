@@ -6,7 +6,7 @@
     <x-header :left-options="{backText: ''}" style="border-bottom: 1px solid #ccc ;">
       <span>注册</span>
       <img slot="overwrite-left" src="../../assets/images/back.png" size="25" style="width:.09rem;height:auto;position:relative;top:-2px;" @click="$router.back(-1)">
-      </x-header>
+    </x-header>
     <group style="padding:.2rem">
       <x-input label-width="1rem" title="手机号码" placeholder="请输入手机号码" :required="true" ref="mobile" v-model="form.mobile" is-type="china-mobile">
       </x-input>
@@ -22,9 +22,9 @@
       <x-input label-width="1rem" readonly title="注册等级" type="text" placeholder="VIP顾客" :required="true" ref="userLevel" v-model="form.userLevel">
         <x-icon slot="right" type="ios-arrow-forward" mini @click.native="show=true" size="15"></x-icon>
       </x-input>
-      <x-input label-width="1rem" title="邀请人" type="text" placeholder="请输入推荐人的名字" readonly ref="referralName" v-model="referralName">
+      <x-input label-width="1rem" title="邀请人" type="text" placeholder="请输入推荐人的名字" ref="referralName" v-model="referralName">
       </x-input>
-      <x-input label-width="1rem" title="邀请码" type="text" placeholder="请输入推荐人的名字邀请码" :readonly="!!form.referralCode" :required="true" ref="referralCode" v-model="form.referralCode">
+      <x-input label-width="1rem" title="邀请码" type="text" placeholder="请输入推荐人的名字邀请码" :readonly="!!$route.query.referralCode" :required="true" ref="referralCode" v-model="form.referralCode">
       </x-input>
       <x-input label-width="1rem" title="审核凭证" type="text" readonly placeholder="请上传支付凭证图片" ref="payOrder" v-model="form.payOrder">
         <vue-core-image-upload slot="right" :crop="false" @imageuploading="imageuploading" @imageuploaded="imageuploaded" :data="data" :max-file-size="5242880" :url="uploadUrl">
@@ -141,11 +141,11 @@ export default {
         })
         const result = await AuthService.register(this.form)
         this.$vux.loading.hide()
-        if (result.errno) {
+        if (result.errno || result.code) {
           this.$vux.toast.show({
             width: '10em',
             type: 'warn',
-            text: result.errmsg
+            text: result.errmsg || result.msg
           })
         } else {
           this.$router.push({ name: 'registered' })
@@ -188,29 +188,31 @@ export default {
 }
 </style>
 <style lang="less">
-.weui-label {
-  color: #333;
-  font-size: 0.13rem;
-  font-weight: bold;
-}
-.weui-input {
-  color: #ccc !important;
-  font-size: 0.12rem !important;
-}
-.weui-btn_mini {
-  height: 0.28rem !important;
-  line-height: 0.28rem !important;
-  width: 0.76rem !important;
-  font-size: 0.12rem !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  font-weight: bold;
-}
-.weui-btn_primary {
-  width: 0.74rem;
-}
-.weui-btn_plain-default {
-  color: #333;
+.register-container {
+  .weui-label {
+    color: #333;
+    font-size: 0.13rem;
+    font-weight: bold;
+  }
+  .weui-input {
+    color: #ccc !important;
+    font-size: 0.12rem !important;
+  }
+  .weui-btn_mini {
+    height: 0.28rem !important;
+    line-height: 0.28rem !important;
+    width: 0.76rem !important;
+    font-size: 0.12rem !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    font-weight: bold;
+  }
+  .weui-btn_primary {
+    width: 0.74rem;
+  }
+  .weui-btn_plain-default {
+    color: #333;
+  }
 }
 #code {
   width: 0.74rem;

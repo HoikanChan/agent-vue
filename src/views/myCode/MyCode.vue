@@ -35,7 +35,7 @@ export default {
     XHeader,
     XImg
   },
-  async mounted() {
+  async activated() {
     const result = (await AuthService.getQrCode()).data
     this.qrcode = result ? result.qrCode : null
     const user = (await AuthService.userinfo()).data

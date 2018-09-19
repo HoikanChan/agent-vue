@@ -43,6 +43,20 @@ export default {
       params: params
     })
   },
+  //修改手机，1.获取验证码
+  changeMobileSMSCode(newMobile) {
+    return Api().get('user/changeMobileSMSCode', {
+      params: {
+        newMobile: newMobile
+      }
+    })
+  },
+  //修改手机，2.修改手机号
+  changeMobile(params) {
+    return Api().get('user/changeMobile', {
+      params: params
+    })
+  },
   // 更新用户信息
   updatePersonalInfo(form) {
     return Api().post('user/updatePersonal', form)
