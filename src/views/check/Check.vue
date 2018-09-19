@@ -209,6 +209,7 @@ export default {
         border-radius: 50%;
         margin-left: 40.5%;
         margin-top: 0.32rem;
+        border: 2px solid #fff;
       }
       .grade {
         width: 1.06rem;

@@ -3,17 +3,20 @@
     <x-header :left-options="{backText: ''}">
       <span>购物车</span>
       <img slot="overwrite-left" src="../../assets/images/back.png" size="25" style="width:.09rem;height:auto;position:relative;top:-2px;" @click="$router.back(-1)">
-      </x-header>
+    </x-header>
     <div class="editer" v-show="show">
       <img style="" :src="$store.getters.getUser.avatar" />
       <p>{{$store.getters.getUser.username}}</p>
       <span @click="toggleEdit">{{isEditing?"完成":"编辑"}}</span>
     </div>
-    <checker v-model="pickedIds" default-item-class="demo2-item" selected-item-class="selected" radio-required type="checkbox" v-if="!isEditing">
-      <checker-item v-for="(item,index) in products" :key="index" :value="item.id" @click.native.stop="checkProduct(item)">
+    <div default-item-class="demo2-item" selected-item-class="selected" radio-required type="checkbox" v-if="!isEditing">
+      <div v-for="(item,index) in products" :key="index" :value="item.id" @click="checkProduct(item)" :class="{selected:pickedIds.includes(item.id)}">
         <div class="detail">
           <div class="checkbox-wrapper">
-            <material-checkbox></material-checkbox>
+            <label class="material-checkbox">
+              <span>
+              </span>
+            </label>
           </div>
           <div><img :src="item.listPicUrl" /></div>
           <div>
@@ -34,13 +37,16 @@
             </div>
           </div>
         </div>
-      </checker-item>
-    </checker>
-    <checker v-model="deleteIds" default-item-class="demo2-item" selected-item-class="selected" radio-required type="checkbox" v-else>
-      <checker-item v-for="(item,index) in products" :key="index" :value="item.id">
+      </div>
+    </div>
+    <div  default-item-class="demo2-item" selected-item-class="selected" radio-required type="checkbox" v-else>
+      <div v-for="(item,index) in products" :key="index" :value="item.id" @click="deleteItem(item)" :class="{selected:deleteIds.includes(item.id)}">
         <div class="detail">
           <div class="checkbox-wrapper">
-            <material-checkbox></material-checkbox>
+            <label class="material-checkbox">
+              <span>
+              </span>
+            </label>
           </div>
           <div><img :src="item.listPicUrl" /></div>
           <div>
@@ -61,8 +67,8 @@
             </div>
           </div>
         </div>
-      </checker-item>
-    </checker>
+      </div>
+    </div>
     <div class="shopcart_footer " v-show="show">
       <material-checkbox class="checkbox " :value.sync="chooseAll" @click.native.stop="doChooseAll()" v-if="!isEditing">全选</material-checkbox>
       <div class="close_price " @click="checkout ">{{isEditing?'删除':'结算'}}</div>
@@ -164,9 +170,21 @@ export default {
         this.chooseAll = false
       }
     },
-    checkProduct: debounce(async function(item) {
+    deleteItem: function(item) {
+      if (this.deleteIds.includes(item.id)) {
+        this.deleteIds = this.deleteIds.filter(id => id !== item.id)
+      } else {
+        this.deleteIds.push(item.id)
+      }
+    },
+    checkProduct: function(item) {
       if (this.flag) return
       this.flag = true
+      if (this.pickedIds.includes(item.id)) {
+        this.pickedIds = this.pickedIds.filter(id => id !== item.id)
+      } else {
+        this.pickedIds.push(item.id)
+      }
       this.adjustChooseAll()
       //点击的商品当前是否选中
       setTimeout(async () => {
@@ -176,7 +194,7 @@ export default {
         this.total = result.cartTotal
       }, 100)
       this.flag = false
-    }, 100),
+    },
     //点击全选选择所有项目
     async doChooseAll() {
       if (this.flag) return
@@ -379,6 +397,94 @@ export default {
   .input-number-increment {
     width: 20px !important;
     border-radius: 0 !important;
+  }
+}
+@color_5: rgba(0, 0, 0, 0.87);
+@font_family_1: 'Roboto', 'Segoe UI', BlinkMacSystemFont, system-ui,
+  -apple-system;
+@background_color_1: rgba(0, 0, 0, 0.2) !important;
+@background_color_2: #5b50d3;
+@background_color_3: rgba(0, 0, 0, 0.26);
+@border_color_1: #5b50d3;
+@border_color_2: transparent;
+@border_color_3: rgba(0, 0, 0, 0.26);
+@border_color_4: #fff;
+
+.material-checkbox {
+  position: relative;
+  display: inline-block;
+  color: @color_5;
+  cursor: pointer;
+  font-family: @font_family_1;
+  font-size: 14px;
+  line-height: 18px;
+  > input {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    position: absolute;
+    z-index: -1;
+    left: -15px;
+    top: -15px;
+    display: block;
+    margin: 0;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    background-color: @background_color_1;
+    outline: none;
+    opacity: 0;
+    transform: scale(1);
+    -ms-transform: scale(0);
+    transition: opacity 0.5s, transform 0.5s;
+    &:disabled {
+      opacity: 0;
+      & + span {
+        cursor: initial;
+        &::before {
+          border-color: @border_color_3;
+        }
+      }
+    }
+  }
+  > span {
+    &::before {
+      content: '';
+      display: inline-block;
+      margin-right: 8px;
+      border: solid 2px rgba(0, 0, 0, 0.2) !important;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      vertical-align: -4px;
+      transition: border-color 0.5s, background-color 0.5s;
+    }
+    &::after {
+      content: '';
+      display: inline-block;
+      position: absolute;
+      top: 1px;
+      left: 2px;
+      width: 6px;
+      height: 13px;
+      border: solid 2px transparent;
+      border-left: none;
+      border-top: none;
+      transform: translate(5.5px, 1px) rotate(45deg);
+      -ms-transform: translate(5.5px, 2px) rotate(45deg);
+    }
+  }
+}
+.selected {
+  span {
+    &::before {
+      border-color: @border_color_1;
+      background-color: @background_color_2;
+      border-color: @border_color_1;
+    }
+    &::after {
+      border-color: @border_color_4;
+    }
   }
 }
 </style>
