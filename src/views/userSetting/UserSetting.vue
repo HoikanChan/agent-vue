@@ -192,9 +192,13 @@ export default {
       }
     },
     checkRealName() {
-      if (this.form.realNameAuditStatus === null) {
+      if (
+        this.form.realNameAuditStatus === null ||
+        this.form.realNameAuditStatus === undefined
+      ) {
         this.$router.push({ name: 'realName' })
       } else if (typeof this.form.realNameAuditStatus === 'number') {
+        // }else{
         this.$router.push({ name: 'realNameState' })
       }
     },

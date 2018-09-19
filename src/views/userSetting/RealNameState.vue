@@ -33,13 +33,13 @@
         <span style="margin-bottom:1em;">
           身份证正面照
         </span>
-        <img :src="info.picHead"  alt="">
+        <img :src="info.picHead" alt="">
       </p>
       <p class="avatar-cell">
         <span style="margin-bottom:1em;">
           身份证背面照
         </span>
-        <img :src="info.picTail"  alt="">
+        <img :src="info.picTail" alt="">
       </p>
     </group>
     <div class="loginout" @click="$router.push({name:'realName'})">重新认证</div>
@@ -62,7 +62,15 @@ export default {
     }
   },
   async activated() {
-    this.info = (await AuthService.viewUserCertification()).data || {}
+    const result = await AuthService.viewUserCertification()
+    this.info = result.data || {}
+    if (result.errno) {
+      this.$vux.toast.show({
+        width: '15em',
+        type: 'warn',
+        text: result.errmsg
+      })
+    }
   }
 }
 </script>
