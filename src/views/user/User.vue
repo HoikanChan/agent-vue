@@ -5,7 +5,7 @@
       <p>{{$store.getters.getUser.nickname}}</p>
       <p>{{$store.getters.getUser.userLevelName}}</p>
       <router-link to="/userSetting"><img class="set" src="../../assets/images/set.png" /></router-link>
-      <router-link to="/messages"><img style="width:.2rem;height:.21rem;" class="code_" src="../../assets/images/message.png" /></router-link>
+      <!-- <router-link to="/messages"><img style="width:.2rem;height:.21rem;" class="code_" src="../../assets/images/message.png" /></router-link> -->
     </div>
     <div class="all">
       <ul class="user_all">
