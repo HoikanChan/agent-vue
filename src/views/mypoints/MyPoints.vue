@@ -8,7 +8,7 @@
       <p>可用积分：￥{{mypoints?mypoints.credit:"0.00"}}
         <!-- <span>元</span> -->
       </p>
-      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;押金：￥{{mypoints?mypoints.deposit:"0.00"}}
+         <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;押金：￥{{mypoints?mypoints.deposit:"0.00"}}
         <!-- <span>元</span> -->
       </p>
       <div class="detail">
@@ -158,7 +158,7 @@ export default {
       mypointsList: [],
       mypointsinfo: null,
       chargeForm: {
-        credit: null,
+        credit: '',
         postscript: '',
         payPicUrl: ''
       },
@@ -237,7 +237,7 @@ export default {
           text: result.errno ? result.errmsg : '提交成功，等待上级审核'
         })
         this.chargeForm = {
-          credit: null,
+          credit: '',
           postscript: '',
           payPicUrl: ''
         }
@@ -264,7 +264,7 @@ export default {
     this.pickedTime = now
     this.popupPickedTime = now
     const result = (await ApplyService.chargeInfo()).data
-    this.chargeInfo = result
+    this.chargeInfo = result || {}
     this.mypoints = (await PointService.get()).data || {}
     this.updateList()
   }
