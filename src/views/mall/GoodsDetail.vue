@@ -104,9 +104,6 @@ export default {
       } else {
         this.showToast = true
       }
-    },
-    nomore() {
-      alert('此功能暂未开放！请先加入购物车再购买商品！')
     }
   },
   computed: {
@@ -196,7 +193,7 @@ export default {
 <style lang='less' scoped>
 img {
   width: 100%;
-  height: auto;
+  height: 100%;
 }
 .demo1-item {
   border: 1px solid #eee;
