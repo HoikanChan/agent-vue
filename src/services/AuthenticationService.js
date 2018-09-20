@@ -64,5 +64,23 @@ export default {
   // 获取二维码
   getQrCode() {
     return Api().post('user/getQrCode')
+  },
+  //根据推荐码获取推荐人信息
+  getReferrer(referralCode) {
+    return Api().get('user/referrer', {
+      params: {
+        referralCode: referralCode
+      }
+    })
+  },
+  //提交实名认证申请
+  applyUserCertification(params) {
+    return Api().get('userCertification/apply', {
+      params: params
+    })
+  },
+  //查看实名认证申请
+  viewUserCertification() {
+    return Api().get('userCertification/info')
   }
 }

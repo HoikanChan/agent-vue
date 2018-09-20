@@ -81,6 +81,7 @@ export default {
         referralCode: this.$route.query.referralCode || null
       },
       referralName: this.$route.query.userName || null,
+      referrer: {},
       popupPickedgrade: '',
       show: false,
       gradeList: [],
@@ -172,6 +173,12 @@ export default {
   async mounted() {
     const result = (await AuthService.getGradeList()).data
     this.gradeList = result
+  },
+  async activated() {
+    const referralCode = this.$route.query.referralCode
+    if (referralCode) {
+      this.referrer = (await AuthService.getReferrer(referralCode)).data || {}
+    }
   }
 }
 </script>

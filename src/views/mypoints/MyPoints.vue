@@ -259,7 +259,7 @@ export default {
       this.flag = false
     }
   },
-  async mounted() {
+  async activated() {
     const now = dateFormat(new Date(), 'YYYY-MM')
     this.pickedTime = now
     this.popupPickedTime = now
