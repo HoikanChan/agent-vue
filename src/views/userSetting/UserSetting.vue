@@ -47,9 +47,13 @@
     </group>
 
     <group style="margin-top: .2rem;">
-      <!-- <x-input placeholder-align="right" title="实名认证" type="text" readonly :show-clear="false" v-model="form.isVerified">
-        <x-icon slot="right" type="ios-arrow-forward" style="margin-top: 6px;fill:#aaa" size="15" @click="$router.push({name:'realName'})"></x-icon>
-      </x-input> -->
+      <p class="avatar-cell">
+        <span>实名认证</span>
+        <span style="display:flex;align-items:center;" @click="checkRealName">
+          <span style="color: #999;">{{form.realNameAuditStatus |realNameType}}</span>
+          <x-icon slot="right" type="ios-arrow-forward" style="fill:#aaa" size="15" ></x-icon>
+        </span>
+      </p>
     </group>
     <div v-transfer-dom>
       <popup v-model="sexShow">
@@ -127,6 +131,23 @@ export default {
     CheckerItem,
     'vue-core-image-upload': VueCoreImageUpload
   },
+  filters: {
+    realNameType: function(type) {
+      if (type === null) {
+        return '未认证'
+      }
+      switch (type) {
+        case 0:
+          return '认证中'
+        case 1:
+          return '已认证'
+        case 2:
+          return '认证失败'
+        default:
+          return '未知状态'
+      }
+    }
+  },
   computed: {
     sex: function() {
       const gender = this.sexes.find(i => i.value === this.form.gender)
@@ -166,9 +187,19 @@ export default {
     },
     imageuploaded(res) {
       this.$vux.loading.hide()
-      console.log(res)
       if (res.errno == 0) {
         this.form.avatar = res.data.url
+      }
+    },
+    checkRealName() {
+      if (
+        this.form.realNameAuditStatus === null ||
+        this.form.realNameAuditStatus === undefined
+      ) {
+        this.$router.push({ name: 'realName' })
+      } else if (typeof this.form.realNameAuditStatus === 'number') {
+        // }else{
+        this.$router.push({ name: 'realNameState' })
       }
     },
     showSexPopUp() {
@@ -286,6 +317,7 @@ export default {
     left: 15px;
   }
 }
+
 .popup {
   .popup-header {
     display: flex;

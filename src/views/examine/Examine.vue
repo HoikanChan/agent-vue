@@ -84,7 +84,7 @@
           </div>
           <div>
             <img :src="item.applyUserAvatar" />
-            <x-button mini plain type="primary" @click.native="aduitModalShow(item.id)" style="width:.44rem !important;height:.2rem !important;line-height:.2rem !important; margin-left: 37% !important;margin-top: 1.62rem !important;">审核</x-button>
+            <x-button mini plain type="primary" @click.native="aduitModalShow(item.id)" style="width:.44rem !important;height:.2rem !important;line-height:.2rem !important; margin-left: 37% !important;margin-top: 1.62rem !important;padding:0 !important;">审核</x-button>
           </div>
         </div>
         <div class="tab-img" style="text-align:center;position:relative">
