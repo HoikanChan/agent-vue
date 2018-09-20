@@ -451,10 +451,10 @@ export default {
 .recharge {
   margin: auto;
   display: block;
-  padding: 1em 0;
+  padding: 0;
   border-radius: 0.05rem;
   background: #fff;
-  max-height: 3.5rem;
+  max-height: 3.6rem;
   overflow: scroll;
   .upload-line {
     display: flex;
@@ -464,7 +464,7 @@ export default {
   h2 {
     text-align: center;
     font-size: 0.18rem;
-    margin-top: 0.1rem;
+    margin-top: 0.2rem;
     position: relative;
     img {
       width: 0.43rem;
@@ -475,11 +475,11 @@ export default {
     }
   }
   .proptype {
-    width: 75%;
-    margin: 0.15rem auto;
+    width: 74.6%;
+    margin: 0.13rem auto 0;
     p {
       text-align: left;
-      padding: 0 15px;
+      padding: 0 12px;
       line-height: 1em;
       font-size: 0.13rem;
       color: rgb(51, 51, 51);
@@ -493,7 +493,7 @@ export default {
     line-height: 0.35rem;
     text-align: center;
     border-radius: 0.2rem;
-    margin-top: 0.15rem;
+    margin-top: 0.12rem;
     font-size: 0.14rem;
   }
   p {
@@ -590,7 +590,7 @@ export default {
     margin-top: 0 !important;
   }
   .weui-cell {
-    padding: 0 15px !important;
+    padding: 0 12px !important;
   }
   .vux-popup-header-right {
     padding: 4px 8px;
@@ -605,9 +605,20 @@ export default {
     padding: 1em 0 !important;
     height: 3em;
     line-height: 1em;
+    font-size: 13px;
   }
   .weui-btn_mini {
     padding: 0 0.6em !important;
+  }
+  .vux-no-group-title {
+    .weui-cells:before {
+      border-top: none !important;
+    }
+  }
+  .weui-cells {
+    &:before {
+      border-top: none !important;
+    }
   }
 }
 </style>

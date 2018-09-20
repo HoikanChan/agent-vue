@@ -24,7 +24,7 @@
       </x-input>
       <x-input label-width="1rem" title="邀请人" type="text" placeholder="系统根据邀请码自动识别"  readonly ref="referralName" v-model="referrerName">
       </x-input>
-      <x-input label-width="1rem" title="邀请码" type="text" placeholder="请输入推荐人的名字邀请码" readonly :required="true" ref="referralCode" v-model="form.referralCode">
+      <x-input label-width="1rem" title="邀请码" type="text" placeholder="请输入推荐人的邀请码" :required="true" ref="referralCode" v-model="form.referralCode">
       </x-input>
       <x-input label-width="1rem" title="审核凭证" type="text" readonly placeholder="请上传支付凭证图片" ref="payOrder" v-model="form.payOrder">
         <vue-core-image-upload slot="right" :crop="false" @imageuploading="imageuploading" @imageuploaded="imageuploaded" :data="data" :max-file-size="5242880" :url="uploadUrl">
