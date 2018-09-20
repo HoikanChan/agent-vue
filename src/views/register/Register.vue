@@ -90,7 +90,15 @@ export default {
   },
   computed: {
     referrerName: function() {
-      return referrer.realName || referrer.nickname || referrer.username
+      if (this.referrer) {
+        return (
+          this.referrer.realName ||
+          this.referrer.nickname ||
+          this.referrer.username
+        )
+      } else {
+        return ''
+      }
     }
   },
   methods: {
