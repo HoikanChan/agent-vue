@@ -101,7 +101,7 @@ export default {
       upgradeList: []
     }
   },
-  async mounted() {
+  async activated() {
     this.update()
   },
   methods: {
