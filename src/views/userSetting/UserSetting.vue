@@ -280,7 +280,7 @@ export default {
         : ''
     }
   },
-  async mounted() {
+  async activated() {
     this.upateInfo()
   }
 }
