@@ -143,9 +143,7 @@ export default {
   width: 90%;
   padding: 0 5%;
   background: #fff;
-
-  // height: 1.04rem;
-  font-weight: bold;
+  font-weight: 500;
   p {
     &:nth-child(2) {
       height: 0.4;
@@ -204,6 +202,7 @@ export default {
   }
 }
 .vux-check-icon > span {
+  color: #999 !important;
   line-height: 23px;
 }
 </style>
