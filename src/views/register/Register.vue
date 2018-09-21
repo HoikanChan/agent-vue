@@ -10,10 +10,13 @@
     <group style="padding:.2rem">
       <x-input label-width="1rem" title="手机号码" placeholder="请输入手机号码" :required="true" ref="mobile" v-model="form.mobile" is-type="china-mobile">
       </x-input>
+      <x-input label-width="1rem" title="图片验证码" type="text" placeholder="请输入图片验证码" :required="true" ref="imgcode" v-model="form.imgCode">
+        <img v-if="imgcode" slot="right" :src='imgcode' type="primary" mini @click="getImgCode()" style="width: 1rem;" />
+      </x-input>
       <x-input label-width="1rem" title="验证码" type="text" placeholder="请输入验证码" :required="true" ref="code" v-model="form.SMSCode">
         <x-button slot="right" type="primary" mini @click.native="sendCode">{{ countDown || '获取验证码'}}</x-button>
       </x-input>
-      <x-input label-width="1rem" title="用户名" type="text" placeholder="请输入用户名" :required="true" ref="cnName" v-model="form.username">
+      <x-input label-width="1rem" title="用户名" type="text" placeholder="请输入2-5个汉字" :required="true" ref="cnName" v-model="form.username" :is-type="cnNameValidator">
       </x-input>
       <x-input label-width="1rem" title="密码" type="password" placeholder="请输入6-16个字符的密码" :required="true" :min="6" :max="16" ref="psw" v-model="form.password">
       </x-input>
@@ -22,9 +25,9 @@
       <x-input label-width="1rem" readonly title="注册等级" type="text" placeholder="请选择等级" :required="true" ref="userLevel" v-model="form.userLevel">
         <x-icon slot="right" type="ios-arrow-forward" mini @click.native="show=true" size="15"></x-icon>
       </x-input>
-      <x-input label-width="1rem" title="邀请人" type="text" placeholder="系统根据邀请码自动识别"  readonly ref="referralName" v-model="referrerName">
+      <x-input label-width="1rem" title="邀请人" type="text" placeholder="系统根据邀请码自动识别" readonly ref="referralName" v-model="referrerName">
       </x-input>
-      <x-input label-width="1rem" title="邀请码" type="text" placeholder="请输入推荐人的名字邀请码" readonly :required="true" ref="referralCode" v-model="form.referralCode">
+      <x-input label-width="1rem" title="邀请码" type="text" placeholder="请输入推荐人的名字邀请码"  :required="true" ref="referralCode" v-model="form.referralCode">
       </x-input>
       <x-input label-width="1rem" title="审核凭证" type="text" readonly placeholder="请上传支付凭证图片" ref="payOrder" v-model="form.payOrder">
         <vue-core-image-upload slot="right" :crop="false" @imageuploading="imageuploading" @imageuploaded="imageuploaded" :data="data" :max-file-size="5242880" :url="uploadUrl">
@@ -76,6 +79,7 @@ export default {
   data() {
     return {
       data: {},
+      imgcode: AuthService.registerCode,
       uploadUrl: uploadUrl,
       form: {
         referralCode: this.$route.query.referralCode || null
@@ -85,23 +89,31 @@ export default {
       popupPickedgrade: '',
       show: false,
       gradeList: [],
-      countDown: ''
+      countDown: '',
+      cnNameValidator: function(value) {
+        return {
+          valid: value.match(/^[\u4e00-\u9fa5]{2,5}$/),
+          msg: '请输入2-5个汉字'
+        }
+      }
     }
   },
   computed: {
     referrerName: function() {
       if (this.referrer) {
-        return (
-          this.referrer.realName ||
-          this.referrer.nickname ||
-          this.referrer.username
-        )
+        return this.referrer.nickname
       } else {
         return ''
       }
     }
   },
   methods: {
+    getImgCode() {
+      this.imgcode = '1'
+      setTimeout(() => {
+        this.imgcode = AuthService.registerCode
+      }, 10)
+    },
     imageuploading() {
       this.$vux.loading.show({
         text: '正在上传'
@@ -115,25 +127,36 @@ export default {
     },
     async sendCode() {
       if (this.$refs.mobile.valid) {
-        if (typeof this.countDown === 'number') return
-        this.countDown = 60
-        const result = await AuthService.sendCode(this.form.mobile)
-        if (result.errno) {
-          this.countDown = ''
+        if (this.$refs.imgcode.valid) {
+          if (typeof this.countDown === 'number') return
+          this.countDown = 60
+          const result = await AuthService.sendCode(
+            this.form.mobile,
+            this.form.imgCode
+          )
+          if (result.errno) {
+            this.countDown = ''
+            this.$vux.toast.show({
+              width: '15em',
+              type: 'warn',
+              text: result.errmsg
+            })
+            return
+          }
+          let interval = setInterval(() => {
+            this.countDown--
+            if (this.countDown === 0) {
+              this.countDown = ''
+              clearInterval(interval)
+            }
+          }, 1000)
+        } else {
           this.$vux.toast.show({
             width: '15em',
             type: 'warn',
-            text: result.errmsg
+            text: '请先输入图片验证码'
           })
-          return
         }
-        let interval = setInterval(() => {
-          this.countDown--
-          if (this.countDown === 0) {
-            this.countDown = ''
-            clearInterval(interval)
-          }
-        }, 1000)
       } else {
         this.$vux.toast.show({
           width: '15em',

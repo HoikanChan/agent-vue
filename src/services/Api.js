@@ -3,6 +3,8 @@ import router from '../router'
 // const host = 'http://dl.upyuns.com/agent/api/v1/'
 //开发地址
 // const host = 'http://124.200.40.10:17080/agent/api/v1/'
+//测试地址
+// const host = 'http://dl.upyuns.com/agent/api/v1/'
 //上线地址
 const host = 'http://sdl.cwzbz.com/agent/api/v1/'
 export default () => {

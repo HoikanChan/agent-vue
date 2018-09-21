@@ -8,7 +8,7 @@
       <div class="head_msg">
         <div> <img :src="user.avatar || defaultAvatar" alt=""></div>
         <div>
-          <p>{{user.username}}</p>
+          <p>{{user.nickname}}</p>
           <p>{{user.location ||"地区信息暂无"}}</p>
         </div>
       </div>

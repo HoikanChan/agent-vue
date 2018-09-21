@@ -1,10 +1,12 @@
 import Api from 'services/Api'
+import { host } from 'services/Api'
 import sha256 from 'js-sha256'
 export default {
-  sendCode(mobile) {
+  sendCode(mobile, registerCode) {
     return Api().get('user/registerSMSCode', {
       params: {
-        mobile: mobile
+        mobile: mobile,
+        registerCode: registerCode
       }
     })
   },
@@ -15,6 +17,7 @@ export default {
   register(crendentials) {
     return Api().post('user/register', crendentials)
   },
+  registerCode: host + 'user/registerCode.jpg',
   login({ mobile, password }) {
     return Api().get('user/login', {
       params: {
