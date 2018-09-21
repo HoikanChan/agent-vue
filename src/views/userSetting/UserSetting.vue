@@ -136,7 +136,9 @@ export default {
       if (type === null) {
         return '未认证'
       }
-      switch (type) {
+      switch (Number(type)) {
+        case -1:
+          return '未认证'
         case 0:
           return '认证中'
         case 1:

@@ -25,10 +25,10 @@
           <img src="../../assets/images/point_user.png" />
           <p>我的积分</p>
         </li>
-        <!-- <li>
+        <li  @click="$router.push({name:'authorization'})">
           <img src="../../assets/images/book.png" />
           <p>授权书</p>
-        </li> -->
+        </li>
         <li @click="$router.push({name:'mycode'})">
           <img src="../../assets/images/code_user.png" />
           <p>推广码</p>
