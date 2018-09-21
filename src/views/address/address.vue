@@ -23,10 +23,9 @@
               <CheckIcon :value.sync="item.isDefault" @click.native.stop="setDefault(item.id)">
                 <span>设为默认地址</span>
               </CheckIcon>
-              <img style="width:.14rem;height:auto;padding-left:15%;" src="../../assets/images/editer.png" />
-              <span style="margin-left:1%;" @click.stop="editer(item)">修改</span>
-              <img style="width:.11rem;height:auto;padding-left:15%;" src="../../assets/images/delete.png" />
-              <span style="margin-left:1%;" @click.stop="del(item.id)">删除</span>
+              <span style="width:16%;" @click.stop="editer(item)"><img style="width:.14rem;height:auto;margin-right:6%;" src="../../assets/images/editer.png" />修改</span>
+              
+              <span style="width:16%;" @click.stop="del(item.id)"><img style="width:.11rem;height:auto;margin-right:6%;" src="../../assets/images/delete.png" />删除</span>
             </div>
           </div>
         </checker-item>
@@ -149,10 +148,11 @@ export default {
   font-weight: bold;
   p {
     &:nth-child(2) {
-      display: inline-block;
       height: 0.4;
       line-height: 0.4rem;
       margin-top: 0.05rem;
+      display: flex;
+      justify-content: space-between;
     }
   }
   .editer {
@@ -163,6 +163,7 @@ export default {
     text-align: right;
     height: 0.4rem;
     line-height: 0.4rem;
+    justify-content: space-between;
   }
 }
 .checkbox-wrapper {
@@ -197,15 +198,12 @@ export default {
   .vux-checker-item {
     width: 100%;
   }
-  .vux-checker-item {
-    border-bottom: 1px solid #ccc;
-  }
   .weui-icon-success,
   .weui-icon-success:before {
     color: #655ad8 !important;
   }
 }
 .vux-check-icon > span {
-  line-height: 40px;
+  line-height: 23px;
 }
 </style>
