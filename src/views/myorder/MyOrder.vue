@@ -76,7 +76,7 @@
             <i>{{item.orderPrice}}</i>元(运费:{{item.shippingFee}}元)</div>
           <div class="logistics">
             <router-link to="#" class="blue" @click.native="confirm(item.id)">确认收货</router-link>
-            <router-link to="#" class="blue">查看详情</router-link>
+            <!-- <router-link to="#" class="blue">查看详情</router-link> -->
             <!-- <router-link to="#">查看物流</router-link> -->
           </div>
         </div>
