@@ -30,13 +30,13 @@ p {
 .editer p {
   display: inline-block;
   font-size: 0.14rem;
-  font-weight: 600;
+  font-weight: 500;
   padding-left: 1%;
 }
 .editer span {
   float: right;
   font-size: 0.12rem;
-  font-weight: bold;
+  font-weight: 500;
 }
 .order_list li {
   background: #fff;
@@ -93,7 +93,7 @@ p {
 }
 .order_list li > div:nth-child(3) p {
   font-size: 0.13rem;
-  font-weight: bold;
+  font-weight: 500;
   padding-left: 5.2%;
 }
 .order_list li > div:nth-child(3) p:nth-child(1) span {

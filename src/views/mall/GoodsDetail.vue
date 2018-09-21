@@ -285,17 +285,17 @@ img {
   background: #fff;
   text-align: left;
   .name {
-    height: 0.46rem;
-    line-height: 0.46rem;
-    font-size: 0.18rem;
-    font-weight: 600;
-    padding-left: 4.8%;
+    // height: 0.46rem;
+    // line-height: 0.46rem;
+    font-size: 0.16rem;
+    font-weight: 500;
+    padding: 0.1rem 4.8% 0 4.8%;
   }
   div {
     text-align: left;
     .num {
       margin-top: 0.14rem;
-      font-weight: 600;
+      font-weight: 500;
       font-size: 0.14rem;
       display: inline-block;
       padding-left: 7.8%;
@@ -353,7 +353,7 @@ img {
     line-height: 0.4rem;
     margin: 0 auto;
     font-size: 0.15rem;
-    font-weight: 600;
+    font-weight: 500;
   }
   .line {
     width: 50%;

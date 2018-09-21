@@ -299,14 +299,14 @@ export default {
         .number {
           font-size: 0.18rem;
           color: @color_1;
-          font-weight: bold;
+          font-weight: 500;
           padding-right: 7.8%;
           margin-top: 0.12rem;
         }
       }
       p {
         font-size: 0.13rem;
-        font-weight: bold;
+        font-weight: 500;
         padding-left: 5.2%;
         &:nth-child(1) {
           span {
