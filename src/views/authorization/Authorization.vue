@@ -6,11 +6,14 @@
     </x-header>
     <div class="authorize">
       <img v-if="img" :src="img" />
-      <h2 v-else style="text-align:center;margin:1rem;"> {{errorMsg || '暂无数据'}}</h2>
-      <!-- <p>陈琴</p>
-            <p>总代</p>
-            <span>总代</span>
-            <span>15797964844</span> -->
+      <div class="animate" v-else style="text-align:center;">
+         <!-- {{errorMsg || '暂无数据'}} -->
+         <div class="flash"><img src="../../assets/images/authorization.png" /></div>
+         <img style="width:.75rem,height:auto;" src="../../assets/images/shadow.png" />
+         <p style="margin-top:.45rem;">您尚未实名认证</p>
+         <p>暂无授权书</p>
+         <div class="certification" @click="go"> 去认证</div>
+      </div>
     </div>
   </div>
 </template>
@@ -23,6 +26,12 @@ export default {
     return {
       img: '',
       errorMsg: ''
+    }
+  },
+  methods: {
+    go() {
+      // debugger
+      this.$router.push({ name: 'realName' })
     }
   },
   components: {
@@ -50,28 +59,46 @@ export default {
       width: 100%;
       height: auto;
     }
-    p {
-      &:nth-child(2) {
-        position: absolute;
-        top: 2.3rem;
-        left: 38%;
+    .animate {
+      .flash {
+        //    animation:Updown 0.5s infinite alternate;
+        // -webkit-animation:Updown 0.5s alternate infinite;/*infinite无限播放，alternate轮流反向播放*/
+        img {
+          width: 0.85rem;
+          height: auto;
+          margin-top: 1.06rem;
+        }
+        // @keyframes Updown{
+        // from{margin-top:30px;}
+        // to{margin-top:10px;}
+        // }
+        // @-webkit-keyframes Updown{
+        // from{margin-top:30px;}
+        // to{margin-top:10px;}
+        // }
       }
-      &:nth-child(3) {
-        position: absolute;
-        top: 2.6rem;
-        left: 30%;
+      img {
+        width: 0.75rem;
+        height: auto;
+        margin-top: 0.2rem;
       }
-    }
-    span {
-      &:nth-child(4) {
-        position: absolute;
-        top: 3.44rem;
-        left: 56%;
+      p {
+        font-size: 0.15rem;
+        &:first-child {
+          padding-top: 0.45rem;
+        }
       }
-      &:nth-child(5) {
-        position: absolute;
-        top: 3.69rem;
-        left: 50%;
+      .certification {
+        width: 90.4%;
+        height: 0.44rem;
+        line-height: 0.44rem;
+        background: #5b50d3;
+        border: none;
+        border-radius: 0.03rem;
+        font-size: 0.16rem;
+        color: #fff;
+        margin-top: 1rem;
+        margin-left: 4.8%;
       }
     }
   }
