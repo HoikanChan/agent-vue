@@ -94,14 +94,13 @@ export default {
   position: relative;
 }
 .head div {
-  width: 0.49rem;
-  height: 0.49rem;
-  margin-left: 44%;
+  display: flex;
+  justify-content: center;
   padding-top: 0.63rem;
 }
 .head div img {
-  width: 100%;
-  height: 100%;
+  width: 4em;
+  height: 4em;
   border-radius: 50%;
   border: 2px solid #fff;
 }
