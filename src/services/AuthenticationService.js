@@ -1,19 +1,25 @@
 import Api from 'services/Api'
+import { host } from 'services/Api'
 import sha256 from 'js-sha256'
 export default {
-  sendCode(mobile) {
-    return Api().get('user/registerSMSCode', {
-      params: {
-        mobile: mobile
-      }
-    })
-  },
   //获取所有代理等级
   getGradeList() {
     return Api().get('grade/briefList')
   },
+  //注册
   register(crendentials) {
     return Api().post('user/register', crendentials)
+  },
+  //注册：图片验证码
+  registerCode: host + 'user/registerCode.jpg',
+  //注册：短信验证码，需要先获得图片验证码
+  sendCode(mobile, registerCode) {
+    return Api().get('user/registerSMSCode', {
+      params: {
+        mobile: mobile,
+        registerCode: registerCode
+      }
+    })
   },
   login({ mobile, password }) {
     return Api().get('user/login', {
@@ -82,5 +88,9 @@ export default {
   //查看实名认证申请
   viewUserCertification() {
     return Api().get('userCertification/info')
+  },
+  //授权书
+  getAuthorization() {
+    return Api().get('user/getAuthorization')
   }
 }

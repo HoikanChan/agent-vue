@@ -25,10 +25,10 @@
           <img src="../../assets/images/point_user.png" />
           <p>我的积分</p>
         </li>
-        <!-- <li>
+        <li  @click="$router.push({name:'authorization'})">
           <img src="../../assets/images/book.png" />
           <p>授权书</p>
-        </li> -->
+        </li>
         <li @click="$router.push({name:'mycode'})">
           <img src="../../assets/images/code_user.png" />
           <p>推广码</p>
@@ -94,14 +94,13 @@ export default {
   position: relative;
 }
 .head div {
-  width: 0.49rem;
-  height: 0.49rem;
-  margin-left: 44%;
+  display: flex;
+  justify-content: center;
   padding-top: 0.63rem;
 }
 .head div img {
-  width: 100%;
-  height: 100%;
+  width: 4em;
+  height: 4em;
   border-radius: 50%;
   border: 2px solid #fff;
 }

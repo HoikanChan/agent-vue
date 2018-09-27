@@ -10,7 +10,7 @@
       <div @click="$router.push({name:'mypoints'})"><img src='../../assets/images/points.png' />
         <p>我的积分</p>
       </div>
-      <div @click="alert()"><img src='../../assets/images/authorising.png' />
+      <div @click="$router.push({name:'authorization'})"><img src='../../assets/images/authorising.png' />
         <p>我的授权书</p>
       </div>
       <!-- <div><img src='../../assets/images/cash.png' />
@@ -44,11 +44,7 @@ export default {
       this.images = response.data.data
     })
   },
-  methods: {
-    alert() {
-      alert('授权书暂未开放！')
-    }
-  }
+  methods: {}
 }
 </script>
 <style scoped>

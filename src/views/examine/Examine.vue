@@ -4,122 +4,122 @@
       <span>审核</span>
       <img slot="overwrite-left" src="../../assets/images/back.png" size="25" style="width:.09rem;height:auto;position:relative;top:-2px;" @click="$router.back(-1)">
       </x-header>
-    <div class="tab">
-      <div @click="tabNow='register'">
-        <img src="../../assets/images/register_check.png" v-if="tabNow==='register'" />
-        <img src="../../assets/images/register_check_.png" v-else/>
-        <p>我的申请</p>
-        <badge :text="applyList.length" class="badge"></badge>
-      </div>
-      <div @click="tabNow='upgrade'">
-        <img src="../../assets/images/upgrade_check.png" v-if="tabNow==='upgrade'" />
-        <img src="../../assets/images/upgrade_check_.png" v-else/>
-        <p>我的审核</p>
-        <badge :text="auditList.length" class="badge"></badge>
-      </div>
-    </div>
-    <div class="tab-wrapper" v-show="tabNow==='register'">
-      <div v-for="item in applyList" :key="item.id" class="tab-content">
-        <div class="tab-text">
-          <div>
-            <p>审核人:
-              <span>{{item.auditUserName}}</span>
-            </p>
-            <p>手机号码:
-              <span>{{item.auditUserTel}}</span>
-            </p>
-            <p v-if=" item.levelName">升级等级:
-              <span>{{item.levelName|| '无'}}</span>
-            </p>
-            <p>订单类型:
-              <span>{{item.orderTypeText || '无'}}</span>
-            </p>
-            <p>申请积分数:
-              <span>{{item.credit ===null? '无':item.credit }}</span>
-            </p>
-            <p>审核状态:
-              <span>{{item.statusText|| '无'}}</span>
-            </p>
-            <p>时间：
-              <span>{{item.createTime || '无'}}</span>
-            </p>
-          </div>
-          <div>
-            <img :src="item.auditUserAvatar" />
-          </div>
+      <div class="tab">
+        <div @click="tabNow='register'">
+          <img src="../../assets/images/register_check.png" v-if="tabNow==='register'" />
+          <img src="../../assets/images/register_check_.png" v-else/>
+          <p>我的申请</p>
+          <badge :text="applyList.length" class="badge"></badge>
         </div>
-        <div class="tab-img" style="text-align:center;position:relative">
-          <spinner type="bubbles" size="40" style="position:absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);"></spinner>
-          <p>审核凭证：</p>
-          <x-img :src="item.payPic" @on-success="success" @on-error="error" class="ximg-demo" error-class="ximg-error" :offset="-100" container=".tab-wrapper"></x-img>
+        <div @click="tabNow='upgrade'">
+          <img src="../../assets/images/upgrade_check.png" v-if="tabNow==='upgrade'" />
+          <img src="../../assets/images/upgrade_check_.png" v-else/>
+          <p>我的审核</p>
+          <badge :text="auditList.length" class="badge"></badge>
         </div>
       </div>
-      <h3 v-if="applyList.length === 0" style="text-align:center;padding:0.5rem;"> 暂无记录</h3>
-    </div>
-    <div class="tab-wrapper" v-show="tabNow==='upgrade'">
-      <div v-for="item in auditList" :key="item.id" class="tab-content">
-        <div class="tab-text">
-          <div>
-            <p>申请人:
-              <span>{{item.applyUserName}}</span>
-            </p>
-            <p>手机号码:
-              <span>{{item.applyUserTel}}</span>
-            </p>
-            <p v-if=" item.levelName">升级等级:
-              <span>{{item.levelName|| '无'}}</span>
-            </p>
-            <p>订单类型:
-              <span>{{item.orderTypeText || '无'}}</span>
-            </p>
-            <p>申请积分数:
-              <span>{{item.credit ===null? '无':item.credit }}</span>
-            </p>
-            <p>审核状态:
-              <span>{{item.statusText|| '无'}}</span>
-            </p>
-            <p>时间：
-              <span>{{item.createTime || '无'}}</span>
-            </p>
-          </div>
-          <div>
-            <img :src="item.applyUserAvatar" />
-            <x-button mini plain type="primary" @click.native="aduitModalShow(item.id)" style="width:.44rem !important;height:.2rem !important;line-height:.2rem !important; margin-left: 37% !important;margin-top: 1.62rem !important;padding:0 !important;">审核</x-button>
-          </div>
-        </div>
-        <div class="tab-img" style="text-align:center;position:relative">
-          <spinner type="bubbles" size="40" style="position:absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);"></spinner>
-          <p>审核凭证：</p>
-          <br/>
-          <x-img :src="item.payPic" @on-success="success" @on-error="error" class="ximg-demo" error-class="ximg-error" :offset="-100" container=".tab-wrapper"></x-img>
-        </div>
-      </div>
-      <h3 v-if="auditList.length === 0" style="text-align:center;padding:0.5rem;"> 暂无记录</h3>
-    </div>
-    <div class="shade" v-show="modalShow"></div>
-    <div class="modal" v-show="modalShow">
-      <h2>审核 <img src="../../assets/images/flase.png" @click="modalShow=false" /></h2>
-      <div class="proptype">
-        <br>
-        <checker v-model="auditForm.orderStatus" default-item-class="demo2-item" selected-item-class="selected" radio-required>
-          <checker-item v-for="(item,index) in status" :key="index" :value="item.value">
-            <div class="detail">
-              <div class="checkbox-wrapper">
-                <material-checkbox></material-checkbox>
-              </div>
-              <p>
-                {{item.title}}
+      <div class="tab-wrapper" v-show="tabNow==='register'">
+        <div v-for="item in applyList" :key="item.id" class="tab-content">
+          <div class="tab-text">
+            <div>
+              <p>审核人:
+                <span>{{item.auditUserName}}</span>
+              </p>
+              <p>手机号码:
+                <span>{{item.auditUserTel}}</span>
+              </p>
+              <p v-if=" item.levelName">升级等级:
+                <span>{{item.levelName|| '无'}}</span>
+              </p>
+              <p>订单类型:
+                <span>{{item.orderTypeText || '无'}}</span>
+              </p>
+              <p>申请积分数:
+                <span>{{item.credit ===null? '无':item.credit }}</span>
+              </p>
+              <p>审核状态:
+                <span>{{item.statusText|| '无'}}</span>
+              </p>
+              <p>时间：
+                <span>{{item.createTime || '无'}}</span>
               </p>
             </div>
-          </checker-item>
-        </checker>
-        <group>
-          <x-textarea title="" :max="100" v-model="auditForm.postscript" placeholder="请输入留言" type="text"></x-textarea>
-        </group>
-      </div>
-      <x-button type="primary" action-type="submit" class="round-btn submit" @click.native="audit()">确定</x-button>
-    </div>
-  </div>
+            <div>
+              <img :src="item.auditUserAvatar" />
+          </div>
+            </div>
+            <div class="tab-img" style="text-align:center;position:relative">
+              <spinner type="bubbles" size="40" style="position:absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);"></spinner>
+              <p>审核凭证：</p>
+              <x-img :src="item.payPic" @on-success="success" @on-error="error" class="ximg-demo" error-class="ximg-error" :offset="-100" container=".tab-wrapper"></x-img>
+            </div>
+          </div>
+          <h3 v-if="applyList.length === 0" style="text-align:center;padding:0.5rem;"> 暂无记录</h3>
+        </div>
+        <div class="tab-wrapper" v-show="tabNow==='upgrade'">
+          <div v-for="item in auditList" :key="item.id" class="tab-content">
+            <div class="tab-text">
+              <div>
+                <p>申请人:
+                  <span>{{item.applyUserName}}</span>
+                </p>
+                <p>手机号码:
+                  <span>{{item.applyUserTel}}</span>
+                </p>
+                <p v-if=" item.levelName">升级等级:
+                  <span>{{item.levelName|| '无'}}</span>
+                </p>
+                <p>订单类型:
+                  <span>{{item.orderTypeText || '无'}}</span>
+                </p>
+                <p>申请积分数:
+                  <span>{{item.credit ===null? '无':item.credit }}</span>
+                </p>
+                <p>审核状态:
+                  <span>{{item.statusText|| '无'}}</span>
+                </p>
+                <p>时间：
+                  <span>{{item.createTime || '无'}}</span>
+                </p>
+              </div>
+              <div>
+                <img :src="item.applyUserAvatar" />
+              </div>
+              </div>
+              <div class="tab-img" style="text-align:center;position:relative">
+                <spinner type="bubbles" size="40" style="position:absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);"></spinner>
+                <x-button class="check-btn" mini plain type="primary" @click.native="aduitModalShow(item.id)">审核</x-button>
+                <p>审核凭证：</p>
+                <br/>
+                <x-img :src="item.payPic" @on-success="success" @on-error="error" class="ximg-demo" error-class="ximg-error" :offset="-100" container=".tab-wrapper"></x-img>
+              </div>
+            </div>
+            <h3 v-if="auditList.length === 0" style="text-align:center;padding:0.5rem;"> 暂无记录</h3>
+          </div>
+          <div class="shade" v-show="modalShow"></div>
+          <div class="modal" v-show="modalShow">
+            <h2>审核 <img src="../../assets/images/flase.png" @click="modalShow=false" /></h2>
+              <div class="proptype">
+                <br>
+                <checker v-model="auditForm.orderStatus" default-item-class="demo2-item" selected-item-class="selected" radio-required>
+                  <checker-item v-for="(item,index) in status" :key="index" :value="item.value">
+                    <div class="detail">
+                      <div class="checkbox-wrapper">
+                        <material-checkbox></material-checkbox>
+                      </div>
+                      <p>
+                        {{item.title}}
+                      </p>
+                    </div>
+                  </checker-item>
+                </checker>
+                <group>
+                  <x-textarea title="" :max="100" v-model="auditForm.postscript" placeholder="请输入留言" type="text"></x-textarea>
+                </group>
+              </div>
+              <x-button type="primary" action-type="submit" class="round-btn submit" @click.native="audit()">确定</x-button>
+          </div>
+        </div>
 </template>
 <script>
 import ApplyService from 'services/ApplyService'
@@ -329,6 +329,12 @@ export default {
     border-bottom: 1px solid #eee;
     .tab-img {
       padding: 0 1em;
+      position: relative;
+      .check-btn {
+        position: absolute;
+        right: 1em;
+        top: 0.2em;
+      }
       p {
         text-align: left;
         font-size: 0.13rem;

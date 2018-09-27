@@ -12,7 +12,7 @@
           <img :src="form.avatar || defaultAvatar" alt="">
         </vue-core-image-upload>
       </p>
-      <x-input placeholder-align="right" title="昵称" type="text" placeholder="请输入昵称" :required="true" ref="code" v-model="form.nickname">
+      <x-input placeholder-align="right" title="昵称" type="text" :required="true" placeholder="请输入昵称"  ref="nickname" v-model="form.nickname" :is-type="cnNameValidator">
       </x-input>
       <p class="avatar-cell">
         <span>性别</span>
@@ -51,7 +51,7 @@
         <span>实名认证</span>
         <span style="display:flex;align-items:center;" @click="checkRealName">
           <span style="color: #999;">{{form.realNameAuditStatus |realNameType}}</span>
-          <x-icon slot="right" type="ios-arrow-forward" style="fill:#aaa" size="15" ></x-icon>
+          <x-icon slot="right" type="ios-arrow-forward" style="fill:#aaa" size="15"></x-icon>
         </span>
       </p>
     </group>
@@ -136,7 +136,9 @@ export default {
       if (type === null) {
         return '未认证'
       }
-      switch (type) {
+      switch (Number(type)) {
+        case -1:
+          return '未认证'
         case 0:
           return '认证中'
         case 1:
@@ -167,6 +169,12 @@ export default {
       sexes: [{ title: '男', value: 1 }, { title: '女', value: 2 }],
       pickedSex: 1,
       defaultAvatar: defaultAvatar,
+      cnNameValidator: function(value) {
+        return {
+          valid: value.match(/^[\u4e00-\u9fa5]{2,5}$/),
+          msg: '请输入2-5个汉字'
+        }
+      },
       form: {
         avatar: '',
         nickname: '',
@@ -252,19 +260,27 @@ export default {
       this.$router.push({ path: '/login' })
     },
     async updatePersonalInfo() {
-      const result = await AuthService.updatePersonalInfo({
-        avatar: this.form.avatar,
-        gender: this.form.gender,
-        nickname: this.form.nickname,
-        birthday: this.form.birthday,
-        location: this.$refs.address.nameValue
-      })
-      this.$vux.toast.show({
-        width: '15em',
-        type: result.errno ? 'warn' : 'success',
-        text: result.errmsg
-      })
-      this.upateInfo()
+      if (this.$refs.nickname.valid) {
+        const result = await AuthService.updatePersonalInfo({
+          avatar: this.form.avatar,
+          gender: this.form.gender,
+          nickname: this.form.nickname,
+          birthday: this.form.birthday,
+          location: this.$refs.address.nameValue
+        })
+        this.$vux.toast.show({
+          width: '15em',
+          type: result.errno ? 'warn' : 'success',
+          text: result.errmsg
+        })
+        this.upateInfo()
+      } else {
+        this.$vux.toast.show({
+          width: '10em',
+          type: 'warn',
+          text: '请输入有效昵称'
+        })
+      }
     },
     async upateInfo() {
       this.form = (await AuthService.userinfo()).data

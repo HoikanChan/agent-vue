@@ -1,27 +1,46 @@
 <template>
-    <div class="authorization">
-        <x-header :left-options="{backText: ''}">我的授权书</x-header>
-        <div class="authorize">
-            <img src="../../assets/images/authorization.png"/>
-            <p>陈琴</p>
+  <div class="authorization">
+    <x-header :left-options="{backText: ''}">我的授权书</x-header>
+    <div class="authorize">
+      <img v-if="img" :src="img" />
+      <h2 v-else style="text-align:center;margin:1rem;"> {{errorMsg || '暂无数据'}}</h2>
+      <!-- <p>陈琴</p>
             <p>总代</p>
             <span>总代</span>
-            <span>15797964844</span>
-        </div>
+            <span>15797964844</span> -->
     </div>
+  </div>
 </template>
 <script>
 import { XHeader } from 'vux'
+import AuthService from 'services/AuthenticationService'
+
 export default {
   data() {
-    return {}
+    return {
+      img: '',
+      errorMsg: ''
+    }
   },
   components: {
     XHeader
+  },
+  async activated() {
+    const result = await AuthService.getAuthorization()
+    if (result.errno) {
+      this.$vux.toast.show({
+        width: '15em',
+        type: 'warn',
+        text: result.errmsg
+      })
+      this.errorMsg = result.errmsg
+      return
+    }
+    this.img = result.data.picUrl || null
   }
 }
 </script>
-<style lang='less'>
+<style lang='less' scoped>
 .authorization {
   .authorize {
     img {
