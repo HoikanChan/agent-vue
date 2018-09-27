@@ -1,6 +1,6 @@
 <template>
   <div class="authorization">
-    <x-header :left-options="{backText: ''}">
+    <x-header :left-options="{backText: ''}" style="border-bottom:1px solid #eee;">
       <span>我的授权书</span>
       <img slot="overwrite-left" src="../../assets/images/back.png" size="25" style="width:.09rem;height:auto;position:relative;top:-2px;" @click="$router.back(-1)">
     </x-header>
