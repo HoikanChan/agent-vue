@@ -6,7 +6,7 @@
     </x-header>
     <div class="editer" v-show="show">
       <img style="" :src="$store.getters.getUser.avatar" />
-      <p>{{$store.getters.getUser.username}}</p>
+      <p>{{$store.getters.getUser.nickname || $store.getters.getUser.username}}</p>
       <span @click="toggleEdit">{{isEditing?"完成":"编辑"}}</span>
     </div>
     <div default-item-class="demo2-item" selected-item-class="selected" radio-required type="checkbox" v-if="!isEditing">

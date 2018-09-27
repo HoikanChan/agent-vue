@@ -3,7 +3,7 @@
     <x-header :left-options="{backText: ''}">我的授权书</x-header>
     <div class="authorize">
       <img v-if="img" :src="img" />
-      <h3 v-else style="text-align:center;margin:1rem;"> 暂无数据</h3>
+      <h2 v-else style="text-align:center;margin:1rem;"> {{errorMsg || '暂无数据'}}</h2>
       <!-- <p>陈琴</p>
             <p>总代</p>
             <span>总代</span>
@@ -18,7 +18,8 @@ import AuthService from 'services/AuthenticationService'
 export default {
   data() {
     return {
-      img: ''
+      img: '',
+      errorMsg: ''
     }
   },
   components: {
@@ -27,12 +28,12 @@ export default {
   async activated() {
     const result = await AuthService.getAuthorization()
     if (result.errno) {
-      this.countDown = ''
       this.$vux.toast.show({
         width: '15em',
         type: 'warn',
         text: result.errmsg
       })
+      this.errorMsg = result.errmsg
       return
     }
     this.img = result.data.picUrl || null

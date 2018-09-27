@@ -1,6 +1,8 @@
 import axios from 'axios'
 import router from '../router'
 // const host = 'http://dl.upyuns.com/agent/api/v1/'
+//内部地址
+// const host = 'http://10.0.78.39:8099/agent/api/v1/'
 //开发地址
 // const host = 'http://124.200.40.10:17080/agent/api/v1/'
 //测试地址
