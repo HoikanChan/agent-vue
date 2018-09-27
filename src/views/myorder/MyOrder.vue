@@ -261,9 +261,8 @@ export default {
             height: 1.41rem;
             .name {
               font-size: 0.14rem;
-              font-weight: bold;
-              height: 0.38rem;
-              font-weight: 600;
+              font-weight: 500;
+              height: 0.22rem;
               display: -webkit-box;
               -webkit-box-orient: vertical;
               -webkit-line-clamp: 2;
@@ -285,12 +284,12 @@ export default {
               font-size: 0.2rem;
               color: #5b50d3;
               font-weight: bold;
-              margin-top: 0.12rem;
+              margin-top: 0.28rem;
               display: inline-block;
             }
             .number {
               float: right;
-              margin-top: 0.12rem;
+              margin-top: 0.28rem;
               font-size: 0.2rem;
             }
           }

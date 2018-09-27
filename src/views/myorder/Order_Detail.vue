@@ -130,7 +130,7 @@ export default {
         height: 0.22rem;
         line-height: 0.22rem;
         margin-top: 0.2rem;
-        font-weight: bold;
+        font-weight: 500;
         float: left;
       }
       .right {
@@ -141,6 +141,7 @@ export default {
       width: 100%;
       height: 0.5rem;
       margin-top: 0.12rem;
+      display: flex;
       img {
         display: inline-block;
         width: 0.17rem;
@@ -161,10 +162,15 @@ export default {
     }
   }
   ul {
+    margin-top: 0.05rem;
+    background: #fff;
     li {
+      &:first-child {
+        border-bottom: none;
+      }
       height: 1.41rem;
       padding: 0 4.8%;
-      border-bottom: 1px solid #ccc;
+      border-bottom: 1px solid #eee;
       .left {
         width: 1.1rem;
         height: 1.1rem;
@@ -182,7 +188,7 @@ export default {
         .name {
           font-size: 0.14rem;
           margin-top: 0.12rem;
-          font-weight: bold;
+          font-weight: 500;
         }
         .msg {
           font-size: 0.13rem;
@@ -196,7 +202,7 @@ export default {
         .price {
           font-size: 0.2rem;
           color: #5b50d3;
-          font-weight: bold;
+          font-weight: 500;
           margin-top: 0.28rem;
           display: inline-block;
         }
@@ -218,10 +224,10 @@ export default {
       line-height: 0.42rem;
       font-size: 0.13rem;
       color: #666;
-      font-weight: bold;
+      font-weight: 500;
       span {
         float: right;
-        font-weight: bold;
+        font-weight: 500;
         font-size: 0.14rem;
         color: #5b50d3;
       }
@@ -233,14 +239,14 @@ export default {
     padding: 0 4.8%;
     background: #fff;
     p {
-      height: 0.42rem;
-      line-height: 0.42rem;
+      height: 0.43rem;
+      line-height: 0.43rem;
       font-size: 0.13rem;
       color: #666;
-      font-weight: bold;
+      font-weight: 500;
       span {
         float: right;
-        font-weight: bold;
+        font-weight: 500;
         font-size: 0.14rem;
         color: #666;
         i {
@@ -258,6 +264,8 @@ export default {
       height: 0.17rem;
       line-height: 0.17rem;
       padding-top: 0.13rem;
+      color: #666;
+      font-weight: 500;
     }
     p {
       display: inline-block;
