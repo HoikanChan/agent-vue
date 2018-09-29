@@ -18,7 +18,7 @@
   </div>
 </template>
 <script>
-import { XHeader } from 'vux'
+import { XHeader, XImg } from 'vux'
 import AuthService from 'services/AuthenticationService'
 
 export default {
@@ -35,7 +35,8 @@ export default {
     }
   },
   components: {
-    XHeader
+    XHeader,
+    XImg
   },
   async activated() {
     const result = await AuthService.getAuthorization()
