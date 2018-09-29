@@ -4,21 +4,24 @@
       <span>我的授权书</span>
       <img slot="overwrite-left" src="../../assets/images/back.png" size="25" style="width:.09rem;height:auto;position:relative;top:-2px;" @click="$router.back(-1)">
     </x-header>
-    <div class="authorize">
-      <img v-if="img" :src="img" />
-      <div class="animate" v-else style="text-align:center;">
-         <!-- {{errorMsg || '暂无数据'}} -->
-         <div class="flash"><img src="../../assets/images/authorization.png" /></div>
-         <img style="width:.75rem,height:auto;" src="../../assets/images/shadow.png" />
-         <p style="margin-top:.45rem;">您尚未实名认证</p>
-         <p>暂无授权书</p>
-         <div class="certification" @click="go"> 去认证</div>
+      <div class="authorize">
+        <div v-if="img" class="tab-img" style="text-align:center;position:relative">
+          <spinner type="bubbles" size="40" style="position:absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);"></spinner>
+          <x-img :src="img" @on-success="success" @on-error="error" class="ximg-demo" error-class="ximg-error" :offset="-100" container=".tab-wrapper"></x-img>
+        </div>
+        <div class="animate" v-else style="text-align:center;">
+          <!-- {{errorMsg || '暂无数据'}} -->
+          <div class="flash"><img src="../../assets/images/authorization.png" /></div>
+            <img style="width:.75rem,height:auto;" src="../../assets/images/shadow.png" />
+            <p style="margin-top:.45rem;">您尚未实名认证</p>
+            <p>暂无授权书</p>
+            <div class="certification" @click="go"> 去认证</div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
 </template>
 <script>
-import { XHeader, XImg } from 'vux'
+import { XHeader, XImg, Spinner } from 'vux'
 import AuthService from 'services/AuthenticationService'
 
 export default {
@@ -32,11 +35,19 @@ export default {
     go() {
       // debugger
       this.$router.push({ name: 'realName' })
+    },
+    success(src, ele) {
+      const span = ele.parentNode.querySelector('span')
+      ele.parentNode.removeChild(span)
+    },
+    error(src, ele, msg) {
+      const span = ele.parentNode.querySelector('span')
     }
   },
   components: {
     XHeader,
-    XImg
+    XImg,
+    Spinner
   },
   async activated() {
     const result = await AuthService.getAuthorization()
