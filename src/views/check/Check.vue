@@ -303,7 +303,7 @@ export default {
               line-height: 0.27rem;
               font-size: 0.13rem;
               padding-left: 6%;
-              font-weight: bold;
+              font-weight: 500;
             }
             &:nth-child(1) {
               margin-top: 0.05rem;
@@ -383,5 +383,8 @@ export default {
     width: 100%;
     background: #fff;
   }
+}
+.check-wrapper .option_referer .referer-wrapper .upload-line {
+  font-weight: 500 !important;
 }
 </style>

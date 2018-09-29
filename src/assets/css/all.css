@@ -6,7 +6,7 @@
 }
 .goods-item {
   width: 44%;
-  height: 2.67rem;
+  height: 2.54rem;
   background: #f8e0f2;
   margin-top: 0.1rem;
   background: #fff;
@@ -33,7 +33,7 @@
   padding: 0 5%;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   overflow: hidden;
   color: #000;
   margin: 0.08rem 0;
@@ -45,7 +45,7 @@
   font-size: 0.12rem;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   overflow: hidden;
   color: #333;
 }

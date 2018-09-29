@@ -16,7 +16,7 @@
       <x-input label-width="1rem" title="验证码" type="text" placeholder="请输入验证码" :required="true" ref="code" v-model="form.SMSCode">
         <x-button slot="right" type="primary" mini @click.native="sendCode">{{ countDown || '获取验证码'}}</x-button>
       </x-input>
-      <x-input label-width="1rem" title="用户名" type="text" placeholder="请输入2-5个汉字" :required="true" ref="cnName" v-model="form.username" :is-type="cnNameValidator">
+      <x-input label-width="1rem" title="用户名" type="text" placeholder="请输入真实姓名" :required="true" ref="cnName" v-model="form.username">
       </x-input>
       <x-input label-width="1rem" title="密码" type="password" placeholder="请输入6-16个字符的密码" :required="true" :min="6" :max="16" ref="psw" v-model="form.password">
       </x-input>

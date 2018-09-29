@@ -57,12 +57,15 @@ body {
     text-align: center;
     .head_msg {
       height: 1.2rem;
+      text-align: left;
       display: flex;
-      justify-content: space-evenly;
-      align-items: center;
+      // justify-content: space-evenly;
+      // align-items: center;
       div {
         &:first-child {
-          padding-left: 8%;
+          display: inline-block;
+          margin-top: 0.3rem;
+          margin-left: 10%;
           img {
             width: 0.67rem;
             height: 0.67rem;
@@ -71,28 +74,33 @@ body {
           }
         }
         &:nth-child(2) {
+          display: inline-block;
           height: 0.6rem;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-around;
-          text-align: left;
-          padding-right: 8%;
+          margin-top: 0.3rem;
+          margin-left: 5%;
+          // display: flex;
+          // flex-direction: column;
+          // justify-content: space-around;
           p {
             margin: 0;
             &:first-child {
               font-size: 0.17rem;
               font-weight: bold;
+              height: 0.31rem;
+              line-height: 0.31rem;
+              color: #000;
             }
             &:nth-child(2) {
               font-size: 0.15rem;
               color: rgb(153, 153, 153);
+              margin-top: 0.1rem;
             }
           }
         }
       }
     }
     p {
-      margin-top: 0.1rem;
+      margin-top: 0.05rem;
       color: rgb(102, 102, 102);
     }
   }

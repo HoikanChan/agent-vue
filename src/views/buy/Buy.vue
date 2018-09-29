@@ -77,7 +77,7 @@
         <div style="padding:15px;">
           <h3>请输入密码</h3>
           <group>
-            <x-input type="password" v-model="password" :required="true" ref="payPsw">
+            <x-input type="password" v-model="password" :required="true" ref="payPsw" placeholder="请输入登录密码">
             </x-input>
           </group>
           <img @click="close()" style="width:.14rem;height:.14rem;position: absolute;top: .1rem;left: 88.3%;" src="../../assets/images/close.png" />

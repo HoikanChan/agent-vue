@@ -1,12 +1,18 @@
 <template>
   <div class="login-container">
 
-    <span style="position:absolute;top:18px;left:18px">
-    </span>
-    <div class="title">
-      <h2>登录</h2>
-    </div>
+    <!-- <span style="position:absolute;top:18px;left:18px">
+    </span> -->
+    
     <group>
+      <div class="title">
+        <img src="../../assets/images/logo.png" />
+        <div>
+          <h2>登录</h2>
+          <a @click="$router.push({name:'register' })">去注册</a>
+        </div>
+       
+        </div>
       <x-input title="message" placeholder="请输入手机号码" :required="true" ref="mobile" v-model="loginForm.mobile" is-type="china-mobile">
         <!-- <x-icon slot="label" type="android-phone-portrait" style="padding-right:10px;display:block;"></x-icon> -->
         <img slot="label" style="width:.14rem;height:auto;padding-right:10px;display:block;" src="../../assets/images/phone.png" />
@@ -19,7 +25,7 @@
           <span>记住密码</span>
         </check-icon>
         <a style="margin-left:10%;" @click="$router.push({name:'forgetPassword' })">忘记密码？</a>
-        <a @click="$router.push({name:'register' })">去注册？</a>
+        
       </div>
       <x-button type="primary" action-type="submit" class="round-btn" @click.native="login()">登录</x-button>
     </group>
@@ -115,9 +121,12 @@ export default {
 .weui-cell {
   padding: 15px !important;
 }
+.vux-check-icon > span {
+  color: #5b50d3 !important;
+}
 .login-container {
   height: 100vh;
-  background: #fff;
+  background: url('../../assets/images/login_bg.png') no-repeat center/cover;
   .weui-icon-success,
   .weui-icon-success:before {
     color: #655ad8 !important;
@@ -127,6 +136,7 @@ export default {
   }
   .weui-cells {
     padding: 0 40px;
+    border-radius: 0.08rem;
     &:before {
       border: none;
     }
@@ -135,35 +145,65 @@ export default {
     }
   }
   button {
-    margin-top: 62px;
+    margin-top: 0.48rem;
+    height: 0.35rem;
+    line-height: 0.35rem;
   }
   .weui-cell {
     border-bottom: 2px solid @border-color;
     &:before {
-      border: none;
+      border: none !important;
     }
   }
   .title {
     text-align: center;
-    padding: 60px 0 46px;
-    h2 {
-      display: inline;
-      margin: 24px auto;
-      padding: 0 8px;
-      color: @primary-color;
-      text-align: center;
-      font-size: 19px;
+    img {
+      display: block;
+      width: 1.02rem;
+      height: auto;
+      margin: 0.4rem auto;
+    }
+    div {
+      display: flex;
+      justify-content: space-evenly;
+      margin: 0.12rem 0 0.35rem 0;
+      h2 {
+        display: inline;
+        // margin: 24px auto;
+        // padding: 0 8px;
+        color: @primary-color;
+        text-align: center;
+        font-size: 19px;
+        border-bottom: 0.02rem solid #5b50d3;
+      }
+      a {
+        color: #666;
+        font-size: 0.19rem;
+      }
     }
   }
   .forgot-password {
     text-align: right;
     display: flex;
     align-items: center;
-    padding-top: 16px;
+    padding-top: 0.2rem;
+    justify-content: space-between;
     a {
       color: @primary-color;
       font-size: 14px;
     }
+  }
+  > div {
+    width: 84.4%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: 4.4rem;
+    background: #fff;
+    border-radius: 0.08rem;
   }
 }
 </style>
