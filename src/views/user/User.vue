@@ -122,10 +122,10 @@ export default {
 }
 .code_ {
   position: absolute;
-  top: 0.13rem;
-  left: 87%;
-  width: 0.2rem;
-  height: 0.21rem;
+  top: 0.33rem;
+  right: 5.6%;
+  width: 0.18rem;
+  height: 0.19rem;
 }
 .user .all {
   width: 100%;
