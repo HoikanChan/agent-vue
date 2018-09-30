@@ -19,13 +19,13 @@
             <p style="padding-bottom:.15rem;">
               <span>收货地址：{{item.provinceName}}{{item.cityName}}{{item.countyName}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
             </p>
-            <div class='editer' v-if="isEditing" style="font-size:.14rem;color:#999;">
+            <div class='compile' v-if="isEditing" style="font-size:.14rem;color:#999;">
               <CheckIcon :value.sync="item.isDefault" @click.native.stop="setDefault(item.id)">
-                <span>设为默认地址</span>
+                <span style="font-size:.14rem;float:none;olor: rgb(153, 153, 153);">设为默认地址</span>
               </CheckIcon>
-              <span style="width:16%;" @click.stop="editer(item)"><img style="width:.14rem;height:auto;margin-right:6%;" src="../../assets/images/editer.png" />修改</span>
+              <span style="width:16%;font-size:.14rem;" @click.stop="editer(item)"><img style="width:.14rem;height:auto;margin-right:6%;border-radius:0;" src="../../assets/images/editer.png" />修改</span>
               
-              <span style="width:16%;" @click.stop="del(item.id)"><img style="width:.11rem;height:auto;margin-right:6%;" src="../../assets/images/delete.png" />删除</span>
+              <span style="width:16%;font-size:.14rem;" @click.stop="del(item.id)"><img style="width:.11rem;height:auto;margin-right:6%;border-radius:0;" src="../../assets/images/delete.png" />删除</span>
             </div>
           </div>
         </checker-item>
@@ -153,7 +153,7 @@ export default {
       justify-content: space-between;
     }
   }
-  .editer {
+  .compile {
     display: flex;
     align-items: center;
     text-align: right;

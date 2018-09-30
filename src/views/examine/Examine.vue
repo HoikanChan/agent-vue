@@ -192,6 +192,7 @@ export default {
       const auditList = (await ApplyService.auditList()).data
       this.auditList = auditList
       const applyList = (await ApplyService.applyList()).data
+      console.log(auditList)
       this.applyList = applyList
     },
     async audit() {
