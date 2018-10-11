@@ -44,10 +44,9 @@ export default {
 }
 </script>
 <style lang='less' scoped>
-body {
-  background: url('../../assets/images/code_bg.png');
-}
 .code_user {
+  height: 100vh;
+  background: url('../../assets/images/code_bg.png') no-repeat center/cover;
   .code {
     width: 87%;
     height: 4.37rem;
