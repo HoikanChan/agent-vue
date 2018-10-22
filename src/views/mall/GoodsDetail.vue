@@ -52,7 +52,8 @@
         <p>购物车</p>
       </div>
       <div @click="addGoods()">加入购物车</div>
-      <div @click="$vux.toast.show({width: '10em', type: 'warn',text: '此功能暂未开放'})" style="color:#aaa;">立即购买</div>
+      <!-- <div @click="$vux.toast.show({width: '10em', type: 'warn',text: '此功能暂未开放'})" style="color:#aaa;">立即购买</div> -->
+      <div @click="buynow()" style="color:#aaa;">立即购买</div>
       <!-- <div @click="$router.push({name:'buy'})">立即购买</div> -->
     </div>
     <toast v-model="showToast" type="text" :time="800" is-show-mask text="请先选择规格" position="top" width='10em' />
@@ -100,6 +101,17 @@ export default {
           width: '10em',
           type: result.errno ? 'warn' : 'success',
           text: result.errmsg
+        })
+      } else {
+        this.showToast = true
+      }
+    },
+    buynow() {
+      if (this.pickedProduct) {
+        axios.post('http://localhost:8080/agent/api/v1/order/onekeybuy', {
+          goodsId: this.goodsDetail.id,
+          productId: this.pickedProduct.productId,
+          number: this.amount
         })
       } else {
         this.showToast = true

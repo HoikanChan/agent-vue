@@ -71,6 +71,7 @@ export default {
     let id = this.$route.params.id
     TeamService.childInfo(id).then(res => {
       if (res.data) {
+        console.log(res.data)
         this.info = res.data['performance']
         delete res.data.performance
         this.member = res.data

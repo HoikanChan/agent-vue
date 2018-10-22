@@ -31,6 +31,10 @@
         </checker-item>
       </checker>
     </div>
+    <div v-if="addresses.length === 0" style="padding-top:1.25rem;text-align:center;">
+      <img style="width:1.44rem;" src="../../assets/images/noaddress.png" />
+      <p style="margin-top:.28rem;font-size:.19rem;color:#9890ec;">暂无收货地址哦！</p>
+    </div>
     <div class="foot_add" @click="addAddress">添加收货地址</div>
   </div>
 </template>

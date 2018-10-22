@@ -16,6 +16,7 @@
       <!-- <x-icon type="ios-arrow-forward" style="fill:#7e74ea" size="24" class="forward-icon" @click="$router.push({name:'address'})"></x-icon> -->
       <img src="../../assets/images/right.png" class="view-address-btn" @click="$router.push({name:'address'})" />
     </div>
+
     <div class="place" v-else>
       <router-link to="/addAddress">
         <x-icon type="ios-plus-empty" size="35"></x-icon>
@@ -49,13 +50,14 @@
       </p>
       <p>
         <span>运费</span>
-        <strong>￥{{bill.freightPrice}}</strong>
+        <strong>货到付款</strong>
       </p>
       <p>
         <span>当前积分</span>
         <strong style="color:#5b50d3;">{{bill.orderTotalPrice}}</strong>
       </p>
       <div class="total">
+      
 
         <span>共{{bill.goodsTotalNumber}}件商品 消费积分：
           <strong>{{bill.orderTotalPrice}}</strong>
@@ -82,7 +84,7 @@
           </group>
           <img @click="close()" style="width:.14rem;height:.14rem;position: absolute;top: .1rem;left: 88.3%;" src="../../assets/images/close.png" />
         </div>
-        <button class="pay-btn" @click="pay()">确认支付</button>
+        <button :disabled="isDisable" class="pay-btn" @click="pay()">确认支付</button>
         <br>
         <div @click="dialogShow=false">
           <span class="vux-close"></span>
@@ -131,7 +133,8 @@ export default {
         msg: '',
         deliveryTime: ''
       },
-      postscript: ''
+      postscript: '',
+      isDisable: false
     }
   },
   methods: {
@@ -151,9 +154,13 @@ export default {
     async pay() {
       if (this.$refs.payPsw.valid && this.password) {
         this.dialogShow = false
+        this.isDisable = true
         this.$vux.loading.show({
           text: '支付中'
         })
+        setTimeout(() => {
+          this.isDisable = false
+        }, 5000)
         const result = await ShoppingCartService.pay({
           addressId: this.address.id,
           psw: this.password,
@@ -168,7 +175,9 @@ export default {
           })
         } else {
           this.$store.dispatch('setBill', '')
-          this.$router.push({ name: 'bought' })
+          setTimeout(() => {
+            this.$router.push({ name: 'bought' })
+          }, 200)
         }
       }
     }

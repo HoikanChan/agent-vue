@@ -48,7 +48,10 @@
           </div>
           <p class="pay">{{item.statusText}}</p>
         </li>
-        <div v-if="mypointsList.length === 0" style="text-align:center;padding:2em;"> 暂时没有数据</div>
+        <div v-if="mypointsList.length === 0" style="text-align:center;background:#f6f6f6;">
+          <img style="width:.63rem;margin-top:.84rem;" src="../../assets/images/without_point.png"/>
+          <p style="font-size:.15rem;color:#9890ec;padding: 0;">暂无数据!</p>
+        </div>
 
       </ul>
     </div>

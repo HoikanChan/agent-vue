@@ -88,13 +88,16 @@
               </div>
               <div class="tab-img" style="text-align:center;position:relative">
                 <spinner type="bubbles" size="40" style="position:absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);"></spinner>
-                <x-button class="check-btn" mini plain type="primary" @click.native="aduitModalShow(item.id)">审核</x-button>
+                <x-button class="check-btn" mini plain type="primary" @click.native="aduitModalShow(item.id)" v-show="item.status=='1'">审核</x-button>
                 <p>审核凭证：</p>
                 <br/>
                 <x-img :src="item.payPic" @on-success="success" @on-error="error" class="ximg-demo" error-class="ximg-error" :offset="-100" container=".tab-wrapper"></x-img>
               </div>
             </div>
-            <h3 v-if="auditList.length === 0" style="text-align:center;padding:0.5rem;"> 暂无记录</h3>
+            <div v-if="auditList.length === 0" style="text-align:center;padding-top:1.22rem;">
+              <img style="width:.79rem;height:auto;" src="../../assets/images/without.png" />
+              <p style="font-size:.19rem;color:#9890ec;margin-top:.56rem;">无审核数据噢！</p>
+            </div>
           </div>
           <div class="shade" v-show="modalShow"></div>
           <div class="modal" v-show="modalShow">
@@ -159,6 +162,7 @@ export default {
   data() {
     return {
       tabNow: 'register',
+      current: 0,
       auditList: [],
       applyList: [],
       modalShow: false,
@@ -192,7 +196,6 @@ export default {
       const auditList = (await ApplyService.auditList()).data
       this.auditList = auditList
       const applyList = (await ApplyService.applyList()).data
-      console.log(auditList)
       this.applyList = applyList
     },
     async audit() {
@@ -215,6 +218,9 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+.blue {
+  color: #5b50d3;
+}
 .vux-x-img,
 .b-lazy {
   max-width: 82%;

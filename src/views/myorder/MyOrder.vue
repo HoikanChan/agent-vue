@@ -35,8 +35,9 @@
           </ul>
           <div class="add">共
             <span>{{item.goodsCount}}</span>件商品 合计：￥
-            <i>{{item.orderPrice}}</i>元(运费:{{item.shippingFee}}元)</div>
-          <div class="logistics">
+            <i>{{item.orderPrice}}</i>元(运费:{{item.shippingFee}}元)
+            </div>
+          <div class="logistics" v-show="item.orderStatus!='201'">
             <router-link to="#" class="blue" @click.native="confirm(item.id)">确认收货</router-link>
             <!-- <router-link to="#">查看物流</router-link> -->
           </div>
@@ -73,11 +74,12 @@
           </ul>
           <div class="add">共
             <span>{{item.goodsCount}}</span>件商品 合计：￥
-            <i>{{item.orderPrice}}</i>元(运费:{{item.shippingFee}}元)</div>
+            <i>{{item.orderPrice}}</i>元(运费:{{item.shippingFee}}元)
+            </div>
           <div class="logistics">
             <router-link to="#" class="blue" @click.native="confirm(item.id)">确认收货</router-link>
             <!-- <router-link to="#" class="blue">查看详情</router-link> -->
-            <!-- <router-link to="#">查看物流</router-link> -->
+            <!-- <router-link to="#" class="blue" @click.native="logistics(item.orderSn)">查看物流</router-link> -->
           </div>
         </div>
         <div class="norecord" v-if="toDeleverOrder.length === 0">
@@ -115,8 +117,8 @@
             <i>{{item.orderPrice}}</i>元(运费:{{item.shippingFee}}元)</div>
           <div class="logistics">
             <router-link to="#" class="blue" @click.native="confirm(item.id)">确认收货</router-link>
-            <router-link to="#" class="blue" @click.native="view(item.id)">查看详情</router-link>
-            <!-- <router-link to="#">查看物流</router-link> -->
+            <!-- <router-link to="#" class="blue" @click.native="view(item.id)">查看详情</router-link> -->
+            <!-- <router-link to="#" class="blue" @click.native="logistics(item.id)">查看物流</router-link> -->
           </div>
         </div>
         <div class="norecord" v-if="toReceiveOrder.length === 0">

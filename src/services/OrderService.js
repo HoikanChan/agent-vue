@@ -13,5 +13,10 @@ export default {
     return Api().get('order/confirmOrder', {
       params: { orderId: orderId }
     })
+  },
+  logistics(orderId) {
+    return Api().get('order/detail', {
+      params: { orderId: orderId }
+    })
   }
 }

@@ -60,6 +60,8 @@
       <h3>买家留言</h3>
       <p>{{orderInfo.postscript}}</p>
     </div>
+    <div class="logistics"><router-link :to="{name:'logistics',params:{orderId:orderInfo.id}}" class="blue">查看物流</router-link></div>
+    
   </div>
 </template>
 <script>
@@ -72,22 +74,52 @@ export default {
   },
   data() {
     return {
-      info: {}
+      info: {},
+      orderInfo: {}
     }
   },
   computed: {
-    orderInfo: function() {
-      return this.info ? this.info.orderInfo : {}
-    }
+    // orderInfo: function() {
+    //   return this.info ? this.info.orderInfo : {}
+    // }
   },
   async activated() {
     const result = await OrderService.detail(this.$route.query.id)
+    // console.log(result)
     this.info = result.data || {}
+    this.orderInfo = result.data.orderInfo ? result.data.orderInfo : {}
   }
 }
 </script>
 <style lang="less" scoped>
 .order_detail {
+  .logistics {
+    height: 0.5rem;
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: #fff;
+    a {
+      display: block;
+      width: 16.5%;
+      height: 0.22rem;
+      line-height: 0.22rem;
+      text-align: center;
+      border: 1px solid #999;
+      float: right;
+      border-radius: 0.03rem;
+      margin-right: 4.8%;
+      margin-top: 0.15rem;
+      font-size: 0.13rem;
+      color: #000;
+    }
+    .blue {
+      color: #5b50d3;
+      border: 1px solid #5b50d3;
+    }
+  }
   .detail_head {
     height: 0.44rem;
     line-height: 0.44rem;

@@ -65,7 +65,11 @@
         </div>
       </checker-item>
     </checker>
-    <h3 v-if="upgradeList.length === 0" style="text-align:center;margin-top:2em;">暂无升级内容</h3>
+    <h3 v-if="upgradeList.length === 0" style="text-align:center;margin-top:0.95rem;">
+      <img style="width:.64rem;" src="../../assets/images/no_upgrade.png" />
+      <p style="margin-top:.4rem;color:#9890ec;font-size:.15rem;">官方合伙人已是最高级别</p>
+      <p style="color:#9890ec;font-size:.15rem;">无需再升级哦！</p>
+    </h3>
     <div class="shade" v-show="flag"></div>
     <div class="modal" v-show="flag">
       <p>等待审核</p>

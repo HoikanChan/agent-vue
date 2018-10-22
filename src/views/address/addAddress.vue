@@ -188,7 +188,6 @@ body {
     padding: 0 4.8%;
     font-weight: bold;
     border-bottom: 1px solid #ccc;
-
     input {
       width: 75%;
       height: 0.5rem;
