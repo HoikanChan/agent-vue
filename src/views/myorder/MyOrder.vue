@@ -1,23 +1,51 @@
 <template>
   <div class="myorder">
     <div class="myorder_head">
-      <img class="back" src="../../assets/images/back.png" @click="$router.push({name:'user'})" /> 我的订单
+      <img
+        class="back"
+        src="../../assets/images/back.png"
+        @click="$router.push({name:'user'})"
+      /> 我的订单
     </div>
     <div class="things">
-      <a :class="{'active':tabNow === 1}" @click="tabNow=1">全部</a>
-      <a class="two" :class="{'active':tabNow === 2}" @click="tabNow=2">待发货</a>
-      <a class="three" :class="{'active':tabNow === 3}" @click="tabNow=3">待收货</a>
+      <a
+        :class="{'active':tabNow === 1}"
+        @click="tabNow=1"
+      >全部</a>
+      <a
+        class="two"
+        :class="{'active':tabNow === 2}"
+        @click="tabNow=2"
+      >待发货</a>
+      <a
+        class="three"
+        :class="{'active':tabNow === 3}"
+        @click="tabNow=3"
+      >待收货</a>
     </div>
     <div class="shoppings">
-      <div class="first" v-if="tabNow ===1">
-        <div class="oreder-item" v-for="item in orders" :key="item.key">
-          <div class="shophead" @click="view(item.id)">
+      <div
+        class="first"
+        v-if="tabNow ===1"
+      >
+        <div
+          class="oreder-item"
+          v-for="item in orders"
+          :key="item.key"
+        >
+          <div
+            class="shophead"
+            @click="view(item.id)"
+          >
             <img :src="$store.getters.getUser.avatar" />
             <span>{{item.userName}}</span>
             <i>{{item.orderStatusText}}</i>
           </div>
-          <ul  @click="view(item.id)">
-            <li v-for="product in item.orderGoodsEntityList" :key="product.key">
+          <ul @click="view(item.id)">
+            <li
+              v-for="product in item.orderGoodsEntityList"
+              :key="product.key"
+            >
               <div class="left"><img :src="product.listPicUrl" /></div>
               <div class="right">
                 <p class="name">{{product.goodsName}}
@@ -36,27 +64,75 @@
           <div class="add">共
             <span>{{item.goodsCount}}</span>件商品 合计：￥
             <i>{{item.orderPrice}}</i>元(运费:{{item.shippingFee}}元)
-            </div>
-          <div class="logistics" v-show="item.orderStatus!='201'">
-            <router-link to="#" class="blue" @click.native="confirm(item.id)">确认收货</router-link>
-            <!-- <router-link to="#">查看物流</router-link> -->
+          </div>
+          <div
+            class="logistics"
+            v-show="Object.values(item.handleOption).some(opt=>opt)"
+          >
+            <router-link
+              to="#"
+              class="blue"
+              @click.native="confirm(item.id)"
+              v-if="item.handleOption.confirm"
+            >确认收货</router-link>
+            <router-link
+              to="#"
+              class="blue"
+              v-if="item.handleOption.cancel"
+            >取消</router-link>
+            <router-link
+              to="#"
+              class="blue"
+              v-if="item.handleOption.delete"
+            >删除</router-link>
+            <router-link
+              to="#"
+              class="blue"
+              v-if="item.handleOption.pay"
+            >支付</router-link>
+            <router-link
+              to="#"
+              class="blue"
+              v-if="item.handleOption.buy"
+            >购买</router-link>
+            <router-link
+              to="#"
+              class="blue"
+              v-if="item.handleOption.confirm"
+            >确认收货</router-link>
           </div>
         </div>
-        <div class="norecord" v-if="orders.length === 0">
+        <div
+          class="norecord"
+          v-if="orders.length === 0"
+        >
           <img src="../../assets/images/noorder.png" />
           <p>你没有相关订单</p>
           <p>可以去看看有哪些想买的！</p>
         </div>
       </div>
-      <div class="first" v-if="tabNow ===2">
-        <div class="oreder-item" v-for="item in toDeleverOrder" :key="item.key">
-          <div class="shophead"  @click="view(item.id)">
+      <div
+        class="first"
+        v-if="tabNow ===2"
+      >
+        <div
+          class="oreder-item"
+          v-for="item in toDeleverOrder"
+          :key="item.key"
+        >
+          <div
+            class="shophead"
+            @click="view(item.id)"
+          >
             <img :src="$store.getters.getUser.avatar" />
             <span>{{item.userName}}</span>
             <i>{{item.orderStatusText}}</i>
           </div>
-          <ul  @click="view(item.id)">
-            <li v-for="product in item.orderGoodsEntityList" :key="product.key">
+          <ul @click="view(item.id)">
+            <li
+              v-for="product in item.orderGoodsEntityList"
+              :key="product.key"
+            >
               <div class="left"><img :src="product.listPicUrl" /></div>
               <div class="right">
                 <p class="name">{{product.goodsName}}
@@ -75,28 +151,75 @@
           <div class="add">共
             <span>{{item.goodsCount}}</span>件商品 合计：￥
             <i>{{item.orderPrice}}</i>元(运费:{{item.shippingFee}}元)
-            </div>
-          <div class="logistics">
-            <router-link to="#" class="blue" @click.native="confirm(item.id)">确认收货</router-link>
-            <!-- <router-link to="#" class="blue">查看详情</router-link> -->
-            <!-- <router-link to="#" class="blue" @click.native="logistics(item.orderSn)">查看物流</router-link> -->
+          </div>
+          <div
+            class="logistics"
+            v-show="Object.values(item.handleOption).some(opt=>opt)"
+          >
+            <router-link
+              to="#"
+              class="blue"
+              @click.native="confirm(item.id)"
+              v-if="item.handleOption.confirm"
+            >确认收货</router-link>
+            <router-link
+              to="#"
+              class="blue"
+              v-if="item.handleOption.cancel"
+            >取消</router-link>
+            <router-link
+              to="#"
+              class="blue"
+              v-if="item.handleOption.delete"
+            >删除</router-link>
+            <router-link
+              to="#"
+              class="blue"
+              v-if="item.handleOption.pay"
+            >支付</router-link>
+            <router-link
+              to="#"
+              class="blue"
+              v-if="item.handleOption.buy"
+            >购买</router-link>
+            <router-link
+              to="#"
+              class="blue"
+              v-if="item.handleOption.confirm"
+            >确认收货</router-link>
           </div>
         </div>
-        <div class="norecord" v-if="toDeleverOrder.length === 0">
+        <div
+          class="norecord"
+          v-if="toDeleverOrder.length === 0"
+        >
           <img src="../../assets/images/noorder.png" />
           <p>你没有相关订单</p>
           <p>可以去看看有哪些想买的！</p>
         </div>
       </div>
-      <div class="first" v-if="tabNow ===3">
-        <div class="oreder-item" v-for="item in toReceiveOrder" :key="item.key">
-          <div class="shophead"  @click="view(item.id)">
+      <div
+        class="first"
+        v-if="tabNow ===3"
+      >
+        <div
+          class="oreder-item"
+          v-for="item in toReceiveOrder"
+          :key="item.key"
+        >
+          <div
+            class="shophead"
+            @click="view(item.id)"
+          >
             <img :src="$store.getters.getUser.avatar" />
             <span>{{item.userName}}</span>
             <i>{{item.orderStatusText}}</i>
           </div>
-          <ul  @click="view(item.id)">
-            <li v-for="product in item.orderGoodsEntityList" :key="product.key">
+          <ul @click="view(item.id)">
+            <li
+              v-for="product in item.orderGoodsEntityList"
+              :key="product.key"
+            >
               <div class="left"><img :src="product.listPicUrl" /></div>
               <div class="right">
                 <p class="name">{{product.goodsName}}
@@ -115,13 +238,47 @@
           <div class="add">共
             <span>{{item.goodsCount}}</span>件商品 合计：￥
             <i>{{item.orderPrice}}</i>元(运费:{{item.shippingFee}}元)</div>
-          <div class="logistics">
-            <router-link to="#" class="blue" @click.native="confirm(item.id)">确认收货</router-link>
-            <!-- <router-link to="#" class="blue" @click.native="view(item.id)">查看详情</router-link> -->
-            <!-- <router-link to="#" class="blue" @click.native="logistics(item.id)">查看物流</router-link> -->
+          <div
+            class="logistics"
+            v-show="Object.values(item.handleOption).some(opt=>opt)"
+          >
+            <router-link
+              to="#"
+              class="blue"
+              @click.native="confirm(item.id)"
+              v-if="item.handleOption.confirm"
+            >确认收货</router-link>
+            <router-link
+              to="#"
+              class="blue"
+              v-if="item.handleOption.cancel"
+            >取消</router-link>
+            <router-link
+              to="#"
+              class="blue"
+              v-if="item.handleOption.delete"
+            >删除</router-link>
+            <router-link
+              to="#"
+              class="blue"
+              v-if="item.handleOption.pay"
+            >支付</router-link>
+            <router-link
+              to="#"
+              class="blue"
+              v-if="item.handleOption.buy"
+            >购买</router-link>
+            <router-link
+              to="#"
+              class="blue"
+              v-if="item.handleOption.confirm"
+            >确认收货</router-link>
           </div>
         </div>
-        <div class="norecord" v-if="toReceiveOrder.length === 0">
+        <div
+          class="norecord"
+          v-if="toReceiveOrder.length === 0"
+        >
           <img src="../../assets/images/noorder.png" />
           <p>你没有相关订单</p>
           <p>可以去看看有哪些想买的！</p>

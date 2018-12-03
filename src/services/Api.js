@@ -8,6 +8,7 @@ import router from '../router'
 //测试地址
 // const host = 'http://dl.upyuns.com/agent/api/v1/'
 const host = 'http://wtdl.upyuns.com/agent/api/v1/'
+// const host = 'http://sbqdl.upyuns.com/agent/api/v1/'
 //上线地址
 // const host = 'http://sdl.cwzbz.com/agent/api/v1/'
 //本地地址

@@ -45,15 +45,17 @@
       <div class="goods-desc" v-html='goodsDetail.goodsDesc'></div>
     </div>
     <div class="goodsdetail_footer">
-      <div><img style="margin-left:36%;" src="../../assets/images/service.png" />
-        <p>客服</p>
-      </div>
       <div @click="$router.push({name:'shoppingCart'})"><img src="../../assets/images/shoppingcart_.png" />
         <p>购物车</p>
       </div>
+      <div>
+        <!-- <img style="margin-left:36%;" src="../../assets/images/service.png" />
+        <p>客服</p> -->
+      </div>
+      <div style="backgroud:#fff;"></div>
       <div @click="addGoods()">加入购物车</div>
       <!-- <div @click="$vux.toast.show({width: '10em', type: 'warn',text: '此功能暂未开放'})" style="color:#aaa;">立即购买</div> -->
-      <div @click="buynow()" style="color:#aaa;">立即购买</div>
+      <!-- <div @click="buynow()" style="color:#aaa;">立即购买</div> -->
       <!-- <div @click="$router.push({name:'buy'})">立即购买</div> -->
     </div>
     <toast v-model="showToast" type="text" :time="800" is-show-mask text="请先选择规格" position="top" width='10em' />
@@ -255,30 +257,32 @@ img {
       text-align: center;
     }
     &:nth-child(1) {
+      // width: 20%;
       width: 20%;
       height: 0.5rem;
       float: left;
       border-right: 1px solid #ccc;
     }
     &:nth-child(2) {
-      width: 20%;
+      // width: 20%;
       height: 0.5rem;
       float: left;
       border-right: 1px solid #ccc;
       border-right: none;
     }
     &:nth-child(3) {
-      width: 29.8%;
+      // width: 29.8%;
       height: 0.5rem;
       line-height: 0.5rem;
       text-align: center;
       float: left;
       color: @color_1;
-      background: #5b50d3;
+      // background: #5b50d3;
       font-size: 0.16rem;
     }
     &:nth-child(4) {
-      width: 29.8%;
+      // width: 29.8%;
+      width: 79.6%;
       height: 0.5rem;
       line-height: 0.5rem;
       text-align: center;

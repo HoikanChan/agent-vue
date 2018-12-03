@@ -161,7 +161,7 @@ export default {
       display: block;
       width: 1.02rem;
       height: auto;
-      margin: 0.2rem auto;
+      margin: 0.1rem auto;
     }
     div {
       display: flex;
