@@ -10,12 +10,12 @@
     <group style="padding:.2rem">
       <x-input label-width="1rem" title="手机号码" placeholder="请输入手机号码" :required="true" ref="mobile" v-model="form.mobile" is-type="china-mobile">
       </x-input>
-      <x-input label-width="1rem" title="图片验证码" type="text" placeholder="请输入图片验证码" :required="true" ref="imgcode" v-model="form.imgCode">
+      <!-- <x-input label-width="1rem" title="图片验证码" type="text" placeholder="请输入图片验证码" :required="true" ref="imgcode" v-model="form.imgCode">
         <img v-if="imgcode" slot="right" :src='imgcode' type="primary" mini @click="getImgCode()" style="width: 1rem;" />
       </x-input>
       <x-input label-width="1rem" title="验证码" type="text" placeholder="请输入验证码" :required="true" ref="code" v-model="form.SMSCode">
         <x-button slot="right" type="primary" mini @click.native="sendCode">{{ countDown || '获取验证码'}}</x-button>
-      </x-input>
+      </x-input> -->
       <x-input label-width="1rem" title="用户名" type="text" placeholder="请输入真实姓名" :required="true" ref="cnName" v-model="form.username">
       </x-input>
       <x-input label-width="1rem" title="密码" type="password" placeholder="请输入6-16个字符的密码" :required="true" :min="6" :max="16" ref="psw" v-model="form.password">
@@ -25,10 +25,10 @@
       <x-input label-width="1rem" readonly title="注册等级" type="text" placeholder="请选择等级" :required="true" ref="userLevel" v-model="form.userLevel">
         <x-icon slot="right" type="ios-arrow-forward" mini @click.native="show=true" size="15"></x-icon>
       </x-input>
-      <x-input label-width="1rem" title="邀请人" type="text" placeholder="系统根据邀请码自动识别" readonly ref="referralName" v-model="referrerName">
+      <!-- <x-input label-width="1rem" title="邀请人" type="text" placeholder="系统根据邀请码自动识别" readonly ref="referralName" v-model="referrerName">
       </x-input>
       <x-input label-width="1rem" title="邀请码" type="text" placeholder="请输入推荐人的名字邀请码"  :required="true" ref="referralCode" v-model="form.referralCode">
-      </x-input>
+      </x-input> -->
       <x-input label-width="1rem" title="审核凭证" type="text" readonly placeholder="请上传支付凭证图片" ref="payOrder" v-model="form.payOrder">
         <vue-core-image-upload slot="right" :crop="false" @imageuploading="imageuploading" @imageuploaded="imageuploaded" :data="data" :max-file-size="5242880" :url="uploadUrl">
           <img src="../../assets/images/upload.png" type="ios-arrow-forward" mini @click.native="show=true" style="width:2em" />
@@ -169,9 +169,9 @@ export default {
       if (
         this.$refs.mobile.valid &&
         this.$refs.psw.valid &&
-        this.$refs.confirmPassword.valid &&
-        this.$refs.code.valid &&
-        this.$refs.referralCode.valid
+        this.$refs.confirmPassword.valid
+        // this.$refs.code.valid &&
+        // this.$refs.referralCode.valid
       ) {
         this.$vux.loading.show({
           text: '注册中..'
