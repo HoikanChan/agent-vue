@@ -169,7 +169,7 @@ export default {
       return
     }
     this.goodsDetail = result.info
-    this.images = this.goodsDetail
+    this.images = this.goodsDetail.goodsImgList
       ? this.goodsDetail.goodsImgList.map(i => i.imgUrl)
       : []
     //可选规格组合
@@ -182,7 +182,7 @@ export default {
         specIds: i.goodsSpecificationIds
           .split('_')
           .map(i => Number(i))
-          .reverse()
+          .reverse() //接口规格顺序与规格列表顺序相反
       }
     })
     if (this.productList.length) {
