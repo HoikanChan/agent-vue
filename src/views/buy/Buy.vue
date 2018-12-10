@@ -27,13 +27,13 @@
       <div class="product-item" v-for="(item,index) in products" :key="index">
         <x-img :src="item.listPicUrl" style="width:1.2rem;height:1.2rem;"></x-img>
         <div class="product-detail">
-          <div class="title">{{item.goodsName}}</div>
+          <div class="title">{{item.product.goodsName}}</div>
           <div class="info">
-            <div class="unit">{{item.goodsSpecifitionNameValue}}</div>
+            <div class="unit">{{item.product.goodsSpecifitionNameValue}}</div>
             <div class="category">{{item.category}}</div>
           </div>
           <div class="foot">
-            <span class="price">￥{{item.marketPrice}}</span>
+            <span class="price">￥{{item.product.marketPrice}}</span>
             <span class="amount">x{{item.number}}</span>
           </div>
         </div>

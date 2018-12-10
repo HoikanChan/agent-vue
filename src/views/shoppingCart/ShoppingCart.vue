@@ -20,15 +20,15 @@
           </div>
           <div><img :src="item.listPicUrl" /></div>
           <div>
-            <p>{{item.goodsName}}
+            <p>{{item.product.goodsName}}
               <!-- <span>(10支/一盒)</span> -->
             </p>
             <p>产品规格
-              <span>{{item.goodsSpecifitionNameValue}}</span>
+              <span>{{item.product.goodsSpecifitionNameValue}}</span>
             </p>
             <p></p>
             <div class="price-info">
-              <p class="price">￥{{item.marketPrice}}</p>
+              <p class="price">￥{{item.product.marketPrice}}</p>
               <span class="number" v-if="!isEditing">×{{item.number}}</span>
               <div v-else>
                 <!-- <x-button mini type='warn' plain>删除</x-button> -->
@@ -50,15 +50,15 @@
           </div>
           <div><img :src="item.listPicUrl" /></div>
           <div>
-            <p>{{item.goodsName}}
+            <p>{{item.product.goodsName}}
               <!-- <span>(10支/一盒)</span> -->
             </p>
             <p>产品规格
-              <span>{{item.goodsSpecifitionNameValue}}</span>
+              <span>{{item.product.goodsSpecifitionNameValue}}</span>
             </p>
             <p></p>
             <div class="price-info">
-              <p class="price">￥{{item.marketPrice}}</p>
+              <p class="price">￥{{item.product.marketPrice}}</p>
               <span class="number" v-if="!isEditing">×{{item.number}}</span>
               <div v-else>
                 <!-- <x-button mini type='warn' plain>删除</x-button> -->
@@ -128,7 +128,7 @@ export default {
   methods: {
     async updateCart() {
       this.pickedIds = []
-      const result = await ShoppingCartService.get()
+      const result = (await ShoppingCartService.get()).data
       this.total = result.cartTotal
       this.products = result.cartList ? result.cartList : []
       if (this.products.length) {
